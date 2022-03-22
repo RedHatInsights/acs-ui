@@ -30,14 +30,34 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 `npm run verify` will run `npm run lint` (eslint) and `npm test` (Jest)
 
+## Definitions
+* `stage` - Development and Testing
+* `prod` - Production
+* `qaprodauth` - Same environment as stage but uses production SSO instead of stage SSO
+* `beta` - Some UI features or even services are in a pre-release or preview state. Usually only in stage.
+* `stable` - Basically not beta
+
 ## Deploying
 
 - This repo uses Github Actions to build and deploy the webpack `dist/` directory to another Github repo defined in `.github/workflows`
-  - That Github repo has the following branches:
-    - `ci-beta` (deployed by pushing to `main` on this repo)
-    - `ci-stable` (deployed by pushing to `ci-stable` on this repo)
-    - `qa-beta` (deployed by pushing to `qa-beta` on this repo)
-    - `qa-stable` (deployed by pushing to `qa-stable` on this repo)
-    - `prod-beta` (deployed by pushing to `prod-beta` on this repo)
-    - `prod-stable` (deployed by pushing to `prod-stable` on this repo)
+  - Pushing to the specified branches will push the build files to the following branches in the build repo:
+    - `main` -> `ci-beta` -> `qa-beta` -> `stage-beta`
+    - `stable` -> `ci-stable` -> `qa-stable` -> `stage-stable`
+    - `prod-beta` -> `prod-beta`
+    - `prod-stable` -> `prod-stable`
 
+## Branch links and syncing
+
+These are the urls for each branch:
+
+### Beta
+* ci-beta -> https://ci.console.redhat.com/beta
+* qa-beta -> https://qa.console.redhat.com/beta
+* stage-beta -> https://console.stage.redhat.com/beta
+* prod-beta -> https://console.redhat.com/beta
+
+### Stable
+* ci-stable -> https://ci.console.redhat.com
+* qa-stable -> https://qa.console.redhat.com
+* stage -> https://console.stage.redhat.com
+* prod-stable -> https://console.redhat.com
