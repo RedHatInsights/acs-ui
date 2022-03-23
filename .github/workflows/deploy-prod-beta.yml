@@ -8,7 +8,7 @@ on:
 env:
   TOKEN: ${{ secrets.TOKEN }}
   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-  SOURCE_BRANCH: ${GITHUB_REF##*/}
+  SOURCE_REPO: "RedHatInsights/acs-ui"
   DEPLOY_URL: "github.com/RedHatInsights/acs-ui-build"
   WORKSPACE: ${{ github.workspace }}
   GIT_USERNAME: "Github Action"
