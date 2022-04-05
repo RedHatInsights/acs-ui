@@ -9,6 +9,7 @@ env:
   TOKEN: ${{ secrets.TOKEN }}
   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
   SOURCE_REPO: "RedHatInsights/acs-ui"
+  SOURCE_BRANCH: ${{ github.ref_name }}
   DEPLOY_URL: "github.com/RedHatInsights/acs-ui-build"
   WORKSPACE: ${{ github.workspace }}
   GIT_USERNAME: "Github Action"
@@ -28,7 +29,8 @@ jobs:
           path: ${{ github.workspace }}/dist/*
           key: ${{ github.sha }}
       - name: Checkout RedHatInsights/acs-ui-build repo and push build files from acs-ui
-        run: sh ./.github/scripts/deploy.sh
+        run: |
+          bash ${{ github.workspace }}/.github/scripts/deploy.sh
         env:
           DEPLOY_BRANCH: "ci-beta"
   deploy-qa-beta:
@@ -45,7 +47,8 @@ jobs:
           path: ${{ github.workspace }}/dist/*
           key: ${{ github.sha }}
       - name: Checkout RedHatInsights/acs-ui-build repo and push build files from acs-ui
-        run: sh ./.github/scripts/deploy.sh
+        run: |
+          bash ${{ github.workspace }}/.github/scripts/deploy.sh
         env:
           DEPLOY_BRANCH: "qa-beta"
   deploy-stage-beta:
@@ -62,6 +65,7 @@ jobs:
           path: ${{ github.workspace }}/dist/*
           key: ${{ github.sha }}
       - name: Checkout RedHatInsights/acs-ui-build repo and push build files from acs-ui
-        run: sh ./.github/scripts/deploy.sh
+        run: |
+          bash ${{ github.workspace }}/.github/scripts/deploy.sh
         env:
           DEPLOY_BRANCH: "stage-beta"
