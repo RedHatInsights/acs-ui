@@ -1,11 +1,12 @@
 #!/bin/bash
 
+# set environment variables
 SRC_HASH=`git rev-parse --verify HEAD`
 APP_NAME=$(node -e "console.log(require(\"${WORKSPACE:-.}/package.json\").insights.appname)")
 NODE_VERSION=$(node -e "console.log(require(\"${WORKSPACE:-.}/package.json\")?.engines?.node || \"unknown\")")
 
+# check if node version is valid
 major_version=0
-# Get the major version of node
 OLDIFS=$IFS
 IFS='.'
 read -a versionarr <<EOF
@@ -22,8 +23,7 @@ else
 fi
 IFS=$OLDIFS
 
-# instead of using -v use -n to check for an empty strings
-# -v is not working well on bash 3.2 on osx
+# get the PatternFly and RedHat Cloud Services dependencies
 PATTERNFLY_DEPS="undefined"
 RH_CLOUD_SERVICES_DEPS="undefined"
 if [[ -f package-lock.json ]] || [[ -f yarn.lock ]];
@@ -37,6 +37,7 @@ else
   RH_CLOUD_SERVICES_DEPS="[]"
 fi
 
+# clone the build repo and copy over the build directory
 git clone https://.:$TOKEN@$DEPLOY_URL build
 cd build
 git checkout $DEPLOY_BRANCH || git checkout -b $DEPLOY_BRANCH
@@ -45,6 +46,7 @@ cd ..
 cp -R $WORKSPACE/dist/* ./build/
 cd build
 
+# add the app.info.json file to the build directory
 echo "{
   \"app_name\": \"$APP_NAME\",
   \"node_version\": \"$NODE_VERSION\",
@@ -54,6 +56,10 @@ echo "{
   \"patternfly_dependencies\": $PATTERNFLY_DEPS,
   \"rh_cloud_services_dependencies\": $RH_CLOUD_SERVICES_DEPS,
 }" > ./app.info.json
+
+# add the JenkinsFile file to the build directory
+cp $WORKSPACE/JenkinsFile 58231b16fdee45a03a4ee3cf94a9f2c3
+sed -s "s/__APP_NAME__/$APP_NAME/" -i ./58231b16fdee45a03a4ee3cf94a9f2c3
 
 git config --local user.name "$GIT_USERNAME"
 git config --local user.email "$GIT_EMAIL"

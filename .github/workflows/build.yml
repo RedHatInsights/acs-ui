@@ -16,9 +16,6 @@ jobs:
         run: npm test --passWithNoTests
       - name: Build 
         run: npm run build --if-present
-      - name: Add Jenkins File 
-        run: |
-          cp ${{ github.workspace }}/JenkinsFile ${{ github.workspace }}/dist/58231b16fdee45a03a4ee3cf94a9f2c3
       # store the build files into the cache
       - name: Cache Build
         uses: actions/cache@v2
