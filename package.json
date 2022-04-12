@@ -17,7 +17,8 @@
     "nightly": "npm run deploy",
     "patch:hosts": "fec patch-etc-hosts",
     "start": "webpack serve --config config/dev.webpack.config.js",
-    "start:beta": "BETA=true npm start",
+    "start:beta": "NODE_OPTIONS='--max-http-header-size=100000' BETA=true npm start",
+    "start:mock": "NODE_OPTIONS='--max-http-header-size=100000' BETA=true USE_MOCK_DATA=true npm start",
     "test": "jest",
     "verify": "npm-run-all build lint test"
   },
@@ -30,6 +31,7 @@
     "classnames": "^2.3.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-query": "^3.34.19",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
     "redux": "4.1.0",

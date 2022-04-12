@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import {
+  Alert,
   Button,
   Form,
   FormGroup,
@@ -16,15 +17,13 @@ import SelectSingle from '../../components/SelectSingle';
 
 const defaultFormValues = {
   name: '',
-  cloudProvider: 'Amazon Web Services',
-  cloudRegion: 'US-East',
+  cloud_provider: 'aws',
+  region: 'us-east-1',
   availabilityZones: 'multi',
-  owner: 'bob@redhat.com',
-  status: 'READY',
-  timeCreated: new Date(),
 };
 
 function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
+  const [error, setError] = useState(null);
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
 
@@ -39,7 +38,7 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
   function onCloudRegionSelect(id, selection) {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
-      cloudRegion: selection,
+      region: selection,
     }));
   }
 
@@ -54,8 +53,8 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
     setIsRequestingCreate(true);
     const result = await onRequestCreate(formValues);
     setIsRequestingCreate(false);
-    if (result.error) {
-      // Do something
+    if (result instanceof Error) {
+      setError(result);
     } else {
       setFormValues(defaultFormValues);
       onClose();
@@ -88,6 +87,11 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
         </Button>,
       ]}
     >
+      {error && (
+        <div className="pf-u-mb-md">
+          <Alert variant="danger" title={error.message} />
+        </div>
+      )}
       <Form>
         <FormGroup
           label="Name"
@@ -104,21 +108,20 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
             onChange={onInputChange}
           />
         </FormGroup>
-        <FormGroup label="Cloud provider" isRequired fieldId="cloudProvider">
+        <FormGroup label="Cloud provider" isRequired fieldId="cloud_provider">
           <Tile
             title="Amazon Web Services"
-            isSelected={formValues.cloudProvider === 'Amazon Web Services'}
+            isSelected={formValues.cloud_provider === 'aws'}
           />
         </FormGroup>
-        <FormGroup label="Cloud region" isRequired fieldId="cloudRegion">
+        <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
-            id="cloudRegion"
-            value={formValues.cloudRegion}
+            id="region"
+            value={formValues.region}
             handleSelect={onCloudRegionSelect}
-            isDisabled
           >
-            <SelectOption value="US-East">US-East, N. Virginia</SelectOption>
-            <SelectOption value="EU-Ireland">EU-Ireland</SelectOption>
+            <SelectOption value="us-east-1">US-East, N. Virginia</SelectOption>
+            <SelectOption value="eu-west-1">EU-Ireland</SelectOption>
           </SelectSingle>
         </FormGroup>
         <FormGroup

@@ -8,13 +8,25 @@ import { useParams } from 'react-router-dom';
 import {
   Breadcrumb,
   BreadcrumbItem,
+  Bullseye,
   Flex,
   FlexItem,
+  Spinner,
 } from '@patternfly/react-core';
 import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
+import useInstance from '../../hooks/apis/useInstance';
 
 function InstanceDetailsPage() {
-  const { instanceName } = useParams();
+  const { instanceId } = useParams();
+  const { data: instance, isFetching } = useInstance(instanceId);
+
+  if (isFetching) {
+    return (
+      <Bullseye>
+        <Spinner />
+      </Bullseye>
+    );
+  }
 
   return (
     <div>
@@ -25,11 +37,11 @@ function InstanceDetailsPage() {
               <BreadcrumbItemLink to="/instances">
                 ACS instances
               </BreadcrumbItemLink>
-              <BreadcrumbItem isActive>{instanceName}</BreadcrumbItem>
+              <BreadcrumbItem isActive>{instance.name}</BreadcrumbItem>
             </Breadcrumb>
           </FlexItem>
           <FlexItem>
-            <PageHeaderTitle title={instanceName} />
+            <PageHeaderTitle title={instance.name} />
           </FlexItem>
         </Flex>
       </PageHeader>

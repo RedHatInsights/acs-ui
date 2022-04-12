@@ -5,6 +5,9 @@ import { init } from './store';
 import App from './App';
 import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/helpers';
 import logger from 'redux-logger';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const AppEntry = () => (
   <Provider
@@ -12,9 +15,11 @@ const AppEntry = () => (
       ...(process.env.NODE_ENV !== 'production' ? [logger] : [])
     ).getStore()}
   >
-    <Router basename={getBaseName(window.location.pathname)}>
-      <App />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router basename={getBaseName(window.location.pathname)}>
+        <App />
+      </Router>
+    </QueryClientProvider>
   </Provider>
 );
 

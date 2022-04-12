@@ -18,6 +18,8 @@ import {
 } from '@patternfly/react-core';
 import React from 'react';
 
+import { getDateTime } from '../../utils/date';
+
 function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
   return (
     <Drawer isExpanded={isExpanded}>
@@ -39,44 +41,46 @@ function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
             </DrawerHead>
             <Divider component="div" />
             <DrawerContentBody>
-              <DescriptionList isHorizontal>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>Cloud provider</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {instance?.cloudProvider}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>Region</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {instance?.cloudRegion}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>ID</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {instance?.id || 'N/A'}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>Owner</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {instance?.owner || 'N/A'}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>Created</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {instance?.created || 'N/A'}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>Updated</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {instance?.updated || 'N/A'}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-              </DescriptionList>
+              {instance && (
+                <DescriptionList isHorizontal>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Cloud provider</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {instance.cloud_provider}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Region</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {instance.region}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>ID</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {instance.id}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Owner</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {instance.owner}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Created</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {getDateTime(instance.created_at)}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Updated</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {getDateTime(instance.updated_at)}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                </DescriptionList>
+              )}
             </DrawerContentBody>
           </DrawerPanelContent>
         }

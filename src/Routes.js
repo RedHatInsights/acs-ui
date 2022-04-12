@@ -35,7 +35,7 @@ export function Routes() {
         <Route path="/oops" component={OopsPage} />
         <Route path="/no-permissions" component={NoPermissionsPage} />
         <Route
-          path="/instances/instance/:instanceName"
+          path="/instances/instance/:instanceId"
           component={InstanceDetailsPage}
         />
         <Route path="/instances" component={InstancesPage} />

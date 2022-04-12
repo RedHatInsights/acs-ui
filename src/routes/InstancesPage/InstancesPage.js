@@ -17,6 +17,8 @@ import {
   ToolbarContent,
   ToolbarItem,
   Pagination,
+  Bullseye,
+  Spinner,
 } from '@patternfly/react-core';
 import {
   ActionsColumn,
@@ -30,6 +32,8 @@ import {
 import { CubesIcon } from '@patternfly/react-icons';
 
 import usePagination from '../../hooks/usePagination';
+import useInstances from '../../hooks/apis/useInstances';
+import useCreateInstance from '../../hooks/apis/useCreateInstance';
 
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
@@ -38,17 +42,6 @@ import ChangeOwnerModal from './ChangeOwnerModal';
 import { getDateTime } from '../../utils/date';
 import Status from '../../components/Status';
 
-const defaultInstances = [
-  {
-    name: 'acs-instance-1',
-    cloudProvider: 'Amazon Web Services',
-    cloudRegion: 'US-East',
-    availabilityZones: 'multi',
-    owner: 'bob@redhat.com',
-    status: 'READY',
-    timeCreated: new Date(),
-  },
-];
 const possibleOwners = ['alice@redhat.com', 'bob@redhat.com', 'eve@redhat.com'];
 
 /**
@@ -60,25 +53,31 @@ const possibleOwners = ['alice@redhat.com', 'bob@redhat.com', 'eve@redhat.com'];
  */
 function InstancesPage() {
   const history = useHistory();
-  const [instances, setInstances] = useState(defaultInstances);
+  // Testing
+  const { data, isFetching } = useInstances();
+  const createInstance = useCreateInstance();
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
   const [creatingInstance, setCreatingInstance] = useState(null);
   const [deletingInstance, setDeletingInstance] = useState(null);
   const [viewingInstance, setViewingInstance] = useState(null);
   const [changingOwner, setChangingOwner] = useState(null);
 
+  const instances = data?.items || [];
+
   useEffect(() => {
     insights?.chrome?.appAction?.('sample-page');
   }, []);
 
-  function createInstance(values) {
-    const promise = new Promise((resolve) => {
-      setTimeout(() => {
-        setInstances((prevInstances) => [...prevInstances, values]);
-        resolve({ error: null });
-      }, 1000);
+  function onRequestCreate(values) {
+    const response = createInstance.mutateAsync({
+      region: values.region,
+      cloud_provider: values.cloud_provider,
+      name: values.name,
+      multi_az: values.availabilityZones === 'multi',
     });
-    return promise;
+    return response.catch((error) => {
+      return error;
+    });
   }
 
   function closeCreateInstanceModal() {
@@ -88,9 +87,6 @@ function InstancesPage() {
   function deleteInstance() {
     const promise = new Promise((resolve) => {
       setTimeout(() => {
-        setInstances((prevInstances) =>
-          prevInstances.filter((datum) => datum.name !== deletingInstance.name)
-        );
         resolve({ error: null });
       }, 2000);
     });
@@ -101,19 +97,9 @@ function InstancesPage() {
     setDeletingInstance(null);
   }
 
-  function changeOwner(newOwner) {
+  function changeOwner() {
     const promise = new Promise((resolve) => {
       setTimeout(() => {
-        setInstances((prevInstances) => {
-          const newInstances = prevInstances.map((instance) => {
-            const modifiedInstance = { ...instance };
-            if (changingOwner.instance.name === instance.name) {
-              modifiedInstance.owner = newOwner;
-            }
-            return modifiedInstance;
-          });
-          return newInstances;
-        });
         resolve({ error: null });
       }, 2000);
     });
@@ -126,6 +112,14 @@ function InstancesPage() {
 
   function closeInstanceDetailsDrawer() {
     setViewingInstance(null);
+  }
+
+  if (isFetching) {
+    return (
+      <Bullseye>
+        <Spinner />
+      </Bullseye>
+    );
   }
 
   return (
@@ -207,20 +201,20 @@ function InstancesPage() {
                       isRowSelected={viewingInstance?.name === instance?.name}
                     >
                       <Td dataLabel="Name">
-                        <Link to={`/instances/instance/${instance.name}`}>
+                        <Link to={`/instances/instance/${instance.id}`}>
                           {instance.name}
                         </Link>
                       </Td>
                       <Td dataLabel="Cloud Provider">
-                        {instance.cloudProvider}
+                        {instance.cloud_provider}
                       </Td>
-                      <Td dataLabel="Region">{instance.cloudRegion}</Td>
+                      <Td dataLabel="Region">{instance.region}</Td>
                       <Td dataLabel="Owner">{instance.owner}</Td>
                       <Td dataLabel="Status">
                         <Status status={instance.status} />
                       </Td>
                       <Td dataLabel="Time Created<">
-                        {getDateTime(instance.timeCreated)}
+                        {getDateTime(instance.created_at)}
                       </Td>
                       <Td isActionCell>
                         <ActionsColumn
@@ -230,7 +224,7 @@ function InstancesPage() {
                               onClick: (event) => {
                                 event.preventDefault();
                                 history.push(
-                                  `/instances/instance/${instance.name}`
+                                  `/instances/instance/${instance.id}`
                                 );
                               },
                             },
@@ -281,7 +275,7 @@ function InstancesPage() {
         <CreateInstanceModal
           isOpen={!!creatingInstance}
           onClose={closeCreateInstanceModal}
-          onRequestCreate={createInstance}
+          onRequestCreate={onRequestCreate}
         />
         <DeleteInstanceModal
           instance={deletingInstance}
