@@ -22,7 +22,7 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 1. ```npm install```
 
-2. ```npm run dev```
+2. ```npm run start:beta```
 
 3. Open browser in URL listed in the terminal output
 
@@ -35,7 +35,7 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 * `prod` - Production
 * `qaprodauth` - Same environment as stage but uses production SSO instead of stage SSO
 * `beta` - Some UI features or even services are in a pre-release or preview state. Usually only in stage.
-* `stable` - Basically not beta
+* `stable` - Non-beta stable version
 
 ## Deploying
 
