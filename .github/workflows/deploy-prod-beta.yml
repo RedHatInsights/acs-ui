@@ -1,7 +1,7 @@
 name: Deploy Prod Beta
 on:
   workflow_run:
-    workflows: ['Lint Test Build']
+    workflows: ['Build']
     branches: [prod-beta]
     types:
       - completed

@@ -1,7 +1,7 @@
 name: Deploy Stable
 on:
   workflow_run:
-    workflows: ['Lint Test Build']
+    workflows: ['Build']
     branches: [stable]
     types:
       - completed

@@ -1,7 +1,7 @@
 name: Deploy Prod Stable
 on:
   workflow_run:
-    workflows: ['Lint Test Build']
+    workflows: ['Build']
     branches: [prod-stable]
     types:
       - completed
