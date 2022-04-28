@@ -25,6 +25,10 @@ const { config: webpackConfig, plugins } = config({
   env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   customProxy,
 });
+
+// allow absolute imports
+webpackConfig.resolve.modules = [resolve(__dirname, '../src'), 'node_modules'];
+
 plugins.push(...commonPlugins);
 
 module.exports = {

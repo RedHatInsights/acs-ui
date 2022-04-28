@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 
-import apiRequest from '../../services/apiRequest';
+import apiRequest from 'services/apiRequest';
 
 const postInstance = async (postData) => {
   const { data } = await apiRequest.post(

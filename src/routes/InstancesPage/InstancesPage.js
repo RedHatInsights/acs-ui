@@ -31,16 +31,16 @@ import {
 } from '@patternfly/react-table';
 import { CubesIcon } from '@patternfly/react-icons';
 
-import usePagination from '../../hooks/usePagination';
-import useInstances from '../../hooks/apis/useInstances';
-import useCreateInstance from '../../hooks/apis/useCreateInstance';
-import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
+import usePagination from 'hooks/usePagination';
+import useInstances from 'hooks/apis/useInstances';
+import useCreateInstance from 'hooks/apis/useCreateInstance';
+import useDeleteInstance from 'hooks/apis/useDeleteInstance';
+import { getDateTime } from 'utils/date';
 
+import Status from 'components/Status';
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
 import InstanceDetailsDrawer from './InstanceDetailsDrawer';
-import { getDateTime } from '../../utils/date';
-import Status from '../../components/Status';
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.

@@ -18,7 +18,7 @@ import {
 } from '@patternfly/react-core';
 import React from 'react';
 
-import { getDateTime } from '../../utils/date';
+import { getDateTime } from 'utils/date';
 
 function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
   return (

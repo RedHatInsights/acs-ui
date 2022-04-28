@@ -13,7 +13,8 @@ import {
   ToggleGroupItem,
 } from '@patternfly/react-core';
 import React, { useState } from 'react';
-import SelectSingle from '../../components/SelectSingle';
+
+import SelectSingle from 'components/SelectSingle';
 
 const defaultFormValues = {
   name: '',

@@ -7,6 +7,10 @@ const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
   ...(process.env.BETA && { deployment: 'beta/apps' }),
 });
+
+// allow absolute imports
+webpackConfig.resolve.modules = [resolve(__dirname, '../src'), 'node_modules'];
+
 plugins.push(...commonPlugins);
 
 module.exports = (env) => {

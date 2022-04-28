@@ -23,5 +23,12 @@
     },
     "plugins": [
         "react"
-    ]
+    ],
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "./config/dev.webpack.config.js"
+            }
+        }
+    }
 }
