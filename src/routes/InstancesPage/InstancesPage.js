@@ -34,6 +34,7 @@ import { CubesIcon } from '@patternfly/react-icons';
 import usePagination from '../../hooks/usePagination';
 import useInstances from '../../hooks/apis/useInstances';
 import useCreateInstance from '../../hooks/apis/useCreateInstance';
+import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
 
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
@@ -56,6 +57,7 @@ function InstancesPage() {
   // Testing
   const { data, isFetching } = useInstances();
   const createInstance = useCreateInstance();
+  const deleteInstance = useDeleteInstance();
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
   const [creatingInstance, setCreatingInstance] = useState(null);
   const [deletingInstance, setDeletingInstance] = useState(null);
@@ -84,13 +86,11 @@ function InstancesPage() {
     setCreatingInstance(null);
   }
 
-  function deleteInstance() {
-    const promise = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ error: null });
-      }, 2000);
+  function onRequestDelete(instanceID) {
+    const response = deleteInstance.mutateAsync(instanceID);
+    return response.catch((error) => {
+      return error;
     });
-    return promise;
   }
 
   function closeDeleteInstanceModal() {
@@ -281,7 +281,7 @@ function InstancesPage() {
           instance={deletingInstance}
           isOpen={!!deletingInstance}
           onClose={closeDeleteInstanceModal}
-          onRequestDelete={deleteInstance}
+          onRequestDelete={onRequestDelete}
         />
         <ChangeOwnerModal
           isOpen={!!changingOwner}

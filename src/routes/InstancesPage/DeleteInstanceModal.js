@@ -17,7 +17,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
 
   async function onRequestDeleteHandler() {
     setIsRequestingDelete(true);
-    const result = await onRequestDelete();
+    const result = await onRequestDelete(instance.id);
     setIsRequestingDelete(false);
     if (result.error) {
       // Do something
