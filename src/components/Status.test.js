@@ -4,7 +4,7 @@ import Status from './Status';
 
 describe('Status', () => {
   it('should render children', () => {
-    render(<Status status={'READY'} />);
+    render(<Status status="ready" />);
     expect(screen.getByText('Ready')).toBeDefined();
   });
 });
