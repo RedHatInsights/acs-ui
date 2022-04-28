@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 
-import apiRequest from '../../services/apiRequest';
+import apiRequest from 'services/apiRequest';
 
 const deleteInstance = async (instanceID) => {
   const { data } = await apiRequest.delete(

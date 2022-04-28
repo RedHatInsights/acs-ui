@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-import apiRequest from '../../services/apiRequest';
+import apiRequest from 'services/apiRequest';
 
 const getInstanceById = async (instanceId) => {
   const { data } = await apiRequest.get(

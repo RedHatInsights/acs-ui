@@ -13,8 +13,10 @@ import {
   FlexItem,
   Spinner,
 } from '@patternfly/react-core';
-import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
-import useInstance from '../../hooks/apis/useInstance';
+
+import useInstance from "hooks/apis/useInstance";
+
+import BreadcrumbItemLink from 'components/BreadcrumbItemLink';
 
 function InstanceDetailsPage() {
   const { instanceId } = useParams();
