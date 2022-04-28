@@ -39,11 +39,8 @@ import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
 import InstanceDetailsDrawer from './InstanceDetailsDrawer';
-import ChangeOwnerModal from './ChangeOwnerModal';
 import { getDateTime } from '../../utils/date';
 import Status from '../../components/Status';
-
-const possibleOwners = ['alice@redhat.com', 'bob@redhat.com', 'eve@redhat.com'];
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -62,7 +59,6 @@ function InstancesPage() {
   const [creatingInstance, setCreatingInstance] = useState(null);
   const [deletingInstance, setDeletingInstance] = useState(null);
   const [viewingInstance, setViewingInstance] = useState(null);
-  const [changingOwner, setChangingOwner] = useState(null);
 
   const instances = data?.items || [];
 
@@ -95,19 +91,6 @@ function InstancesPage() {
 
   function closeDeleteInstanceModal() {
     setDeletingInstance(null);
-  }
-
-  function changeOwner() {
-    const promise = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ error: null });
-      }, 2000);
-    });
-    return promise;
-  }
-
-  function closeChangingOwnerModal() {
-    setChangingOwner(null);
   }
 
   function closeInstanceDetailsDrawer() {
@@ -229,16 +212,6 @@ function InstancesPage() {
                               },
                             },
                             {
-                              title: 'Change Owner',
-                              onClick: (event) => {
-                                event.preventDefault();
-                                setChangingOwner({
-                                  instance,
-                                  newOwner: null,
-                                });
-                              },
-                            },
-                            {
                               title: 'Delete',
                               onClick: (event) => {
                                 event.preventDefault();
@@ -282,13 +255,6 @@ function InstancesPage() {
           isOpen={!!deletingInstance}
           onClose={closeDeleteInstanceModal}
           onRequestDelete={onRequestDelete}
-        />
-        <ChangeOwnerModal
-          isOpen={!!changingOwner}
-          changingOwner={changingOwner}
-          possibleOwners={possibleOwners}
-          onClose={closeChangingOwnerModal}
-          onRequestChangeOwner={changeOwner}
         />
       </Main>
     </InstanceDetailsDrawer>
