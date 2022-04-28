@@ -32,9 +32,9 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 ### Mocking
 
-The dev.webpack.config.js file contains the webpack custom config options that we use for our development environment. The `customProxy` field is used to proxy our `/api/*` requests to the appropriate Backend API Server. We can optionally pass a `bypass` field that can intercept API requests and provide mock data instead of letting it go through to the Backend API Server. This is nice for testing purposes. You can run the Dev Server by running the following:
+The `dev.webpack.config.js` file contains the webpack custom config options that we use for our development environment. The `customProxy` field is used to proxy our `/api/*` requests to the appropriate Backend API Server. We can optionally pass a `bypass` field that can intercept API requests and provide mock data instead of letting it go through to the Backend API Server. This is nice for testing purposes. You can run the Dev Server by running the following:
 
-`npm run state:mock`
+`npm run start:mock`
 
 ## Definitions
 * `stage` - Development and Testing
