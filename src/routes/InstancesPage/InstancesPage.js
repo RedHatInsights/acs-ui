@@ -35,9 +35,9 @@ import usePagination from 'hooks/usePagination';
 import useInstances from 'hooks/apis/useInstances';
 import useCreateInstance from 'hooks/apis/useCreateInstance';
 import useDeleteInstance from 'hooks/apis/useDeleteInstance';
-import { getDateTime } from "utils/date";
+import { getDateTime } from 'utils/date';
 
-import Status from "components/Status";
+import Status from 'components/Status';
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
 import InstanceDetailsDrawer from './InstanceDetailsDrawer';

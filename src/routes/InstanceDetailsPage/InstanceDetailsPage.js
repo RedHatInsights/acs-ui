@@ -14,7 +14,7 @@ import {
   Spinner,
 } from '@patternfly/react-core';
 
-import useInstance from "hooks/apis/useInstance";
+import useInstance from 'hooks/apis/useInstance';
 
 import BreadcrumbItemLink from 'components/BreadcrumbItemLink';
 
