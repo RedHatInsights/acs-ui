@@ -51,11 +51,10 @@ import Status from '../../components/Status';
  */
 function InstancesPage() {
   const history = useHistory();
-  // Testing
-  const { data, isFetching } = useInstances();
+  const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
+  const { data, isFetching } = useInstances({ query: { page, size: perPage } });
   const createInstance = useCreateInstance();
   const deleteInstance = useDeleteInstance();
-  const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
   const [creatingInstance, setCreatingInstance] = useState(null);
   const [deletingInstance, setDeletingInstance] = useState(null);
   const [viewingInstance, setViewingInstance] = useState(null);

@@ -1,12 +1,16 @@
 import { useQuery } from 'react-query';
 
 import apiRequest from '../../services/apiRequest';
+import { getQueryString } from '../../utils/queryString';
 
-const getInstances = async () => {
-  const { data } = await apiRequest.get('/api/dinosaurs_mgmt/v1/dinosaurs');
+const getInstances = async ({ query }) => {
+  const queryString = getQueryString(query);
+  const { data } = await apiRequest.get(
+    `/api/dinosaurs_mgmt/v1/dinosaurs?${queryString}`
+  );
   return data;
 };
 
-export default function useInstances() {
-  return useQuery('instances', getInstances);
+export default function useInstances(options) {
+  return useQuery(['instances', options], () => getInstances(options));
 }
