@@ -42,15 +42,18 @@ const dinosaurs = {
 };
 
 async function mockDataHandler(req, res) {
-  if (req.method === 'GET' && req.url === '/api/dinosaurs_mgmt/v1/dinosaurs') {
-    return res.send(dinosaurs);
-  }
   if (
     req.method === 'GET' &&
     req.url.includes('/api/dinosaurs_mgmt/v1/dinosaurs/')
   ) {
     const id = req.url.replace('/api/dinosaurs_mgmt/v1/dinosaurs/', '');
     return res.send(dinosaurs.items.find((dinosaur) => dinosaur.id === id));
+  }
+  if (
+    req.method === 'GET' &&
+    req.url.includes('/api/dinosaurs_mgmt/v1/dinosaurs')
+  ) {
+    return res.send(dinosaurs);
   }
   if (
     req.method === 'POST' &&
