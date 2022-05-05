@@ -24,6 +24,8 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 2. ```npm run start:beta```
 
+Note that this may not work as of right now. The README will be updated once it works. You can look at the "Mocking" section for an alternative way to run the UI for now.
+
 3. Open browser in URL listed in the terminal output
 
 ### Testing
@@ -32,9 +34,16 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 ### Mocking
 
-The `dev.webpack.config.js` file contains the webpack custom config options that we use for our development environment. The `customProxy` field is used to proxy our `/api/*` requests to the appropriate Backend API Server. We can optionally pass a `bypass` field that can intercept API requests and provide mock data instead of letting it go through to the Backend API Server. This is nice for testing purposes. You can run the Dev Server by running the following:
+In order to try mock data rather than real data from the Backend APIs, you can run the following commands in two separate terminals:
 
-`npm run start:mock`
+1. `npm run start:mock-server`
+
+This will run JSON Server, which is a nice tool for creating a fake REST API for prototyping and mocking
+
+2. `npm run start:mock`
+
+This will start the Webpack Dev Server but redirect the API calls to the Mock REST API instead of the real Backend API
+
 
 ## Definitions
 * `stage` - Development and Testing
