@@ -28,6 +28,8 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 3. Open browser in URL listed in the terminal output
 
+**Note:**  You will need to register for a personal Red Hat Account if you haven't already. You'll need it in order to log into the UI
+
 ### Testing
 
 `npm run verify` will run `npm run lint` (eslint) and `npm test` (Jest)
