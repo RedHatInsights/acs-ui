@@ -24,7 +24,7 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 2. ```npm run start:beta```
 
-Note that this may not work as of right now. The README will be updated once it works. You can look at the "Mocking" section for an alternative way to run the UI for now.
+**Note:**  that this may not work as of right now. The README will be updated once it works. You can look at the "Mocking" section for an alternative way to run the UI for now.
 
 3. Open browser in URL listed in the terminal output
 
