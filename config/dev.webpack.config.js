@@ -1,18 +1,21 @@
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const commonPlugins = require('./plugins');
-const mockDataHandler = require('../mocks/mockDataHandler');
 
-let customProxy = [
-  {
-    context: ['/api'],
-    target: process.env.FLEET_MANAGER_API_ENDPOINT || 'http://localhost:8000',
-  },
-];
-
-if (process.env.USE_MOCK_DATA) {
-  customProxy[0].bypass = mockDataHandler;
-}
+let customProxy = process.env.BETA
+  ? [
+      {
+        context: ['/api'],
+        target: 'http://localhost:4000',
+      },
+    ]
+  : [
+      {
+        context: ['/api'],
+        target:
+          process.env.FLEET_MANAGER_API_ENDPOINT || 'http://localhost:8000',
+      },
+    ];
 
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
