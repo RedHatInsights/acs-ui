@@ -1,6 +1,14 @@
+import { OnPerPageSelect, OnSetPage } from '@patternfly/react-core';
 import { useState } from 'react';
 
-function usePagination() {
+type UsePaginationResults = {
+  page: number;
+  perPage: number;
+  onSetPage: OnSetPage;
+  onPerPageSelect: OnPerPageSelect;
+};
+
+function usePagination(): UsePaginationResults {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(20);
 

@@ -12,8 +12,21 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core';
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import SelectSingle from '../../components/SelectSingle';
+
+export type CreateInstanceFormValues = {
+  name: string;
+  cloud_provider: string;
+  region: string;
+  availabilityZones: string;
+};
+
+type CreateInstanceModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  onRequestCreate: (values: CreateInstanceFormValues) => Promise<any>;
+};
 
 const defaultFormValues = {
   name: '',
@@ -22,9 +35,10 @@ const defaultFormValues = {
   availabilityZones: 'multi',
 };
 
-function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
+function CreateInstanceModal({ isOpen, onClose, onRequestCreate }: CreateInstanceModalProps): ReactElement {
   const [error, setError] = useState(null);
-  const [formValues, setFormValues] = useState(defaultFormValues);
+  const [formValues, setFormValues] =
+    useState<CreateInstanceFormValues>(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
 
   function onChangeAvailabilityZones(isSelected, event) {

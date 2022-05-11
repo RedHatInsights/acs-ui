@@ -1,0 +1,20 @@
+{
+   "compilerOptions": {
+      "sourceMap": true,
+      "jsx": "react",
+      "target": "es5",
+      "allowJs": true,
+      "esModuleInterop": true,
+      "outDir": "./src",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "removeComments": true,
+   },
+   "include": [
+      "./src/**/*"
+   ],
+   "exclude": [
+      "./node_modules/**/*",
+   ]
+}

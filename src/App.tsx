@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { Routes } from './Routes';
 import './App.scss';
 
-const App = (props) => {
+declare var insights: any;
+
+const App = () => {
   const history = useHistory();
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const App = (props) => {
     };
   }, []);
 
-  return <Routes childProps={props} />;
+  return <Routes />;
 };
 
 export default App;

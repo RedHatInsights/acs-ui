@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
   PageHeader,
   PageHeaderTitle,
@@ -16,7 +16,7 @@ import {
 import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import useInstance from '../../hooks/apis/useInstance';
 
-function InstanceDetailsPage() {
+function InstanceDetailsPage(): ReactElement {
   const { instanceId } = useParams();
   const { data: instance, isFetching } = useInstance(instanceId);
 

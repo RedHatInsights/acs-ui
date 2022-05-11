@@ -36,12 +36,16 @@ import useInstances from '../../hooks/apis/useInstances';
 import useCreateInstance from '../../hooks/apis/useCreateInstance';
 import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
 
-import CreateInstanceModal from './CreateInstanceModal';
+import CreateInstanceModal, {
+  CreateInstanceFormValues,
+} from "./CreateInstanceModal";
 import DeleteInstanceModal from './DeleteInstanceModal';
 import InstanceDetailsDrawer from './InstanceDetailsDrawer';
 import { getDateTime } from '../../utils/date';
 import Status from '../../components/Status';
 import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
+
+declare var insights: any;
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -67,12 +71,12 @@ function InstancesPage() {
     insights?.chrome?.appAction?.('sample-page');
   }, []);
 
-  function onRequestCreate(values) {
+  function onRequestCreate(values: CreateInstanceFormValues) {
     const response = createInstance.mutateAsync({
       region: values.region,
       cloud_provider: values.cloud_provider,
       name: values.name,
-      multi_az: values.availabilityZones === 'multi',
+      multi_az: values.availabilityZones === "multi",
     });
     return response.catch((error) => {
       return error;
@@ -155,7 +159,7 @@ function InstancesPage() {
                   </ToolbarItem>
                   <ToolbarItem
                     variant="pagination"
-                    align={{ default: 'alignRight' }}
+                    alignment={{ default: 'alignRight' }}
                   >
                     <Pagination
                       itemCount={instances.length}
@@ -186,7 +190,8 @@ function InstancesPage() {
                     <Tr
                       key={instance.name}
                       onRowClick={(event) => {
-                        if (event.target.getAttribute('type') !== 'button') {
+                        const target = event.target as Element;
+                        if (target.getAttribute("type") !== "button") {
                           setViewingInstance(instance);
                         }
                       }}
@@ -208,7 +213,7 @@ function InstancesPage() {
                       <Td dataLabel="Time Created<">
                         {getDateTime(instance.created_at)}
                       </Td>
-                      <Td isActionCell>
+                      <Td>
                         <ActionsColumn
                           items={[
                             {
@@ -238,7 +243,7 @@ function InstancesPage() {
                 <ToolbarContent>
                   <ToolbarItem
                     variant="pagination"
-                    align={{ default: 'alignRight' }}
+                    alignment={{ default: 'alignRight' }}
                   >
                     <Pagination
                       itemCount={instances.length}
