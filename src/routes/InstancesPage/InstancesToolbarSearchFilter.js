@@ -27,19 +27,13 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
 
   // TODO: Extract into separate utils file to be reused in other cases
   function onDeleteChip(type = '', id = '') {
-    if (type) {
-      setFilters((prevFilters) => {
-        const newFilters = { ...prevFilters };
-        newFilters[type.toLowerCase()] = newFilters[type.toLowerCase()].filter(
-          (s) => s !== id
-        );
-        return newFilters;
-      });
-    } else {
-      setFilters({
-        region: [],
-      });
-    }
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+      newFilters[type.toLowerCase()] = newFilters[type.toLowerCase()].filter(
+        (s) => s !== id
+      );
+      return newFilters;
+    });
   }
 
   // TODO: Extract into separate utils file to be reused in other cases
