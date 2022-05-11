@@ -41,6 +41,7 @@ import DeleteInstanceModal from './DeleteInstanceModal';
 import InstanceDetailsDrawer from './InstanceDetailsDrawer';
 import { getDateTime } from '../../utils/date';
 import Status from '../../components/Status';
+import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -52,6 +53,7 @@ import Status from '../../components/Status';
 function InstancesPage() {
   const history = useHistory();
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
+  const [filters, setFilters] = useState({});
   const { data, isFetching } = useInstances({ query: { page, size: perPage } });
   const createInstance = useCreateInstance();
   const deleteInstance = useDeleteInstance();
@@ -96,6 +98,10 @@ function InstancesPage() {
     setViewingInstance(null);
   }
 
+  function onClearFilters() {
+    setFilters({});
+  }
+
   if (isFetching) {
     return (
       <Bullseye>
@@ -133,8 +139,12 @@ function InstancesPage() {
             </EmptyState>
           ) : (
             <>
-              <Toolbar>
+              <Toolbar clearAllFilters={onClearFilters}>
                 <ToolbarContent>
+                  <InstancesToolbarSearchFilter
+                    filters={filters}
+                    setFilters={setFilters}
+                  />
                   <ToolbarItem>
                     <Button
                       variant="primary"
