@@ -22,9 +22,9 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 1. ```npm install```
 
-2. ```npm run start:beta```
+**Note:**  that the next step will not work unless we mock the backend because the Fleet Manager API hasn't been integrated yet. The README will be updated once it works. You can follow the steps in the "Mocking" section to run a mock REST server for testing purposes for now.
 
-**Note:**  that this may not work as of right now. The README will be updated once it works. You can look at the "Mocking" section for an alternative way to run the UI for now.
+2. ```npm run start:beta```
 
 3. Open browser in URL listed in the terminal output
 
@@ -36,15 +36,11 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 ### Mocking
 
-In order to try mock data rather than real data from the Backend APIs, you can run the following commands in two separate terminals:
+In order to try mock data rather than real data from the Backend APIs, you can run the following command in a separate terminal:
 
 1. `npm run start:mock-server`
 
-This will run JSON Server, which is a nice tool for creating a fake REST API for prototyping and mocking
-
-2. `npm run start:mock`
-
-This will start the Webpack Dev Server but redirect the API calls to the Mock REST API instead of the real Backend API
+This will run JSON Server, which is a nice tool for creating a fake REST API for prototyping and mocking. Once that server is running, you can continue with the steps outlined in the "Getting Started" section
 
 
 ## Definitions

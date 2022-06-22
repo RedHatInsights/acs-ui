@@ -18,7 +18,6 @@
     "patch:hosts": "fec patch-etc-hosts",
     "start": "webpack serve --config config/dev.webpack.config.js",
     "start:beta": "NODE_OPTIONS='--max-http-header-size=100000' BETA=true npm start",
-    "start:mock": "NODE_OPTIONS='--max-http-header-size=100000' BETA=true USE_MOCK_DATA=true npm start",
     "start:mock-server": "NODE_OPTIONS='--max-http-header-size=100000' node mocks/db.server.js",
     "test": "jest",
     "verify": "npm-run-all build lint test"
