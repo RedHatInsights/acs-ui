@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
 
-function NoPermissionsPage() {
+declare var insights: any;
+
+function NoPermissionsPage(): ReactElement {
   useEffect(() => {
     insights?.chrome?.appAction?.('no-permissions');
   }, []);

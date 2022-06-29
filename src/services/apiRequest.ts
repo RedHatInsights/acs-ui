@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+declare var insights: any;
+
 export const authInterceptor = (client) => {
   client.interceptors.request.use(async (cfg) => {
     await insights.chrome.auth.getUser();

@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { CheckCircleIcon } from '@patternfly/react-icons';
 import { Flex, FlexItem } from '@patternfly/react-core';
 
-function Status({ status }) {
+type StatusProps = {
+  status: 'ready'; // @TODO: Add the other types
+}
+
+function Status({ status }: StatusProps): ReactElement {
   switch (status) {
     case 'ready':
       return (
@@ -15,7 +19,7 @@ function Status({ status }) {
         </Flex>
       );
     default:
-      return 'N/A';
+      return <div>'N/A'</div>;
   }
 }
 

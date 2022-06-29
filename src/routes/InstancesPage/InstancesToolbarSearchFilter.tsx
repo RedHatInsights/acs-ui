@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   ToolbarToggleGroup,
@@ -15,7 +15,12 @@ import {
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 import SelectSingle from '../../components/SelectSingle';
 
-function InstancesToolbarSearchFilter({ filters, setFilters }) {
+type InstancesToolbarSearchFilter = {
+  filters: any; // @TODO: add actual types
+  setFilters: (newFilters: any) => void;
+}
+
+function InstancesToolbarSearchFilter({ filters, setFilters }: InstancesToolbarSearchFilter): ReactElement {
   const [selectedFilter, setSelectedFilter] = useState('Name');
   // local state for input values
   const [inputName, setInputName] = useState('');

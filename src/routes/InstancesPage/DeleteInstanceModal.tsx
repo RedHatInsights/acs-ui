@@ -9,9 +9,17 @@ import {
   ModalVariant,
   TextInput,
 } from '@patternfly/react-core';
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
+import { Instance } from '../../hooks/apis/useInstances';
 
-function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
+type DeleteInstanceModalProps = {
+  isOpen: boolean;
+  instance: Instance; // @TODO: make actual type
+  onRequestDelete: (instanceId: string) => Promise<any>;
+  onClose: () => void;
+}
+
+function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }: DeleteInstanceModalProps): ReactElement {
   const [inputValue, setInputValue] = useState('');
   const [isRequestingDelete, setIsRequestingDelete] = useState(false);
 

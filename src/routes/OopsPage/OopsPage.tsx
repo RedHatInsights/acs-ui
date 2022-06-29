@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { Unavailable } from '@redhat-cloud-services/frontend-components/Unavailable';
 
-function OopsPage() {
+declare var insights: any;
+
+function OopsPage(): ReactElement {
   useEffect(() => {
     insights?.chrome?.appAction?.('oops-page');
   }, []);

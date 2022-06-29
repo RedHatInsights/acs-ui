@@ -1,23 +1,36 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { Select, SelectVariant } from '@patternfly/react-core';
+import React, { ReactElement, useState } from 'react';
+import { OUIAProps, Select, SelectProps, SelectVariant } from '@patternfly/react-core';
+
+type SelectSingleProps = {
+  toggleIcon?: SelectProps["toggleIcon"];
+  id: SelectProps["id"];
+  value: SelectProps["value"];
+  handleSelect: (id, selection) => void;
+  isDisabled?: SelectProps["isDisabled"];
+  children: SelectProps["children"];
+  direction?: SelectProps["direction"];
+  isCreatable?: SelectProps["isCreatable"];
+  variant?: SelectProps["variant"];
+  placeholderText?: SelectProps["placeholderText"];
+};
 
 function SelectSingle({
-  toggleIcon,
+  toggleIcon = null,
   id,
   value,
   handleSelect,
   isDisabled = false,
   children,
-  direction = 'down',
+  direction = "down",
   isCreatable = false,
   variant = null,
-  placeholderText = '',
-}) {
+  placeholderText = "",
+}: SelectSingleProps): ReactElement {
   const [isOpen, setIsOpen] = useState(false);
 
   const isTypeahead =
-    variant === 'typeahead' ? SelectVariant.typeahead : SelectVariant.single;
+    variant === "typeahead" ? SelectVariant.typeahead : SelectVariant.single;
 
   function onSelect(_event, selection) {
     // The mouse event is not useful.

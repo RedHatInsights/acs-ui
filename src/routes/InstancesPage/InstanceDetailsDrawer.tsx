@@ -16,11 +16,24 @@ import {
   TextContent,
   TextVariants,
 } from '@patternfly/react-core';
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
+import { Instance } from '../../hooks/apis/useInstances';
 
 import { getDateTime } from '../../utils/date';
 
-function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
+type InstanceDetailsDrawerProps = {
+  isExpanded: boolean;
+  onClose: () => void;
+  instance: Instance;
+  children: ReactNode;
+}
+
+function InstanceDetailsDrawer({
+  isExpanded,
+  onClose,
+  instance,
+  children,
+}: InstanceDetailsDrawerProps): ReactElement {
   return (
     <Drawer isExpanded={isExpanded}>
       <DrawerContent
