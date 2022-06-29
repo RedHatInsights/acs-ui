@@ -4,7 +4,7 @@ import apiRequest from '../../services/apiRequest';
 
 const postInstance = async (postData) => {
   const { data } = await apiRequest.post(
-    '/api/dinosaurs_mgmt/v1/dinosaurs?async=true',
+    '/api/rhacs/v1/centrals?async=true',
     postData
   );
   return data;

@@ -4,7 +4,7 @@ import apiRequest from '../../services/apiRequest';
 
 const deleteInstance = async (instanceID) => {
   const { data } = await apiRequest.delete(
-    `/api/dinosaurs_mgmt/v1/dinosaurs/${instanceID}`
+    `/api/rhacs/v1/centrals/${instanceID}`
   );
   return data;
 };
