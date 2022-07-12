@@ -6,7 +6,7 @@ import { getQueryString } from '../../utils/queryString';
 const getInstances = async ({ query }) => {
   const queryString = getQueryString(query);
   const { data } = await apiRequest.get(
-    `/api/dinosaurs_mgmt/v1/dinosaurs?${queryString}`
+    `/api/rhacs/v1/centrals?${queryString}`
   );
   return data;
 };
