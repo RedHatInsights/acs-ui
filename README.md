@@ -20,13 +20,19 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 ## Getting started
 
-1. ```npm install```
+1. First, you'll need to make sure you have the Backend API server running. You have two options to choose from. You can use the Staging Fleet Manager API (1a) or you can run the Fleet Manager API locally (1b).
 
-**Note:**  that the next step will not work unless we mock the backend because the Fleet Manager API hasn't been integrated yet. The README will be updated once it works. You can follow the steps in the "Mocking" section to run a mock REST server for testing purposes for now.
+1a. To use the Staging Fleet Manager API, you can set the following:
 
-2. ```npm run start:beta```
+```export FLEET_MANAGER_API_ENDPOINT=https://xtr6hh3mg6zc80v.api.stage.openshift.com```
 
-3. Open browser in URL listed in the terminal output
+1b. To use the Fleet Manager API running locally, follow the instructions at https://github.com/stackrox/acs-fleet-manager
+
+2. ```npm install```
+
+3. ```npm run start:beta```
+
+4. Open browser to the URL listed in the terminal output
 
 **Note:**  You will need to register for a personal Red Hat Account if you haven't already. You'll need it in order to log into the UI
 
