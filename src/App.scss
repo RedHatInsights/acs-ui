@@ -1,2 +1,16 @@
 // Importing Global Variables
 @import "~@redhat-cloud-services/frontend-components-utilities/styles/_all";
+
+.marketing-video {
+    height: 0;
+    padding-bottom: 56.25% !important;
+    position: relative;
+}
+
+.marketing-video iframe {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
