@@ -13,8 +13,10 @@ function getEnv() {
 let customProxy = [
   {
     context: ['/api'],
-    target: process.env.FLEET_MANAGER_API_ENDPOINT || 'http://localhost:8000',
-  }
+    target:
+      process.env.FLEET_MANAGER_API_ENDPOINT ||
+      'https://xtr6hh3mg6zc80v.api.stage.openshift.com',
+  },
 ];
 
 const { config: webpackConfig, plugins } = config({
