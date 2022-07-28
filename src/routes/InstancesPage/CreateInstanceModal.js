@@ -23,7 +23,7 @@ const defaultFormValues = {
 };
 
 function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
 
@@ -54,7 +54,8 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
     const result = await onRequestCreate(formValues);
     setIsRequestingCreate(false);
     if (result instanceof Error) {
-      setError(result);
+      const errorMessage = result.response.data.reason;
+      setErrorMessage(errorMessage);
     } else {
       setFormValues(defaultFormValues);
       onClose();
@@ -87,9 +88,9 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
         </Button>,
       ]}
     >
-      {error && (
+      {errorMessage && (
         <div className="pf-u-mb-md">
-          <Alert variant="danger" title={error.message} />
+          <Alert variant="danger" title={errorMessage} />
         </div>
       )}
       <Form>
