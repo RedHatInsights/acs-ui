@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 function useTableSort({ sortFields, defaultSortOption }) {
   const [sortOption, setSortOption] = useState();
 
-  // get the sort option values from the URL, if available
-  // otherwise, use the default sort option values
   const activeSortField = sortOption?.field || defaultSortOption.field;
   const activeSortDirection =
     sortOption?.direction || defaultSortOption.direction;
