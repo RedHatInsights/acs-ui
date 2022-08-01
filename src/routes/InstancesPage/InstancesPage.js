@@ -42,6 +42,20 @@ import InstanceDetailsDrawer from './InstanceDetailsDrawer';
 import { getDateTime } from '../../utils/date';
 import Status from '../../components/Status';
 import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
+import useTableSort from '../../hooks/useTableSort';
+
+const sortFields = [
+  'name',
+  'cloud_provider',
+  'region',
+  'owner',
+  'status',
+  'created_at',
+];
+const defaultSortOption = {
+  field: 'name',
+  direction: 'asc',
+};
 
 /**
  * A smart component that handles all the api calls and data needed by the dumb components.
@@ -52,9 +66,21 @@ import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
  */
 function InstancesPage() {
   const history = useHistory();
+
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
+  const { sortOption, getSortParams } = useTableSort({
+    sortFields,
+    defaultSortOption,
+  });
   const [filters, setFilters] = useState({});
-  const { data, isFetching } = useInstances({ query: { page, size: perPage } });
+
+  const { data, isFetching } = useInstances({
+    query: {
+      page,
+      size: perPage,
+      orderBy: `${sortOption.field} ${sortOption.direction}`,
+    },
+  });
   const createInstance = useCreateInstance();
   const deleteInstance = useDeleteInstance();
   const [creatingInstance, setCreatingInstance] = useState(null);
@@ -172,12 +198,14 @@ function InstancesPage() {
               <TableComposable aria-label="ACS instances table">
                 <Thead>
                   <Tr>
-                    <Th>Name</Th>
-                    <Th>Cloud Provider</Th>
-                    <Th>Region</Th>
-                    <Th>Owner</Th>
-                    <Th>Status</Th>
-                    <Th>Time Created</Th>
+                    <Th sort={getSortParams('name')}>Name</Th>
+                    <Th sort={getSortParams('cloud_provider')}>
+                      Cloud Provider
+                    </Th>
+                    <Th sort={getSortParams('region')}>Region</Th>
+                    <Th sort={getSortParams('owner')}>Owner</Th>
+                    <Th sort={getSortParams('status')}>Status</Th>
+                    <Th sort={getSortParams('created_at')}>Time Created</Th>
                     <Th />
                   </Tr>
                 </Thead>
