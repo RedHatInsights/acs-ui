@@ -12,7 +12,7 @@ function getEnv() {
 
 let customProxy = [
   {
-    context: ['/api'],
+    context: ['/api/rhacs'],
     target:
       process.env.FLEET_MANAGER_API_ENDPOINT ||
       'https://xtr6hh3mg6zc80v.api.stage.openshift.com',
