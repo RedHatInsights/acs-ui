@@ -4,7 +4,7 @@ export const authInterceptor = (client) => {
   client.interceptors.request.use(async (cfg) => {
     await insights.chrome.auth.getUser();
     const token = await insights.chrome.auth.getToken();
-    const BASE_URL = cfg.baseURL || '';
+    const BASE_URL = cfg.baseURL || 'https://api.stage.openshift.com';
     const updatedCfg = { ...cfg, url: `${BASE_URL}${cfg.url}` };
     if (token) {
       updatedCfg.headers = {
