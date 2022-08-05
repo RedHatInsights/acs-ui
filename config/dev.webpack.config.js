@@ -10,16 +10,6 @@ function getEnv() {
   }
 }
 
-let customProxy = [
-  {
-    context: ['/api/rhacs'],
-    target:
-      process.env.FLEET_MANAGER_API_ENDPOINT ||
-      'https://xtr6hh3mg6zc80v.api.stage.openshift.com',
-    changeOrigin: true,
-  },
-];
-
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
   debug: true,
@@ -29,7 +19,6 @@ const { config: webpackConfig, plugins } = config({
     ? '/beta/application-services/acs'
     : '/application-services/acs',
   env: getEnv(),
-  customProxy,
 });
 plugins.push(...commonPlugins);
 
