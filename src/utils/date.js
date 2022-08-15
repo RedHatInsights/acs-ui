@@ -1,7 +1,7 @@
-import { format, parseISO } from 'date-fns';
-
-const dateTimeFormat = 'MM/dd/yyyy | h:mm:ss a';
+import { parseISO, formatDistance } from 'date-fns';
 
 export function getDateTime(timestamp) {
-  return format(parseISO(timestamp), dateTimeFormat);
+  return formatDistance(parseISO(timestamp), new Date(), {
+    addSuffix: true,
+  });
 }
