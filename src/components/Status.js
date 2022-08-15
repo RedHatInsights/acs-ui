@@ -7,33 +7,35 @@ import {
 } from '@patternfly/react-icons';
 import { Flex, FlexItem, Spinner } from '@patternfly/react-core';
 
+import { statuses } from '../utils/status';
+
 const statusMessages = {
   accepted: {
-    message: 'Request accepted',
+    message: statuses.accepted,
     component: <PendingIcon />,
   },
   preparing: {
-    message: 'Preparing instance',
+    message: statuses.preparing,
     component: <PendingIcon />,
   },
   provisioning: {
-    message: 'Creation in progress',
+    message: statuses.provisioning,
     component: <Spinner isSVG size="md" />,
   },
   ready: {
-    message: 'Ready',
+    message: statuses.ready,
     component: <CheckCircleIcon className="pf-u-success-color-100" />,
   },
   failed: {
-    message: 'Request failed',
+    message: statuses.failed,
     component: <ExclamationCircleIcon className="pf-u-danger-color-100" />,
   },
   deprovision: {
-    message: 'Deprovisioning instance',
+    message: statuses.deprovision,
     component: <Spinner isSVG size="md" />,
   },
   deleting: {
-    message: 'Deleting instance',
+    message: statuses.deleting,
     component: <Spinner isSVG size="md" />,
   },
 };

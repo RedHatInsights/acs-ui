@@ -10,3 +10,10 @@ export const regionOptions = Object.keys(regions).map((regionValue) => {
 export function regionValueToLabel(regionValue) {
   return regions[regionValue];
 }
+
+export function regionLabelToValue(regionLabel) {
+  const regionOption = regionOptions.find(
+    (regionOption) => regionOption.label === regionLabel
+  );
+  return regionOption?.value;
+}
