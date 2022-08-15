@@ -13,6 +13,8 @@ import {
   ToggleGroupItem,
 } from '@patternfly/react-core';
 import React, { useState } from 'react';
+
+import { regionOptions } from '../../utils/region';
 import SelectSingle from '../../components/SelectSingle';
 
 const defaultFormValues = {
@@ -121,8 +123,13 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
           >
-            <SelectOption value="us-east-1">US-East, N. Virginia</SelectOption>
-            <SelectOption value="eu-west-1">EU-Ireland</SelectOption>
+            {regionOptions.map((region) => {
+              return (
+                <SelectOption key={region.value} value={region.value}>
+                  {region.label}
+                </SelectOption>
+              );
+            })}
           </SelectSingle>
         </FormGroup>
         <FormGroup
