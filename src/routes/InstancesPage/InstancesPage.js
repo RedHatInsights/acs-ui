@@ -18,7 +18,7 @@ import {
   ToolbarItem,
   Pagination,
   Bullseye,
-  Spinner,
+  EmptyStateVariant,
 } from '@patternfly/react-core';
 import {
   ActionsColumn,
@@ -29,7 +29,7 @@ import {
   Thead,
   Tr,
 } from '@patternfly/react-table';
-import { CubesIcon } from '@patternfly/react-icons';
+import { CubesIcon, SearchIcon } from '@patternfly/react-icons';
 
 import usePagination from '../../hooks/usePagination';
 import useInstances from '../../hooks/apis/useInstances';
@@ -45,6 +45,7 @@ import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
 import useTableSort from '../../hooks/useTableSort';
 import { regionValueToLabel } from '../../utils/region';
 import { cloudProviderValueToLabel } from '../../utils/cloudProvider';
+import { filtersToSearchQuery } from '../../utils/searchQuery';
 
 const sortFields = [
   'name',
@@ -81,6 +82,7 @@ function InstancesPage() {
       page,
       size: perPage,
       orderBy: `${sortOption.field} ${sortOption.direction}`,
+      search: filtersToSearchQuery(filters),
     },
   });
   const createInstance = useCreateInstance();
@@ -130,26 +132,14 @@ function InstancesPage() {
     setFilters({});
   }
 
-  if (isFetching) {
+  if (!isFetching && instances?.length === 0 && filters === {}) {
     return (
-      <Bullseye>
-        <Spinner />
-      </Bullseye>
-    );
-  }
-
-  return (
-    <InstanceDetailsDrawer
-      isExpanded={!!viewingInstance}
-      instance={viewingInstance}
-      onClose={closeInstanceDetailsDrawer}
-    >
-      <PageHeader>
-        <PageHeaderTitle title="ACS Instances" />
-      </PageHeader>
-      <Main>
-        <Card>
-          {instances?.length === 0 ? (
+      <>
+        <PageHeader>
+          <PageHeaderTitle title="ACS Instances" />
+        </PageHeader>
+        <Main>
+          <Card>
             <EmptyState>
               <EmptyStateIcon icon={CubesIcon} />
               <Title size="lg" headingLevel="h4">
@@ -165,22 +155,39 @@ function InstancesPage() {
                 </Button>
               </EmptyStatePrimary>
             </EmptyState>
-          ) : (
-            <>
-              <Toolbar clearAllFilters={onClearFilters}>
-                <ToolbarContent>
-                  <InstancesToolbarSearchFilter
-                    filters={filters}
-                    setFilters={setFilters}
-                  />
-                  <ToolbarItem>
-                    <Button
-                      variant="primary"
-                      onClick={() => setCreatingInstance({})}
-                    >
-                      Create ACS instance
-                    </Button>
-                  </ToolbarItem>
+          </Card>
+        </Main>
+      </>
+    );
+  }
+
+  return (
+    <InstanceDetailsDrawer
+      isExpanded={!!viewingInstance}
+      instance={viewingInstance}
+      onClose={closeInstanceDetailsDrawer}
+    >
+      <PageHeader>
+        <PageHeaderTitle title="ACS Instances" />
+      </PageHeader>
+      <Main>
+        <Card>
+          <>
+            <Toolbar clearAllFilters={onClearFilters}>
+              <ToolbarContent>
+                <InstancesToolbarSearchFilter
+                  filters={filters}
+                  setFilters={setFilters}
+                />
+                <ToolbarItem>
+                  <Button
+                    variant="primary"
+                    onClick={() => setCreatingInstance({})}
+                  >
+                    Create ACS instance
+                  </Button>
+                </ToolbarItem>
+                {instances.length !== 0 && (
                   <ToolbarItem
                     variant="pagination"
                     align={{ default: 'alignRight' }}
@@ -195,24 +202,43 @@ function InstancesPage() {
                       isCompact
                     />
                   </ToolbarItem>
-                </ToolbarContent>
-              </Toolbar>
-              <TableComposable aria-label="ACS instances table">
-                <Thead>
+                )}
+              </ToolbarContent>
+            </Toolbar>
+            <TableComposable aria-label="ACS instances table">
+              <Thead>
+                <Tr>
+                  <Th sort={getSortParams('name')}>Name</Th>
+                  <Th sort={getSortParams('cloud_provider')}>Cloud Provider</Th>
+                  <Th sort={getSortParams('region')}>Region</Th>
+                  <Th sort={getSortParams('owner')}>Owner</Th>
+                  <Th sort={getSortParams('status')}>Status</Th>
+                  <Th sort={getSortParams('created_at')}>Time Created</Th>
+                  <Th />
+                </Tr>
+              </Thead>
+              <Tbody>
+                {!isFetching && instances.length === 0 ? (
                   <Tr>
-                    <Th sort={getSortParams('name')}>Name</Th>
-                    <Th sort={getSortParams('cloud_provider')}>
-                      Cloud Provider
-                    </Th>
-                    <Th sort={getSortParams('region')}>Region</Th>
-                    <Th sort={getSortParams('owner')}>Owner</Th>
-                    <Th sort={getSortParams('status')}>Status</Th>
-                    <Th sort={getSortParams('created_at')}>Time Created</Th>
-                    <Th />
+                    <Td colSpan={8}>
+                      <Bullseye>
+                        <EmptyState variant={EmptyStateVariant.small}>
+                          <EmptyStateIcon icon={SearchIcon} />
+                          <Title headingLevel="h2" size="lg">
+                            No results found
+                          </Title>
+                          <EmptyStateBody>
+                            Clear all filters and try again.
+                          </EmptyStateBody>
+                          <Button variant="link" onClick={onClearFilters}>
+                            Clear all filters
+                          </Button>
+                        </EmptyState>
+                      </Bullseye>
+                    </Td>
                   </Tr>
-                </Thead>
-                <Tbody>
-                  {instances.map((instance) => {
+                ) : (
+                  instances?.map((instance) => {
                     const instanceDetailsURL = `/instances/instance/${instance.id}`;
                     return (
                       <Tr
@@ -262,9 +288,11 @@ function InstancesPage() {
                         </Td>
                       </Tr>
                     );
-                  })}
-                </Tbody>
-              </TableComposable>
+                  })
+                )}
+              </Tbody>
+            </TableComposable>
+            {instances.length !== 0 && (
               <Toolbar>
                 <ToolbarContent>
                   <ToolbarItem
@@ -282,8 +310,8 @@ function InstancesPage() {
                   </ToolbarItem>
                 </ToolbarContent>
               </Toolbar>
-            </>
-          )}
+            )}
+          </>
         </Card>
         <CreateInstanceModal
           isOpen={!!creatingInstance}

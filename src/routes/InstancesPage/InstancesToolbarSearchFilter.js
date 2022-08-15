@@ -13,6 +13,9 @@ import {
   Button,
 } from '@patternfly/react-core';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
+
+import { regionOptions } from '../../utils/region';
+import { statusOptions } from '../../utils/status';
 import SelectSingle from '../../components/SelectSingle';
 
 function InstancesToolbarSearchFilter({ filters, setFilters }) {
@@ -29,9 +32,12 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
   function onDeleteChip(type = '', id = '') {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
-      newFilters[type.toLowerCase()] = newFilters[type.toLowerCase()].filter(
-        (s) => s !== id
-      );
+      const newValue = newFilters[type.toLowerCase()].filter((s) => s !== id);
+      if (newValue?.length === 0) {
+        delete newFilters[type.toLowerCase()];
+      } else {
+        newFilters[type.toLowerCase()] = newValue;
+      }
       return newFilters;
     });
   }
@@ -40,7 +46,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
   function onDeleteChipGroup(type) {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
-      newFilters[type.toLowerCase()] = [];
+      delete newFilters[type.toLowerCase()];
       return newFilters;
     });
   }
@@ -49,13 +55,17 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
   function onSelect(type, event, selection) {
     const checked = event.target.checked;
     setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
       const prevSelections = prevFilters[type] || [];
-      return {
-        ...prevFilters,
-        [type]: checked
-          ? [...prevSelections, selection]
-          : prevSelections.filter((value) => value !== selection),
-      };
+      const newValue = checked
+        ? [...prevSelections, selection]
+        : prevSelections.filter((value) => value !== selection);
+      if (newValue?.length === 0) {
+        delete newFilters[type];
+      } else {
+        newFilters[type] = newValue;
+      }
+      return newFilters;
     });
   }
 
@@ -136,10 +146,16 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
               isOpen={isRegionExpanded}
               placeholderText="Filter by region"
             >
-              <SelectOption value="US-East, N. Virginia">
-                US-East, N. Virginia
-              </SelectOption>
-              <SelectOption value="EU-Ireland">EU-Ireland</SelectOption>
+              {regionOptions.map((regionOption) => {
+                return (
+                  <SelectOption
+                    key={regionOption.label}
+                    value={regionOption.label}
+                  >
+                    {regionOption.label}
+                  </SelectOption>
+                );
+              })}
             </Select>
           </ToolbarItem>
         </ToolbarFilter>
@@ -194,15 +210,16 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
               isOpen={isStatusExpanded}
               placeholderText="Filter by status"
             >
-              <SelectOption value="Ready">Ready</SelectOption>
-              <SelectOption value="Failed">Failed</SelectOption>
-              <SelectOption value="Creation pending">
-                Creation pending
-              </SelectOption>
-              <SelectOption value="Creation in progress">
-                Creation in progress
-              </SelectOption>
-              <SelectOption value="Deleting">Deleting</SelectOption>
+              {statusOptions.map((statusOption) => {
+                return (
+                  <SelectOption
+                    key={statusOption.label}
+                    value={statusOption.label}
+                  >
+                    {statusOption.label}
+                  </SelectOption>
+                );
+              })}
             </Select>
           </ToolbarItem>
         </ToolbarFilter>

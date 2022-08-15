@@ -14,3 +14,10 @@ export const cloudProviderOptions = Object.keys(cloudProviders).map(
 export function cloudProviderValueToLabel(cloudProviderValue) {
   return cloudProviders[cloudProviderValue];
 }
+
+export function cloudProviderLabelToValue(cloudProviderLabel) {
+  const cloudProviderOption = cloudProviderOptions.find(
+    (cloudProviderOption) => cloudProviderOption.label === cloudProviderLabel
+  );
+  return cloudProviderOption?.value;
+}
