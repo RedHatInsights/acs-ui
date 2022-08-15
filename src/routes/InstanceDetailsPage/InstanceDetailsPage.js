@@ -77,7 +77,7 @@ function InstanceDetailsPage() {
               <Button
                 variant={ButtonVariant.primary}
                 component="a"
-                href="https://k8s.demo.stackrox.com/login"
+                href={`https://${instance.host}`}
                 target="_blank"
               >
                 Sign in to ACS Instance
