@@ -43,6 +43,8 @@ import { getDateTime } from '../../utils/date';
 import Status from '../../components/Status';
 import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
 import useTableSort from '../../hooks/useTableSort';
+import { regionValueToLabel } from '../../utils/region';
+import { cloudProviderValueToLabel } from '../../utils/cloudProvider';
 
 const sortFields = [
   'name',
@@ -210,56 +212,57 @@ function InstancesPage() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {instances.map((instance) => (
-                    <Tr
-                      key={instance.name}
-                      onRowClick={(event) => {
-                        if (event.target.getAttribute('type') !== 'button') {
-                          setViewingInstance(instance);
-                        }
-                      }}
-                      isRowSelected={viewingInstance?.name === instance?.name}
-                    >
-                      <Td dataLabel="Name">
-                        <Link to={`/instances/instance/${instance.id}`}>
-                          {instance.name}
-                        </Link>
-                      </Td>
-                      <Td dataLabel="Cloud Provider">
-                        {instance.cloud_provider}
-                      </Td>
-                      <Td dataLabel="Region">{instance.region}</Td>
-                      <Td dataLabel="Owner">{instance.owner}</Td>
-                      <Td dataLabel="Status">
-                        <Status status={instance.status} />
-                      </Td>
-                      <Td dataLabel="Time Created<">
-                        {getDateTime(instance.created_at)}
-                      </Td>
-                      <Td isActionCell>
-                        <ActionsColumn
-                          items={[
-                            {
-                              title: 'Details',
-                              onClick: (event) => {
-                                event.preventDefault();
-                                history.push(
-                                  `/instances/instance/${instance.id}`
-                                );
+                  {instances.map((instance) => {
+                    const instanceDetailsURL = `/instances/instance/${instance.id}`;
+                    return (
+                      <Tr
+                        key={instance.name}
+                        onRowClick={(event) => {
+                          if (event.target.getAttribute('type') !== 'button') {
+                            setViewingInstance(instance);
+                          }
+                        }}
+                        isRowSelected={viewingInstance?.name === instance?.name}
+                      >
+                        <Td dataLabel="Name">
+                          <Link to={instanceDetailsURL}>{instance.name}</Link>
+                        </Td>
+                        <Td dataLabel="Cloud Provider">
+                          {cloudProviderValueToLabel(instance.cloud_provider)}
+                        </Td>
+                        <Td dataLabel="Region">
+                          {regionValueToLabel(instance.region)}
+                        </Td>
+                        <Td dataLabel="Owner">{instance.owner}</Td>
+                        <Td dataLabel="Status">
+                          <Status status={instance.status} />
+                        </Td>
+                        <Td dataLabel="Time Created<">
+                          {getDateTime(instance.created_at)}
+                        </Td>
+                        <Td isActionCell>
+                          <ActionsColumn
+                            items={[
+                              {
+                                title: 'Details',
+                                onClick: (event) => {
+                                  event.preventDefault();
+                                  history.push(instanceDetailsURL);
+                                },
                               },
-                            },
-                            {
-                              title: 'Delete',
-                              onClick: (event) => {
-                                event.preventDefault();
-                                setDeletingInstance(instance);
+                              {
+                                title: 'Delete',
+                                onClick: (event) => {
+                                  event.preventDefault();
+                                  setDeletingInstance(instance);
+                                },
                               },
-                            },
-                          ]}
-                        />
-                      </Td>
-                    </Tr>
-                  ))}
+                            ]}
+                          />
+                        </Td>
+                      </Tr>
+                    );
+                  })}
                 </Tbody>
               </TableComposable>
               <Toolbar>
