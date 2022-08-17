@@ -98,8 +98,8 @@ function InstanceDetailsPage() {
             <GridItem md={7}>
               <Card className="marketing-video">
                 <iframe
-                  src="https://www.youtube.com/embed/HhYYuGTa63E"
-                  title="YouTube video player"
+                  src="https://www.youtube.com/embed/wMJMFIeVsw8"
+                  title="Advanced Cluster Security in 2 Minutes"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
