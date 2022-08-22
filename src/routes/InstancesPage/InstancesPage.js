@@ -94,7 +94,7 @@ function InstancesPage() {
   const instances = data?.items || [];
 
   useEffect(() => {
-    insights?.chrome?.appAction?.('sample-page');
+    insights?.chrome?.appAction?.('instances-page');
   }, []);
 
   function onRequestCreate(values) {
@@ -132,31 +132,165 @@ function InstancesPage() {
     setFilters({});
   }
 
-  if (!isFetching && instances?.length === 0 && filters === {}) {
-    return (
+  let content = null;
+
+  if (
+    !isFetching &&
+    instances?.length === 0 &&
+    Object.keys(filters).length === 0
+  ) {
+    content = (
+      <EmptyState>
+        <EmptyStateIcon icon={CubesIcon} />
+        <Title size="lg" headingLevel="h4">
+          No ACS instances.
+        </Title>
+        <EmptyStateBody>Create one to get started.</EmptyStateBody>
+        <EmptyStatePrimary>
+          <Button variant="primary" onClick={() => setCreatingInstance({})}>
+            Create ACS instance
+          </Button>
+        </EmptyStatePrimary>
+      </EmptyState>
+    );
+  } else {
+    content = (
       <>
-        <PageHeader>
-          <PageHeaderTitle title="ACS Instances" />
-        </PageHeader>
-        <Main>
-          <Card>
-            <EmptyState>
-              <EmptyStateIcon icon={CubesIcon} />
-              <Title size="lg" headingLevel="h4">
-                No ACS instances.
-              </Title>
-              <EmptyStateBody>Create one to get started.</EmptyStateBody>
-              <EmptyStatePrimary>
-                <Button
-                  variant="primary"
-                  onClick={() => setCreatingInstance({})}
-                >
-                  Create ACS instance
-                </Button>
-              </EmptyStatePrimary>
-            </EmptyState>
-          </Card>
-        </Main>
+        <Toolbar clearAllFilters={onClearFilters}>
+          <ToolbarContent>
+            <InstancesToolbarSearchFilter
+              filters={filters}
+              setFilters={setFilters}
+            />
+            <ToolbarItem>
+              <Button variant="primary" onClick={() => setCreatingInstance({})}>
+                Create ACS instance
+              </Button>
+            </ToolbarItem>
+            {instances.length !== 0 && (
+              <ToolbarItem
+                variant="pagination"
+                align={{ default: 'alignRight' }}
+              >
+                <Pagination
+                  itemCount={instances.length}
+                  perPage={perPage}
+                  page={page}
+                  onSetPage={onSetPage}
+                  widgetId="acs-instances-top-pagination"
+                  onPerPageSelect={onPerPageSelect}
+                  isCompact
+                />
+              </ToolbarItem>
+            )}
+          </ToolbarContent>
+        </Toolbar>
+        <TableComposable aria-label="ACS instances table">
+          <Thead>
+            <Tr>
+              <Th sort={getSortParams('name')}>Name</Th>
+              <Th sort={getSortParams('cloud_provider')}>Cloud Provider</Th>
+              <Th sort={getSortParams('region')}>Region</Th>
+              <Th sort={getSortParams('owner')}>Owner</Th>
+              <Th sort={getSortParams('status')}>Status</Th>
+              <Th sort={getSortParams('created_at')}>Time Created</Th>
+              <Th />
+            </Tr>
+          </Thead>
+          <Tbody>
+            {!isFetching && instances.length === 0 ? (
+              <Tr>
+                <Td colSpan={8}>
+                  <Bullseye>
+                    <EmptyState variant={EmptyStateVariant.small}>
+                      <EmptyStateIcon icon={SearchIcon} />
+                      <Title headingLevel="h2" size="lg">
+                        No results found
+                      </Title>
+                      <EmptyStateBody>
+                        Clear all filters and try again.
+                      </EmptyStateBody>
+                      <Button variant="link" onClick={onClearFilters}>
+                        Clear all filters
+                      </Button>
+                    </EmptyState>
+                  </Bullseye>
+                </Td>
+              </Tr>
+            ) : (
+              instances?.map((instance) => {
+                const instanceDetailsURL = `/instances/instance/${instance.id}`;
+                return (
+                  <Tr
+                    key={instance.name}
+                    onRowClick={(event) => {
+                      if (event.target.getAttribute('type') !== 'button') {
+                        setViewingInstance(instance);
+                      }
+                    }}
+                    isRowSelected={viewingInstance?.name === instance?.name}
+                  >
+                    <Td dataLabel="Name">
+                      <Link to={instanceDetailsURL}>{instance.name}</Link>
+                    </Td>
+                    <Td dataLabel="Cloud Provider">
+                      {cloudProviderValueToLabel(instance.cloud_provider)}
+                    </Td>
+                    <Td dataLabel="Region">
+                      {regionValueToLabel(instance.region)}
+                    </Td>
+                    <Td dataLabel="Owner">{instance.owner}</Td>
+                    <Td dataLabel="Status">
+                      <Status status={instance.status} />
+                    </Td>
+                    <Td dataLabel="Time Created<">
+                      {getDateTime(instance.created_at)}
+                    </Td>
+                    <Td isActionCell>
+                      <ActionsColumn
+                        items={[
+                          {
+                            title: 'Details',
+                            onClick: (event) => {
+                              event.preventDefault();
+                              history.push(instanceDetailsURL);
+                            },
+                          },
+                          {
+                            title: 'Delete',
+                            onClick: (event) => {
+                              event.preventDefault();
+                              setDeletingInstance(instance);
+                            },
+                          },
+                        ]}
+                      />
+                    </Td>
+                  </Tr>
+                );
+              })
+            )}
+          </Tbody>
+        </TableComposable>
+        {instances.length !== 0 && (
+          <Toolbar>
+            <ToolbarContent>
+              <ToolbarItem
+                variant="pagination"
+                align={{ default: 'alignRight' }}
+              >
+                <Pagination
+                  itemCount={instances.length}
+                  perPage={perPage}
+                  page={page}
+                  onSetPage={onSetPage}
+                  widgetId="acs-instances-top-pagination"
+                  onPerPageSelect={onPerPageSelect}
+                />
+              </ToolbarItem>
+            </ToolbarContent>
+          </Toolbar>
+        )}
       </>
     );
   }
@@ -171,148 +305,7 @@ function InstancesPage() {
         <PageHeaderTitle title="ACS Instances" />
       </PageHeader>
       <Main>
-        <Card>
-          <>
-            <Toolbar clearAllFilters={onClearFilters}>
-              <ToolbarContent>
-                <InstancesToolbarSearchFilter
-                  filters={filters}
-                  setFilters={setFilters}
-                />
-                <ToolbarItem>
-                  <Button
-                    variant="primary"
-                    onClick={() => setCreatingInstance({})}
-                  >
-                    Create ACS instance
-                  </Button>
-                </ToolbarItem>
-                {instances.length !== 0 && (
-                  <ToolbarItem
-                    variant="pagination"
-                    align={{ default: 'alignRight' }}
-                  >
-                    <Pagination
-                      itemCount={instances.length}
-                      perPage={perPage}
-                      page={page}
-                      onSetPage={onSetPage}
-                      widgetId="acs-instances-top-pagination"
-                      onPerPageSelect={onPerPageSelect}
-                      isCompact
-                    />
-                  </ToolbarItem>
-                )}
-              </ToolbarContent>
-            </Toolbar>
-            <TableComposable aria-label="ACS instances table">
-              <Thead>
-                <Tr>
-                  <Th sort={getSortParams('name')}>Name</Th>
-                  <Th sort={getSortParams('cloud_provider')}>Cloud Provider</Th>
-                  <Th sort={getSortParams('region')}>Region</Th>
-                  <Th sort={getSortParams('owner')}>Owner</Th>
-                  <Th sort={getSortParams('status')}>Status</Th>
-                  <Th sort={getSortParams('created_at')}>Time Created</Th>
-                  <Th />
-                </Tr>
-              </Thead>
-              <Tbody>
-                {!isFetching && instances.length === 0 ? (
-                  <Tr>
-                    <Td colSpan={8}>
-                      <Bullseye>
-                        <EmptyState variant={EmptyStateVariant.small}>
-                          <EmptyStateIcon icon={SearchIcon} />
-                          <Title headingLevel="h2" size="lg">
-                            No results found
-                          </Title>
-                          <EmptyStateBody>
-                            Clear all filters and try again.
-                          </EmptyStateBody>
-                          <Button variant="link" onClick={onClearFilters}>
-                            Clear all filters
-                          </Button>
-                        </EmptyState>
-                      </Bullseye>
-                    </Td>
-                  </Tr>
-                ) : (
-                  instances?.map((instance) => {
-                    const instanceDetailsURL = `/instances/instance/${instance.id}`;
-                    return (
-                      <Tr
-                        key={instance.name}
-                        onRowClick={(event) => {
-                          if (event.target.getAttribute('type') !== 'button') {
-                            setViewingInstance(instance);
-                          }
-                        }}
-                        isRowSelected={viewingInstance?.name === instance?.name}
-                      >
-                        <Td dataLabel="Name">
-                          <Link to={instanceDetailsURL}>{instance.name}</Link>
-                        </Td>
-                        <Td dataLabel="Cloud Provider">
-                          {cloudProviderValueToLabel(instance.cloud_provider)}
-                        </Td>
-                        <Td dataLabel="Region">
-                          {regionValueToLabel(instance.region)}
-                        </Td>
-                        <Td dataLabel="Owner">{instance.owner}</Td>
-                        <Td dataLabel="Status">
-                          <Status status={instance.status} />
-                        </Td>
-                        <Td dataLabel="Time Created<">
-                          {getDateTime(instance.created_at)}
-                        </Td>
-                        <Td isActionCell>
-                          <ActionsColumn
-                            items={[
-                              {
-                                title: 'Details',
-                                onClick: (event) => {
-                                  event.preventDefault();
-                                  history.push(instanceDetailsURL);
-                                },
-                              },
-                              {
-                                title: 'Delete',
-                                onClick: (event) => {
-                                  event.preventDefault();
-                                  setDeletingInstance(instance);
-                                },
-                              },
-                            ]}
-                          />
-                        </Td>
-                      </Tr>
-                    );
-                  })
-                )}
-              </Tbody>
-            </TableComposable>
-            {instances.length !== 0 && (
-              <Toolbar>
-                <ToolbarContent>
-                  <ToolbarItem
-                    variant="pagination"
-                    align={{ default: 'alignRight' }}
-                  >
-                    <Pagination
-                      itemCount={instances.length}
-                      perPage={perPage}
-                      page={page}
-                      onSetPage={onSetPage}
-                      widgetId="acs-instances-top-pagination"
-                      onPerPageSelect={onPerPageSelect}
-                    />
-                  </ToolbarItem>
-                </ToolbarContent>
-              </Toolbar>
-            )}
-          </>
-        </Card>
+        <Card>{content}</Card>
         <CreateInstanceModal
           isOpen={!!creatingInstance}
           onClose={closeCreateInstanceModal}
