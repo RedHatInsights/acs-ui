@@ -39,7 +39,7 @@ import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
 import InstanceDetailsDrawer from './InstanceDetailsDrawer';
-import { getDateTime } from '../../utils/date';
+import { getDateTimeDifference } from '../../utils/date';
 import Status from '../../components/Status';
 import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
 import useTableSort from '../../hooks/useTableSort';
@@ -189,11 +189,11 @@ function InstancesPage() {
           <Thead>
             <Tr>
               <Th sort={getSortParams('name')}>Name</Th>
-              <Th sort={getSortParams('cloud_provider')}>Cloud Provider</Th>
+              <Th sort={getSortParams('cloud_provider')}>Cloud provider</Th>
               <Th sort={getSortParams('region')}>Region</Th>
               <Th sort={getSortParams('owner')}>Owner</Th>
               <Th sort={getSortParams('status')}>Status</Th>
-              <Th sort={getSortParams('created_at')}>Time Created</Th>
+              <Th sort={getSortParams('created_at')}>Time created</Th>
               <Th />
             </Tr>
           </Thead>
@@ -233,7 +233,7 @@ function InstancesPage() {
                     <Td dataLabel="Name">
                       <Link to={instanceDetailsURL}>{instance.name}</Link>
                     </Td>
-                    <Td dataLabel="Cloud Provider">
+                    <Td dataLabel="Cloud provider">
                       {cloudProviderValueToLabel(instance.cloud_provider)}
                     </Td>
                     <Td dataLabel="Region">
@@ -243,8 +243,8 @@ function InstancesPage() {
                     <Td dataLabel="Status">
                       <Status status={instance.status} />
                     </Td>
-                    <Td dataLabel="Time Created<">
-                      {getDateTime(instance.created_at)}
+                    <Td dataLabel="Time created">
+                      {getDateTimeDifference(instance.created_at)}
                     </Td>
                     <Td isActionCell>
                       <ActionsColumn
