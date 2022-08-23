@@ -19,6 +19,8 @@ import {
 import React from 'react';
 
 import { getDateTime } from '../../utils/date';
+import { cloudProviderValueToLabel } from '../../utils/cloudProvider';
+import { regionValueToLabel } from '../../utils/region';
 
 function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
   return (
@@ -32,7 +34,7 @@ function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
                   <Text component={TextVariants.small}>Name</Text>
                 </TextContent>
                 <TextContent>
-                  <Text component={TextVariants.h1}>{instance?.name}</Text>
+                  <Text component={TextVariants.h2}>{instance?.name}</Text>
                 </TextContent>
               </div>
               <DrawerActions>
@@ -43,18 +45,6 @@ function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
             <DrawerContentBody>
               {instance && (
                 <DescriptionList isHorizontal>
-                  <DescriptionListGroup>
-                    <DescriptionListTerm>Cloud provider</DescriptionListTerm>
-                    <DescriptionListDescription>
-                      {instance.cloud_provider}
-                    </DescriptionListDescription>
-                  </DescriptionListGroup>
-                  <DescriptionListGroup>
-                    <DescriptionListTerm>Region</DescriptionListTerm>
-                    <DescriptionListDescription>
-                      {instance.region}
-                    </DescriptionListDescription>
-                  </DescriptionListGroup>
                   <DescriptionListGroup>
                     <DescriptionListTerm>ID</DescriptionListTerm>
                     <DescriptionListDescription>
@@ -68,15 +58,27 @@ function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
                     </DescriptionListDescription>
                   </DescriptionListGroup>
                   <DescriptionListGroup>
-                    <DescriptionListTerm>Created</DescriptionListTerm>
+                    <DescriptionListTerm>Time created</DescriptionListTerm>
                     <DescriptionListDescription>
                       {getDateTime(instance.created_at)}
                     </DescriptionListDescription>
                   </DescriptionListGroup>
                   <DescriptionListGroup>
-                    <DescriptionListTerm>Updated</DescriptionListTerm>
+                    <DescriptionListTerm>Time updated</DescriptionListTerm>
                     <DescriptionListDescription>
                       {getDateTime(instance.updated_at)}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Cloud provider</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {cloudProviderValueToLabel(instance.cloud_provider)}
+                    </DescriptionListDescription>
+                  </DescriptionListGroup>
+                  <DescriptionListGroup>
+                    <DescriptionListTerm>Region</DescriptionListTerm>
+                    <DescriptionListDescription>
+                      {regionValueToLabel(instance.region)}
                     </DescriptionListDescription>
                   </DescriptionListGroup>
                 </DescriptionList>
