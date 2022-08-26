@@ -13,7 +13,6 @@ import {
   ButtonVariant,
   Card,
   CardHeader,
-  CardFooter,
   CardTitle,
   CardBody,
   CardHeaderMain,
@@ -27,11 +26,10 @@ import {
   PageSectionVariants,
   Spinner,
   Title,
-  Text,
-  TextContent,
 } from '@patternfly/react-core';
 import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import useInstance from '../../hooks/apis/useInstance';
+import InstanceDetailsList from '../../components/InstanceDetailsList';
 
 function InstanceDetailsPage() {
   const { instanceId } = useParams();
@@ -64,26 +62,49 @@ function InstanceDetailsPage() {
       </PageHeader>
       <Main className="pf-u-p-0 pf-m-fill pf-m-overflow-scroll">
         <PageSection>
-          <Card>
-            <CardHeader>
-              <CardHeaderMain>
-                <CardTitle>ACS Instance Access</CardTitle>
-              </CardHeaderMain>
-            </CardHeader>
-            <CardBody>
-              <p>Get started by signing in to your ACS instance.</p>
-            </CardBody>
-            <CardFooter>
-              <Button
-                variant={ButtonVariant.primary}
-                component="a"
-                href={`https://${instance.host}`}
-                target="_blank"
-              >
-                Sign in to ACS Instance
-              </Button>
-            </CardFooter>
-          </Card>
+          <Flex alignItems={{ default: 'alignItemsStretch' }}>
+            <FlexItem
+              flex={{ default: 'flex_1' }}
+              alignSelf={{ default: 'alignSelfStretch' }}
+            >
+              <Card className="pf-u-h-100">
+                <CardHeader>
+                  <CardHeaderMain>
+                    <CardTitle>ACS Instance Access</CardTitle>
+                  </CardHeaderMain>
+                </CardHeader>
+                <CardBody>
+                  <Flex direction={{ default: 'column' }}>
+                    <FlexItem>
+                      Get started by signing in to your ACS instance.
+                    </FlexItem>
+                    <FlexItem>
+                      <Button
+                        variant={ButtonVariant.primary}
+                        component="a"
+                        href={`https://${instance.uiHost}`}
+                        target="_blank"
+                      >
+                        Open ACS Console
+                      </Button>
+                    </FlexItem>
+                  </Flex>
+                </CardBody>
+              </Card>
+            </FlexItem>
+            <FlexItem flex={{ default: 'flex_1' }}>
+              <Card>
+                <CardHeader>
+                  <CardHeaderMain>
+                    <CardTitle>Instance Details</CardTitle>
+                  </CardHeaderMain>
+                </CardHeader>
+                <CardBody>
+                  <InstanceDetailsList instance={instance} />
+                </CardBody>
+              </Card>
+            </FlexItem>
+          </Flex>
         </PageSection>
         <PageSection
           variant={PageSectionVariants.light}
@@ -107,13 +128,29 @@ function InstanceDetailsPage() {
               </Card>
             </GridItem>
             <GridItem md={5} hasGutter>
-              <TextContent>
-                <Text>In this video, you’ll learn how to:</Text>
-              </TextContent>
-              <List>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>You go back, Jack, do it again</ListItem>
-                <ListItem>Three is the magic number</ListItem>
+              <List isPlain>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    isInline
+                    component="a"
+                    href="https://www.redhat.com/sysadmin/kubernetes-RHACS-red-hat-advanced-cluster-security"
+                    target="_blank"
+                  >
+                    Getting Started Guide
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    isInline
+                    component="a"
+                    href="https://docs.openshift.com/acs/3.71/welcome/index.html"
+                    target="_blank"
+                  >
+                    Product Configuration
+                  </Button>
+                </ListItem>
               </List>
             </GridItem>
           </Grid>
