@@ -15,6 +15,18 @@ function InstanceDetailsList({ instance }) {
   return (
     <DescriptionList isHorizontal>
       <DescriptionListGroup>
+        <DescriptionListTerm>Cloud provider</DescriptionListTerm>
+        <DescriptionListDescription>
+          {cloudProviderValueToLabel(instance.cloud_provider)}
+        </DescriptionListDescription>
+      </DescriptionListGroup>
+      <DescriptionListGroup>
+        <DescriptionListTerm>Region</DescriptionListTerm>
+        <DescriptionListDescription>
+          {regionValueToLabel(instance.region)}
+        </DescriptionListDescription>
+      </DescriptionListGroup>
+      <DescriptionListGroup>
         <DescriptionListTerm>ID</DescriptionListTerm>
         <DescriptionListDescription>{instance.id}</DescriptionListDescription>
       </DescriptionListGroup>
@@ -37,24 +49,16 @@ function InstanceDetailsList({ instance }) {
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
-        <DescriptionListTerm>Cloud provider</DescriptionListTerm>
-        <DescriptionListDescription>
-          {cloudProviderValueToLabel(instance.cloud_provider)}
-        </DescriptionListDescription>
-      </DescriptionListGroup>
-      <DescriptionListGroup>
-        <DescriptionListTerm>Region</DescriptionListTerm>
-        <DescriptionListDescription>
-          {regionValueToLabel(instance.region)}
-        </DescriptionListDescription>
-      </DescriptionListGroup>
-      <DescriptionListGroup>
         <DescriptionListTerm>Sensor Host URL</DescriptionListTerm>
-        <DescriptionListDescription>-</DescriptionListDescription>
+        <DescriptionListDescription>
+          {instance.centralDataURL}
+        </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
         <DescriptionListTerm>Central UI</DescriptionListTerm>
-        <DescriptionListDescription>{instance.host}</DescriptionListDescription>
+        <DescriptionListDescription>
+          {instance.centralUIURL}
+        </DescriptionListDescription>
       </DescriptionListGroup>
     </DescriptionList>
   );
