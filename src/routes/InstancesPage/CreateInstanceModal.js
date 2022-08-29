@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import {
   Alert,
   Button,
@@ -12,7 +13,6 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core';
-import React, { useState } from 'react';
 
 import { regionOptions } from '../../utils/region';
 import SelectSingle from '../../components/SelectSingle';
@@ -22,9 +22,15 @@ const defaultFormValues = {
   cloud_provider: 'aws',
   region: 'us-east-1',
   availabilityZones: 'multi',
+  aws_account_number: '',
 };
 
-function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
+function CreateInstanceModal({
+  isOpen,
+  onClose,
+  onRequestCreate,
+  cloudAccountIds,
+}) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
@@ -35,6 +41,19 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
     setFormValues(defaultFormValues);
     setIsRequestingCreate(false);
     onClose();
+  }
+
+  async function onRequestCreateHandler() {
+    setIsRequestingCreate(true);
+    const result = await onRequestCreate(formValues);
+    setIsRequestingCreate(false);
+    if (result instanceof Error) {
+      const errorMessage = result.response.data.reason;
+      setErrorMessage(errorMessage);
+    } else {
+      setFormValues(defaultFormValues);
+      onClose();
+    }
   }
 
   function onChangeAvailabilityZones(isSelected, event) {
@@ -52,24 +71,18 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
     }));
   }
 
-  function onInputChange(value) {
+  function onChangeAWSAccountNumber(id, selection) {
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      aws_account_number: selection,
+    }));
+  }
+
+  function onNameChange(value) {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       name: value,
     }));
-  }
-
-  async function onRequestCreateHandler() {
-    setIsRequestingCreate(true);
-    const result = await onRequestCreate(formValues);
-    setIsRequestingCreate(false);
-    if (result instanceof Error) {
-      const errorMessage = result.response.data.reason;
-      setErrorMessage(errorMessage);
-    } else {
-      setFormValues(defaultFormValues);
-      onClose();
-    }
   }
 
   return (
@@ -116,7 +129,7 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
             id="name"
             name="name"
             value={formValues.name}
-            onChange={onInputChange}
+            onChange={onNameChange}
           />
         </FormGroup>
         <FormGroup label="Cloud provider" isRequired fieldId="cloud_provider">
@@ -160,6 +173,28 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
               onChange={onChangeAvailabilityZones}
             />
           </ToggleGroup>
+        </FormGroup>
+        <FormGroup label="AWS account number" fieldId="aws_account_number">
+          <SelectSingle
+            id="aws_account_number"
+            value={formValues.aws_account_number}
+            handleSelect={onChangeAWSAccountNumber}
+            placeholderText={
+              cloudAccountIds.length === 0
+                ? 'No accounts available'
+                : 'Select an AWS Account'
+            }
+            menuAppendTo="parent"
+            isDisabled={cloudAccountIds.length === 0}
+          >
+            {cloudAccountIds.map((cloudAccountId) => {
+              return (
+                <SelectOption key={cloudAccountId} value={cloudAccountId}>
+                  {cloudAccountId}
+                </SelectOption>
+              );
+            })}
+          </SelectSingle>
         </FormGroup>
       </Form>
     </Modal>

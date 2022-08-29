@@ -36,6 +36,7 @@ import usePagination from '../../hooks/usePagination';
 import useInstances from '../../hooks/apis/useInstances';
 import useCreateInstance from '../../hooks/apis/useCreateInstance';
 import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
+import useCloudAccounts from '../../hooks/apis/useCloudAccounts';
 
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
@@ -78,6 +79,12 @@ function InstancesPage() {
   });
   const [filters, setFilters] = useState({});
 
+  const { data: cloudAccountsData } = useCloudAccounts();
+  const cloudAccountIds =
+    cloudAccountsData?.cloudAccounts?.map(
+      (cloudAccount) => cloudAccount.cloudAccountId
+    ) || [];
+
   const { data, isFetching } = useInstances({
     query: {
       page,
@@ -109,6 +116,7 @@ function InstancesPage() {
       cloud_provider: values.cloud_provider,
       name: values.name,
       multi_az: values.availabilityZones === 'multi',
+      aws_account_number: values.aws_account_number,
     });
     return response.catch((error) => {
       return error;
@@ -332,6 +340,7 @@ function InstancesPage() {
           isOpen={!!creatingInstance}
           onClose={closeCreateInstanceModal}
           onRequestCreate={onRequestCreate}
+          cloudAccountIds={cloudAccountIds}
         />
         <DeleteInstanceModal
           instance={deletingInstance}
