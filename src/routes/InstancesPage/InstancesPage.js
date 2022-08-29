@@ -224,14 +224,26 @@ function InstancesPage() {
                   <Tr
                     key={instance.name}
                     onRowClick={(event) => {
-                      if (event.target.getAttribute('type') !== 'button') {
+                      if (
+                        event.target.getAttribute('type') !== 'button' &&
+                        instance.status === 'ready'
+                      ) {
                         setViewingInstance(instance);
                       }
                     }}
                     isRowSelected={viewingInstance?.name === instance?.name}
                   >
                     <Td dataLabel="Name">
-                      <Link to={instanceDetailsURL}>{instance.name}</Link>
+                      <Button
+                        variant="link"
+                        isInline
+                        isDisabled={instance.status !== 'ready'}
+                        component={(props) => (
+                          <Link {...props} to={instanceDetailsURL} />
+                        )}
+                      >
+                        {instance.name}
+                      </Button>
                     </Td>
                     <Td dataLabel="Cloud provider">
                       {cloudProviderValueToLabel(instance.cloud_provider)}
@@ -247,24 +259,26 @@ function InstancesPage() {
                       {getDateTimeDifference(instance.created_at)}
                     </Td>
                     <Td isActionCell>
-                      <ActionsColumn
-                        items={[
-                          {
-                            title: 'Details',
-                            onClick: (event) => {
-                              event.preventDefault();
-                              history.push(instanceDetailsURL);
+                      {instance.status === 'ready' && (
+                        <ActionsColumn
+                          items={[
+                            {
+                              title: 'Details',
+                              onClick: (event) => {
+                                event.preventDefault();
+                                history.push(instanceDetailsURL);
+                              },
                             },
-                          },
-                          {
-                            title: 'Delete',
-                            onClick: (event) => {
-                              event.preventDefault();
-                              setDeletingInstance(instance);
+                            {
+                              title: 'Delete',
+                              onClick: (event) => {
+                                event.preventDefault();
+                                setDeletingInstance(instance);
+                              },
                             },
-                          },
-                        ]}
-                      />
+                          ]}
+                        />
+                      )}
                     </Td>
                   </Tr>
                 );
