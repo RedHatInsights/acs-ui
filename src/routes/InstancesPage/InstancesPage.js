@@ -84,6 +84,8 @@ function InstancesPage() {
       orderBy: `${sortOption.field} ${sortOption.direction}`,
       search: filtersToSearchQuery(filters),
     },
+    // Refetch the data every 10 seconds
+    refetchInterval: 10000,
   });
   const createInstance = useCreateInstance();
   const deleteInstance = useDeleteInstance();

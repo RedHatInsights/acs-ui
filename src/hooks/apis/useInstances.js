@@ -12,5 +12,8 @@ const getInstances = async ({ query }) => {
 };
 
 export default function useInstances(options) {
-  return useQuery(['instances', options], () => getInstances(options));
+  const { refetchInterval } = options;
+  return useQuery(['instances', options], () => getInstances(options), {
+    refetchInterval,
+  });
 }
