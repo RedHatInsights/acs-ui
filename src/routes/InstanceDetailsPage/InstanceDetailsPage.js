@@ -82,7 +82,7 @@ function InstanceDetailsPage() {
                       <Button
                         variant={ButtonVariant.primary}
                         component="a"
-                        href={`https://${instance.centralUIURL}`}
+                        href={instance.centralUIURL}
                         target="_blank"
                       >
                         Open ACS Console
