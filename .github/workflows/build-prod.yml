@@ -1,5 +1,9 @@
 name: Build Prod
-on: [push]
+on:
+  push:
+    branchs:
+      - 'prod-beta'
+      - 'prod-stable'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,4 +26,4 @@ jobs:
         id: restore-build-prod
         with:
           path: ${{ github.workspace }}/dist/*
-          key: ${{ github.sha }}
+          key: ${{ github.sha }}/prod
