@@ -1,4 +1,4 @@
-name: Deploy Prod Stable
+name: Deploy prod-stable
 on:
   workflow_run:
     workflows: ['Build Prod']
@@ -27,7 +27,7 @@ jobs:
         id: restore-build-prod
         with:
           path: ${{ github.workspace }}/dist/*
-          key: ${{ github.sha }}
+          key: ${{ github.sha }}/prod
       - name: Checkout RedHatInsights/acs-ui-build repo and push build files from acs-ui
         run: |
           bash ${{ github.workspace }}/.github/scripts/deploy.sh

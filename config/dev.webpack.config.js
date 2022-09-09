@@ -2,14 +2,6 @@ const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const commonPlugins = require('./plugins');
 
-function getEnv() {
-  if (process.env.PROD) {
-    return process.env.BETA ? 'prod-beta' : 'prod-stable';
-  } else {
-    return process.env.BETA ? 'stage-beta' : 'stage-stable';
-  }
-}
-
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
   debug: true,
@@ -18,7 +10,7 @@ const { config: webpackConfig, plugins } = config({
   appUrl: process.env.BETA
     ? '/beta/application-services/acs'
     : '/application-services/acs',
-  env: getEnv(),
+  env: process.env.BETA ? 'stage-beta' : 'stage-stable',
 });
 plugins.push(...commonPlugins);
 

@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 // We want to access a PROD env variable within the UI code
 plugins.push(
   new webpack.DefinePlugin({
-    'process.env.PROD': process.env.NODE_ENV === 'production',
+    'process.env.PROD': process?.env?.NODE_ENV === 'production',
   })
 );
 

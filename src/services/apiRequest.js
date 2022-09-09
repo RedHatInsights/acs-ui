@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.PROD
+const API_URL = process?.env?.PROD
   ? 'https://api.openshift.com'
   : 'https://api.stage.openshift.com';
 

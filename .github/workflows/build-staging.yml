@@ -1,5 +1,9 @@
-name: Build Staging
-on: [push]
+name: Build staging
+on:
+  push:
+    branches:
+      - main
+      - stable
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,4 +26,4 @@ jobs:
         id: restore-build-staging
         with:
           path: ${{ github.workspace }}/dist/*
-          key: ${{ github.sha }}
+          key: ${{ github.sha }}/staging
