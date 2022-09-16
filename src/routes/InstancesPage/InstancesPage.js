@@ -261,26 +261,24 @@ function InstancesPage() {
                       {getDateTimeDifference(instance.created_at)}
                     </Td>
                     <Td isActionCell>
-                      {instance.status === 'ready' && (
-                        <ActionsColumn
-                          items={[
-                            {
-                              title: 'Details',
-                              onClick: (event) => {
-                                event.preventDefault();
-                                history.push(instanceDetailsURL);
-                              },
+                      <ActionsColumn
+                        items={[
+                          {
+                            title: 'Details',
+                            onClick: (event) => {
+                              event.preventDefault();
+                              history.push(instanceDetailsURL);
                             },
-                            {
-                              title: 'Delete',
-                              onClick: (event) => {
-                                event.preventDefault();
-                                setDeletingInstance(instance);
-                              },
+                          },
+                          {
+                            title: 'Delete',
+                            onClick: (event) => {
+                              event.preventDefault();
+                              setDeletingInstance(instance);
                             },
-                          ]}
-                        />
-                      )}
+                          },
+                        ]}
+                      />
                     </Td>
                   </Tr>
                 );
