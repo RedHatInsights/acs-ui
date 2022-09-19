@@ -19,6 +19,7 @@ import {
   Pagination,
   Bullseye,
   EmptyStateVariant,
+  Spinner,
 } from '@patternfly/react-core';
 import {
   ActionsColumn,
@@ -94,6 +95,9 @@ function InstancesPage() {
   const [viewingInstance, setViewingInstance] = useState(null);
 
   const instances = data?.items || [];
+  const isTableLoading = isFetching && !data;
+
+  let content = null;
 
   useEffect(() => {
     insights?.chrome?.appAction?.('instances-page');
@@ -134,13 +138,7 @@ function InstancesPage() {
     setFilters({});
   }
 
-  let content = null;
-
-  if (
-    !isFetching &&
-    instances.length === 0 &&
-    Object.keys(filters).length === 0
-  ) {
+  if (instances.length === 0 && Object.keys(filters).length === 0) {
     content = (
       <EmptyState>
         <EmptyStateIcon icon={CubesIcon} />
@@ -200,7 +198,16 @@ function InstancesPage() {
             </Tr>
           </Thead>
           <Tbody>
-            {!isFetching && instances.length === 0 ? (
+            {isTableLoading && (
+              <Tr>
+                <Td colSpan={8}>
+                  <Bullseye>
+                    <Spinner />
+                  </Bullseye>
+                </Td>
+              </Tr>
+            )}
+            {!isTableLoading && instances.length === 0 && (
               <Tr>
                 <Td colSpan={8}>
                   <Bullseye>
@@ -219,7 +226,9 @@ function InstancesPage() {
                   </Bullseye>
                 </Td>
               </Tr>
-            ) : (
+            )}
+            {!isTableLoading &&
+              instances.length !== 0 &&
               instances.map((instance) => {
                 const instanceDetailsURL = `/instances/instance/${instance.id}`;
                 return (
@@ -282,8 +291,7 @@ function InstancesPage() {
                     </Td>
                   </Tr>
                 );
-              })
-            )}
+              })}
           </Tbody>
         </TableComposable>
         {instances.length !== 0 && (
