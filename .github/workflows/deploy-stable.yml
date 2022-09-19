@@ -1,7 +1,7 @@
 name: Deploy ci-stable stage-stable qa-stable
 on:
   workflow_run:
-    workflows: ['Build Staging']
+    workflows: ['Build staging']
     branches: [stable]
     types:
       - completed
