@@ -1,7 +1,7 @@
 name: Deploy prod-beta
 on:
   workflow_run:
-    workflows: ['Build Prod']
+    workflows: ['Build prod']
     branches: [prod-beta]
     types:
       - completed
