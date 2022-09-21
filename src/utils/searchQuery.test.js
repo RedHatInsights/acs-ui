@@ -18,10 +18,10 @@ describe('searchQuery', () => {
 
     it('should return the correct search query for the region category', () => {
       const filters = {
-        region: ['US-East, N. Virginia', 'EU-Ireland'],
+        region: ['US-East, N. Virginia'],
       };
       const searchQuery = filtersToSearchQuery(filters);
-      expect(searchQuery).toBe('(region = us-east-1 or region = eu-west-1)');
+      expect(searchQuery).toBe('(region = us-east-1)');
     });
 
     it('should return the correct search query for the owner category', () => {
@@ -53,12 +53,12 @@ describe('searchQuery', () => {
     it('should return the correct search query for multiple categories', () => {
       const filters = {
         name: ['sc-test-1'],
-        region: ['US-East, N. Virginia', 'EU-Ireland'],
+        region: ['US-East, N. Virginia'],
         owner: ['schaudhr'],
       };
       const searchQuery = filtersToSearchQuery(filters);
       expect(searchQuery).toBe(
-        '(name = sc-test-1) and (region = us-east-1 or region = eu-west-1) and (owner = schaudhr)'
+        '(name = sc-test-1) and (region = us-east-1) and (owner = schaudhr)'
       );
     });
 
