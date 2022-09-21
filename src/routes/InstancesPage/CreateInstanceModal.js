@@ -29,6 +29,14 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
 
+  function onCloseHandler() {
+    // clear all state before closing
+    setErrorMessage(null);
+    setFormValues(defaultFormValues);
+    setIsRequestingCreate(false);
+    onClose();
+  }
+
   function onChangeAvailabilityZones(isSelected, event) {
     const { id } = event.currentTarget;
     setFormValues((prevFormValues) => ({
@@ -69,7 +77,7 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
       variant={ModalVariant.small}
       title="Create ACS instance"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={onCloseHandler}
       actions={[
         <Button
           key="createInstance"
@@ -83,7 +91,7 @@ function CreateInstanceModal({ isOpen, onClose, onRequestCreate }) {
         <Button
           key="cancel"
           variant="link"
-          onClick={onClose}
+          onClick={onCloseHandler}
           isDisabled={isRequestingCreate}
         >
           Cancel
