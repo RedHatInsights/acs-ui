@@ -21,6 +21,11 @@ const InstanceDetailsPage = lazy(() =>
     /* webpackChunkName: "InstancesPage" */ './routes/InstanceDetailsPage/InstanceDetailsPage'
   )
 );
+const OverviewPage = lazy(() =>
+  import(
+    /* webpackChunkName: "OverviewPage" */ './routes/OverviewPage/OverviewPage'
+  )
+);
 
 export function Routes() {
   return (
@@ -39,6 +44,7 @@ export function Routes() {
           component={InstanceDetailsPage}
         />
         <Route path="/instances" component={InstancesPage} />
+        <Route path="/overview" component={OverviewPage} />
         {/* Finally, catch all unmatched routes */}
         <Route>
           <Redirect to="/instances" />
