@@ -9,6 +9,7 @@
   "scripts": {
     "analyze": "NODE_ENV=production webpack --config config/prod.webpack.config.js --env analyze=true",
     "build:prod": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
+    "build:prod:beta": "NODE_ENV=production BETA=true webpack --config config/prod.webpack.config.js",
     "build:staging": "NODE_ENV=staging webpack --config config/prod.webpack.config.js",
     "build:staging:beta": "NODE_ENV=staging BETA=true webpack --config config/prod.webpack.config.js",
     "deploy": "npm-run-all build:prod lint test",
