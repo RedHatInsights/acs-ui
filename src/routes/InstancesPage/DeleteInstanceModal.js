@@ -35,7 +35,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
   }
 
   function inputMatchesInstanceName() {
-    instance.name === inputValue;
+    return instance.name === inputValue;
   }
 
   if (!instance) return null;
