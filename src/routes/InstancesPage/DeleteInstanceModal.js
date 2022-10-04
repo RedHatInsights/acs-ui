@@ -27,6 +27,17 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
     }
   }
 
+  function deleteInstanceOnSubmit(e) {
+    e.preventDefault();
+    if (inputMatchesInstanceName()) {
+      onRequestDeleteHandler();
+    }
+  }
+
+  function inputMatchesInstanceName() {
+    return instance.name === inputValue;
+  }
+
   if (!instance) return null;
 
   return (
@@ -41,7 +52,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
           variant="danger"
           onClick={onRequestDeleteHandler}
           isLoading={isRequestingDelete}
-          isDisabled={isRequestingDelete || instance.name !== inputValue}
+          isDisabled={isRequestingDelete || !inputMatchesInstanceName()}
         >
           Delete instance
         </Button>,
@@ -62,7 +73,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         </div>
         <div>This action cannot be undone.</div>
       </div>
-      <Form>
+      <Form onSubmit={deleteInstanceOnSubmit}>
         <FormGroup
           label="Confirmation"
           isRequired
