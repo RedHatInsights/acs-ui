@@ -49,9 +49,7 @@ function InstanceDetailsList({ instance }) {
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
-        <DescriptionListTerm>
-          Central API Endpoint (include port)
-        </DescriptionListTerm>
+        <DescriptionListTerm>Central API Endpoint</DescriptionListTerm>
         <DescriptionListDescription>
           {instance.centralDataURL}
         </DescriptionListDescription>
