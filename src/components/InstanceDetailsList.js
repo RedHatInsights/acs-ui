@@ -49,7 +49,7 @@ function InstanceDetailsList({ instance }) {
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
-        <DescriptionListTerm>Sensor Host URL</DescriptionListTerm>
+        <DescriptionListTerm>Central API Endpoint</DescriptionListTerm>
         <DescriptionListDescription>
           {instance.centralDataURL}
         </DescriptionListDescription>
