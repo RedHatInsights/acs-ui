@@ -1,8 +1,8 @@
-name: Build staging
+name: Build qa beta
 on:
   push:
     branches:
-      - stable
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,11 +18,11 @@ jobs:
       - name: Test
         run: npm test --passWithNoTests
       - name: Build
-        run: npm run build:staging --if-present
+        run: npm run build:qa:beta --if-present
       # store the build files into the cache
       - name: Cache Build
         uses: actions/cache@v2
-        id: restore-build-staging
+        id: restore-build
         with:
           path: ${{ github.workspace }}/dist/*
-          key: ${{ github.sha }}/staging
+          key: ${{ github.sha }}
