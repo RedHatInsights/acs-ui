@@ -34,18 +34,10 @@ The main branches of interest in the **acs-ui** repo are the following:
 - prod-stable
 
 Updates to these branches will update the following branches in the **acs-ui-build** repo:
-- main -> ci-beta, qa-beta, stage-beta
-- stable -> ci-stable, qa-stable, stage-stable
-- prod-beta -> prod-beta
-- prod-stable -> prod-stable
-
-Some of these environments have become deprecated or obsolete based on information provided by our backend team so these are the actual environments we want to pay attention to:
 - main -> qa-beta
 - stable -> qa-stable
 - prod-beta -> prod-beta
 - prod-stable -> prod-stable
-
-We will continue to update these deprecated/obsolete branches for now until further notice.
 
 ### Build repo webhook
 
@@ -61,4 +53,4 @@ The following are the URLs for the environments associated with the [build repo]
 
 ## Release Cycle
 
-TBD
+@TODO: Answer the following questions: When should they merge code into the main, stable, prod-beta, and prod-stable branches? Do all of those branches require PRs with approval to make changes?
