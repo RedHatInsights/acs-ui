@@ -1,8 +1,5 @@
 name: Build qa beta
-on:
-  push:
-    branches:
-      - main
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,10 +16,3 @@ jobs:
         run: npm test --passWithNoTests
       - name: Build
         run: npm run build:qa:beta --if-present
-      # store the build files into the cache
-      - name: Cache Build
-        uses: actions/cache@v3
-        id: restore-build-qa-beta
-        with:
-          path: ${{ github.workspace }}/dist/*
-          key: ${{ github.sha }}

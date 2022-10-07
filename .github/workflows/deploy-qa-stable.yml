@@ -1,10 +1,8 @@
 name: Deploy qa-stable
 on:
-  workflow_run:
-    workflows: ['Build qa stable']
-    branches: [stable]
-    types:
-      - completed
+  push:
+    branches:
+      - stable
 env:
   TOKEN: ${{ secrets.TOKEN }}
   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
@@ -16,18 +14,25 @@ env:
   GIT_EMAIL: "actions@github.com"
 jobs:
   deploy-qa-stable:
-    # only run after the build workflow completes
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       # checkout the repository
       - uses: actions/checkout@v2
-      # restore the build files from cache
-      - uses: actions/cache@v3
-        id: restore-build-qa-stable
+       # use the correct node.js version
+      - name: Use Node.js
+        uses: actions/setup-node@v1
         with:
-          path: ${{ github.workspace }}/dist/*
-          key: ${{ github.sha }}
+          node-version: '14.x'
+      # install node dependencies
+      - name: Install Dependencies
+        run: npm ci
+      # run tests
+      - name: Test
+        run: npm test --passWithNoTests
+      # build files
+      - name: Build
+        run: npm run build:qa --if-present
+      # deploy build files to build repo using script
       - name: Checkout RedHatInsights/acs-ui-build repo and push build files from acs-ui
         run: |
           bash ${{ github.workspace }}/.github/scripts/deploy.sh
