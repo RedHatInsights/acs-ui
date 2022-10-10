@@ -41,9 +41,11 @@ Updates to these branches will update the following branches in the **acs-ui-bui
 
 ### Build repo webhook
 
-There is a jenkins webhook configured for the [build repo](https://github.com/RedHatInsights/acs-ui-build) that notifies RedHatInsights automation that changes occured for the branches in that repo. Once RedHatInsights automation is notified, the changes will propagate the appropriate environments
+There is a Jenkins webhook configured for the [build repo](https://github.com/RedHatInsights/acs-ui-build) that notifies RedHatInsights automation that changes occured for the branches in that repo. Once RedHatInsights automation is notified, the changes will propagate the appropriate environments
 
-To access the Jenkins dashboard go [here](https://insights-dev-jenkins.apps.crcd01ue1.zmsj.p1.openshiftapps.com/job/insights-frontend-deployer/) 
+To access the Jenkins dashboard go [here](https://insights-dev-jenkins.apps.crcd01ue1.zmsj.p1.openshiftapps.com/job/insights-frontend-deployer/)
+
+If you don't have access, please message @gburges or @Martin Maroši and they'll help you with getting access
 
 ### Environments
 
