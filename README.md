@@ -38,9 +38,8 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 
 ## Definitions
-* `stage` (deprecated) - Development and Testing
 * `prod` - Production
-* `qaprodauth` - Same environment as stage but uses production SSO instead of stage SSO
+* `qa/qaprodauth` - A staging environment that uses production SSO
 * `beta` - Some UI features or even services are in a pre-release or preview state. Usually only in stage.
 * `stable` - Non-beta stable version
 
@@ -48,8 +47,8 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 
 - This repo uses Github Actions to build and deploy the webpack `dist/` directory to another Github repo defined in `.github/workflows`
   - Pushing to the specified branches will push the build files to the following branches in the build repo:
-    - `main` -> `ci-beta` -> `qa-beta` -> `stage-beta`
-    - `stable` -> `ci-stable` -> `qa-stable` -> `stage-stable`
+    - `main` -> `qa-beta`
+    - `stable` -> `qa-stable`
     - `prod-beta` -> `prod-beta`
     - `prod-stable` -> `prod-stable`
 
@@ -58,13 +57,9 @@ You should also set up the Red Hat squid proxy using [this guide](https://source
 These are the urls for each branch:
 
 ### Beta
-* ci-beta -> https://ci.console.redhat.com/beta (deprecated)
 * qa-beta -> https://qa.console.redhat.com/beta
-* stage-beta -> https://console.stage.redhat.com/beta (deprecated)
 * prod-beta -> https://console.redhat.com/beta
 
 ### Stable
-* ci-stable -> https://ci.console.redhat.com (deprecated)
 * qa-stable -> https://qa.console.redhat.com
-* stage -> https://console.stage.redhat.com (deprecated)
 * prod-stable -> https://console.redhat.com
