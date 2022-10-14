@@ -97,8 +97,8 @@ function OverviewPage() {
                 </CardTitle>
               </CardHeaderMain>
               <CardBody>
-                Purchase a pay-as-you-go subscription for up to 25 streaming
-                units using one of our Marketplace options below.
+                Purchase a pay-as-you-go subscription for Managed vCPU units
+                using one of our Marketplace options below
               </CardBody>
               <CardFooter>
                 <Flex>
