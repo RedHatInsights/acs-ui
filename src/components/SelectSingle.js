@@ -13,6 +13,7 @@ function SelectSingle({
   isCreatable = false,
   variant = null,
   placeholderText = '',
+  menuAppendTo = '',
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,6 +40,7 @@ function SelectSingle({
       isCreatable={isCreatable}
       placeholderText={placeholderText}
       toggleId={id}
+      menuAppendTo={menuAppendTo}
     >
       {children}
     </Select>
