@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Button,
@@ -34,6 +34,16 @@ function CreateInstanceModal({
   const [errorMessage, setErrorMessage] = useState(null);
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
+
+  // default select a cloud account if there is only one available
+  // @TODO: Make a test for this
+  useEffect(() => {
+    if (formValues.aws_account_number === '' && cloudAccountIds.length === 1) {
+      setFormValues((prevValues) => {
+        return { ...prevValues, aws_account_number: cloudAccountIds[0] };
+      });
+    }
+  }, [cloudAccountIds]);
 
   function onCloseHandler() {
     // clear all state before closing
@@ -138,6 +148,28 @@ function CreateInstanceModal({
             isSelected={formValues.cloud_provider === 'aws'}
           />
         </FormGroup>
+        <FormGroup label="AWS account number" fieldId="aws_account_number">
+          <SelectSingle
+            id="aws_account_number"
+            value={formValues.aws_account_number}
+            handleSelect={onChangeAWSAccountNumber}
+            placeholderText={
+              cloudAccountIds.length === 0
+                ? 'No accounts available'
+                : 'Select an AWS Account'
+            }
+            menuAppendTo="parent"
+            isDisabled={cloudAccountIds.length === 0}
+          >
+            {cloudAccountIds.map((cloudAccountId) => {
+              return (
+                <SelectOption key={cloudAccountId} value={cloudAccountId}>
+                  {cloudAccountId}
+                </SelectOption>
+              );
+            })}
+          </SelectSingle>
+        </FormGroup>
         <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
             id="region"
@@ -173,28 +205,6 @@ function CreateInstanceModal({
               onChange={onChangeAvailabilityZones}
             />
           </ToggleGroup>
-        </FormGroup>
-        <FormGroup label="AWS account number" fieldId="aws_account_number">
-          <SelectSingle
-            id="aws_account_number"
-            value={formValues.aws_account_number}
-            handleSelect={onChangeAWSAccountNumber}
-            placeholderText={
-              cloudAccountIds.length === 0
-                ? 'No accounts available'
-                : 'Select an AWS Account'
-            }
-            menuAppendTo="parent"
-            isDisabled={cloudAccountIds.length === 0}
-          >
-            {cloudAccountIds.map((cloudAccountId) => {
-              return (
-                <SelectOption key={cloudAccountId} value={cloudAccountId}>
-                  {cloudAccountId}
-                </SelectOption>
-              );
-            })}
-          </SelectSingle>
         </FormGroup>
       </Form>
     </Modal>
