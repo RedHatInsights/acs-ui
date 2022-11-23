@@ -116,7 +116,7 @@ function InstancesPage() {
       cloud_provider: values.cloud_provider,
       name: values.name,
       multi_az: values.availabilityZones === 'multi',
-      aws_account_number: values.aws_account_number,
+      cloud_account_id: values.cloud_account_id,
     });
     return response.catch((error) => {
       return error;
