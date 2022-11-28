@@ -22,7 +22,7 @@ const defaultFormValues = {
   cloud_provider: 'aws',
   region: 'us-east-1',
   availabilityZones: 'multi',
-  aws_account_number: '',
+  cloud_account_id: '',
 };
 
 function CreateInstanceModal({
@@ -38,9 +38,9 @@ function CreateInstanceModal({
   // default select a cloud account if there is only one available
   // @TODO: Make a test for this
   useEffect(() => {
-    if (formValues.aws_account_number === '' && cloudAccountIds.length === 1) {
+    if (formValues.cloud_account_id === '' && cloudAccountIds.length === 1) {
       setFormValues((prevValues) => {
-        return { ...prevValues, aws_account_number: cloudAccountIds[0] };
+        return { ...prevValues, cloud_account_id: cloudAccountIds[0] };
       });
     }
   }, [cloudAccountIds]);
@@ -84,7 +84,7 @@ function CreateInstanceModal({
   function onChangeAWSAccountNumber(id, selection) {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
-      aws_account_number: selection,
+      cloud_account_id: selection,
     }));
   }
 
@@ -148,10 +148,10 @@ function CreateInstanceModal({
             isSelected={formValues.cloud_provider === 'aws'}
           />
         </FormGroup>
-        <FormGroup label="AWS account number" fieldId="aws_account_number">
+        <FormGroup label="AWS account number" fieldId="cloud_account_id">
           <SelectSingle
-            id="aws_account_number"
-            value={formValues.aws_account_number}
+            id="cloud_account_id"
+            value={formValues.cloud_account_id}
             handleSelect={onChangeAWSAccountNumber}
             placeholderText={
               cloudAccountIds.length === 0
