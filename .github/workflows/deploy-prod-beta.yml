@@ -10,7 +10,7 @@ env:
   SOURCE_BRANCH: prod-beta
   DEPLOY_URL: "github.com/RedHatInsights/acs-ui-build"
   WORKSPACE: ${{ github.workspace }}
-  GIT_USERNAME: "Github Action"
+  GIT_USERNAME: "Actions"
   GIT_EMAIL: "actions@github.com"
 jobs:
   deploy-prod-beta:
