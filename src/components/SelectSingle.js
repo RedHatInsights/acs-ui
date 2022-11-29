@@ -13,7 +13,7 @@ function SelectSingle({
   isCreatable = false,
   variant = null,
   placeholderText = '',
-  menuAppendTo = '',
+  menuAppendTo = undefined,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
