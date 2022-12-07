@@ -95,6 +95,7 @@ function InstancesPage() {
     // Refetch the data every 10 seconds
     refetchInterval: 10000,
   });
+
   const createInstance = useCreateInstance();
   const deleteInstance = useDeleteInstance();
   const [creatingInstance, setCreatingInstance] = useState(null);
@@ -103,6 +104,7 @@ function InstancesPage() {
 
   const instances = data?.items || [];
   const isTableLoading = isFetching && !data;
+  const totalInstances = data?.total ?? 0;
 
   let content = null;
 
@@ -181,7 +183,7 @@ function InstancesPage() {
                 align={{ default: 'alignRight' }}
               >
                 <Pagination
-                  itemCount={instances.length}
+                  itemCount={totalInstances}
                   perPage={perPage}
                   page={page}
                   onSetPage={onSetPage}
@@ -310,11 +312,11 @@ function InstancesPage() {
                 align={{ default: 'alignRight' }}
               >
                 <Pagination
-                  itemCount={instances.length}
+                  itemCount={totalInstances}
                   perPage={perPage}
                   page={page}
                   onSetPage={onSetPage}
-                  widgetId="acs-instances-top-pagination"
+                  widgetId="acs-instances-bottom-pagination"
                   onPerPageSelect={onPerPageSelect}
                 />
               </ToolbarItem>
