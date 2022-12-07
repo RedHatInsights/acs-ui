@@ -49,13 +49,15 @@ function InstanceDetailsList({ instance }) {
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
-        <DescriptionListTerm>Central API Endpoint</DescriptionListTerm>
+        <DescriptionListTerm>
+          Central API endpoint (Sensor mTLS)
+        </DescriptionListTerm>
         <DescriptionListDescription>
           {instance.centralDataURL}
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
-        <DescriptionListTerm>Central UI</DescriptionListTerm>
+        <DescriptionListTerm>Central instance (UI, roxctl)</DescriptionListTerm>
         <DescriptionListDescription>
           {instance.centralUIURL}
         </DescriptionListDescription>
