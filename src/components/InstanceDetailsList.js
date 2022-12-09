@@ -51,13 +51,13 @@ function InstanceDetailsList({ instance }) {
       <DescriptionListGroup>
         <DescriptionListTerm>Central API Endpoint</DescriptionListTerm>
         <DescriptionListDescription>
-          {instance.centralDataURL}
+          {instance.centralDataURL || '-'}
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
         <DescriptionListTerm>Central UI</DescriptionListTerm>
         <DescriptionListDescription>
-          {instance.centralUIURL}
+          {instance.centralUIURL || '-'}
         </DescriptionListDescription>
       </DescriptionListGroup>
     </DescriptionList>
