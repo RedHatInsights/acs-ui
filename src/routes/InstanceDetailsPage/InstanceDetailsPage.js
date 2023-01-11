@@ -83,6 +83,7 @@ function InstanceDetailsPage() {
                         variant={ButtonVariant.primary}
                         component="a"
                         href={instance.centralUIURL}
+                        isDisabled={!instance.centralUIURL}
                         target="_blank"
                       >
                         Open ACS Console
