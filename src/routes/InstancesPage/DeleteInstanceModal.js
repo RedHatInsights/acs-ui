@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import {
+  Alert,
+  AlertVariant,
   Button,
   Form,
   FormGroup,
@@ -14,13 +16,18 @@ import React, { useState } from 'react';
 function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
   const [inputValue, setInputValue] = useState('');
   const [isRequestingDelete, setIsRequestingDelete] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function onRequestDeleteHandler() {
     setIsRequestingDelete(true);
+    setErrorMessage('');
     const result = await onRequestDelete(instance.id);
     setIsRequestingDelete(false);
-    if (result.error) {
-      // Do something
+    if (result.isAxiosError) {
+      setErrorMessage(
+        result.message ||
+          'An unanticapted error occurred. Please try again. If this error persists, please contact support.'
+      );
     } else {
       setInputValue('');
       onClose();
@@ -94,6 +101,9 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
             to confirm.
           </HelperTextItem>
         </HelperText>
+        {errorMessage.length > 0 && (
+          <Alert isInline variant={AlertVariant.danger} title={errorMessage} />
+        )}
       </Form>
     </Modal>
   );
