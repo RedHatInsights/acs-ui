@@ -5,6 +5,7 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import {
   EmptyState,
   EmptyStateIcon,
@@ -71,6 +72,7 @@ const defaultSortOption = {
  */
 function InstancesPage() {
   const history = useHistory();
+  const { analytics } = useChrome();
 
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
   const { sortOption, getSortParams } = useTableSort({
@@ -125,6 +127,11 @@ function InstancesPage() {
     });
   }
 
+  function onCreateInstanceHandler() {
+    analytics.track('start-create-instance-form');
+    setCreatingInstance({});
+  }
+
   function closeCreateInstanceModal() {
     setCreatingInstance(null);
   }
@@ -157,7 +164,7 @@ function InstancesPage() {
         </Title>
         <EmptyStateBody>Create one to get started.</EmptyStateBody>
         <EmptyStatePrimary>
-          <Button variant="primary" onClick={() => setCreatingInstance({})}>
+          <Button variant="primary" onClick={() => onCreateInstanceHandler({})}>
             Create ACS instance
           </Button>
         </EmptyStatePrimary>
@@ -173,7 +180,10 @@ function InstancesPage() {
               setFilters={setFilters}
             />
             <ToolbarItem>
-              <Button variant="primary" onClick={() => setCreatingInstance({})}>
+              <Button
+                variant="primary"
+                onClick={() => onCreateInstanceHandler({})}
+              >
                 Create ACS instance
               </Button>
             </ToolbarItem>

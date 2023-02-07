@@ -13,6 +13,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import { regionOptions } from '../../utils/region';
 import SelectSingle from '../../components/SelectSingle';
@@ -31,6 +32,8 @@ function CreateInstanceModal({
   onRequestCreate,
   cloudAccountIds,
 }) {
+  const { analytics } = useChrome();
+
   const [errorMessage, setErrorMessage] = useState(null);
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
@@ -54,6 +57,7 @@ function CreateInstanceModal({
   }
 
   async function onRequestCreateHandler() {
+    analytics.track('create-instance-form-submitted');
     setIsRequestingCreate(true);
     const result = await onRequestCreate(formValues);
     setIsRequestingCreate(false);
