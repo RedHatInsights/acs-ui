@@ -5,7 +5,6 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import {
   EmptyState,
   EmptyStateIcon,
@@ -38,6 +37,7 @@ import useInstances from '../../hooks/apis/useInstances';
 import useCreateInstance from '../../hooks/apis/useCreateInstance';
 import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
 import useCloudAccounts from '../../hooks/apis/useCloudAccounts';
+import useAnalytics from '../../hooks/useAnalytics';
 
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
@@ -72,8 +72,8 @@ const defaultSortOption = {
  */
 function InstancesPage() {
   const history = useHistory();
-  const { analytics } = useChrome();
 
+  const { analyticsTrack } = useAnalytics();
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
   const { sortOption, getSortParams } = useTableSort({
     sortFields,
@@ -128,7 +128,7 @@ function InstancesPage() {
   }
 
   function onCreateInstanceHandler() {
-    analytics.track('start-create-instance-form');
+    analyticsTrack('start-create-instance-form');
     setCreatingInstance({});
   }
 

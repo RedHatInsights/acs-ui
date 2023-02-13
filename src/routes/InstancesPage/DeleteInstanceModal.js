@@ -12,19 +12,19 @@ import {
   TextInput,
 } from '@patternfly/react-core';
 import React, { useState } from 'react';
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+
+import useAnalytics from '../../hooks/useAnalytics';
 
 function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
-  const { analytics } = useChrome();
-
   const [inputValue, setInputValue] = useState('');
   const [isRequestingDelete, setIsRequestingDelete] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const { analyticsTrack } = useAnalytics();
 
   async function onRequestDeleteHandler() {
     setIsRequestingDelete(true);
     setErrorMessage('');
-    analytics.track('delete-instance-form-submitted');
+    analyticsTrack('delete-instance-form-submitted');
     const result = await onRequestDelete(instance.id);
     setIsRequestingDelete(false);
     if (result.isAxiosError) {
