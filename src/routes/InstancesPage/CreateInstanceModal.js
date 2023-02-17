@@ -151,19 +151,14 @@ function CreateInstanceModal({
             isSelected={formValues.cloud_provider === 'aws'}
           />
         </FormGroup>
-        {cloudAccountIds.length > 0 && (
+        {cloudAccountIds.length > 1 && (
           <FormGroup label="AWS account number" fieldId="cloud_account_id">
             <SelectSingle
               id="cloud_account_id"
               value={formValues.cloud_account_id}
               handleSelect={onChangeAWSAccountNumber}
-              placeholderText={
-                cloudAccountIds.length === 0
-                  ? 'No accounts available'
-                  : 'Select an AWS Account'
-              }
+              placeholderText="Select an AWS Account"
               menuAppendTo="parent"
-              isDisabled={cloudAccountIds.length === 0}
             >
               {cloudAccountIds.map((cloudAccountId) => {
                 return (
