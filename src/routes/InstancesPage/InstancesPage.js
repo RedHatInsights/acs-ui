@@ -37,6 +37,7 @@ import useInstances from '../../hooks/apis/useInstances';
 import useCreateInstance from '../../hooks/apis/useCreateInstance';
 import useDeleteInstance from '../../hooks/apis/useDeleteInstance';
 import useCloudAccounts from '../../hooks/apis/useCloudAccounts';
+import useAnalytics from '../../hooks/useAnalytics';
 
 import CreateInstanceModal from './CreateInstanceModal';
 import DeleteInstanceModal from './DeleteInstanceModal';
@@ -72,6 +73,7 @@ const defaultSortOption = {
 function InstancesPage() {
   const history = useHistory();
 
+  const { analyticsTrack } = useAnalytics();
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
   const { sortOption, getSortParams } = useTableSort({
     sortFields,
@@ -125,6 +127,11 @@ function InstancesPage() {
     });
   }
 
+  function onCreateInstanceHandler() {
+    analyticsTrack('start-create-instance-form');
+    setCreatingInstance({});
+  }
+
   function closeCreateInstanceModal() {
     setCreatingInstance(null);
   }
@@ -157,7 +164,7 @@ function InstancesPage() {
         </Title>
         <EmptyStateBody>Create one to get started.</EmptyStateBody>
         <EmptyStatePrimary>
-          <Button variant="primary" onClick={() => setCreatingInstance({})}>
+          <Button variant="primary" onClick={() => onCreateInstanceHandler({})}>
             Create ACS instance
           </Button>
         </EmptyStatePrimary>
@@ -173,7 +180,10 @@ function InstancesPage() {
               setFilters={setFilters}
             />
             <ToolbarItem>
-              <Button variant="primary" onClick={() => setCreatingInstance({})}>
+              <Button
+                variant="primary"
+                onClick={() => onCreateInstanceHandler({})}
+              >
                 Create ACS instance
               </Button>
             </ToolbarItem>

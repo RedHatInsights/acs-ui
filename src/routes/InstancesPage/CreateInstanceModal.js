@@ -16,6 +16,7 @@ import {
 
 import { regionOptions } from '../../utils/region';
 import SelectSingle from '../../components/SelectSingle';
+import useAnalytics from '../../hooks/useAnalytics';
 
 const defaultFormValues = {
   name: '',
@@ -34,6 +35,7 @@ function CreateInstanceModal({
   const [errorMessage, setErrorMessage] = useState(null);
   const [formValues, setFormValues] = useState(defaultFormValues);
   const [isRequestingCreate, setIsRequestingCreate] = useState(false);
+  const { analyticsTrack } = useAnalytics();
 
   // default select a cloud account if there is only one available
   // @TODO: Make a test for this
@@ -54,6 +56,7 @@ function CreateInstanceModal({
   }
 
   async function onRequestCreateHandler() {
+    analyticsTrack('create-instance-form-submitted');
     setIsRequestingCreate(true);
     const result = await onRequestCreate(formValues);
     setIsRequestingCreate(false);

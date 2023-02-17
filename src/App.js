@@ -10,6 +10,10 @@ const App = (props) => {
   const history = useHistory();
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      localStorage.setItem('chrome:analytics:dev', 'true');
+    }
+
     insights.chrome.init();
 
     insights.chrome.identifyApp('acs');
