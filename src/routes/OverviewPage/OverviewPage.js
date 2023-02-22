@@ -45,7 +45,7 @@ function OverviewPage() {
                 className="pf-u-color-200 pf-u-font-size-lg"
               >
                 <Text>
-                  Fully hosted and managed service for protecting cloud native
+                  Fully hosted cloud service for protecting cloud native
                   applications and Kubernetes
                 </Text>
               </TextContent>
