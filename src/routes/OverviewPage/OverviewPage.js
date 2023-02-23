@@ -36,8 +36,8 @@ function OverviewPage() {
             <Stack hasGutter>
               <TextContent>
                 <Text component={TextVariants.h1}>
-                  Get started with Red Hat Advanced Cluster Security Managed
-                  Service for Kubernetes
+                  Get started with Red Hat Advanced Cluster Security Cloud
+                  Service
                 </Text>
               </TextContent>
               <TextContent
@@ -45,7 +45,7 @@ function OverviewPage() {
                 className="pf-u-color-200 pf-u-font-size-lg"
               >
                 <Text>
-                  Fully hosted and managed service for protecting cloud native
+                  Fully hosted cloud service for protecting cloud native
                   applications and Kubernetes
                 </Text>
               </TextContent>
