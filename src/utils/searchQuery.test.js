@@ -18,10 +18,10 @@ describe('searchQuery', () => {
 
     it('should return the correct search query for the region category', () => {
       const filters = {
-        region: ['US-East, N. Virginia'],
+        region: ['US-East, N. Virginia', 'Europe, Frankfurt'],
       };
       const searchQuery = filtersToSearchQuery(filters);
-      expect(searchQuery).toBe('(region = us-east-1)');
+      expect(searchQuery).toBe('(region = us-east-1 or region = eu-central-1)');
     });
 
     it('should return the correct search query for the owner category', () => {
