@@ -1,5 +1,6 @@
 const regions = {
   'us-east-1': 'US-East, N. Virginia',
+  'eu-central-1': 'Europe, Frankfurt',
 };
 
 export const regionOptions = Object.keys(regions).map((regionValue) => {
