@@ -2,6 +2,10 @@ const cloudProviders = {
   aws: 'Amazon Web Services',
 };
 
+const cloudProvidersShortForm = {
+  aws: 'AWS',
+};
+
 export const cloudProviderOptions = Object.keys(cloudProviders).map(
   (cloudProviderValue) => {
     return {
@@ -12,7 +16,9 @@ export const cloudProviderOptions = Object.keys(cloudProviders).map(
 );
 
 export function cloudProviderValueToLabel(cloudProviderValue) {
-  return cloudProviders[cloudProviderValue];
+  return cloudProvidersShortForm[cloudProviderValue]
+    ? `Hosted by Red Hat (on ${cloudProvidersShortForm[cloudProviderValue]})`
+    : 'Hosted by Red Hat';
 }
 
 export function cloudProviderLabelToValue(cloudProviderLabel) {
