@@ -30,7 +30,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
     if (result.isAxiosError) {
       setErrorMessage(
         result.message ||
-          'An unanticapted error occurred. Please try again. If this error persists, please contact support.'
+          'An unanticipated error occurred. Please try again. If this error persists, please contact support.'
       );
     } else {
       setInputValue('');
