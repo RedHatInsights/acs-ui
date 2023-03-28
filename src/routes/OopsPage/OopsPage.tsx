@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { Unavailable } from '@redhat-cloud-services/frontend-components/Unavailable';
 
-function OopsPage() {
+const OopsPage = () => {
   useEffect(() => {
     insights?.chrome?.appAction?.('oops-page');
   }, []);
@@ -13,6 +12,6 @@ function OopsPage() {
       <Unavailable />
     </Main>
   );
-}
+};
 
-export default withRouter(OopsPage);
+export default OopsPage;

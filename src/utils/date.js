@@ -1,4 +1,4 @@
-import { parseISO, format, formatDistance } from 'date-fns';
+import { format, formatDistance, parseISO } from 'date-fns';
 
 const dateTimeFormat = 'MM/dd/yyyy | h:mm:ss a';
 

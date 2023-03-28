@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
 
-function NoPermissionsPage() {
+const NoPermissionsPage = () => {
   useEffect(() => {
     insights?.chrome?.appAction?.('no-permissions');
   }, []);
@@ -14,6 +13,6 @@ function NoPermissionsPage() {
       <NotAuthorized serviceName="Sample app" />
     </Main>
   );
-}
+};
 
-export default withRouter(NoPermissionsPage);
+export default NoPermissionsPage;

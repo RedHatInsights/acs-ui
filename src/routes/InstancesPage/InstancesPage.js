@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Link, withRouter, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import {
-  EmptyState,
-  EmptyStateIcon,
-  Title,
-  EmptyStateBody,
-  EmptyStatePrimary,
+  Bullseye,
   Button,
   Card,
+  EmptyState,
+  EmptyStateBody,
+  EmptyStateIcon,
+  EmptyStatePrimary,
+  EmptyStateVariant,
+  Pagination,
+  Spinner,
+  Title,
   Toolbar,
   ToolbarContent,
   ToolbarItem,
-  Pagination,
-  Bullseye,
-  EmptyStateVariant,
-  Spinner,
 } from '@patternfly/react-core';
 import {
   ActionsColumn,
@@ -49,6 +49,7 @@ import useTableSort from '../../hooks/useTableSort';
 import { regionValueToLabel } from '../../utils/region';
 import { cloudProviderValueToLabel } from '../../utils/cloudProvider';
 import { filtersToSearchQuery } from '../../utils/searchQuery';
+import { linkBasename, mergeToBasename } from '../../utils/paths';
 
 const sortFields = [
   'name',
@@ -71,7 +72,7 @@ const defaultSortOption = {
  * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
  */
 function InstancesPage() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { analyticsTrack } = useAnalytics();
   const { page, perPage, onSetPage, onPerPageSelect } = usePagination();
@@ -250,7 +251,10 @@ function InstancesPage() {
             {!isTableLoading &&
               instances.length !== 0 &&
               instances.map((instance) => {
-                const instanceDetailsURL = `/instances/instance/${instance.id}`;
+                const instanceDetailsURL = mergeToBasename(
+                  `/instances/instance/${instance.id}`,
+                  linkBasename
+                );
                 return (
                   <Tr
                     key={instance.name}
@@ -296,7 +300,7 @@ function InstancesPage() {
                             title: 'Details',
                             onClick: (event) => {
                               event.preventDefault();
-                              history.push(instanceDetailsURL);
+                              navigate(instanceDetailsURL);
                             },
                           },
                           {
@@ -365,4 +369,4 @@ function InstancesPage() {
   );
 }
 
-export default withRouter(InstancesPage);
+export default InstancesPage;
