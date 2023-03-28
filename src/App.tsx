@@ -27,9 +27,7 @@ const App = () => {
   const environment = getEnvironment();
 
   if (environment === 'stage') {
-    return (
-      <Unavailable />
-    )
+    return <Unavailable />;
   } else {
     return (
       <Fragment>
