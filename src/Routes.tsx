@@ -22,7 +22,7 @@ const InstancesPage = lazy(
 const InstanceDetailsPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "InstancesPage" */ './routes/InstanceDetailsPage/InstanceDetailsPage'
+      /* webpackChunkName: "InstanceDetailsPage" */ './routes/InstanceDetailsPage/InstanceDetailsPage'
     )
 );
 const OverviewPage = lazy(

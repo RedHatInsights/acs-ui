@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { Unavailable } from '@redhat-cloud-services/frontend-components/Unavailable';
 
-const OopsPage = () => {
+function OopsPage() {
   useEffect(() => {
     insights?.chrome?.appAction?.('oops-page');
   }, []);
@@ -12,6 +12,6 @@ const OopsPage = () => {
       <Unavailable />
     </Main>
   );
-};
+}
 
 export default OopsPage;
