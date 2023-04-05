@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ToolbarToggleGroup,
-  ToolbarGroup,
-  ToolbarFilter,
-  SelectVariant,
-  SelectOption,
-  Select,
-  ToolbarItem,
-  InputGroup,
-  TextInput,
   Button,
+  InputGroup,
+  Select,
+  SelectOption,
+  SelectVariant,
+  TextInput,
+  ToolbarFilter,
+  ToolbarGroup,
+  ToolbarItem,
+  ToolbarToggleGroup,
 } from '@patternfly/react-core';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 
@@ -119,7 +119,6 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                   setFilters((prevFilters) => {
                     const newFilters = { ...prevFilters };
                     newFilters.name = [inputName];
-                    console.log(newFilters);
                     return newFilters;
                   });
                 }}
