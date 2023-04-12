@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   appUrl: '/application-services/acs',
   debug: true,
@@ -10,7 +12,12 @@ module.exports = {
   /**
    * Add additional webpack plugins
    */
-  plugins: [],
+  plugins: [
+    // We want to access a PROD env variable within the UI code
+    new webpack.DefinePlugin({
+      'process.env.PROD': process?.env?.NODE_ENV === 'production',
+    })
+  ],
   _unstableHotReload: process.env.HOT === 'true',
   moduleFederation: {
     exclude: ['react-router-dom'],
