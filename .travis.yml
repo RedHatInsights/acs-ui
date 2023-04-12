@@ -9,7 +9,9 @@ install:
 jobs:
   include:
   - stage: Lint
-    script: npm run lint
+    script: 
+      - npm run lint
+      - printenv
   - stage: Test
     script: npm run test && npx codecov
   - stage: Deploy
