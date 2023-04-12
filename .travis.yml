@@ -12,7 +12,11 @@ jobs:
     script: npm run lint
   - stage: Test
     script: npm run test && npx codecov
-  - stage: Deploy
+  - stage: Deploy prod
+    if: branch = prod-stable OR branch=prod-beta AND type != pull_request
+    script: npm run deploy:prod && curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
+  - stage: Deploy stage
+    if: branch IN (main, main-stable, stage, stage-stable) AND type != pull_request
     script: npm run deploy && curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
 env:
   global:

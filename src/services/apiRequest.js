@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const API_URL = process?.env?.PROD
+const API_URL = process?.env?.NODE_ENV === 'production'
   ? 'https://api.openshift.com'
   : 'https://api.stage.openshift.com';
 
 export const authInterceptor = (client) => {
+  console.log(API_URL);
   client.interceptors.request.use(async (cfg) => {
     await insights.chrome.auth.getUser();
     const token = await insights.chrome.auth.getToken();
