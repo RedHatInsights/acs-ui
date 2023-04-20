@@ -14,7 +14,7 @@ const getCloudRegions = async ({ provider, instanceType }) => {
 };
 
 export const useCloudRegions = (query, options) => {
-  const { enabled, ...rest } = options;
+  const { enabled, ...rest } = options || {};
   if (!query.provider) {
     console.error('useCloudRegions: provider is required');
   }
