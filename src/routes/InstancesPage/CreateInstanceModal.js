@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Button,
@@ -14,14 +14,14 @@ import {
   ToggleGroupItem,
 } from '@patternfly/react-core';
 
-import { regionOptions } from '../../utils/region';
 import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
+import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 
 const defaultFormValues = {
   name: '',
   cloud_provider: 'aws',
-  region: 'us-east-1',
+  region: '',
   availabilityZones: 'multi',
   cloud_account_id: '',
 };
@@ -46,6 +46,17 @@ function CreateInstanceModal({
       });
     }
   }, [cloudAccountIds]);
+
+  const { data: cloudRegionList, isFetching: isFetchingRegions } =
+    useCloudRegions({ provider: 'aws' });
+  const cloudRegions = useMemo(
+    () => cloudRegionList?.items || [],
+    [cloudRegionList]
+  );
+  const enabledCloudRegions = useMemo(
+    () => cloudRegions.filter((r) => r.enabled),
+    [cloudRegions]
+  );
 
   function onCloseHandler() {
     // clear all state before closing
@@ -173,13 +184,14 @@ function CreateInstanceModal({
         <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
             id="region"
+            isDisabled={isFetchingRegions}
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
           >
-            {regionOptions.map((region) => {
+            {enabledCloudRegions.map((region) => {
               return (
-                <SelectOption key={region.value} value={region.value}>
-                  {region.label}
+                <SelectOption key={region.id} value={region.id}>
+                  {region.display_name}
                 </SelectOption>
               );
             })}
