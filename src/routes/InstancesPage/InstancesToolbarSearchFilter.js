@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -14,9 +14,10 @@ import {
 } from '@patternfly/react-core';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 
-import { regionOptions } from '../../utils/region';
 import { statusOptions } from '../../utils/status';
 import SelectSingle from '../../components/SelectSingle';
+import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
+import { AWS_PROVIDER } from '../../utils/cloudProvider';
 
 function InstancesToolbarSearchFilter({ filters, setFilters }) {
   const [selectedFilter, setSelectedFilter] = useState('Name');
@@ -27,6 +28,11 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
   // @TODO: We can refactor the SelectSingle component to be more reusable for the usecase in this component as well. Then we don't need to keep this state here.
   const [isRegionExpanded, setIsRegionExpanded] = useState(false);
   const [isStatusExpanded, setIsStatusExpanded] = useState(false);
+  const { data: cloudRegionList } = useCloudRegions({ provider: AWS_PROVIDER });
+  const cloudRegions = useMemo(
+    () => cloudRegionList?.items || [],
+    [cloudRegionList]
+  );
 
   // TODO: Extract into separate utils file to be reused in other cases
   function onDeleteChip(type = '', id = '') {
@@ -145,13 +151,10 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
               isOpen={isRegionExpanded}
               placeholderText="Filter by region"
             >
-              {regionOptions.map((regionOption) => {
+              {cloudRegions.map((regionOption) => {
                 return (
-                  <SelectOption
-                    key={regionOption.label}
-                    value={regionOption.label}
-                  >
-                    {regionOption.label}
+                  <SelectOption key={regionOption.id} value={regionOption.id}>
+                    {regionOption.display_name}
                   </SelectOption>
                 );
               })}

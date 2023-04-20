@@ -1,19 +1,6 @@
-const regions = {
-  'us-east-1': 'US-East, N. Virginia',
-  'eu-west-1': 'Europe, Ireland',
-};
-
-export const regionOptions = Object.keys(regions).map((regionValue) => {
-  return { value: regionValue, label: regions[regionValue] };
-});
-
-export function regionValueToLabel(regionValue) {
-  return regions[regionValue];
-}
-
-export function regionLabelToValue(regionLabel) {
-  const regionOption = regionOptions.find(
-    (regionOption) => regionOption.label === regionLabel
+export function regionLabelToValue(regionLabel, regionList) {
+  const regionOption = regionList?.find((region) =>
+    region.display_name.startsWith(regionLabel)
   );
-  return regionOption?.value;
+  return regionOption?.id;
 }

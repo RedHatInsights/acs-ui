@@ -1,9 +1,11 @@
+export const AWS_PROVIDER = 'aws';
+
 const cloudProviders = {
-  aws: 'Amazon Web Services',
+  [AWS_PROVIDER]: 'Amazon Web Services',
 };
 
 const cloudProvidersShortForm = {
-  aws: 'AWS',
+  [AWS_PROVIDER]: 'AWS',
 };
 
 export const cloudProviderOptions = Object.keys(cloudProviders).map(

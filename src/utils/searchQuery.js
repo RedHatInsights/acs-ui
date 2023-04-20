@@ -2,7 +2,7 @@ import { regionLabelToValue } from './region';
 import { cloudProviderLabelToValue } from './cloudProvider';
 import { statusLabelToValue } from './status';
 
-export function filtersToSearchQuery(filters) {
+export function filtersToSearchQuery(filters, regionList) {
   const searchCategories = Object.keys(filters);
   const queries =
     searchCategories
@@ -19,7 +19,7 @@ export function filtersToSearchQuery(filters) {
             if (searchCategory === 'cloud_provider') {
               modifiedSearchValue = cloudProviderLabelToValue(searchValue);
             } else if (searchCategory === 'region') {
-              modifiedSearchValue = regionLabelToValue(searchValue);
+              modifiedSearchValue = regionLabelToValue(searchValue, regionList);
             } else if (searchCategory === 'status') {
               modifiedSearchValue = statusLabelToValue(searchValue);
             }
