@@ -14,15 +14,13 @@ const getCloudRegions = async ({ provider, instanceType }) => {
 };
 
 export const useCloudRegions = (query, options) => {
-  const { enabled, ...rest } = options || {};
-  if (!query.provider) {
+  if (!query.provider && options.enabled === true) {
     console.error('useCloudRegions: provider is required');
   }
   return useQuery(queryKey(query), () => getCloudRegions(query), {
     // Those regions are not going to change very often, so we can cache them for a long time.
     // Worst case, a good old browser refresh will fix an outdated region list.
     staleTime: Infinity,
-    enabled: !!query.provider && enabled,
-    ...rest,
+    ...options,
   });
 };
