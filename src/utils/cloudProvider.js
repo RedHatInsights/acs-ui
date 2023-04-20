@@ -5,7 +5,7 @@ const cloudProviders = {
 };
 
 const cloudProvidersShortForm = {
-  aws: 'AWS',
+  [AWS_PROVIDER]: 'AWS',
 };
 
 export const cloudProviderOptions = Object.keys(cloudProviders).map(
