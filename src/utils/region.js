@@ -4,3 +4,7 @@ export function regionLabelToValue(regionLabel, regionList) {
   );
   return regionOption?.id;
 }
+
+export function getRegionDisplayName(region) {
+  return region.display_name || region.id;
+}

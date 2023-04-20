@@ -18,6 +18,7 @@ import { statusOptions } from '../../utils/status';
 import SelectSingle from '../../components/SelectSingle';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 import { AWS_PROVIDER } from '../../utils/cloudProvider';
+import { getRegionDisplayName } from '../../utils/region';
 
 function InstancesToolbarSearchFilter({ filters, setFilters }) {
   const [selectedFilter, setSelectedFilter] = useState('Name');
@@ -154,7 +155,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
               {cloudRegions.map((regionOption) => {
                 return (
                   <SelectOption key={regionOption.id} value={regionOption.id}>
-                    {regionOption.display_name}
+                    {getRegionDisplayName(regionOption)}
                   </SelectOption>
                 );
               })}

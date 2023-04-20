@@ -18,6 +18,7 @@ import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 import { AWS_PROVIDER } from '../../utils/cloudProvider';
+import { getRegionDisplayName } from '../../utils/region';
 
 const defaultFormValues = {
   name: '',
@@ -189,6 +190,10 @@ function CreateInstanceModal({
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
           >
+            {/*
+              Adding an empty & disabled option as default, otherwise the default item will be the first item returned
+              from the api, which might be inconsistent.
+            */}
             <SelectOption
               key="placeholder"
               value=""
@@ -200,7 +205,7 @@ function CreateInstanceModal({
             {enabledCloudRegions.map((region) => {
               return (
                 <SelectOption key={region.id} value={region.id}>
-                  {region.display_name}
+                  {getRegionDisplayName(region)}
                 </SelectOption>
               );
             })}
