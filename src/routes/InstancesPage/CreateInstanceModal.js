@@ -17,10 +17,11 @@ import {
 import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
+import { AWS_PROVIDER } from '../../utils/cloudProvider';
 
 const defaultFormValues = {
   name: '',
-  cloud_provider: 'aws',
+  cloud_provider: AWS_PROVIDER,
   region: '',
   availabilityZones: 'multi',
   cloud_account_id: '',
@@ -48,7 +49,7 @@ function CreateInstanceModal({
   }, [cloudAccountIds]);
 
   const { data: cloudRegionList, isFetching: isFetchingRegions } =
-    useCloudRegions({ provider: 'aws' });
+    useCloudRegions({ provider: AWS_PROVIDER });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
     [cloudRegionList]
@@ -159,7 +160,7 @@ function CreateInstanceModal({
         <FormGroup label="Cloud provider" isRequired fieldId="cloud_provider">
           <Tile
             title="Amazon Web Services"
-            isSelected={formValues.cloud_provider === 'aws'}
+            isSelected={formValues.cloud_provider === AWS_PROVIDER}
           />
         </FormGroup>
         {cloudAccountIds.length > 1 && (

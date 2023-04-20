@@ -46,7 +46,10 @@ import { getDateTimeDifference } from '../../utils/date';
 import Status from '../../components/Status';
 import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
 import useTableSort from '../../hooks/useTableSort';
-import { cloudProviderValueToLabel } from '../../utils/cloudProvider';
+import {
+  AWS_PROVIDER,
+  cloudProviderValueToLabel,
+} from '../../utils/cloudProvider';
 import { filtersToSearchQuery } from '../../utils/searchQuery';
 import { linkBasename, mergeToBasename } from '../../utils/paths';
 import RegionLabel from '../../components/RegionLabel';
@@ -90,7 +93,7 @@ function InstancesPage() {
     ) || [];
 
   const { data: regions, isFetching: isFetchingRegions } = useCloudRegions({
-    provider: 'aws',
+    provider: AWS_PROVIDER,
   });
   const regionList = useMemo(() => regions?.items || [], [regions]);
 

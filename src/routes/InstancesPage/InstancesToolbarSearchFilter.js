@@ -17,6 +17,7 @@ import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 import { statusOptions } from '../../utils/status';
 import SelectSingle from '../../components/SelectSingle';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
+import { AWS_PROVIDER } from '../../utils/cloudProvider';
 
 function InstancesToolbarSearchFilter({ filters, setFilters }) {
   const [selectedFilter, setSelectedFilter] = useState('Name');
@@ -27,7 +28,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
   // @TODO: We can refactor the SelectSingle component to be more reusable for the usecase in this component as well. Then we don't need to keep this state here.
   const [isRegionExpanded, setIsRegionExpanded] = useState(false);
   const [isStatusExpanded, setIsStatusExpanded] = useState(false);
-  const { data: cloudRegionList } = useCloudRegions({ provider: 'aws' });
+  const { data: cloudRegionList } = useCloudRegions({ provider: AWS_PROVIDER });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
     [cloudRegionList]
