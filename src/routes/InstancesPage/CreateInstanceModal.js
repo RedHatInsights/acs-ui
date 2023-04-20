@@ -189,6 +189,14 @@ function CreateInstanceModal({
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
           >
+            <SelectOption
+              key="placeholder"
+              value=""
+              isPlaceholder
+              isDisabled={true}
+            >
+              &nbsp;
+            </SelectOption>
             {enabledCloudRegions.map((region) => {
               return (
                 <SelectOption key={region.id} value={region.id}>
