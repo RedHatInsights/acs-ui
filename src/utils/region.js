@@ -1,5 +1,5 @@
 export function regionLabelToValue(regionLabel, regionList) {
-  const regionOption = regionList.find((region) =>
+  const regionOption = regionList?.find((region) =>
     region.display_name.startsWith(regionLabel)
   );
   return regionOption?.id;
