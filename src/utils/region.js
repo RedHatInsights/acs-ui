@@ -1,6 +1,6 @@
 export function regionLabelToValue(regionLabel, regionList) {
   const regionOption = regionList?.find((region) =>
-    region.display_name.startsWith(regionLabel)
+    getRegionDisplayName(region).startsWith(regionLabel)
   );
   return regionOption?.id;
 }
