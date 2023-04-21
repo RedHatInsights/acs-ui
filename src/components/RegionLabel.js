@@ -8,6 +8,9 @@ import { getRegionDisplayName } from '../utils/region';
 export default function RegionLabel({ id }) {
   const { data: regions } = useCloudRegions({ provider: AWS_PROVIDER });
   const regionList = useMemo(() => regions?.items || [], [regions]);
-  const region = regionList.find((r) => r.id === id);
+  const region = useMemo(
+    () => regionList.find((r) => r.id === id),
+    [regionList, id]
+  );
   return <span>{region ? getRegionDisplayName(region) : id}</span>;
 }
