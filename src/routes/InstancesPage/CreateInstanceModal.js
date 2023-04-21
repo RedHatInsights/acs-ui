@@ -17,13 +17,13 @@ import {
 import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
-import { AWS_PROVIDER } from '../../utils/cloudProvider';
+import { AWS_DEFAULT_REGION, AWS_PROVIDER } from '../../utils/cloudProvider';
 import { getRegionDisplayName } from '../../utils/region';
 
 const defaultFormValues = {
   name: '',
   cloud_provider: AWS_PROVIDER,
-  region: '',
+  region: AWS_DEFAULT_REGION,
   availabilityZones: 'multi',
   cloud_account_id: '',
 };
@@ -200,7 +200,7 @@ function CreateInstanceModal({
               isPlaceholder
               isDisabled={true}
             >
-              &nbsp;
+              Choose a region
             </SelectOption>
             {enabledCloudRegions.map((region) => {
               return (

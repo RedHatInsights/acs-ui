@@ -6,5 +6,8 @@ export function regionLabelToValue(regionLabel, regionList) {
 }
 
 export function getRegionDisplayName(region) {
+  if (!region) {
+    return '';
+  }
   return region.display_name || region.id;
 }

@@ -1,4 +1,5 @@
 export const AWS_PROVIDER = 'aws';
+export const AWS_DEFAULT_REGION = 'us-east-1';
 
 const cloudProviders = {
   [AWS_PROVIDER]: 'Amazon Web Services',
