@@ -92,17 +92,17 @@ function InstancesPage() {
       (cloudAccount) => cloudAccount.cloudAccountId
     ) || [];
 
-  const { data: regions, isFetching: isFetchingRegions } = useCloudRegions({
+  const { data: regionList, isFetching: isFetchingRegions } = useCloudRegions({
     provider: AWS_PROVIDER,
   });
-  const regionList = useMemo(() => regions?.items || [], [regions]);
+  const regions = useMemo(() => regionList?.items || [], [regionList]);
 
   const { data, isFetching } = useInstances({
     query: {
       page,
       size: perPage,
       orderBy: `${sortOption.field} ${sortOption.direction}`,
-      search: filtersToSearchQuery(filters, regionList),
+      search: filtersToSearchQuery(filters, regions),
     },
     // Refetch the data every 10 seconds
     refetchInterval: 10000,
