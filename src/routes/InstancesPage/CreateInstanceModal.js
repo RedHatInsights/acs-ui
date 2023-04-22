@@ -190,16 +190,7 @@ function CreateInstanceModal({
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
           >
-            {/*
-              Adding an empty & disabled option as default, otherwise the default item will be the first item returned
-              from the api, which might be inconsistent.
-            */}
-            <SelectOption
-              key="placeholder"
-              value=""
-              isPlaceholder
-              isDisabled={true}
-            >
+            <SelectOption value="" isPlaceholder isDisabled={true}>
               Choose a region
             </SelectOption>
             {enabledCloudRegions.map((region) => {
