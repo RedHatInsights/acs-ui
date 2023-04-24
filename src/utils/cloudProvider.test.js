@@ -1,9 +1,9 @@
-import { cloudProviderValueToLabel } from './cloudProvider';
+import { AWS_PROVIDER, cloudProviderValueToLabel } from './cloudProvider';
 
 describe('cloudProvider', () => {
   describe('cloudProviderValueToLabel', () => {
     it('should return a string containing a known cloud provider', () => {
-      const cloudProviderValue = 'aws';
+      const cloudProviderValue = AWS_PROVIDER;
       const cloudProviderDisplayValue =
         cloudProviderValueToLabel(cloudProviderValue);
       expect(cloudProviderDisplayValue).toBe('Hosted by Red Hat (on AWS)');

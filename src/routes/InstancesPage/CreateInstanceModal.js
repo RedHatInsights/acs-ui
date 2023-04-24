@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Button,
@@ -14,14 +14,16 @@ import {
   ToggleGroupItem,
 } from '@patternfly/react-core';
 
-import { regionOptions } from '../../utils/region';
 import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
+import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
+import { AWS_DEFAULT_REGION, AWS_PROVIDER } from '../../utils/cloudProvider';
+import { getRegionDisplayName } from '../../utils/region';
 
 const defaultFormValues = {
   name: '',
-  cloud_provider: 'aws',
-  region: 'us-east-1',
+  cloud_provider: AWS_PROVIDER,
+  region: AWS_DEFAULT_REGION,
   availabilityZones: 'multi',
   cloud_account_id: '',
 };
@@ -46,6 +48,17 @@ function CreateInstanceModal({
       });
     }
   }, [cloudAccountIds]);
+
+  const { data: cloudRegionList, isFetching: isFetchingRegions } =
+    useCloudRegions({ provider: AWS_PROVIDER });
+  const cloudRegions = useMemo(
+    () => cloudRegionList?.items || [],
+    [cloudRegionList]
+  );
+  const enabledCloudRegions = useMemo(
+    () => cloudRegions.filter((r) => r.enabled),
+    [cloudRegions]
+  );
 
   function onCloseHandler() {
     // clear all state before closing
@@ -148,7 +161,7 @@ function CreateInstanceModal({
         <FormGroup label="Cloud provider" isRequired fieldId="cloud_provider">
           <Tile
             title="Amazon Web Services"
-            isSelected={formValues.cloud_provider === 'aws'}
+            isSelected={formValues.cloud_provider === AWS_PROVIDER}
           />
         </FormGroup>
         {cloudAccountIds.length > 1 && (
@@ -173,13 +186,17 @@ function CreateInstanceModal({
         <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
             id="region"
+            isDisabled={isFetchingRegions}
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
           >
-            {regionOptions.map((region) => {
+            <SelectOption value="" isPlaceholder isDisabled={true}>
+              Choose a region
+            </SelectOption>
+            {enabledCloudRegions.map((region) => {
               return (
-                <SelectOption key={region.value} value={region.value}>
-                  {region.label}
+                <SelectOption key={region.id} value={region.id}>
+                  {getRegionDisplayName(region)}
                 </SelectOption>
               );
             })}

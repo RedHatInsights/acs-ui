@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
@@ -46,10 +46,14 @@ import { getDateTimeDifference } from '../../utils/date';
 import Status from '../../components/Status';
 import InstancesToolbarSearchFilter from './InstancesToolbarSearchFilter';
 import useTableSort from '../../hooks/useTableSort';
-import { regionValueToLabel } from '../../utils/region';
-import { cloudProviderValueToLabel } from '../../utils/cloudProvider';
+import {
+  AWS_PROVIDER,
+  cloudProviderValueToLabel,
+} from '../../utils/cloudProvider';
 import { filtersToSearchQuery } from '../../utils/searchQuery';
 import { linkBasename, mergeToBasename } from '../../utils/paths';
+import RegionLabel from '../../components/RegionLabel';
+import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 
 const sortFields = [
   'name',
@@ -88,12 +92,17 @@ function InstancesPage() {
       (cloudAccount) => cloudAccount.cloudAccountId
     ) || [];
 
+  const { data: regionList, isFetching: isFetchingRegions } = useCloudRegions({
+    provider: AWS_PROVIDER,
+  });
+  const regions = useMemo(() => regionList?.items || [], [regionList]);
+
   const { data, isFetching } = useInstances({
     query: {
       page,
       size: perPage,
       orderBy: `${sortOption.field} ${sortOption.direction}`,
-      search: filtersToSearchQuery(filters),
+      search: filtersToSearchQuery(filters, regions),
     },
     // Refetch the data every 10 seconds
     refetchInterval: 10000,
@@ -106,7 +115,7 @@ function InstancesPage() {
   const [viewingInstance, setViewingInstance] = useState(null);
 
   const instances = data?.items || [];
-  const isTableLoading = isFetching && !data;
+  const isTableLoading = (isFetching || isFetchingRegions) && !data;
   const totalInstances = data?.total ?? 0;
 
   let content = null;
@@ -284,7 +293,7 @@ function InstancesPage() {
                       {cloudProviderValueToLabel(instance.cloud_provider)}
                     </Td>
                     <Td dataLabel="Region">
-                      {regionValueToLabel(instance.region)}
+                      <RegionLabel id={instance.region} />
                     </Td>
                     <Td dataLabel="Owner">{instance.owner}</Td>
                     <Td dataLabel="Status">
