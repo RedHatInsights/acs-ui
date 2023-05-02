@@ -64,6 +64,7 @@ const GettingStartedWizard = () => {
                   type="submit"
                   onClick={onNext}
                   aria-label="Next step"
+                  id={`${activeStep.id}-next`}
                 >
                   Next
                 </Button>
@@ -72,6 +73,7 @@ const GettingStartedWizard = () => {
                     variant="secondary"
                     onClick={onBack}
                     aria-label="Previous step"
+                    id={`${activeStep.id}-back`}
                   >
                     Back
                   </Button>
@@ -106,7 +108,7 @@ const GettingStartedWizard = () => {
       name: INITIAL_SETUP,
       component: <InitialSetup />,
       canJumpTo: stepIdReached === 1,
-      id: 'wizard-button-1',
+      id: 'wizard-step-1',
     },
     {
       name: OPTIONS,
@@ -119,7 +121,7 @@ const GettingStartedWizard = () => {
         />
       ),
       canJumpTo: stepIdReached === 2,
-      id: 'wizard-button-2',
+      id: 'wizard-step-2',
     },
     {
       name: INSTALLATION,
@@ -130,13 +132,13 @@ const GettingStartedWizard = () => {
           <InstallWithHelm />
         ),
       canJumpTo: stepIdReached === 3,
-      id: 'wizard-button-3',
+      id: 'wizard-step-3',
     },
     {
       name: FINISHING_UP,
       component: <Finish />,
       canJumpTo: stepIdReached === 4,
-      id: 'wizard-button-4',
+      id: 'wizard-step-4',
     },
   ];
 

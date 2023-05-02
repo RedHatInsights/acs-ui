@@ -82,7 +82,7 @@ const InstallOptions = ({
         </TextContent>
         <Radio
           label="OpenShift"
-          id={OPENSHIFT}
+          id={`radio-environment-${OPENSHIFT}`}
           name={OPENSHIFT}
           value={OPENSHIFT}
           aria-label={OPENSHIFT}
@@ -91,7 +91,7 @@ const InstallOptions = ({
         />
         <Radio
           label="EKS"
-          id={EKS}
+          id={`radio-environment-${EKS}`}
           name={EKS}
           value={EKS}
           aria-label={EKS}
@@ -100,7 +100,7 @@ const InstallOptions = ({
         />
         <Radio
           label="AKS"
-          id={AKS}
+          id={`radio-environment-${AKS}`}
           name={AKS}
           value={AKS}
           aria-label={AKS}
@@ -109,7 +109,7 @@ const InstallOptions = ({
         />
         <Radio
           label="GKE"
-          id={GKE}
+          id={`radio-environment-${GKE}`}
           name={GKE}
           value={GKE}
           aria-label={GKE}
