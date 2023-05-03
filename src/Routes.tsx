@@ -32,6 +32,13 @@ const OverviewPage = lazy(
     )
 );
 
+const GettingStartedPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "GettingStartedPage" */ './routes/GettingStartedPage/GettingStartedPage'
+    )
+);
+
 export const Routes = () => (
   <Suspense
     fallback={
@@ -49,6 +56,7 @@ export const Routes = () => (
       />
       <Route path="/instances" element={<InstancesPage />} />
       <Route path="/overview" element={<OverviewPage />} />
+      <Route path="/getting-started" element={<GettingStartedPage />} />
       {/* Finally, catch all unmatched routes */}
       <Route
         path="*"
