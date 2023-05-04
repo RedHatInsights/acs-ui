@@ -61,7 +61,7 @@ export const Routes = () => (
       <Route
         path="*"
         element={
-          <Navigate to={mergeToBasename('/instances', linkBasename)} replace />
+          <Navigate to={mergeToBasename('/overview', linkBasename)} replace />
         }
       />
     </RouterRoutes>
