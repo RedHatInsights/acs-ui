@@ -9,7 +9,7 @@ import {
 
 import { getDateTime } from '../utils/date';
 import { cloudProviderValueToLabel } from '../utils/cloudProvider';
-import { regionValueToLabel } from '../utils/region';
+import RegionLabel from './RegionLabel';
 
 function InstanceDetailsList({ instance }) {
   return (
@@ -23,7 +23,7 @@ function InstanceDetailsList({ instance }) {
       <DescriptionListGroup>
         <DescriptionListTerm>Region</DescriptionListTerm>
         <DescriptionListDescription>
-          {regionValueToLabel(instance.region)}
+          <RegionLabel id={instance.region} />
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>

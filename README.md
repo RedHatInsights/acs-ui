@@ -58,8 +58,8 @@ These are the urls for each branch:
 
 ### Beta
 
-* main -> <https://console.stage.redhat.com/beta>
-* prod-beta -> <https://console.redhat.com/beta>
+* main -> <https://console.stage.redhat.com/preview>
+* prod-beta -> <https://console.redhat.com/preview>
 
 ### Stable
 
