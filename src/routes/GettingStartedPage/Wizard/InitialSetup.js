@@ -53,6 +53,7 @@ const InitialSetup = () => {
               className="pf-u-my-md"
               component={(props) => <AppLink {...props} to={'instances'} />}
               aria-label="Create Instance"
+              target="_blank"
             >
               Create Instance
             </Button>
