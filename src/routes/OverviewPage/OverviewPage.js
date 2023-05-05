@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Button,
   ButtonVariant,
@@ -24,73 +24,55 @@ import {
   TextVariants,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import AppLink from '../../components/AppLink';
 
 import bannerImage from '../../assets/banner_image.png';
-import AppContext from '../../context/AppContext';
 
 function OverviewPage() {
-  const { isEntitled } = useContext(AppContext);
   return (
     <div>
       <PageSection variant={PageSectionVariants.light} className="pf-u-p-2xl">
-        <Flex direction={{ default: 'column' }}>
-          <FlexItem>
-            <Grid hasGutter>
-              <GridItem span={8}>
-                <Stack hasGutter>
-                  <TextContent>
-                    <Text component={TextVariants.h1}>
-                      Get started with Red Hat Advanced Cluster Security Cloud
-                      Service
-                    </Text>
-                  </TextContent>
-                  <TextContent
-                    component={TextVariants.p}
-                    className="pf-u-color-200 pf-u-font-size-lg"
-                  >
-                    <Text>
-                      Fully hosted cloud service for protecting cloud native
-                      applications and Kubernetes
-                    </Text>
-                  </TextContent>
-                  <TextContent>
-                    <Text component={TextVariants.p}>
-                      Red Hat® Advanced Cluster Security for Kubernetes is the
-                      pioneering Kubernetes-native security platform, that
-                      equips organizations to more securely build, deploy, and
-                      run cloud-native applications anywhere. The solution RHACS
-                      Cloud Service helps improve the security of the
-                      application build process, protects the application
-                      platform and configurations, detects runtime issues, and
-                      facilitates response. RHACS Cloud Service lowers
-                      operational costs by reducing the learning curve for
-                      implementing Kubernetes security, provides built-in
-                      controls for enforcement to reduce operational risk, and
-                      uses a Kubernetes-native approach that supports built-in
-                      security across the entire software development life
-                      cycle, facilitating greater developer productivity.
-                    </Text>
-                  </TextContent>
-                </Stack>
-              </GridItem>
-              <GridItem span={4}>
-                <img src={bannerImage} />
-              </GridItem>
-            </Grid>
-          </FlexItem>
-          {isEntitled && (
-            <FlexItem>
-              <Button
-                component={(props) => (
-                  <AppLink {...props} to={'getting-started'} />
-                )}
+        <Grid hasGutter>
+          <GridItem span={8}>
+            <Stack hasGutter>
+              <TextContent>
+                <Text component={TextVariants.h1}>
+                  Get started with Red Hat Advanced Cluster Security Cloud
+                  Service
+                </Text>
+              </TextContent>
+              <TextContent
+                component={TextVariants.p}
+                className="pf-u-color-200 pf-u-font-size-lg"
               >
-                Get Started
-              </Button>
-            </FlexItem>
-          )}
-        </Flex>
+                <Text>
+                  Fully hosted cloud service for protecting cloud native
+                  applications and Kubernetes
+                </Text>
+              </TextContent>
+              <TextContent>
+                <Text component={TextVariants.p}>
+                  Red Hat® Advanced Cluster Security for Kubernetes is the
+                  pioneering Kubernetes-native security platform, equipping
+                  organizations to more securely build, deploy, and run
+                  cloud-native applications anywhere. The solution helps improve
+                  the security of the application build process, protects the
+                  application platform and configurations, detects runtime
+                  issues, and facilitates response. Red Hat Advanced Cluster
+                  Security for Kubernetes lowers operational costs by reducing
+                  the learning curve for implementing Kubernetes security,
+                  provides built-in controls for enforcement to reduce
+                  operational risk, and uses a Kubernetes-native approach that
+                  supports built-in security across the entire software
+                  development life cycle, facilitating greater developer
+                  productivity.
+                </Text>
+              </TextContent>
+            </Stack>
+          </GridItem>
+          <GridItem span={4}>
+            <img src={bannerImage} />
+          </GridItem>
+        </Grid>
       </PageSection>
       <PageSection>
         <Grid hasGutter lg={6}>
@@ -232,26 +214,6 @@ function OverviewPage() {
                 </TextContent>
               </FlexItem>
             </Flex>
-          </CardBody>
-        </Card>
-      </PageSection>
-      <PageSection>
-        <Card>
-          <CardTitle>
-            <TextContent>
-              <Text component="h2">Brief demo</Text>
-            </TextContent>
-          </CardTitle>
-          <CardBody className="pf-u-w-100 pf-u-w-75-on-lg pf-u-w-50-on-xl">
-            <div className="marketing-video">
-              <iframe
-                src="https://www.youtube.com/embed/uPjvVGjoiZw"
-                title="Short Demo of Advanced Cluster Security"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
           </CardBody>
         </Card>
       </PageSection>

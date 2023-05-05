@@ -9,7 +9,7 @@ then
     .travis/release.sh "stage-beta"
 fi
 
-if [[ "${TRAVIS_BRANCH}" = "prod-beta" || "${TRAVIS_BRANCH}" = "prod-stable" || "${TRAVIS_BRANCH}" = "stage-stable" || "${TRAVIS_BRANCH}" = "qa-stable" || "${TRAVIS_BRANCH}" = "qa-beta" ]]; then
+if [[ "${TRAVIS_BRANCH}" = "prod-beta" || "${TRAVIS_BRANCH}" = "prod-stable" || "${TRAVIS_BRANCH}" = "stage-stable" ]]; then
     echo "PUSHING ${TRAVIS_BRANCH}"
     rm -rf ./build/.git
     .travis/release.sh "${TRAVIS_BRANCH}"
