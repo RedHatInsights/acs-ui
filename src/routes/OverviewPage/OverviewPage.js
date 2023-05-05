@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Button,
   ButtonVariant,
@@ -27,8 +27,10 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import AppLink from '../../components/AppLink';
 
 import bannerImage from '../../assets/banner_image.png';
+import AppContext from '../../context/AppContext';
 
 function OverviewPage() {
+  const { isEntitled } = useContext(AppContext);
   return (
     <div>
       <PageSection variant={PageSectionVariants.light} className="pf-u-p-2xl">
@@ -78,15 +80,17 @@ function OverviewPage() {
               </GridItem>
             </Grid>
           </FlexItem>
-          <FlexItem>
-            <Button
-              component={(props) => (
-                <AppLink {...props} to={'getting-started'} />
-              )}
-            >
-              Get Started
-            </Button>
-          </FlexItem>
+          {isEntitled && (
+            <FlexItem>
+              <Button
+                component={(props) => (
+                  <AppLink {...props} to={'getting-started'} />
+                )}
+              >
+                Get Started
+              </Button>
+            </FlexItem>
+          )}
         </Flex>
       </PageSection>
       <PageSection>
