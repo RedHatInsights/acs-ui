@@ -63,14 +63,13 @@ function OverviewPage() {
                       Cloud Service helps improve the security of the
                       application build process, protects the application
                       platform and configurations, detects runtime issues, and
-                      facilitates response. Red Hat Advanced Cluster Security
-                      for Kubernetes RHACS Cloud Service lowers operational
-                      costs by reducing the learning curve for implementing
-                      Kubernetes security, provides built-in controls for
-                      enforcement to reduce operational risk, and uses a
-                      Kubernetes-native approach that supports built-in security
-                      across the entire software development life cycle,
-                      facilitating greater developer productivity.
+                      facilitates response. RHACS Cloud Service lowers
+                      operational costs by reducing the learning curve for
+                      implementing Kubernetes security, provides built-in
+                      controls for enforcement to reduce operational risk, and
+                      uses a Kubernetes-native approach that supports built-in
+                      security across the entire software development life
+                      cycle, facilitating greater developer productivity.
                     </Text>
                   </TextContent>
                 </Stack>
