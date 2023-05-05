@@ -44,7 +44,9 @@ const InitialSetup = () => {
           </GridItem>
           <GridItem sm={10} xl2={11}>
             <TextContent>
-              <Text component={TextVariants.h3}>Create an ACS Instance</Text>
+              <Text component={TextVariants.h3}>
+                Create an ACS Central Instance
+              </Text>
             </TextContent>
             <Button
               variant="secondary"

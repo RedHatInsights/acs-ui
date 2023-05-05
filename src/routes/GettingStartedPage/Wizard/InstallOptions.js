@@ -69,7 +69,7 @@ const InstallOptions = ({
       <StackItem>
         <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
           <FlexItem>
-            <Title headingLevel="h1">Installation Options</Title>
+            <Title headingLevel="h1">SecuredCluster Installation Options</Title>
           </FlexItem>
           <FlexItem>
             <HeaderExternalLink />
@@ -122,7 +122,7 @@ const InstallOptions = ({
           <>
             <TextContent>
               <Text component={TextVariants.h3}>
-                Select your installation method
+                Select your supported installation method
               </Text>
             </TextContent>
             <Select
