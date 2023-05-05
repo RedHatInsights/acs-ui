@@ -13,6 +13,9 @@ import { Unavailable } from '@redhat-cloud-services/frontend-components/Unavaila
 
 const App = () => {
   const { updateDocumentTitle, getEnvironment, auth } = useChrome();
+  const chrome = useChrome();
+  console.log('chrome');
+  console.log(chrome);
   const [isEntitled, setIsEntitled] = useState(defaultState.isEntitled);
   const [isEntitlementLoaded, setIsEntitlementLoaded] = useState(
     defaultState.isEntitlementLoaded
@@ -27,7 +30,7 @@ const App = () => {
     const fetchEntitlements = async () => {
       const user = await auth.getUser();
       if (user !== undefined && (!isDevelopment || enableEntitlementLocally)) {
-        setIsEntitled(user.entitlements.acs.is_entitled);
+        setIsEntitled(Boolean(user.entitlements.acs?.is_entitled));
         setIsEntitlementLoaded(true);
       }
     };
