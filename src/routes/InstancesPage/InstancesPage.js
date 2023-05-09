@@ -261,7 +261,7 @@ function InstancesPage() {
               instances.length !== 0 &&
               instances.map((instance) => {
                 const instanceDetailsURL = mergeToBasename(
-                  `/instances/instance/${instance.id}`,
+                  `instances/instance/${instance.id}`,
                   linkBasename
                 );
                 return (
