@@ -81,7 +81,7 @@ export const Routes = () => {
         <Route
           path="*"
           element={
-            <Navigate to={mergeToBasename('/overview', linkBasename)} replace />
+            <Navigate to={mergeToBasename('overview', linkBasename)} replace />
           }
         />
       </RouterRoutes>
