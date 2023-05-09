@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   } else if (isEntitled) {
     return children;
   } else {
-    return <Navigate to={mergeToBasename('overview', linkBasename)} replace />;
+    return <Navigate to={mergeToBasename('/overview', linkBasename)} replace />;
   }
 };
 
