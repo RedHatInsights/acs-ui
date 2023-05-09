@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from 'react-query';
-
-import apiRequest from '../../services/apiRequest';
+import useApi from './useApi';
 
 const deleteInstance = async (instanceID) => {
+  const apiRequest = useApi();
   const { data } = await apiRequest.delete(
     `/api/rhacs/v1/centrals/${instanceID}?async=true`
   );

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from 'react-query';
-
-import apiRequest from '../../services/apiRequest';
+import useApi from './useApi';
 
 const postInstance = async (postData) => {
+  const apiRequest = useApi();
   const { data } = await apiRequest.post(
     '/api/rhacs/v1/centrals?async=true',
     postData
