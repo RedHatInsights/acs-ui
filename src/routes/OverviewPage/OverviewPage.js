@@ -164,7 +164,7 @@ function OverviewPage() {
               <CardBody>
                 Contact sales to get a prepaid subscription that fits your
                 needs. Sales can help set up a prepaid subscription, modify a
-                current subscription or get a longer trial
+                current subscription or get a longer trial.
               </CardBody>
               <CardFooter>
                 <Flex>
