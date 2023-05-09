@@ -7,7 +7,7 @@ const API_STAGE_URL = 'https://api.stage.openshift.com';
 
 export default function useApi() {
   const { isProd } = useChrome();
-  const apiUrl = isProd ? API_PROD_URL : API_STAGE_URL;
+  const apiUrl = isProd() ? API_PROD_URL : API_STAGE_URL;
   const authInterceptor = (client) => {
     client.interceptors.request.use(async (cfg) => {
       await insights.chrome.auth.getUser();
