@@ -107,7 +107,7 @@ function OverviewPage() {
                     <FlexItem>
                       <TextContent>
                         <Text className="pf-u-color-200">
-                          (US and Canada only)
+                          (US/Canada or EMEA only)
                         </Text>
                       </TextContent>
                     </FlexItem>
@@ -116,19 +116,36 @@ function OverviewPage() {
               </CardHeaderMain>
               <CardBody>
                 Purchase a pay-as-you-go subscription for Managed vCPU units
-                using one of our Marketplace options below
+                using one of our Marketplace options below.
               </CardBody>
               <CardFooter>
                 <Flex>
+                  <FlexItem className="pf-u-mt-md pf-u-mb-md">
+                    <Button
+                      variant={ButtonVariant.link}
+                      component="a"
+                      target="_blank"
+                      href=" https://aws.amazon.com/marketplace/pp/prodview-epwnwxab4jwdo"
+                      isInline
+                    >
+                      AWS Marketplace (North America)
+                      <ExternalLinkAltIcon
+                        className="pf-u-ml-md"
+                        color="currentColor"
+                        noVerticalAlign={false}
+                        size="sm"
+                      />
+                    </Button>
+                  </FlexItem>
                   <FlexItem>
                     <Button
                       variant={ButtonVariant.link}
                       component="a"
                       target="_blank"
-                      href="https://aws.amazon.com/marketplace/pp/prodview-2i77ihj7rlgy6"
+                      href="https://aws.amazon.com/marketplace/pp/prodview-oefmjyqe64ces"
                       isInline
                     >
-                      AWS Marketplace
+                      AWS Marketplace (EMEA)
                       <ExternalLinkAltIcon
                         className="pf-u-ml-md"
                         color="currentColor"
