@@ -50,7 +50,7 @@ function InstanceDetailsPage() {
       <NotFoundMessage
         errorTitle="Instance Not Found"
         actionText="Go to ACS Instances page"
-        errorDescription="It may have changed, did not exist, or no longer exists. Try using the ACS Instances page to find what you're looking for."
+        errorDescription="The URL may be incorrect, you may not have permission to view that instance, or that instance no longer exists. Try using the ACS Instances page to find what you are looking for."
         url="instances"
       />
     );
