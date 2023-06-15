@@ -1,12 +1,15 @@
 import { useQuery } from 'react-query';
 
-import apiRequest from '../../services/apiRequest';
+import useApi from './useApi';
 
-const getInstanceById = async (instanceId) => {
+const getInstanceById = async (apiRequest, instanceId) => {
   const { data } = await apiRequest.get(`/api/rhacs/v1/centrals/${instanceId}`);
   return data;
 };
 
 export default function useInstance(instanceId) {
-  return useQuery(['instance', instanceId], () => getInstanceById(instanceId));
+  const apiRequest = useApi();
+  return useQuery(['instance', instanceId], () =>
+    getInstanceById(apiRequest, instanceId)
+  );
 }

@@ -21,12 +21,18 @@ const App = () => {
   // by default entitlement will be disabled in development, use this flag to flip it on
   const enableEntitlementLocally = false;
 
+  const environment = getEnvironment();
   const isDevelopment = process.env.NODE_ENV === 'development';
+  const isQAProdAuth = environment === 'qaprodauth';
 
   useEffect(() => {
     const fetchEntitlements = async () => {
       const user = await auth.getUser();
-      if (user !== undefined && (!isDevelopment || enableEntitlementLocally)) {
+      if (
+        user !== undefined &&
+        !isQAProdAuth &&
+        (!isDevelopment || enableEntitlementLocally)
+      ) {
         setIsEntitled(user.entitlements.acs.is_entitled);
         setIsEntitlementLoaded(true);
       }
@@ -36,7 +42,7 @@ const App = () => {
 
     // because local development is pointed to prod, the useChrome hook sets isProd to true, which consequently
     // points analytics and entitlements to prod as well. These variables are used to override those issues locally
-    if (isDevelopment) {
+    if (isDevelopment || isQAProdAuth) {
       localStorage.setItem('chrome:analytics:dev', 'true');
       setIsEntitled(true);
       setIsEntitlementLoaded(true);
@@ -47,8 +53,6 @@ const App = () => {
 
     updateDocumentTitle('acs');
   }, []);
-
-  const environment = getEnvironment();
 
   if (environment === 'stage') {
     return <Unavailable />;
