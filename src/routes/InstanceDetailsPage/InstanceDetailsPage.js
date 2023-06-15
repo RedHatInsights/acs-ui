@@ -31,15 +31,28 @@ import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import useInstance from '../../hooks/apis/useInstance';
 import InstanceDetailsList from '../../components/InstanceDetailsList';
 
+import NotFoundMessage from '../../components/NotFoundMessage';
+
 function InstanceDetailsPage() {
   const { instanceId } = useParams();
-  const { data: instance, isFetching } = useInstance(instanceId);
+  const { data: instance, isFetching, isError } = useInstance(instanceId);
 
   if (isFetching) {
     return (
       <Bullseye>
         <Spinner />
       </Bullseye>
+    );
+  }
+
+  if (isError) {
+    return (
+      <NotFoundMessage
+        errorTitle="Instance Not Found"
+        actionText="Go to ACS Instances page"
+        errorDescription="The URL may be incorrect, you may not have permission to view that instance, or that instance no longer exists. Try using the ACS Instances page to find what you are looking for."
+        url="instances"
+      />
     );
   }
 
