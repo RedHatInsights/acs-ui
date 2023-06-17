@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes as RouterRoutes } from 'react-router-dom';
 import { linkBasename, mergeToBasename } from './utils/paths';
+import ProtectedRoute from './ProtectedRoute';
 
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
@@ -39,31 +40,51 @@ const GettingStartedPage = lazy(
     )
 );
 
-export const Routes = () => (
-  <Suspense
-    fallback={
-      <Bullseye>
-        <Spinner />
-      </Bullseye>
-    }
-  >
-    <RouterRoutes>
-      <Route path="no-permissions" element={<NoPermissionsPage />} />
-      <Route path="oops" element={<OopsPage />} />
-      <Route
-        path="/instances/instance/:instanceId"
-        element={<InstanceDetailsPage />}
-      />
-      <Route path="/instances" element={<InstancesPage />} />
-      <Route path="/overview" element={<OverviewPage />} />
-      <Route path="/getting-started" element={<GettingStartedPage />} />
-      {/* Finally, catch all unmatched routes */}
-      <Route
-        path="*"
-        element={
-          <Navigate to={mergeToBasename('/overview', linkBasename)} replace />
-        }
-      />
-    </RouterRoutes>
-  </Suspense>
-);
+export const Routes = () => {
+  return (
+    <Suspense
+      fallback={
+        <Bullseye>
+          <Spinner />
+        </Bullseye>
+      }
+    >
+      <RouterRoutes>
+        <Route path="no-permissions" element={<NoPermissionsPage />} />
+        <Route path="oops" element={<OopsPage />} />
+        <Route
+          path="/instances/instance/:instanceId"
+          element={
+            <ProtectedRoute>
+              <InstanceDetailsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/instances"
+          element={
+            <ProtectedRoute>
+              <InstancesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/overview" element={<OverviewPage />} />
+        <Route
+          path="/getting-started"
+          element={
+            <ProtectedRoute>
+              <GettingStartedPage />
+            </ProtectedRoute>
+          }
+        />
+        {/* Finally, catch all unmatched routes */}
+        <Route
+          path="*"
+          element={
+            <Navigate to={mergeToBasename('overview', linkBasename)} replace />
+          }
+        />
+      </RouterRoutes>
+    </Suspense>
+  );
+};

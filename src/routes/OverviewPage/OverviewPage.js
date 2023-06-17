@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Button,
   ButtonVariant,
@@ -27,8 +27,10 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import AppLink from '../../components/AppLink';
 
 import bannerImage from '../../assets/banner_image.png';
+import AppContext from '../../context/AppContext';
 
 function OverviewPage() {
+  const { isEntitled } = useContext(AppContext);
   return (
     <div>
       <PageSection variant={PageSectionVariants.light} className="pf-u-p-2xl">
@@ -61,14 +63,13 @@ function OverviewPage() {
                       Cloud Service helps improve the security of the
                       application build process, protects the application
                       platform and configurations, detects runtime issues, and
-                      facilitates response. Red Hat Advanced Cluster Security
-                      for Kubernetes RHACS Cloud Service lowers operational
-                      costs by reducing the learning curve for implementing
-                      Kubernetes security, provides built-in controls for
-                      enforcement to reduce operational risk, and uses a
-                      Kubernetes-native approach that supports built-in security
-                      across the entire software development life cycle,
-                      facilitating greater developer productivity.
+                      facilitates response. RHACS Cloud Service lowers
+                      operational costs by reducing the learning curve for
+                      implementing Kubernetes security, provides built-in
+                      controls for enforcement to reduce operational risk, and
+                      uses a Kubernetes-native approach that supports built-in
+                      security across the entire software development life
+                      cycle, facilitating greater developer productivity.
                     </Text>
                   </TextContent>
                 </Stack>
@@ -78,15 +79,17 @@ function OverviewPage() {
               </GridItem>
             </Grid>
           </FlexItem>
-          <FlexItem>
-            <Button
-              component={(props) => (
-                <AppLink {...props} to={'getting-started'} />
-              )}
-            >
-              Get Started
-            </Button>
-          </FlexItem>
+          {isEntitled && (
+            <FlexItem>
+              <Button
+                component={(props) => (
+                  <AppLink {...props} to={'getting-started'} />
+                )}
+              >
+                Get Started
+              </Button>
+            </FlexItem>
+          )}
         </Flex>
       </PageSection>
       <PageSection>
@@ -104,7 +107,7 @@ function OverviewPage() {
                     <FlexItem>
                       <TextContent>
                         <Text className="pf-u-color-200">
-                          (US and Canada only)
+                          (US/Canada or EMEA only)
                         </Text>
                       </TextContent>
                     </FlexItem>
@@ -113,19 +116,36 @@ function OverviewPage() {
               </CardHeaderMain>
               <CardBody>
                 Purchase a pay-as-you-go subscription for Managed vCPU units
-                using one of our Marketplace options below
+                using one of our Marketplace options below.
               </CardBody>
               <CardFooter>
                 <Flex>
+                  <FlexItem className="pf-u-mt-md pf-u-mb-md">
+                    <Button
+                      variant={ButtonVariant.link}
+                      component="a"
+                      target="_blank"
+                      href=" https://aws.amazon.com/marketplace/pp/prodview-epwnwxab4jwdo"
+                      isInline
+                    >
+                      AWS Marketplace (North America)
+                      <ExternalLinkAltIcon
+                        className="pf-u-ml-md"
+                        color="currentColor"
+                        noVerticalAlign={false}
+                        size="sm"
+                      />
+                    </Button>
+                  </FlexItem>
                   <FlexItem>
                     <Button
                       variant={ButtonVariant.link}
                       component="a"
                       target="_blank"
-                      href="https://aws.amazon.com/marketplace/pp/prodview-2i77ihj7rlgy6"
+                      href="https://aws.amazon.com/marketplace/pp/prodview-oefmjyqe64ces"
                       isInline
                     >
-                      AWS Marketplace
+                      AWS Marketplace (EMEA)
                       <ExternalLinkAltIcon
                         className="pf-u-ml-md"
                         color="currentColor"
