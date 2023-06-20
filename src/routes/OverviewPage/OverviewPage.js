@@ -225,12 +225,6 @@ function OverviewPage() {
                 <FlexItem>
                   <DescriptionList isHorizontal>
                     <DescriptionListGroup>
-                      <DescriptionListTerm>First 20 vCPU</DescriptionListTerm>
-                      <DescriptionListDescription>
-                        Free
-                      </DescriptionListDescription>
-                    </DescriptionListGroup>
-                    <DescriptionListGroup>
                       <DescriptionListTerm>Managed vCPU</DescriptionListTerm>
                       <DescriptionListDescription>
                         $0.03 / hour
