@@ -113,7 +113,7 @@ function CreateInstanceModal({
     }));
   }
 
-  function getAWSLabelInfoText() {
+  function getAWSHelperText() {
     if (cloudAccountIds.length === 0) {
       return 'This will be attributed to your Red Hat subscription.';
     }
@@ -178,7 +178,7 @@ function CreateInstanceModal({
         </FormGroup>
         <FormGroup
           label="AWS account number"
-          labelInfo={getAWSLabelInfoText()}
+          helperText={getAWSHelperText()}
           fieldId="cloud_account_id"
         >
           <SelectSingle
