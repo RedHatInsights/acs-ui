@@ -168,9 +168,9 @@ function CreateInstanceModal({
         </FormGroup>
         <FormGroup
           label="AWS account number"
-          labelInfo={
+          helperText={
             cloudAccountIds.length === 0
-              ? 'This will be attributed to your Red Hat subscription'
+              ? 'This will be attributed to your Red Hat subscription.'
               : undefined
           }
           fieldId="cloud_account_id"
