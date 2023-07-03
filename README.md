@@ -48,8 +48,10 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 * The starter repo uses Travis to deploy the webpack build to another Github repo defined in `.travis.yml`
   * Pushing to the specified branches will update the following environments
     * `main` -> `stage-beta`
+    * `qa-beta` -> `qa-beta`
     * `prod-beta` -> `prod-beta`
     * `stage-stable` -> `stage-stable`
+    * `qa-stable` -> `qa-stable`
     * `prod-stable` -> `prod-stable`
 
 ## Branch links and syncing
@@ -58,10 +60,12 @@ These are the urls for each branch:
 
 ### Beta
 
-* main -> <https://console.stage.redhat.com/preview>
-* prod-beta -> <https://console.redhat.com/preview>
+* main -> <https://console.stage.redhat.com/preview/application-services/acs>
+* qa-beta -> <https://qaprodauth.console.redhat.com/preview/application-services/acs>
+* prod-beta -> <https://console.redhat.com/preview/application-services/acs>
 
 ### Stable
 
-* stage-stable -> <https://console.stage.redhat.com>
-* prod-stable -> <https://console.redhat.com>
+* stage-stable -> <https://console.stage.redhat.com/application-services/acs>
+* qa-stable -> <https://qaprodauth.console.redhat.com/application-services/acs>
+* prod-stable -> <https://console.redhat.com/application-services/acs>
