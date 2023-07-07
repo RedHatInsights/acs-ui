@@ -120,7 +120,17 @@ function CreateInstanceModal({
     if (cloudAccountIds.length === 1) {
       return 'The AWS account indicated, which is linked to your Red Hat organization, will be used for billing purposes.';
     }
+    if (cloudAccountIds.length > 1) {
+      return 'Please select one of the AWS accounts for billing purposes.';
+    }
     return undefined;
+  }
+
+  function isInvalidForm() {
+    return (
+      !formValues?.name ||
+      (cloudAccountIds.length > 1 && !formValues?.cloud_account_id)
+    );
   }
 
   return (
@@ -135,7 +145,7 @@ function CreateInstanceModal({
           variant="primary"
           onClick={onRequestCreateHandler}
           isLoading={isRequestingCreate}
-          isDisabled={isRequestingCreate || !formValues?.name}
+          isDisabled={isRequestingCreate || isInvalidForm()}
         >
           Create instance
         </Button>,
@@ -179,6 +189,7 @@ function CreateInstanceModal({
         <FormGroup
           label="AWS account number"
           helperText={getAWSHelperText()}
+          isRequired={cloudAccountIds.length > 1}
           fieldId="cloud_account_id"
         >
           <SelectSingle
