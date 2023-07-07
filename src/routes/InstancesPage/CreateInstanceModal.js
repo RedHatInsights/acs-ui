@@ -50,7 +50,9 @@ function CreateInstanceModal({
   }, [cloudAccountIds]);
 
   const { data: cloudRegionList, isFetching: isFetchingRegions } =
-    useCloudRegions({ provider: AWS_PROVIDER });
+    useCloudRegions({
+      provider: AWS_PROVIDER,
+    });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
     [cloudRegionList]
@@ -164,25 +166,32 @@ function CreateInstanceModal({
             isSelected={formValues.cloud_provider === AWS_PROVIDER}
           />
         </FormGroup>
-        {cloudAccountIds.length > 1 && (
-          <FormGroup label="AWS account number" fieldId="cloud_account_id">
-            <SelectSingle
-              id="cloud_account_id"
-              value={formValues.cloud_account_id}
-              handleSelect={onChangeAWSAccountNumber}
-              placeholderText="Select an AWS Account"
-              menuAppendTo="parent"
-            >
-              {cloudAccountIds.map((cloudAccountId) => {
-                return (
-                  <SelectOption key={cloudAccountId} value={cloudAccountId}>
-                    {cloudAccountId}
-                  </SelectOption>
-                );
-              })}
-            </SelectSingle>
-          </FormGroup>
-        )}
+        <FormGroup
+          label="AWS account number"
+          helperText={
+            cloudAccountIds.length === 0
+              ? 'This will be attributed to your Red Hat subscription.'
+              : undefined
+          }
+          fieldId="cloud_account_id"
+        >
+          <SelectSingle
+            id="cloud_account_id"
+            value={formValues.cloud_account_id}
+            handleSelect={onChangeAWSAccountNumber}
+            placeholderText="Select an AWS Account"
+            menuAppendTo="parent"
+            isDisabled={cloudAccountIds.length === 0}
+          >
+            {cloudAccountIds.map((cloudAccountId) => {
+              return (
+                <SelectOption key={cloudAccountId} value={cloudAccountId}>
+                  {cloudAccountId}
+                </SelectOption>
+              );
+            })}
+          </SelectSingle>
+        </FormGroup>
         <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
             id="region"
