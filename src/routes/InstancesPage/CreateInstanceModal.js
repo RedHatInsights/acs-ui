@@ -50,7 +50,9 @@ function CreateInstanceModal({
   }, [cloudAccountIds]);
 
   const { data: cloudRegionList, isFetching: isFetchingRegions } =
-    useCloudRegions({ provider: AWS_PROVIDER });
+    useCloudRegions({
+      provider: AWS_PROVIDER,
+    });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
     [cloudRegionList]
@@ -111,6 +113,26 @@ function CreateInstanceModal({
     }));
   }
 
+  function getAWSHelperText() {
+    if (cloudAccountIds.length === 0) {
+      return 'This will be attributed to your Red Hat subscription.';
+    }
+    if (cloudAccountIds.length === 1) {
+      return 'The AWS account indicated, which is linked to your Red Hat organization, will be used for billing purposes.';
+    }
+    if (cloudAccountIds.length > 1) {
+      return 'Please select one of the AWS accounts for billing purposes.';
+    }
+    return undefined;
+  }
+
+  function isInvalidForm() {
+    return (
+      !formValues?.name ||
+      (cloudAccountIds.length > 1 && !formValues?.cloud_account_id)
+    );
+  }
+
   return (
     <Modal
       variant={ModalVariant.small}
@@ -123,7 +145,7 @@ function CreateInstanceModal({
           variant="primary"
           onClick={onRequestCreateHandler}
           isLoading={isRequestingCreate}
-          isDisabled={isRequestingCreate || !formValues?.name}
+          isDisabled={isRequestingCreate || isInvalidForm()}
         >
           Create instance
         </Button>,
@@ -164,25 +186,29 @@ function CreateInstanceModal({
             isSelected={formValues.cloud_provider === AWS_PROVIDER}
           />
         </FormGroup>
-        {cloudAccountIds.length > 1 && (
-          <FormGroup label="AWS account number" fieldId="cloud_account_id">
-            <SelectSingle
-              id="cloud_account_id"
-              value={formValues.cloud_account_id}
-              handleSelect={onChangeAWSAccountNumber}
-              placeholderText="Select an AWS Account"
-              menuAppendTo="parent"
-            >
-              {cloudAccountIds.map((cloudAccountId) => {
-                return (
-                  <SelectOption key={cloudAccountId} value={cloudAccountId}>
-                    {cloudAccountId}
-                  </SelectOption>
-                );
-              })}
-            </SelectSingle>
-          </FormGroup>
-        )}
+        <FormGroup
+          label="AWS account number"
+          helperText={getAWSHelperText()}
+          isRequired={cloudAccountIds.length > 1}
+          fieldId="cloud_account_id"
+        >
+          <SelectSingle
+            id="cloud_account_id"
+            value={formValues.cloud_account_id}
+            handleSelect={onChangeAWSAccountNumber}
+            placeholderText="Select an AWS Account"
+            menuAppendTo="parent"
+            isDisabled={cloudAccountIds.length <= 1}
+          >
+            {cloudAccountIds.map((cloudAccountId) => {
+              return (
+                <SelectOption key={cloudAccountId} value={cloudAccountId}>
+                  {cloudAccountId}
+                </SelectOption>
+              );
+            })}
+          </SelectSingle>
+        </FormGroup>
         <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
             id="region"
