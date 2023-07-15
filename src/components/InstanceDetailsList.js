@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
+  ClipboardCopy,
   DescriptionList,
   DescriptionListDescription,
   DescriptionListGroup,
@@ -28,7 +29,11 @@ function InstanceDetailsList({ instance }) {
       </DescriptionListGroup>
       <DescriptionListGroup>
         <DescriptionListTerm>ID</DescriptionListTerm>
-        <DescriptionListDescription>{instance.id}</DescriptionListDescription>
+        <DescriptionListDescription>
+          <ClipboardCopy hoverTip="Copy" clickTip="Copied">
+            {instance.id}
+          </ClipboardCopy>
+        </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
         <DescriptionListTerm>Owner</DescriptionListTerm>
@@ -53,13 +58,17 @@ function InstanceDetailsList({ instance }) {
           Central API endpoint (Sensor mTLS)
         </DescriptionListTerm>
         <DescriptionListDescription>
-          {instance.centralDataURL || '-'}
+          <ClipboardCopy hoverTip="Copy" clickTip="Copied">
+            {instance.centralDataURL || '-'}
+          </ClipboardCopy>
         </DescriptionListDescription>
       </DescriptionListGroup>
       <DescriptionListGroup>
         <DescriptionListTerm>Central instance (UI, roxctl)</DescriptionListTerm>
         <DescriptionListDescription>
-          {instance.centralUIURL || '-'}
+          <ClipboardCopy hoverTip="Copy" clickTip="Copied">
+            {instance.centralUIURL || '-'}
+          </ClipboardCopy>
         </DescriptionListDescription>
       </DescriptionListGroup>
     </DescriptionList>
