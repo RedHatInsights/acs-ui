@@ -30,7 +30,11 @@ function InstanceDetailsList({ instance }) {
       <DescriptionListGroup>
         <DescriptionListTerm>ID</DescriptionListTerm>
         <DescriptionListDescription>
-          <ClipboardCopy hoverTip="Copy" clickTip="Copied">
+          <ClipboardCopy
+            hoverTip="Copy"
+            clickTip="Copied"
+            variant="inline-compact"
+          >
             {instance.id}
           </ClipboardCopy>
         </DescriptionListDescription>
@@ -58,7 +62,11 @@ function InstanceDetailsList({ instance }) {
           Central API endpoint (Sensor mTLS)
         </DescriptionListTerm>
         <DescriptionListDescription>
-          <ClipboardCopy hoverTip="Copy" clickTip="Copied">
+          <ClipboardCopy
+            hoverTip="Copy"
+            clickTip="Copied"
+            variant="inline-compact"
+          >
             {instance.centralDataURL || '-'}
           </ClipboardCopy>
         </DescriptionListDescription>
@@ -66,7 +74,11 @@ function InstanceDetailsList({ instance }) {
       <DescriptionListGroup>
         <DescriptionListTerm>Central instance (UI, roxctl)</DescriptionListTerm>
         <DescriptionListDescription>
-          <ClipboardCopy hoverTip="Copy" clickTip="Copied">
+          <ClipboardCopy
+            hoverTip="Copy"
+            clickTip="Copied"
+            variant="inline-compact"
+          >
             {instance.centralUIURL || '-'}
           </ClipboardCopy>
         </DescriptionListDescription>
