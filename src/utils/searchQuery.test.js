@@ -62,7 +62,7 @@ describe('searchQuery', () => {
     it('should return the correct search query for multiple categories', () => {
       const filters = {
         name: ['sc-test-1'],
-        region: ['US-East, N. Virginia'],
+        region: ['us-east-1'],
         owner: ['schaudhr'],
       };
       const searchQuery = filtersToSearchQuery(filters, [
