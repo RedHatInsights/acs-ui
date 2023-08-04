@@ -19,8 +19,10 @@ import { getRegionDisplayName } from '../../utils/region';
 
 const defaultFormValues = {
   name: '',
+  // this value is left out of the form because no other options are available to the user (ROX-18865)
   cloud_provider: AWS_PROVIDER,
   region: AWS_DEFAULT_REGION,
+  // this value is left out of the form because no other options are available to the user (ROX-18865)
   availabilityZones: 'multi',
   cloud_account_id: '',
 };
