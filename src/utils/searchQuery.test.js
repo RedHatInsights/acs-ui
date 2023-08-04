@@ -18,7 +18,7 @@ describe('searchQuery', () => {
 
     it('should return the correct search query for the region category', () => {
       const filters = {
-        region: ['US-East, N. Virginia', 'Europe, Ireland'],
+        region: ['us-east-1', 'eu-west-1'],
       };
       const searchQuery = filtersToSearchQuery(filters, [
         {
