@@ -1,7 +1,5 @@
 export function regionLabelToValue(regionLabel, regionList) {
-  const regionOption = regionList?.find((region) =>
-    getRegionDisplayName(region).startsWith(regionLabel)
-  );
+  const regionOption = regionList?.find((region) => region.id === regionLabel);
   return regionOption?.id;
 }
 
