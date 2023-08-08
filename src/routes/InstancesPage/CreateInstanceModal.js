@@ -9,9 +9,6 @@ import {
   ModalVariant,
   SelectOption,
   TextInput,
-  Tile,
-  ToggleGroup,
-  ToggleGroupItem,
 } from '@patternfly/react-core';
 
 import SelectSingle from '../../components/SelectSingle';
@@ -22,8 +19,10 @@ import { getRegionDisplayName } from '../../utils/region';
 
 const defaultFormValues = {
   name: '',
+  // this value is left out of the form because no other options are available to the user (ROX-18865)
   cloud_provider: AWS_PROVIDER,
   region: AWS_DEFAULT_REGION,
+  // this value is left out of the form because no other options are available to the user (ROX-18865)
   availabilityZones: 'multi',
   cloud_account_id: '',
 };
@@ -82,14 +81,6 @@ function CreateInstanceModal({
       setFormValues(defaultFormValues);
       onClose();
     }
-  }
-
-  function onChangeAvailabilityZones(isSelected, event) {
-    const { id } = event.currentTarget;
-    setFormValues((prevFormValues) => ({
-      ...prevFormValues,
-      availabilityZones: id,
-    }));
   }
 
   function onCloudRegionSelect(id, selection) {
@@ -180,12 +171,6 @@ function CreateInstanceModal({
             onChange={onNameChange}
           />
         </FormGroup>
-        <FormGroup label="Cloud provider" isRequired fieldId="cloud_provider">
-          <Tile
-            title="Amazon Web Services"
-            isSelected={formValues.cloud_provider === AWS_PROVIDER}
-          />
-        </FormGroup>
         <FormGroup
           label="AWS account number"
           helperText={getAWSHelperText()}
@@ -227,27 +212,6 @@ function CreateInstanceModal({
               );
             })}
           </SelectSingle>
-        </FormGroup>
-        <FormGroup
-          label="Availability zones"
-          isRequired
-          fieldId="availabilityZones"
-        >
-          <ToggleGroup aria-label="Availability Zones">
-            <ToggleGroupItem
-              text="Single"
-              buttonId="single"
-              isSelected={formValues.availabilityZones === 'single'}
-              onChange={onChangeAvailabilityZones}
-              isDisabled
-            />
-            <ToggleGroupItem
-              text="Multi"
-              buttonId="multi"
-              isSelected={formValues.availabilityZones === 'multi'}
-              onChange={onChangeAvailabilityZones}
-            />
-          </ToggleGroup>
         </FormGroup>
       </Form>
     </Modal>
