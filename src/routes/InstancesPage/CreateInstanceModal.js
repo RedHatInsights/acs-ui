@@ -7,7 +7,6 @@ import {
   FormGroup,
   Modal,
   ModalVariant,
-  SelectDirection,
   SelectOption,
   TextInput,
 } from '@patternfly/react-core';
