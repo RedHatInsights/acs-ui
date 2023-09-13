@@ -200,6 +200,7 @@ function CreateInstanceModal({
             isDisabled={isFetchingRegions}
             value={formValues.region}
             handleSelect={onCloudRegionSelect}
+            menuAppendTo={() => document.body}
           >
             <SelectOption value="" isPlaceholder isDisabled={true}>
               Choose a region
