@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import AppEntry from './AppEntry';
 
-const root = document.getElementById('root');
+const rootElm = document.getElementById('root');
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(rootElm!);
 
-ReactDOM.render(<AppEntry />, root, () =>
-  root?.setAttribute('data-ouia-safe', 'true')
-);
+root.render(<AppEntry />);
