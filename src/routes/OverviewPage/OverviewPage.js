@@ -79,8 +79,8 @@ function OverviewPage() {
               </GridItem>
             </Grid>
           </FlexItem>
-          {isEntitled && (
-            <FlexItem>
+          <FlexItem>
+            {isEntitled ? (
               <Button
                 component={(props) => (
                   <AppLink {...props} to={'getting-started'} />
@@ -88,8 +88,17 @@ function OverviewPage() {
               >
                 Get Started
               </Button>
-            </FlexItem>
-          )}
+            ) : (
+              <Button
+                component="a"
+                href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes/cloud-service/trial#error=interaction_required&state=5482ab36-8fa8-4176-9507-1f131683fbcb"
+                target="_blank"
+                variant="primary"
+              >
+                Start a free trial
+              </Button>
+            )}
+          </FlexItem>
         </Flex>
       </PageSection>
       <PageSection>
