@@ -10,8 +10,8 @@ const queryClient = new QueryClient();
 const AppEntry = () => {
   useEffect(() => {
     const rootElm = document.getElementById('root');
-    rootElm?.setAttribute('data-ouia-safe', 'true'), [];
-  });
+    rootElm?.setAttribute('data-ouia-safe', 'true');
+  }, []);
 
   return (
     <Provider
