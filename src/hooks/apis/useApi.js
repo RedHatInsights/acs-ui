@@ -18,8 +18,7 @@ export default function useApi() {
     client.interceptors.request.use(async (cfg) => {
       await insights.chrome.auth.getUser();
       const token = await insights.chrome.auth.getToken();
-      const BASE_URL = cfg.baseURL || apiUrl;
-      const updatedCfg = { ...cfg, url: `${BASE_URL}${cfg.url}` };
+      const updatedCfg = { ...cfg, url: `${apiUrl}${cfg.url}` };
       if (token) {
         updatedCfg.headers = {
           ...updatedCfg.headers,
