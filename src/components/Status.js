@@ -20,7 +20,7 @@ const statusMessages = {
   },
   provisioning: {
     message: statuses.provisioning,
-    component: <Spinner isSVG size="md" />,
+    component: <Spinner  size="md" />,
   },
   ready: {
     message: statuses.ready,
@@ -32,11 +32,11 @@ const statusMessages = {
   },
   deprovision: {
     message: statuses.deprovision,
-    component: <Spinner isSVG size="md" />,
+    component: <Spinner  size="md" />,
   },
   deleting: {
     message: statuses.deleting,
-    component: <Spinner isSVG size="md" />,
+    component: <Spinner  size="md" />,
   },
 };
 

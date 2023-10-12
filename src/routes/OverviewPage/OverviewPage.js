@@ -5,7 +5,7 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardHeaderMain,
+  CardHeader,
   CardTitle,
   DescriptionList,
   DescriptionListDescription,
@@ -16,6 +16,7 @@ import {
   FlexItem,
   Grid,
   GridItem,
+  Icon,
   PageSection,
   PageSectionVariants,
   Stack,
@@ -105,7 +106,7 @@ function OverviewPage() {
         <Grid hasGutter lg={6}>
           <GridItem>
             <Card className="pf-u-h-100">
-              <CardHeaderMain>
+              <CardHeader>
                 <CardTitle>
                   <Flex>
                     <FlexItem spacer={{ default: 'spacerSm' }}>
@@ -122,7 +123,7 @@ function OverviewPage() {
                     </FlexItem>
                   </Flex>
                 </CardTitle>
-              </CardHeaderMain>
+              </CardHeader>
               <CardBody>
                 Purchase a pay-as-you-go subscription for Managed vCPU units
                 using one of our Marketplace options below.
@@ -138,12 +139,14 @@ function OverviewPage() {
                       isInline
                     >
                       AWS Marketplace (North America)
-                      <ExternalLinkAltIcon
+                      <Icon
+                        size="sm"
                         className="pf-u-ml-md"
                         color="currentColor"
                         noVerticalAlign={false}
-                        size="sm"
-                      />
+                      >
+                        <ExternalLinkAltIcon />
+                      </Icon>
                     </Button>
                   </FlexItem>
                   <FlexItem>
@@ -155,12 +158,14 @@ function OverviewPage() {
                       isInline
                     >
                       AWS Marketplace (EMEA)
-                      <ExternalLinkAltIcon
+                      <Icon
                         className="pf-u-ml-md"
+                        size="sm"
                         color="currentColor"
                         noVerticalAlign={false}
-                        size="sm"
-                      />
+                      >
+                        <ExternalLinkAltIcon />
+                      </Icon>
                     </Button>
                   </FlexItem>
                 </Flex>
@@ -169,7 +174,7 @@ function OverviewPage() {
           </GridItem>
           <GridItem>
             <Card className="pf-u-h-100">
-              <CardHeaderMain>
+              <CardHeader>
                 <CardTitle>
                   <Flex>
                     <FlexItem spacer={{ default: 'spacerSm' }}>
@@ -186,7 +191,7 @@ function OverviewPage() {
                     </FlexItem>
                   </Flex>
                 </CardTitle>
-              </CardHeaderMain>
+              </CardHeader>
               <CardBody>
                 Contact sales to get a prepaid subscription that fits your
                 needs. Sales can help set up a prepaid subscription, modify a
@@ -203,12 +208,14 @@ function OverviewPage() {
                       isInline
                     >
                       Contact sales
-                      <ExternalLinkAltIcon
+                      <Icon
+                        size="sm"
                         className="pf-u-ml-md"
                         color="currentColor"
                         noVerticalAlign={false}
-                        size="sm"
-                      />
+                      >
+                        <ExternalLinkAltIcon />
+                      </Icon>
                     </Button>
                   </FlexItem>
                 </Flex>
@@ -242,7 +249,7 @@ function OverviewPage() {
                   </DescriptionList>
                 </FlexItem>
               </Flex>
-              <Divider isVertical />
+              <Divider orientation={{ default: 'vertical' }} />
               <FlexItem flex={{ default: 'flex_1' }}>
                 <TextContent>
                   <Text component="p">

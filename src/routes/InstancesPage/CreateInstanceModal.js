@@ -5,11 +5,14 @@ import {
   Button,
   Form,
   FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
   Modal,
   ModalVariant,
-  SelectOption,
   TextInput,
 } from '@patternfly/react-core';
+import { SelectOption } from '@patternfly/react-core/deprecated';
 
 import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -156,27 +159,35 @@ function CreateInstanceModal({
         </div>
       )}
       <Form>
-        <FormGroup
-          label="Name"
-          isRequired
-          fieldId="name"
-          helperText="Must start with a letter and end with a letter or number. Valid characters include lowercase letters from a to z, numbers from 0 to 9, and hyphens ( - )."
-        >
+        <FormGroup label="Name" isRequired fieldId="name">
+          <FormHelperText>
+            <HelperText>
+              <HelperTextItem>
+                Must start with a letter and end with a letter or number. Valid
+                characters include lowercase letters from a to z, numbers from 0
+                to 9, and hyphens ( - ).
+              </HelperTextItem>
+            </HelperText>
+          </FormHelperText>
           <TextInput
             isRequired
             type="text"
             id="name"
             name="name"
             value={formValues.name}
-            onChange={onNameChange}
+            onChange={(_event, value) => onNameChange(value)}
           />
         </FormGroup>
         <FormGroup
           label="AWS account number"
-          helperText={getAWSHelperText()}
           isRequired={cloudAccountIds.length > 1}
           fieldId="cloud_account_id"
         >
+          <FormHelperText>
+            <HelperText>
+              <HelperTextItem>{getAWSHelperText()}</HelperTextItem>
+            </HelperText>
+          </FormHelperText>
           <SelectSingle
             id="cloud_account_id"
             value={formValues.cloud_account_id}

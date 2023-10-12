@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Flex,
-  FlexItem,
-  Radio,
-  Select,
-  SelectOption,
-  Stack,
-  StackItem,
-  Text,
-  TextContent,
-  TextVariants,
-  Title,
+	Flex,
+	FlexItem,
+	Radio,
+	Stack,
+	StackItem,
+	Text,
+	TextContent,
+	TextVariants,
+	Title
 } from '@patternfly/react-core';
+import {
+	Select,
+	SelectOption
+} from '@patternfly/react-core/deprecated';
 
 import HeaderExternalLink from './HeaderExternalLink';
 
@@ -86,7 +88,7 @@ const InstallOptions = ({
           name={OPENSHIFT}
           value={OPENSHIFT}
           aria-label={OPENSHIFT}
-          onChange={handleChange}
+          onChange={(e, _) => handleChange(_, e)}
           isChecked={selectedEnv === OPENSHIFT}
         />
         <Radio
@@ -95,7 +97,7 @@ const InstallOptions = ({
           name={EKS}
           value={EKS}
           aria-label={EKS}
-          onChange={handleChange}
+          onChange={(e, _) => handleChange(_, e)}
           isChecked={selectedEnv === EKS}
         />
         <Radio
@@ -104,7 +106,7 @@ const InstallOptions = ({
           name={AKS}
           value={AKS}
           aria-label={AKS}
-          onChange={handleChange}
+          onChange={(e, _) => handleChange(_, e)}
           isChecked={selectedEnv === AKS}
         />
         <Radio
@@ -113,7 +115,7 @@ const InstallOptions = ({
           name={GKE}
           value={GKE}
           aria-label={GKE}
-          onChange={handleChange}
+          onChange={(e, _) => handleChange(_, e)}
           isChecked={selectedEnv === GKE}
         />
       </StackItem>

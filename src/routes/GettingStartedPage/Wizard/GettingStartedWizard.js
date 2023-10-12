@@ -1,10 +1,12 @@
 import React from 'react';
 import {
-  Button,
-  Wizard,
-  WizardContextConsumer,
-  WizardFooter,
+	Button
 } from '@patternfly/react-core';
+import {
+	Wizard,
+	WizardContextConsumer,
+	WizardFooter
+} from '@patternfly/react-core/deprecated';
 
 import InitialSetup from './InitialSetup';
 import InstallOptions from './InstallOptions';

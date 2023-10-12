@@ -1,17 +1,19 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button,
-  InputGroup,
-  Select,
-  SelectOption,
-  SelectVariant,
-  TextInput,
-  ToolbarFilter,
-  ToolbarGroup,
-  ToolbarItem,
-  ToolbarToggleGroup,
+	Button,
+	InputGroup,
+	TextInput,
+	ToolbarFilter,
+	ToolbarGroup,
+	ToolbarItem,
+	ToolbarToggleGroup, InputGroupItem
 } from '@patternfly/react-core';
+import {
+	Select,
+	SelectOption,
+	SelectVariant
+} from '@patternfly/react-core/deprecated';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 
 import { statusOptions } from '../../utils/status';
@@ -110,15 +112,15 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
         >
           <ToolbarItem>
             <InputGroup>
-              <TextInput
+              <InputGroupItem isFill ><TextInput
                 id="filterName"
                 type="text"
                 aria-label="Name"
                 placeholder="Filter by name"
                 value={inputName}
-                onChange={(value) => setInputName(value)}
-              />
-              <Button
+                onChange={(_event, value) => setInputName(value)}
+              /></InputGroupItem>
+              <InputGroupItem><Button
                 variant="control"
                 aria-label="Search Name"
                 onClick={() => {
@@ -131,7 +133,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 }}
               >
                 <SearchIcon />
-              </Button>
+              </Button></InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
@@ -146,7 +148,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
             <Select
               variant={SelectVariant.checkbox}
               aria-label="Region"
-              onToggle={setIsRegionExpanded}
+              onToggle={(_event, val) => setIsRegionExpanded(val)}
               onSelect={onRegionSelect}
               selections={filters.region}
               isOpen={isRegionExpanded}
@@ -171,15 +173,15 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
         >
           <ToolbarItem>
             <InputGroup>
-              <TextInput
+              <InputGroupItem isFill ><TextInput
                 id="filterOwner"
                 type="text"
                 aria-label="Owner"
                 placeholder="Filter by owner"
                 value={inputOwner}
-                onChange={(value) => setInputOwner(value)}
-              />
-              <Button
+                onChange={(_event, value) => setInputOwner(value)}
+              /></InputGroupItem>
+              <InputGroupItem><Button
                 variant="control"
                 aria-label="Search Owner"
                 onClick={() => {
@@ -192,7 +194,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 }}
               >
                 <SearchIcon />
-              </Button>
+              </Button></InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
@@ -207,7 +209,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
             <Select
               variant={SelectVariant.checkbox}
               aria-label="Status"
-              onToggle={setIsStatusExpanded}
+              onToggle={(_event, val) => setIsStatusExpanded(val)}
               onSelect={onStatusSelect}
               selections={filters.status}
               isOpen={isStatusExpanded}

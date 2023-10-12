@@ -128,7 +128,7 @@ const InstallWithHelm = () => {
             <span className="pf-u-font-weight-bold">Cluster Init Bundle</span>.
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={onToggleInitBundleImage}
+              onToggle={(_event, isExpanded) => onToggleInitBundleImage(isExpanded)}
               isExpanded={initBundleImageExpanded}
             >
               <img
@@ -151,7 +151,7 @@ const InstallWithHelm = () => {
             <span className="pf-u-font-weight-bold">Instance Details</span>.
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={onToggleApiEndpointImage}
+              onToggle={(_event, isExpanded) => onToggleApiEndpointImage(isExpanded)}
               isExpanded={apiEndpointImageExpanded}
             >
               <img

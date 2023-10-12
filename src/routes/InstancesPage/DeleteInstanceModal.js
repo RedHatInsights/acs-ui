@@ -96,7 +96,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
             id="confirmationInstanceName"
             name="confirmationInstanceName"
             value={inputValue}
-            onChange={setInputValue}
+            onChange={(_event, val) => setInputValue(val)}
           />
         </FormGroup>
         <HelperText>
