@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import {
   Button,
   InputGroup,
-  Select,
-  SelectOption,
-  SelectVariant,
+  InputGroupItem,
   TextInput,
   ToolbarFilter,
   ToolbarGroup,
   ToolbarItem,
   ToolbarToggleGroup,
 } from '@patternfly/react-core';
+import {
+  Select,
+  SelectOption,
+  SelectVariant,
+} from '@patternfly/react-core/deprecated';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 
 import { statusOptions } from '../../utils/status';
@@ -106,32 +109,36 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Name"
-          className={selectedFilter !== 'Name' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Name' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <InputGroup>
-              <TextInput
-                id="filterName"
-                type="text"
-                aria-label="Name"
-                placeholder="Filter by name"
-                value={inputName}
-                onChange={(value) => setInputName(value)}
-              />
-              <Button
-                variant="control"
-                aria-label="Search Name"
-                onClick={() => {
-                  if (!inputName) return;
-                  setFilters((prevFilters) => {
-                    const newFilters = { ...prevFilters };
-                    newFilters.name = [inputName];
-                    return newFilters;
-                  });
-                }}
-              >
-                <SearchIcon />
-              </Button>
+              <InputGroupItem isFill>
+                <TextInput
+                  id="filterName"
+                  type="text"
+                  aria-label="Name"
+                  placeholder="Filter by name"
+                  value={inputName}
+                  onChange={(_event, value) => setInputName(value)}
+                />
+              </InputGroupItem>
+              <InputGroupItem>
+                <Button
+                  variant="control"
+                  aria-label="Search Name"
+                  onClick={() => {
+                    if (!inputName) return;
+                    setFilters((prevFilters) => {
+                      const newFilters = { ...prevFilters };
+                      newFilters.name = [inputName];
+                      return newFilters;
+                    });
+                  }}
+                >
+                  <SearchIcon />
+                </Button>
+              </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
@@ -140,13 +147,13 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Region"
-          className={selectedFilter !== 'Region' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Region' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <Select
               variant={SelectVariant.checkbox}
               aria-label="Region"
-              onToggle={setIsRegionExpanded}
+              onToggle={(_event, val) => setIsRegionExpanded(val)}
               onSelect={onRegionSelect}
               selections={filters.region}
               isOpen={isRegionExpanded}
@@ -167,32 +174,36 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Owner"
-          className={selectedFilter !== 'Owner' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Owner' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <InputGroup>
-              <TextInput
-                id="filterOwner"
-                type="text"
-                aria-label="Owner"
-                placeholder="Filter by owner"
-                value={inputOwner}
-                onChange={(value) => setInputOwner(value)}
-              />
-              <Button
-                variant="control"
-                aria-label="Search Owner"
-                onClick={() => {
-                  if (!inputOwner) return;
-                  setFilters((prevFilters) => {
-                    const newFilters = { ...prevFilters };
-                    newFilters.owner = [inputOwner];
-                    return newFilters;
-                  });
-                }}
-              >
-                <SearchIcon />
-              </Button>
+              <InputGroupItem isFill>
+                <TextInput
+                  id="filterOwner"
+                  type="text"
+                  aria-label="Owner"
+                  placeholder="Filter by owner"
+                  value={inputOwner}
+                  onChange={(_event, value) => setInputOwner(value)}
+                />
+              </InputGroupItem>
+              <InputGroupItem>
+                <Button
+                  variant="control"
+                  aria-label="Search Owner"
+                  onClick={() => {
+                    if (!inputOwner) return;
+                    setFilters((prevFilters) => {
+                      const newFilters = { ...prevFilters };
+                      newFilters.owner = [inputOwner];
+                      return newFilters;
+                    });
+                  }}
+                >
+                  <SearchIcon />
+                </Button>
+              </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
@@ -201,13 +212,13 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Status"
-          className={selectedFilter !== 'Status' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Status' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <Select
               variant={SelectVariant.checkbox}
               aria-label="Status"
-              onToggle={setIsStatusExpanded}
+              onToggle={(_event, val) => setIsStatusExpanded(val)}
               onSelect={onStatusSelect}
               selections={filters.status}
               isOpen={isStatusExpanded}

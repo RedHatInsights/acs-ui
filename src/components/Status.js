@@ -20,23 +20,23 @@ const statusMessages = {
   },
   provisioning: {
     message: statuses.provisioning,
-    component: <Spinner isSVG size="md" />,
+    component: <Spinner size="md" />,
   },
   ready: {
     message: statuses.ready,
-    component: <CheckCircleIcon className="pf-u-success-color-100" />,
+    component: <CheckCircleIcon className="pf-v5-u-success-color-100" />,
   },
   failed: {
     message: statuses.failed,
-    component: <ExclamationCircleIcon className="pf-u-danger-color-100" />,
+    component: <ExclamationCircleIcon className="pf-v5-u-danger-color-100" />,
   },
   deprovision: {
     message: statuses.deprovision,
-    component: <Spinner isSVG size="md" />,
+    component: <Spinner size="md" />,
   },
   deleting: {
     message: statuses.deleting,
-    component: <Spinner isSVG size="md" />,
+    component: <Spinner size="md" />,
   },
 };
 

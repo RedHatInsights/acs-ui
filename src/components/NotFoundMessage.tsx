@@ -5,12 +5,13 @@ import {
   Button,
   EmptyState,
   EmptyStateBody,
+  EmptyStateFooter,
+  EmptyStateHeader,
   EmptyStateIcon,
   EmptyStateProps,
   EmptyStateVariant,
   Stack,
   StackItem,
-  Title,
 } from '@patternfly/react-core';
 
 import AppLink from './AppLink';
@@ -31,19 +32,27 @@ const NotFoundMessage: React.FunctionComponent<NotFoundMessageProps> = ({
   ...props
 }) => {
   return (
-    <EmptyState variant={EmptyStateVariant.large} {...props}>
-      <EmptyStateIcon icon={ExclamationCircleIcon} color={dangerColor.value} />
-      <Title headingLevel="h4" size="lg">
-        {errorTitle}
-      </Title>
+    <EmptyState variant={EmptyStateVariant.lg} {...props}>
+      <EmptyStateHeader
+        titleText={<>{errorTitle}</>}
+        icon={
+          <EmptyStateIcon
+            icon={ExclamationCircleIcon}
+            color={dangerColor.value}
+          />
+        }
+        headingLevel="h4"
+      />
       <EmptyStateBody>
         <Stack>
           <StackItem>{errorDescription}</StackItem>
         </Stack>
       </EmptyStateBody>
-      <Button component={(props) => <AppLink {...props} to={url} />}>
-        {actionText}
-      </Button>
+      <EmptyStateFooter>
+        <Button component={(props) => <AppLink {...props} to={url} />}>
+          {actionText}
+        </Button>
+      </EmptyStateFooter>
     </EmptyState>
   );
 };
