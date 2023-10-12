@@ -160,6 +160,14 @@ function CreateInstanceModal({
       )}
       <Form>
         <FormGroup label="Name" isRequired fieldId="name">
+          <TextInput
+            isRequired
+            type="text"
+            id="name"
+            name="name"
+            value={formValues.name}
+            onChange={(_event, value) => onNameChange(value)}
+          />
           <FormHelperText>
             <HelperText>
               <HelperTextItem>
@@ -169,25 +177,12 @@ function CreateInstanceModal({
               </HelperTextItem>
             </HelperText>
           </FormHelperText>
-          <TextInput
-            isRequired
-            type="text"
-            id="name"
-            name="name"
-            value={formValues.name}
-            onChange={(_event, value) => onNameChange(value)}
-          />
         </FormGroup>
         <FormGroup
           label="AWS account number"
           isRequired={cloudAccountIds.length > 1}
           fieldId="cloud_account_id"
         >
-          <FormHelperText>
-            <HelperText>
-              <HelperTextItem>{getAWSHelperText()}</HelperTextItem>
-            </HelperText>
-          </FormHelperText>
           <SelectSingle
             id="cloud_account_id"
             value={formValues.cloud_account_id}
@@ -204,6 +199,11 @@ function CreateInstanceModal({
               );
             })}
           </SelectSingle>
+          <FormHelperText>
+            <HelperText>
+              <HelperTextItem>{getAWSHelperText()}</HelperTextItem>
+            </HelperText>
+          </FormHelperText>
         </FormGroup>
         <FormGroup label="Cloud region" isRequired fieldId="region">
           <SelectSingle
