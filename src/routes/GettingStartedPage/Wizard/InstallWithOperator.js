@@ -6,9 +6,7 @@ import {
   Flex,
   FlexItem,
   List,
-  ListComponent,
   ListItem,
-  OrderType,
   Stack,
   StackItem,
   Title,
@@ -47,7 +45,7 @@ const InstallWithOperator = () => {
         </Flex>
       </StackItem>
       <StackItem>
-        <List component={ListComponent.ol} type={OrderType.number}>
+        <List component="ol" type="1">
           <ListItem>
             Use the OpenShift console to{' '}
             <Button
@@ -63,15 +61,20 @@ const InstallWithOperator = () => {
               install the ACS Operator from Operator Hub
             </Button>
             . Create a new OCP project for ACS. A good name choice is{' '}
-            <span className="pf-u-font-weight-bold">rhacs-operator</span>.
+            <span className="pf-v5-u-font-weight-bold">rhacs-operator</span>.
           </ListItem>
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
-            <span className="pf-u-font-weight-bold">Cluster Init Bundle</span>.
+            <span className="pf-v5-u-font-weight-bold">
+              Cluster Init Bundle
+            </span>
+            .
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={onToggleInitBundleImage}
+              onToggle={(_event, isExpanded) =>
+                onToggleInitBundleImage(isExpanded)
+              }
               isExpanded={initBundleImageExpanded}
             >
               <img
@@ -95,7 +98,7 @@ const InstallWithOperator = () => {
               clickTip="Copied"
               variant="inline-compact"
               isCode
-              className="pf-u-my-sm"
+              className="pf-v5-u-my-sm"
             >
               {`oc -n rhacs-operator create -f bundlename-cluster-init-secrets.yaml`}
             </ClipboardCopy>
@@ -107,7 +110,9 @@ const InstallWithOperator = () => {
             details.
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={onToggleApiEndpointImage}
+              onToggle={(_event, isExpanded) =>
+                onToggleApiEndpointImage(isExpanded)
+              }
               isExpanded={apiEndpointImageExpanded}
             >
               <img
