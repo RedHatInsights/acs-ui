@@ -52,7 +52,7 @@ const InitialSetup = () => {
               variant="secondary"
               icon={<ExternalLinkAltIcon />}
               iconPosition="right"
-              className="pf-u-my-md"
+              className="pf-v5-u-my-md"
               component={(props) => <AppLink {...props} to={'instances'} />}
               aria-label="Create Instance"
               rel="noopener noreferrer nofollow"
@@ -64,7 +64,7 @@ const InitialSetup = () => {
               <ListItem>Choose a name for your instance.</ListItem>
               <ListItem>
                 Follow the rest of the guidelines and click{' '}
-                <span className="pf-u-font-weight-bold">Create Instance</span>.
+                <span className="pf-v5-u-font-weight-bold">Create Instance</span>.
                 <br />
                 It will take about 10 minutes to spin up your instance.
               </ListItem>
@@ -77,7 +77,7 @@ const InitialSetup = () => {
             </TextContent>
           </GridItem>
           <GridItem sm={10} xl2={11}>
-            <TextContent className="pf-u-mb-sm">
+            <TextContent className="pf-v5-u-mb-sm">
               <Text component={TextVariants.h3}>
                 Access the ACS Central Interface
               </Text>
@@ -85,12 +85,12 @@ const InitialSetup = () => {
             <List component={ListComponent.ol} type={OrderType.number}>
               <ListItem>
                 When your instance is in the{' '}
-                <span className="pf-u-font-weight-bold">ready</span> status,
+                <span className="pf-v5-u-font-weight-bold">ready</span> status,
                 click the name for details.
               </ListItem>
               <ListItem>
                 Click the{' '}
-                <span className="pf-u-font-weight-bold">Open ACS Console</span>{' '}
+                <span className="pf-v5-u-font-weight-bold">Open ACS Console</span>{' '}
                 button.
               </ListItem>
               <ListItem>Sign in using your Red Hat credentials.</ListItem>

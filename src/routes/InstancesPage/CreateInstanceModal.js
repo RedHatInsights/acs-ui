@@ -154,7 +154,7 @@ function CreateInstanceModal({
       ]}
     >
       {errorMessage && (
-        <div className="pf-u-mb-md">
+        <div className="pf-v5-u-mb-md">
           <Alert variant="danger" title={errorMessage} />
         </div>
       )}

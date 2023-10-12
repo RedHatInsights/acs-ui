@@ -87,7 +87,7 @@ const InstallWithHelm = () => {
       </StackItem>
       <StackItem>
         <div>
-          <span className="pf-u-font-weight-bold">Prerequisites</span>
+          <span className="pf-v5-u-font-weight-bold">Prerequisites</span>
         </div>
         <div>
           You must have access to the Red Hat Container Registry. For
@@ -108,7 +108,7 @@ const InstallWithHelm = () => {
       </StackItem>
       <StackItem>
         <div>You must also have:</div>
-        <div className="pf-u-ml-xl">
+        <div className="pf-v5-u-ml-xl">
           <div>A command line interface environment (CLI) with:</div>
           <div>
             Access to the target Kubernetes cluster without RHACS installed
@@ -125,7 +125,7 @@ const InstallWithHelm = () => {
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
-            <span className="pf-u-font-weight-bold">Cluster Init Bundle</span>.
+            <span className="pf-v5-u-font-weight-bold">Cluster Init Bundle</span>.
             <ExpandableSection
               toggleText={'Show me where'}
               onToggle={(_event, isExpanded) => onToggleInitBundleImage(isExpanded)}
@@ -146,9 +146,9 @@ const InstallWithHelm = () => {
             services. Supply the created cluster init bundle, a unique cluster
             name, and the centralEndpoint, which is the URI (including port) of
             your ACS instance. This URI is listed as{' '}
-            <span className="pf-u-font-weight-bold">Central API Endpoint</span>{' '}
+            <span className="pf-v5-u-font-weight-bold">Central API Endpoint</span>{' '}
             under{' '}
-            <span className="pf-u-font-weight-bold">Instance Details</span>.
+            <span className="pf-v5-u-font-weight-bold">Instance Details</span>.
             <ExpandableSection
               toggleText={'Show me where'}
               onToggle={(_event, isExpanded) => onToggleApiEndpointImage(isExpanded)}
@@ -162,31 +162,31 @@ const InstallWithHelm = () => {
           </ListItem>
           <ListItem>
             Run the following Helm install command:
-            <CodeBlock actions={actions} className="pf-u-mt-sm">
+            <CodeBlock actions={actions} className="pf-v5-u-mt-sm">
               <CodeBlockCode id="code-content">{codeBlock}</CodeBlockCode>
             </CodeBlock>
-            <div className="pf-u-mt-sm">
+            <div className="pf-v5-u-mt-sm">
               If this is the first time you’re using helm, you will need to add
               the stackrox repo using the following commands:
             </div>
-            <div className="pf-u-mt-sm">
+            <div className="pf-v5-u-mt-sm">
               <ClipboardCopy
                 hoverTip="Copy"
                 clickTip="Copied"
                 variant="inline-compact"
                 isCode
-                className="pf-u-my-sm"
+                className="pf-v5-u-my-sm"
               >
                 {`helm repo add stackrox https://mirror.openshift.com/pub/rhacs/charts`}
               </ClipboardCopy>
             </div>
-            <div className="pf-u-my-sm">
+            <div className="pf-v5-u-my-sm">
               <ClipboardCopy
                 hoverTip="Copy"
                 clickTip="Copied"
                 variant="inline-compact"
                 isCode
-                className="pf-u-my-sm"
+                className="pf-v5-u-my-sm"
               >
                 {`helm repo update`}
               </ClipboardCopy>

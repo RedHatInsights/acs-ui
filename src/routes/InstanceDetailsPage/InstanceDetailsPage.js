@@ -72,14 +72,14 @@ function InstanceDetailsPage() {
           </FlexItem>
         </Flex>
       </PageHeader>
-      <Main className="pf-u-p-0 pf-m-fill pf-m-overflow-scroll">
+      <Main className="pf-v5-u-p-0 pf-m-fill pf-m-overflow-scroll">
         <PageSection>
           <Flex alignItems={{ default: 'alignItemsStretch' }}>
             <FlexItem
               flex={{ default: 'flex_1' }}
               alignSelf={{ default: 'alignSelfStretch' }}
             >
-              <Card className="pf-u-h-100">
+              <Card className="pf-v5-u-h-100">
                 <CardHeader>
                   actions={<>
                     <CardTitle>ACS Instance Access</CardTitle>

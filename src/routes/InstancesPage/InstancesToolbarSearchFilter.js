@@ -108,7 +108,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Name"
-          className={selectedFilter !== 'Name' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Name' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <InputGroup>
@@ -142,7 +142,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Region"
-          className={selectedFilter !== 'Region' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Region' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <Select
@@ -169,7 +169,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Owner"
-          className={selectedFilter !== 'Owner' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Owner' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <InputGroup>
@@ -203,7 +203,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           deleteChip={onDeleteChip}
           deleteChipGroup={onDeleteChipGroup}
           categoryName="Status"
-          className={selectedFilter !== 'Status' && 'pf-u-hidden'}
+          className={selectedFilter !== 'Status' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
             <Select
