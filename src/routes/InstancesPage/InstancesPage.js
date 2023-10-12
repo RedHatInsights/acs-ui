@@ -10,14 +10,17 @@ import {
   Button,
   Card,
   EmptyState,
+  EmptyStateActions,
   EmptyStateBody,
+  EmptyStateFooter,
+  EmptyStateHeader,
   EmptyStateIcon,
   EmptyStateVariant,
   Pagination,
   Spinner,
   Toolbar,
   ToolbarContent,
-  ToolbarItem, EmptyStateActions, EmptyStateHeader, EmptyStateFooter,
+  ToolbarItem,
 } from '@patternfly/react-core';
 import {
   ActionsColumn,
@@ -166,14 +169,23 @@ function InstancesPage() {
   if (instances.length === 0 && Object.keys(filters).length === 0) {
     content = (
       <EmptyState>
-        <EmptyStateHeader titleText="No ACS instances." icon={<EmptyStateIcon icon={CubesIcon} />} headingLevel="h4" />
-        <EmptyStateBody>Create one to get started.</EmptyStateBody><EmptyStateFooter>
-        <EmptyStateActions>
-          <Button variant="primary" onClick={() => onCreateInstanceHandler({})}>
-            Create ACS instance
-          </Button>
-        </EmptyStateActions>
-      </EmptyStateFooter></EmptyState>
+        <EmptyStateHeader
+          titleText="No ACS instances."
+          icon={<EmptyStateIcon icon={CubesIcon} />}
+          headingLevel="h4"
+        />
+        <EmptyStateBody>Create one to get started.</EmptyStateBody>
+        <EmptyStateFooter>
+          <EmptyStateActions>
+            <Button
+              variant="primary"
+              onClick={() => onCreateInstanceHandler({})}
+            >
+              Create ACS instance
+            </Button>
+          </EmptyStateActions>
+        </EmptyStateFooter>
+      </EmptyState>
     );
   } else {
     content = (
@@ -237,14 +249,20 @@ function InstancesPage() {
                 <Td colSpan={8}>
                   <Bullseye>
                     <EmptyState variant={EmptyStateVariant.sm}>
-                      <EmptyStateHeader titleText="No results found" icon={<EmptyStateIcon icon={SearchIcon} />} headingLevel="h2" />
+                      <EmptyStateHeader
+                        titleText="No results found"
+                        icon={<EmptyStateIcon icon={SearchIcon} />}
+                        headingLevel="h2"
+                      />
                       <EmptyStateBody>
                         Clear all filters and try again.
-                      </EmptyStateBody><EmptyStateFooter>
-                      <Button variant="link" onClick={onClearFilters}>
-                        Clear all filters
-                      </Button>
-                    </EmptyStateFooter></EmptyState>
+                      </EmptyStateBody>
+                      <EmptyStateFooter>
+                        <Button variant="link" onClick={onClearFilters}>
+                          Clear all filters
+                        </Button>
+                      </EmptyStateFooter>
+                    </EmptyState>
                   </Bullseye>
                 </Td>
               </Tr>

@@ -1,9 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import {
-	Select,
-	SelectVariant
-} from '@patternfly/react-core/deprecated';
+import { Select, SelectVariant } from '@patternfly/react-core/deprecated';
 
 function SelectSingle({
   toggleIcon,

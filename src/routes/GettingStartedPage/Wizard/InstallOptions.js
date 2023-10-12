@@ -1,20 +1,17 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-	Flex,
-	FlexItem,
-	Radio,
-	Stack,
-	StackItem,
-	Text,
-	TextContent,
-	TextVariants,
-	Title
+  Flex,
+  FlexItem,
+  Radio,
+  Stack,
+  StackItem,
+  Text,
+  TextContent,
+  TextVariants,
+  Title,
 } from '@patternfly/react-core';
-import {
-	Select,
-	SelectOption
-} from '@patternfly/react-core/deprecated';
+import { Select, SelectOption } from '@patternfly/react-core/deprecated';
 
 import HeaderExternalLink from './HeaderExternalLink';
 

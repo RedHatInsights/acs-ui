@@ -1,18 +1,19 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Button,
-	InputGroup,
-	TextInput,
-	ToolbarFilter,
-	ToolbarGroup,
-	ToolbarItem,
-	ToolbarToggleGroup, InputGroupItem
+  Button,
+  InputGroup,
+  InputGroupItem,
+  TextInput,
+  ToolbarFilter,
+  ToolbarGroup,
+  ToolbarItem,
+  ToolbarToggleGroup,
 } from '@patternfly/react-core';
 import {
-	Select,
-	SelectOption,
-	SelectVariant
+  Select,
+  SelectOption,
+  SelectVariant,
 } from '@patternfly/react-core/deprecated';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
 
@@ -112,28 +113,32 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
         >
           <ToolbarItem>
             <InputGroup>
-              <InputGroupItem isFill ><TextInput
-                id="filterName"
-                type="text"
-                aria-label="Name"
-                placeholder="Filter by name"
-                value={inputName}
-                onChange={(_event, value) => setInputName(value)}
-              /></InputGroupItem>
-              <InputGroupItem><Button
-                variant="control"
-                aria-label="Search Name"
-                onClick={() => {
-                  if (!inputName) return;
-                  setFilters((prevFilters) => {
-                    const newFilters = { ...prevFilters };
-                    newFilters.name = [inputName];
-                    return newFilters;
-                  });
-                }}
-              >
-                <SearchIcon />
-              </Button></InputGroupItem>
+              <InputGroupItem isFill>
+                <TextInput
+                  id="filterName"
+                  type="text"
+                  aria-label="Name"
+                  placeholder="Filter by name"
+                  value={inputName}
+                  onChange={(_event, value) => setInputName(value)}
+                />
+              </InputGroupItem>
+              <InputGroupItem>
+                <Button
+                  variant="control"
+                  aria-label="Search Name"
+                  onClick={() => {
+                    if (!inputName) return;
+                    setFilters((prevFilters) => {
+                      const newFilters = { ...prevFilters };
+                      newFilters.name = [inputName];
+                      return newFilters;
+                    });
+                  }}
+                >
+                  <SearchIcon />
+                </Button>
+              </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
@@ -173,28 +178,32 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
         >
           <ToolbarItem>
             <InputGroup>
-              <InputGroupItem isFill ><TextInput
-                id="filterOwner"
-                type="text"
-                aria-label="Owner"
-                placeholder="Filter by owner"
-                value={inputOwner}
-                onChange={(_event, value) => setInputOwner(value)}
-              /></InputGroupItem>
-              <InputGroupItem><Button
-                variant="control"
-                aria-label="Search Owner"
-                onClick={() => {
-                  if (!inputOwner) return;
-                  setFilters((prevFilters) => {
-                    const newFilters = { ...prevFilters };
-                    newFilters.owner = [inputOwner];
-                    return newFilters;
-                  });
-                }}
-              >
-                <SearchIcon />
-              </Button></InputGroupItem>
+              <InputGroupItem isFill>
+                <TextInput
+                  id="filterOwner"
+                  type="text"
+                  aria-label="Owner"
+                  placeholder="Filter by owner"
+                  value={inputOwner}
+                  onChange={(_event, value) => setInputOwner(value)}
+                />
+              </InputGroupItem>
+              <InputGroupItem>
+                <Button
+                  variant="control"
+                  aria-label="Search Owner"
+                  onClick={() => {
+                    if (!inputOwner) return;
+                    setFilters((prevFilters) => {
+                      const newFilters = { ...prevFilters };
+                      newFilters.owner = [inputOwner];
+                      return newFilters;
+                    });
+                  }}
+                >
+                  <SearchIcon />
+                </Button>
+              </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>

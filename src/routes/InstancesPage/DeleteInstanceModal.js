@@ -101,8 +101,9 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         </FormGroup>
         <HelperText>
           <HelperTextItem>
-            Type <span className="pf-v5-u-font-weight-bold">{instance.name}</span>{' '}
-            to confirm.
+            Type{' '}
+            <span className="pf-v5-u-font-weight-bold">{instance.name}</span> to
+            confirm.
           </HelperTextItem>
         </HelperText>
         {errorMessage.length > 0 && (

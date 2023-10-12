@@ -34,7 +34,10 @@ function OverviewPage() {
   const { isEntitled } = useContext(AppContext);
   return (
     <div>
-      <PageSection variant={PageSectionVariants.light} className="pf-v5-u-p-2xl">
+      <PageSection
+        variant={PageSectionVariants.light}
+        className="pf-v5-u-p-2xl"
+      >
         <Flex direction={{ default: 'column' }}>
           <FlexItem>
             <Grid hasGutter>
