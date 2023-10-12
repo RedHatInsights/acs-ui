@@ -10,20 +10,21 @@ import {
   Button,
   Card,
   EmptyState,
+  EmptyStateActions,
   EmptyStateBody,
+  EmptyStateFooter,
+  EmptyStateHeader,
   EmptyStateIcon,
-  EmptyStatePrimary,
   EmptyStateVariant,
   Pagination,
   Spinner,
-  Title,
   Toolbar,
   ToolbarContent,
   ToolbarItem,
 } from '@patternfly/react-core';
 import {
   ActionsColumn,
-  TableComposable,
+  Table /* data-codemods */,
   Tbody,
   Td,
   Th,
@@ -168,16 +169,22 @@ function InstancesPage() {
   if (instances.length === 0 && Object.keys(filters).length === 0) {
     content = (
       <EmptyState>
-        <EmptyStateIcon icon={CubesIcon} />
-        <Title size="lg" headingLevel="h4">
-          No ACS instances.
-        </Title>
+        <EmptyStateHeader
+          titleText="No ACS instances."
+          icon={<EmptyStateIcon icon={CubesIcon} />}
+          headingLevel="h4"
+        />
         <EmptyStateBody>Create one to get started.</EmptyStateBody>
-        <EmptyStatePrimary>
-          <Button variant="primary" onClick={() => onCreateInstanceHandler({})}>
-            Create ACS instance
-          </Button>
-        </EmptyStatePrimary>
+        <EmptyStateFooter>
+          <EmptyStateActions>
+            <Button
+              variant="primary"
+              onClick={() => onCreateInstanceHandler({})}
+            >
+              Create ACS instance
+            </Button>
+          </EmptyStateActions>
+        </EmptyStateFooter>
       </EmptyState>
     );
   } else {
@@ -215,7 +222,7 @@ function InstancesPage() {
             )}
           </ToolbarContent>
         </Toolbar>
-        <TableComposable aria-label="ACS instances table">
+        <Table aria-label="ACS instances table">
           <Thead>
             <Tr>
               <Th sort={getSortParams('name')}>Name</Th>
@@ -241,17 +248,20 @@ function InstancesPage() {
               <Tr>
                 <Td colSpan={8}>
                   <Bullseye>
-                    <EmptyState variant={EmptyStateVariant.small}>
-                      <EmptyStateIcon icon={SearchIcon} />
-                      <Title headingLevel="h2" size="lg">
-                        No results found
-                      </Title>
+                    <EmptyState variant={EmptyStateVariant.sm}>
+                      <EmptyStateHeader
+                        titleText="No results found"
+                        icon={<EmptyStateIcon icon={SearchIcon} />}
+                        headingLevel="h2"
+                      />
                       <EmptyStateBody>
                         Clear all filters and try again.
                       </EmptyStateBody>
-                      <Button variant="link" onClick={onClearFilters}>
-                        Clear all filters
-                      </Button>
+                      <EmptyStateFooter>
+                        <Button variant="link" onClick={onClearFilters}>
+                          Clear all filters
+                        </Button>
+                      </EmptyStateFooter>
                     </EmptyState>
                   </Bullseye>
                 </Td>
@@ -326,7 +336,7 @@ function InstancesPage() {
                 );
               })}
           </Tbody>
-        </TableComposable>
+        </Table>
         {instances.length !== 0 && (
           <Toolbar>
             <ToolbarContent>

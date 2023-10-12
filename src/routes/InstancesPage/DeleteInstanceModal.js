@@ -77,10 +77,10 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         </Button>,
       ]}
     >
-      <div className="pf-u-pb-md">
+      <div className="pf-v5-u-pb-md">
         <div>
           This will permanently delete{' '}
-          <span className="pf-u-font-weight-bold">{instance.name}</span>.
+          <span className="pf-v5-u-font-weight-bold">{instance.name}</span>.
         </div>
         <div>This action cannot be undone.</div>
       </div>
@@ -96,13 +96,14 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
             id="confirmationInstanceName"
             name="confirmationInstanceName"
             value={inputValue}
-            onChange={setInputValue}
+            onChange={(_event, val) => setInputValue(val)}
           />
         </FormGroup>
         <HelperText>
           <HelperTextItem>
-            Type <span className="pf-u-font-weight-bold">{instance.name}</span>{' '}
-            to confirm.
+            Type{' '}
+            <span className="pf-v5-u-font-weight-bold">{instance.name}</span> to
+            confirm.
           </HelperTextItem>
         </HelperText>
         {errorMessage.length > 0 && (

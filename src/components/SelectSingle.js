@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Select, SelectVariant } from '@patternfly/react-core';
+import { Select, SelectVariant } from '@patternfly/react-core/deprecated';
 
 function SelectSingle({
   toggleIcon,
@@ -34,7 +34,7 @@ function SelectSingle({
       isDisabled={isDisabled}
       isOpen={isOpen}
       onSelect={onSelect}
-      onToggle={setIsOpen}
+      onToggle={(_event, val) => setIsOpen(val)}
       selections={value}
       direction={direction}
       isCreatable={isCreatable}
