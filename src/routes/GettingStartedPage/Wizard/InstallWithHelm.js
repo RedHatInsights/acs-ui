@@ -10,9 +10,7 @@ import {
   Flex,
   FlexItem,
   List,
-  ListComponent,
   ListItem,
-  OrderType,
   Stack,
   StackItem,
   Title,
@@ -121,14 +119,19 @@ const InstallWithHelm = () => {
         </div>
       </StackItem>
       <StackItem>
-        <List component={ListComponent.ol} type={OrderType.number}>
+        <List component="ol" type="1">
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
-            <span className="pf-v5-u-font-weight-bold">Cluster Init Bundle</span>.
+            <span className="pf-v5-u-font-weight-bold">
+              Cluster Init Bundle
+            </span>
+            .
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={(_event, isExpanded) => onToggleInitBundleImage(isExpanded)}
+              onToggle={(_event, isExpanded) =>
+                onToggleInitBundleImage(isExpanded)
+              }
               isExpanded={initBundleImageExpanded}
             >
               <img
@@ -146,12 +149,16 @@ const InstallWithHelm = () => {
             services. Supply the created cluster init bundle, a unique cluster
             name, and the centralEndpoint, which is the URI (including port) of
             your ACS instance. This URI is listed as{' '}
-            <span className="pf-v5-u-font-weight-bold">Central API Endpoint</span>{' '}
+            <span className="pf-v5-u-font-weight-bold">
+              Central API Endpoint
+            </span>{' '}
             under{' '}
             <span className="pf-v5-u-font-weight-bold">Instance Details</span>.
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={(_event, isExpanded) => onToggleApiEndpointImage(isExpanded)}
+              onToggle={(_event, isExpanded) =>
+                onToggleApiEndpointImage(isExpanded)
+              }
               isExpanded={apiEndpointImageExpanded}
             >
               <img

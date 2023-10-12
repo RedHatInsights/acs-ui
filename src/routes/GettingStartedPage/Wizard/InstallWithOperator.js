@@ -6,9 +6,7 @@ import {
   Flex,
   FlexItem,
   List,
-  ListComponent,
   ListItem,
-  OrderType,
   Stack,
   StackItem,
   Title,
@@ -47,7 +45,7 @@ const InstallWithOperator = () => {
         </Flex>
       </StackItem>
       <StackItem>
-        <List component={ListComponent.ol} type={OrderType.number}>
+        <List component="ol" type="1">
           <ListItem>
             Use the OpenShift console to{' '}
             <Button
@@ -68,10 +66,15 @@ const InstallWithOperator = () => {
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
-            <span className="pf-v5-u-font-weight-bold">Cluster Init Bundle</span>.
+            <span className="pf-v5-u-font-weight-bold">
+              Cluster Init Bundle
+            </span>
+            .
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={(_event, isExpanded) => onToggleInitBundleImage(isExpanded)}
+              onToggle={(_event, isExpanded) =>
+                onToggleInitBundleImage(isExpanded)
+              }
               isExpanded={initBundleImageExpanded}
             >
               <img
@@ -107,7 +110,9 @@ const InstallWithOperator = () => {
             details.
             <ExpandableSection
               toggleText={'Show me where'}
-              onToggle={(_event, isExpanded) => onToggleApiEndpointImage(isExpanded)}
+              onToggle={(_event, isExpanded) =>
+                onToggleApiEndpointImage(isExpanded)
+              }
               isExpanded={apiEndpointImageExpanded}
             >
               <img

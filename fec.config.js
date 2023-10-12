@@ -16,7 +16,7 @@ module.exports = {
     // We want to access a PROD env variable within the UI code
     new webpack.DefinePlugin({
       'process.env.PROD': process?.env?.NODE_ENV === 'production',
-    })
+    }),
   ],
   _unstableHotReload: process.env.HOT === 'true',
   moduleFederation: {
@@ -27,6 +27,7 @@ module.exports = {
           singleton: true,
           import: false,
           requiredVersion: '^6.3.0',
+          version: '^6.3.0',
         },
       },
     ],

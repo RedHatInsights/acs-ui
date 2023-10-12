@@ -6,9 +6,7 @@ import {
   Grid,
   GridItem,
   List,
-  ListComponent,
   ListItem,
-  OrderType,
   Stack,
   StackItem,
   Text,
@@ -60,11 +58,14 @@ const InitialSetup = () => {
             >
               Create Instance
             </Button>
-            <List component={ListComponent.ol} type={OrderType.number}>
+            <List component="ol" type="1">
               <ListItem>Choose a name for your instance.</ListItem>
               <ListItem>
                 Follow the rest of the guidelines and click{' '}
-                <span className="pf-v5-u-font-weight-bold">Create Instance</span>.
+                <span className="pf-v5-u-font-weight-bold">
+                  Create Instance
+                </span>
+                .
                 <br />
                 It will take about 10 minutes to spin up your instance.
               </ListItem>
@@ -82,7 +83,7 @@ const InitialSetup = () => {
                 Access the ACS Central Interface
               </Text>
             </TextContent>
-            <List component={ListComponent.ol} type={OrderType.number}>
+            <List component="ol" type="1">
               <ListItem>
                 When your instance is in the{' '}
                 <span className="pf-v5-u-font-weight-bold">ready</span> status,
@@ -90,7 +91,9 @@ const InitialSetup = () => {
               </ListItem>
               <ListItem>
                 Click the{' '}
-                <span className="pf-v5-u-font-weight-bold">Open ACS Console</span>{' '}
+                <span className="pf-v5-u-font-weight-bold">
+                  Open ACS Console
+                </span>{' '}
                 button.
               </ListItem>
               <ListItem>Sign in using your Red Hat credentials.</ListItem>
