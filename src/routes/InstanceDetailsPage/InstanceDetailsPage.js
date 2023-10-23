@@ -81,12 +81,7 @@ function InstanceDetailsPage() {
             >
               <Card className="pf-v5-u-h-100">
                 <CardHeader>
-                  actions=
-                  {
-                    <>
-                      <CardTitle>ACS Instance Access</CardTitle>
-                    </>
-                  }
+                  <CardTitle>ACS Instance Access</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Flex direction={{ default: 'column' }}>
@@ -111,12 +106,7 @@ function InstanceDetailsPage() {
             <FlexItem flex={{ default: 'flex_1' }}>
               <Card>
                 <CardHeader>
-                  actions=
-                  {
-                    <>
-                      <CardTitle>Instance Details</CardTitle>
-                    </>
-                  }
+                  <CardTitle>Instance Details</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <InstanceDetailsList instance={instance} />
