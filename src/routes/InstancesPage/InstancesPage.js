@@ -279,13 +279,14 @@ function InstancesPage() {
                     key={instance.name}
                     onRowClick={(event) => {
                       if (
-                        event.target.getAttribute('type') !== 'button' &&
+                        event.target.tagName === 'TD' &&
                         instance.status === 'ready'
                       ) {
                         setViewingInstance(instance);
                       }
                     }}
                     isRowSelected={viewingInstance?.name === instance?.name}
+                    isClickable
                   >
                     <Td dataLabel="Name">
                       <Button
