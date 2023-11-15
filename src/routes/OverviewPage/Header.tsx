@@ -12,22 +12,15 @@ import {
   TextContent,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import service from '../../assets/ACS_service_icon.svg';
 
 function Header() {
   return (
     <PageSection variant={PageSectionVariants.light}>
       <Flex>
-        <FlexItem>
-          <Icon
-            size="sm"
-            className="pf-v5-u-ml-md"
-            color="currentColor"
-            // noVerticalAlign={false}
-          >
-            <ExternalLinkAltIcon />
-          </Icon>
+        <FlexItem alignSelf={{ default: 'alignSelfCenter' }}>
+          <img src={service} alt="ACS service" />
         </FlexItem>
-
         <Divider
           orientation={{
             default: 'vertical',

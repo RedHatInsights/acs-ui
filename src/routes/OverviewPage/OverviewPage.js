@@ -27,7 +27,7 @@ import {
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import AppLink from '../../components/AppLink';
 
-// import Header from './Header';
+import Header from './Header';
 import bannerImage from '../../assets/banner_image.png';
 import AppContext from '../../context/AppContext';
 
@@ -35,7 +35,7 @@ function OverviewPage() {
   const { isEntitled } = useContext(AppContext);
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <PageSection
         variant={PageSectionVariants.light}
         className="pf-v5-u-p-2xl"
