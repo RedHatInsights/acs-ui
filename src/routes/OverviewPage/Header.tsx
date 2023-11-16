@@ -37,7 +37,7 @@ function Header() {
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
-              href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes#talk-to-a-red-hatter"
+              href="https://www.docs.openshift.com/acs"
               isInline
             >
               Learn more
