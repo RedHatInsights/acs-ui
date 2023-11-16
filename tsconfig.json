@@ -28,7 +28,6 @@
   "exclude": [
     "./src/entry.ts",
     "./*.js",
-    // "./*.d.ts",
     "./generated/**/*"
   ]
 }
