@@ -3,12 +3,8 @@ import {
   Button,
   Card,
   CardBody,
-  CardTitle,
   Flex,
   FlexItem,
-  Grid,
-  GridItem,
-  Stack,
   Text,
   TextContent,
   TextVariants,
@@ -21,35 +17,31 @@ function GetStartedCard() {
   return (
     <Card>
       <CardBody>
-        <Flex>
-          <FlexItem>
-            <TextContent>
-              <Text component={TextVariants.h2}>
-                Get started with Red Hat Advanced Cluster Security
-              </Text>
-            </TextContent>
-          </FlexItem>
-          <Flex direction={{ default: 'column' }}>
+        <Flex
+          alignContent={{ default: 'alignContentFlexEnd' }}
+          direction={{ default: 'row' }}
+        >
+          <Flex
+            direction={{ default: 'column' }}
+            flex={{ default: 'flex_1' }}
+            alignSelf={{ default: 'alignSelfCenter' }}
+          >
             <FlexItem>
-              <Grid hasGutter>
-                <GridItem span={8}>
-                  <Stack hasGutter>
-                    <TextContent>
-                      <Text component={TextVariants.p}>
-                        Red Hat Advanced Cluster Security Cloud Service provides
-                        a Kubernetes-native architecture for container security,
-                        enabling DevOps and InfoSec teams to operationalize full
-                        life cycle container and Kubernetes security.
-                      </Text>
-                    </TextContent>
-                  </Stack>
-                </GridItem>
-                <GridItem span={2}>
-                  <img src={bannerImage} />
-                </GridItem>
-              </Grid>
+              <TextContent>
+                <Text component={TextVariants.h2}>
+                  Get started with Advanced Cluster Security
+                </Text>
+              </TextContent>
             </FlexItem>
-            <Flex>
+            <FlexItem>
+              <Text component={TextVariants.p}>
+                Red Hat Advanced Cluster Security Cloud Service provides a
+                Kubernetes-native architecture for container security, enabling
+                DevOps and InfoSec teams to operationalize full life cycle
+                container and Kubernetes security.
+              </Text>
+            </FlexItem>
+            <Flex direction={{ default: 'row' }} className="pf-u-mt-md">
               <FlexItem>
                 <Button
                   component="a"
@@ -72,6 +64,9 @@ function GetStartedCard() {
               </FlexItem>
             </Flex>
           </Flex>
+          <FlexItem alignSelf={{ default: 'alignSelfFlexEnd' }}>
+            <img src={bannerImage} style={{ width: '180px' }} />
+          </FlexItem>
         </Flex>
       </CardBody>
     </Card>
