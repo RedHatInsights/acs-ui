@@ -27,10 +27,8 @@ import {
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import AppLink from '../../components/AppLink';
 
-import Header from './Header';
 import bannerImage from '../../assets/banner_image.png';
 import AppContext from '../../context/AppContext';
-import GetStartedCard from './GetStartedCard';
 
 function OverviewPage() {
   const { isEntitled } = useContext(AppContext);
