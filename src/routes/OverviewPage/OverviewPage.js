@@ -29,7 +29,6 @@ import AppLink from '../../components/AppLink';
 
 import bannerImage from '../../assets/banner_image.png';
 import AppContext from '../../context/AppContext';
-import ProductDocumentationCard from './ProductDocumentationCard';
 
 function OverviewPage() {
   const { isEntitled } = useContext(AppContext);
@@ -109,7 +108,7 @@ function OverviewPage() {
       <PageSection>
         <Grid hasGutter lg={6}>
           <GridItem>
-            {/* <Card className="pf-v5-u-h-100">
+            <Card className="pf-v5-u-h-100">
               <CardHeader>
                 <CardTitle>
                   <Flex>
@@ -174,8 +173,7 @@ function OverviewPage() {
                   </FlexItem>
                 </Flex>
               </CardFooter>
-            </Card> */}
-            <ProductDocumentationCard />
+            </Card>
           </GridItem>
           <GridItem>
             <Card className="pf-v5-u-h-100">
