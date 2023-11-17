@@ -19,7 +19,7 @@ function Header() {
     <PageSection variant={PageSectionVariants.light}>
       <Flex>
         <FlexItem alignSelf={{ default: 'alignSelfCenter' }}>
-          <img src={service} alt="ACS service" />
+          <img src={service} alt="" />
         </FlexItem>
         <Divider
           orientation={{
