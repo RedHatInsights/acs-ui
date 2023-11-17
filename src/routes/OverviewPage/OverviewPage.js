@@ -27,86 +27,18 @@ import {
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import AppLink from '../../components/AppLink';
 
+import Header from './Header';
 import bannerImage from '../../assets/banner_image.png';
 import AppContext from '../../context/AppContext';
+import GetStartedCard from './GetStartedCard';
 
 function OverviewPage() {
   const { isEntitled } = useContext(AppContext);
   return (
     <div>
-      <PageSection
-        variant={PageSectionVariants.light}
-        className="pf-v5-u-p-2xl"
-      >
-        <Flex direction={{ default: 'column' }}>
-          <FlexItem>
-            <Grid hasGutter>
-              <GridItem span={8}>
-                <Stack hasGutter>
-                  <TextContent>
-                    <Text component={TextVariants.h1}>
-                      Get started with Red Hat Advanced Cluster Security Cloud
-                      Service
-                    </Text>
-                  </TextContent>
-                  <TextContent
-                    component={TextVariants.p}
-                    className="pf-v5-u-color-200 pf-v5-u-font-size-lg"
-                  >
-                    <Text>
-                      Fully hosted cloud service for protecting cloud native
-                      applications and Kubernetes
-                    </Text>
-                  </TextContent>
-                  <TextContent>
-                    <Text component={TextVariants.p}>
-                      Red Hat® Advanced Cluster Security for Kubernetes is the
-                      pioneering Kubernetes-native security platform, that
-                      equips organizations to more securely build, deploy, and
-                      run cloud-native applications anywhere. The solution RHACS
-                      Cloud Service helps improve the security of the
-                      application build process, protects the application
-                      platform and configurations, detects runtime issues, and
-                      facilitates response. RHACS Cloud Service lowers
-                      operational costs by reducing the learning curve for
-                      implementing Kubernetes security, provides built-in
-                      controls for enforcement to reduce operational risk, and
-                      uses a Kubernetes-native approach that supports built-in
-                      security across the entire software development life
-                      cycle, facilitating greater developer productivity.
-                    </Text>
-                  </TextContent>
-                </Stack>
-              </GridItem>
-              <GridItem span={4}>
-                <img src={bannerImage} />
-              </GridItem>
-            </Grid>
-          </FlexItem>
-          <FlexItem>
-            {isEntitled ? (
-              <Button
-                component={(props) => (
-                  <AppLink {...props} to={'getting-started'} />
-                )}
-              >
-                Get Started
-              </Button>
-            ) : (
-              <Button
-                component="a"
-                href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes/cloud-service/trial"
-                target="_blank"
-                variant="primary"
-              >
-                Start a free trial
-              </Button>
-            )}
-          </FlexItem>
-        </Flex>
-      </PageSection>
+      <Header />
       <PageSection>
-        <Grid hasGutter lg={6}>
+        {/* <Grid hasGutter lg={6}>
           <GridItem>
             <Card className="pf-v5-u-h-100">
               <CardHeader>
@@ -225,7 +157,9 @@ function OverviewPage() {
               </CardFooter>
             </Card>
           </GridItem>
-        </Grid>
+        </Grid> */}
+
+        <GetStartedCard />
       </PageSection>
       <PageSection>
         <Card className="pf-v5-u-h-100">
