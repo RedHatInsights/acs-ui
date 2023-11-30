@@ -4,7 +4,6 @@ import {
   ButtonVariant,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   CardTitle,
   Flex,
@@ -34,12 +33,6 @@ function ProductDocumentationCard() {
               <Label isCompact color="green">
                 Documentation
               </Label>
-              <Text
-                component={TextVariants.small}
-                className="pf-v5-u-color-200 pf-u-ml-sm"
-              >
-                access.redhat.com
-              </Text>
             </FlexItem>
           </Flex>
         </CardTitle>
@@ -59,7 +52,7 @@ function ProductDocumentationCard() {
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
-              href=" https://aws.amazon.com/marketplace/pp/prodview-epwnwxab4jwdo"
+              href=" https://docs.openshift.com/acs"
               isInline
             >
               View documentation
@@ -70,17 +63,6 @@ function ProductDocumentationCard() {
           </FlexItem>
         </Flex>
       </CardBody>
-      <CardFooter>
-        <Button
-          variant={ButtonVariant.link}
-          component="a"
-          target="_blank"
-          href=" https://aws.amazon.com/marketplace/pp/prodview-epwnwxab4jwdo"
-          isInline
-        >
-          View all Application and Data Services Learning resources.
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
