@@ -33,7 +33,7 @@ function ExpandableDescription({
       displaySize="lg"
       isWidthLimited
     >
-      {children}
+      <div className="pf-u-mt-sm">{children}</div>
     </ExpandableSection>
   );
 }
