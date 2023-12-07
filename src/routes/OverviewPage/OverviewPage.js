@@ -1,289 +1,41 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
-  Button,
-  ButtonVariant,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  DescriptionList,
-  DescriptionListDescription,
-  DescriptionListGroup,
-  DescriptionListTerm,
-  Divider,
-  Flex,
-  FlexItem,
   Grid,
   GridItem,
-  Icon,
   PageSection,
   PageSectionVariants,
-  Stack,
-  Text,
-  TextContent,
-  TextVariants,
 } from '@patternfly/react-core';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import AppLink from '../../components/AppLink';
-
-import bannerImage from '../../assets/banner_image.png';
-import AppContext from '../../context/AppContext';
+import Header from './Header';
+import GetStartedCard from './GetStartedCard';
+import DescriptionsCard from './DescriptionsCard';
+import ProductDocumentationCard from './ProductDocumentationCard';
+import PricingSection from './PricingSection';
+import ProductDemoCard from './ProductDemoCard';
 
 function OverviewPage() {
-  const { isEntitled } = useContext(AppContext);
   return (
     <div>
-      <PageSection
-        variant={PageSectionVariants.light}
-        className="pf-v5-u-p-2xl"
-      >
-        <Flex direction={{ default: 'column' }}>
-          <FlexItem>
-            <Grid hasGutter>
-              <GridItem span={8}>
-                <Stack hasGutter>
-                  <TextContent>
-                    <Text component={TextVariants.h1}>
-                      Get started with Red Hat Advanced Cluster Security Cloud
-                      Service
-                    </Text>
-                  </TextContent>
-                  <TextContent
-                    component={TextVariants.p}
-                    className="pf-v5-u-color-200 pf-v5-u-font-size-lg"
-                  >
-                    <Text>
-                      Fully hosted cloud service for protecting cloud native
-                      applications and Kubernetes
-                    </Text>
-                  </TextContent>
-                  <TextContent>
-                    <Text component={TextVariants.p}>
-                      Red Hat® Advanced Cluster Security for Kubernetes is the
-                      pioneering Kubernetes-native security platform, that
-                      equips organizations to more securely build, deploy, and
-                      run cloud-native applications anywhere. The solution RHACS
-                      Cloud Service helps improve the security of the
-                      application build process, protects the application
-                      platform and configurations, detects runtime issues, and
-                      facilitates response. RHACS Cloud Service lowers
-                      operational costs by reducing the learning curve for
-                      implementing Kubernetes security, provides built-in
-                      controls for enforcement to reduce operational risk, and
-                      uses a Kubernetes-native approach that supports built-in
-                      security across the entire software development life
-                      cycle, facilitating greater developer productivity.
-                    </Text>
-                  </TextContent>
-                </Stack>
-              </GridItem>
-              <GridItem span={4}>
-                <img src={bannerImage} />
-              </GridItem>
-            </Grid>
-          </FlexItem>
-          <FlexItem>
-            {isEntitled ? (
-              <Button
-                component={(props) => (
-                  <AppLink {...props} to={'getting-started'} />
-                )}
-              >
-                Get Started
-              </Button>
-            ) : (
-              <Button
-                component="a"
-                href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes/cloud-service/trial"
-                target="_blank"
-                variant="primary"
-              >
-                Start a free trial
-              </Button>
-            )}
-          </FlexItem>
-        </Flex>
+      <PageSection variant={PageSectionVariants.light}>
+        <Header />
       </PageSection>
       <PageSection>
-        <Grid hasGutter lg={6}>
+        <Grid hasGutter>
           <GridItem>
-            <Card className="pf-v5-u-h-100">
-              <CardHeader>
-                <CardTitle>
-                  <Flex>
-                    <FlexItem spacer={{ default: 'spacerSm' }}>
-                      <TextContent>
-                        <Text component="h2">Purchase now</Text>
-                      </TextContent>
-                    </FlexItem>
-                    <FlexItem>
-                      <TextContent>
-                        <Text className="pf-v5-u-color-200">
-                          (US/Canada or EMEA only)
-                        </Text>
-                      </TextContent>
-                    </FlexItem>
-                  </Flex>
-                </CardTitle>
-              </CardHeader>
-              <CardBody>
-                Purchase a pay-as-you-go subscription for Managed vCPU units
-                using one of our Marketplace options below.
-              </CardBody>
-              <CardFooter>
-                <Flex>
-                  <FlexItem className="pf-v5-u-mt-md pf-v5-u-mb-md">
-                    <Button
-                      variant={ButtonVariant.link}
-                      component="a"
-                      target="_blank"
-                      href=" https://aws.amazon.com/marketplace/pp/prodview-epwnwxab4jwdo"
-                      isInline
-                    >
-                      AWS Marketplace (North America)
-                      <Icon
-                        size="sm"
-                        className="pf-v5-u-ml-md"
-                        color="currentColor"
-                        noVerticalAlign={false}
-                      >
-                        <ExternalLinkAltIcon />
-                      </Icon>
-                    </Button>
-                  </FlexItem>
-                  <FlexItem>
-                    <Button
-                      variant={ButtonVariant.link}
-                      component="a"
-                      target="_blank"
-                      href="https://aws.amazon.com/marketplace/pp/prodview-oefmjyqe64ces"
-                      isInline
-                    >
-                      AWS Marketplace (EMEA)
-                      <Icon
-                        className="pf-v5-u-ml-md"
-                        size="sm"
-                        color="currentColor"
-                        noVerticalAlign={false}
-                      >
-                        <ExternalLinkAltIcon />
-                      </Icon>
-                    </Button>
-                  </FlexItem>
-                </Flex>
-              </CardFooter>
-            </Card>
+            <GetStartedCard />
           </GridItem>
           <GridItem>
-            <Card className="pf-v5-u-h-100">
-              <CardHeader>
-                <CardTitle>
-                  <Flex>
-                    <FlexItem spacer={{ default: 'spacerSm' }}>
-                      <TextContent>
-                        <Text component="h2">Contact sales</Text>
-                      </TextContent>
-                    </FlexItem>
-                    <FlexItem>
-                      <TextContent>
-                        <Text className="pf-v5-u-color-200">
-                          (Available for all regions)
-                        </Text>
-                      </TextContent>
-                    </FlexItem>
-                  </Flex>
-                </CardTitle>
-              </CardHeader>
-              <CardBody>
-                Contact sales to get a prepaid subscription that fits your
-                needs. Sales can help set up a prepaid subscription, modify a
-                current subscription or get a longer trial
-              </CardBody>
-              <CardFooter>
-                <Flex>
-                  <FlexItem>
-                    <Button
-                      variant={ButtonVariant.link}
-                      component="a"
-                      target="_blank"
-                      href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes#talk-to-a-red-hatter"
-                      isInline
-                    >
-                      Contact sales
-                      <Icon
-                        size="sm"
-                        className="pf-v5-u-ml-md"
-                        color="currentColor"
-                        noVerticalAlign={false}
-                      >
-                        <ExternalLinkAltIcon />
-                      </Icon>
-                    </Button>
-                  </FlexItem>
-                </Flex>
-              </CardFooter>
-            </Card>
+            <DescriptionsCard />
+          </GridItem>
+          <GridItem>
+            <PricingSection />
+          </GridItem>
+          <GridItem span={6}>
+            <ProductDocumentationCard />
+          </GridItem>
+          <GridItem span={6}>
+            <ProductDemoCard />
           </GridItem>
         </Grid>
-      </PageSection>
-      <PageSection>
-        <Card className="pf-v5-u-h-100">
-          <CardTitle>
-            <TextContent>
-              <Text component="h2">Pricing model</Text>
-            </TextContent>
-          </CardTitle>
-          <CardBody>
-            <Flex spaceItems={{ default: 'spaceItemsXl' }}>
-              <Flex
-                alignSelf={{ default: 'alignSelfCenter' }}
-                flex={{ default: 'flex_1' }}
-                justifyContent={{ default: 'justifyContentCenter' }}
-              >
-                <FlexItem>
-                  <DescriptionList isHorizontal>
-                    <DescriptionListGroup>
-                      <DescriptionListTerm>Managed vCPU</DescriptionListTerm>
-                      <DescriptionListDescription>
-                        $0.03 / hour
-                      </DescriptionListDescription>
-                    </DescriptionListGroup>
-                  </DescriptionList>
-                </FlexItem>
-              </Flex>
-              <Divider orientation={{ default: 'vertical' }} />
-              <FlexItem flex={{ default: 'flex_1' }}>
-                <TextContent>
-                  <Text component="p">
-                    A <strong>managed vCPU</strong> means the number of vCPU
-                    measured on a managed cluster
-                  </Text>
-                </TextContent>
-              </FlexItem>
-            </Flex>
-          </CardBody>
-        </Card>
-      </PageSection>
-      <PageSection>
-        <Card>
-          <CardTitle>
-            <TextContent>
-              <Text component="h2">Brief demo</Text>
-            </TextContent>
-          </CardTitle>
-          <CardBody className="pf-v5-u-w-100 pf-v5-u-w-75-on-lg pf-v5-u-w-50-on-xl">
-            <div className="marketing-video">
-              <iframe
-                src="https://www.youtube.com/embed/uPjvVGjoiZw"
-                title="Short Demo of Advanced Cluster Security"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </CardBody>
-        </Card>
       </PageSection>
     </div>
   );
