@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon } from '@patternfly/react-core';
+import { Card, Icon, List, ListItem } from '@patternfly/react-core';
 import {
   BugIcon,
   ClipboardCheckIcon,
@@ -46,18 +46,31 @@ function DescriptionsCard() {
           </Icon>
         }
       >
-        <p className="pf-u-mb-lg">
-          Scans images for known vulnerabilities based on specific languages,
-          packages, and image layers. Provides a dashboard highlighting the
-          riskiest image vulnerabilities and deployments.
-        </p>
-        <p>
-          Verifies image signatures against preconfigured keys for image
-          attestation and integrity. Correlates vulnerabilities to running
-          deployments, not just images Enforces policies based on vulnerability
-          details at build time using continuous integration/continuous delivery
-          (CI/CD) integrations.
-        </p>
+        <List>
+          <ListItem>
+            Detects host-level vulnerabilities and potential security threats in
+            Red Hat Enterprise Linux® CoreOS.
+          </ListItem>
+          <ListItem>
+            Scans images for known vulnerabilities based on specific languages,
+            packages, and image layers.
+          </ListItem>
+          <ListItem>
+            Provides a dashboard highlighting the riskiest image vulnerabilities
+            and deployments.
+          </ListItem>
+          <ListItem>
+            Verifies image signatures against preconfigured keys for image
+            attestation and integrity.
+          </ListItem>
+          <ListItem>
+            Correlates vulnerabilities to running deployments, not just images.
+          </ListItem>
+          <ListItem>
+            Enforces policies based on vulnerability details at build time using
+            continuous integration/continuous delivery (CI/CD) integrations.
+          </ListItem>
+        </List>
       </ExpandableDescription>
       <ExpandableDescription
         title="Compliance"
@@ -67,21 +80,23 @@ function DescriptionsCard() {
           </Icon>
         }
       >
-        <p className="pf-u-mb-lg">
-          Assesses compliance across many controls for CIS Benchmarks, payment
-          card industry (PCI), Health Insurance Portability and Accountability
-          Act (HIPAA), NERC-CIP, and NIST SP 800-190 and 800-53.
-        </p>
-        <p className="pf-u-mb-lg">
-          Delivers at-a-glance dashboards of overall compliance across the
-          controls of each standard with evidence exported to meet auditor
-          needs.
-        </p>
-        <p>
-          Provides a detailed view of compliance details to pinpoint clusters,
-          namespaces, nodes, or deployments namespaces that do not comply with
-          specific standards and controls.
-        </p>
+        <List>
+          <ListItem>
+            Assesses compliance across many controls for CIS Benchmarks, payment
+            card industry (PCI), Health Insurance Portability and Accountability
+            Act (HIPAA), NERC-CIP, and NIST SP 800-190 and 800-53.
+          </ListItem>
+          <ListItem>
+            Delivers at-a-glance dashboards of overall compliance across the
+            controls of each standard with evidence exported to meet auditor
+            needs.
+          </ListItem>
+          <ListItem>
+            Provides a detailed view of compliance details to pinpoint clusters,
+            namespaces, nodes, or deployments namespaces that do not comply with
+            specific standards and controls.
+          </ListItem>
+        </List>
       </ExpandableDescription>
       <ExpandableDescription
         title="Network segmentation"
@@ -91,14 +106,16 @@ function DescriptionsCard() {
           </Icon>
         }
       >
-        <p className="pf-u-mb-lg">
-          Visualizes allowed vs. active traffic between namespaces, deployments,
-          and pods, including external exposures.
-        </p>
-        <p>
-          Simulates network policy changes before they are implemented to
-          minimize operational risk to the environment.
-        </p>
+        <List>
+          <ListItem>
+            Visualizes allowed vs. active traffic between namespaces,
+            deployments, and pods, including external exposures.
+          </ListItem>
+          <ListItem>
+            Simulates network policy changes before they are implemented to
+            minimize operational risk to the environment.
+          </ListItem>
+        </List>
       </ExpandableDescription>
       <ExpandableDescription
         title="Risk profiling"
@@ -108,16 +125,18 @@ function DescriptionsCard() {
           </Icon>
         }
       >
-        <p className="pf-u-mb-lg">
-          Heuristically ranks your running deployments according to their
-          overall security risk by combining security-relevant data such as
-          vulnerabilities, configuration policy violations, and runtime
-          activity.
-        </p>
-        <p>
-          Tracks improvements in the security posture of your Kubernetes
-          deployments to validate the impact of your security team actions.
-        </p>
+        <List>
+          <ListItem>
+            Heuristically ranks your running deployments according to their
+            overall security risk by combining security-relevant data such as
+            vulnerabilities, configuration policy violations, and runtime
+            activity.
+          </ListItem>
+          <ListItem>
+            Tracks improvements in the security posture of your Kubernetes
+            deployments to validate the impact of your security team actions.
+          </ListItem>
+        </List>
       </ExpandableDescription>
       <ExpandableDescription
         title="Configuration management"
@@ -127,20 +146,22 @@ function DescriptionsCard() {
           </Icon>
         }
       >
-        <p className="pf-u-mb-lg">
-          Delivers prebuilt DevOps and security policies to identify
-          configuration violations related to network exposures, privileged
-          containers, processes running as root, and compliance with industry
-          standards.
-        </p>
-        <p className="pf-u-mb-lg">
-          Analyzes Kubernetes role-based access control (RBAC) settings to
-          determine user or service account privileges and misconfigurations.
-        </p>
-        <p>
-          Tracks secrets and detects which deployments use the secrets to limit
-          access.
-        </p>
+        <List>
+          <ListItem>
+            Delivers prebuilt DevOps and security policies to identify
+            configuration violations related to network exposures, privileged
+            containers, processes running as root, and compliance with industry
+            standards.
+          </ListItem>
+          <ListItem>
+            Analyzes Kubernetes role-based access control (RBAC) settings to
+            determine user or service account privileges and misconfigurations.
+          </ListItem>
+          <ListItem>
+            Tracks secrets and detects which deployments use the secrets to
+            limit access.
+          </ListItem>
+        </List>
       </ExpandableDescription>
       <ExpandableDescription
         title="Runtime detection and response"
@@ -150,19 +171,21 @@ function DescriptionsCard() {
           </Icon>
         }
       >
-        <p className="pf-u-mb-lg">
-          Monitors system-level events within containers to detect anomalous
-          activity indicative of a threat with the automated response using
-          Kubernetes-native controls.
-        </p>
-        <p className="pf-u-mb-lg">
-          Baselines process activity in containers to automatically whitelist
-          processes, eliminating the need to manually whitelist.
-        </p>
-        <p>
-          Uses prebuilt policies to detect crypto mining, privilege escalation,
-          and various exploits.
-        </p>
+        <List>
+          <ListItem>
+            Monitors system-level events within containers to detect anomalous
+            activity indicative of a threat with the automated response using
+            Kubernetes-native controls.
+          </ListItem>
+          <ListItem>
+            Baselines process activity in containers to automatically whitelist
+            processes, eliminating the need to manually whitelist.
+          </ListItem>
+          <ListItem>
+            Uses prebuilt policies to detect crypto mining, privilege
+            escalation, and various exploits.
+          </ListItem>
+        </List>
       </ExpandableDescription>
     </Card>
   );
