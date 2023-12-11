@@ -64,7 +64,9 @@ function DescriptionsCard() {
             attestation and integrity.
           </ListItem>
           <ListItem>
-            Correlates vulnerabilities to running deployments, not just images
+            Correlates vulnerabilities to running deployments, not just images.
+          </ListItem>
+          <ListItem>
             Enforces policies based on vulnerability details at build time using
             continuous integration/continuous delivery (CI/CD) integrations.
           </ListItem>
