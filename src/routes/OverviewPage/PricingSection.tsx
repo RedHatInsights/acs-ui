@@ -12,12 +12,10 @@ function PricingSection() {
         <a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes#talk-to-a-red-hatter">
           Contact Sales (all regions)
         </a>{' '}
-        to get a prepaid subscription that fits your needs.
+        to get a subscription that fits your needs.
         <div className="pf-u-mb-xl" />
         <strong>Managed CPU</strong> A managed CPU means the number of CPU
         measured on a managed cluster.
-        <br />
-        $0.03 / hour
       </HintBody>
     </Hint>
   );
