@@ -5,8 +5,10 @@ function PricingSection() {
   return (
     <Hint>
       <HintBody>
-        <strong>Ready to purchase Advanced Cluster Security?</strong> Learn more
-        about our pricing models with{' '}
+        <strong>
+          Ready to purchase Red Hat Advanced Cluster Security Cloud Service?
+        </strong>{' '}
+        Learn more about our pricing models with{' '}
         <a href="">Amazon Marketplace (North America)</a> or{' '}
         <a href="">Amazon Marketplace (EMEA)</a>.{' '}
         <a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes#talk-to-a-red-hatter">

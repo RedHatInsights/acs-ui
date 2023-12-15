@@ -25,7 +25,8 @@ function ProductDocumentationCard() {
             <FlexItem spacer={{ default: 'spacerSm' }}>
               <TextContent>
                 <Text component={TextVariants.h2}>
-                  ACS product documentation
+                  Red Hat Advanced Cluster Security Cloud Service product
+                  documentation
                 </Text>
               </TextContent>
             </FlexItem>
@@ -41,7 +42,7 @@ function ProductDocumentationCard() {
         <Flex>
           <FlexItem>
             <Text component={TextVariants.p}>
-              Learn about Red Hat Advanced Cluster Security for Kubernetes and
+              Learn about Red Hat Advanced Cluster Security Cloud Service and
               start exploring its features. This documentation will guide from
               installation to configuration, operation, and integrating with
               other products.

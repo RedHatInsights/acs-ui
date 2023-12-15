@@ -29,7 +29,8 @@ function GetStartedCard() {
             <FlexItem>
               <TextContent>
                 <Text component={TextVariants.h2}>
-                  Get started with Advanced Cluster Security
+                  Get started with Red Hat Advanced Cluster Security Cloud
+                  Service
                 </Text>
               </TextContent>
             </FlexItem>
@@ -59,7 +60,7 @@ function GetStartedCard() {
                   )}
                   variant="link"
                 >
-                  Get started with ACS
+                  Get started
                 </Button>
               </FlexItem>
             </Flex>
