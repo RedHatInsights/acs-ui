@@ -37,7 +37,7 @@ function Header() {
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
-              href="https://www.docs.openshift.com/acs"
+              href="https://docs.openshift.com/acs"
               isInline
             >
               Learn more

@@ -16,7 +16,7 @@ function DescriptionsCard() {
   return (
     <Card>
       <ExpandableDescription
-        title="About Advanced Cluster Security"
+        title="About Red Hat Advanced Cluster Security Cloud Service"
         icon={
           <Icon size="lg" color="blue">
             <CloudSecurityIcon />
@@ -24,13 +24,13 @@ function DescriptionsCard() {
         }
       >
         <p className="pf-u-mt-sm">
-          Red Hat® Advanced Cluster Security for Kubernetes is the pioneering
+          Red Hat Advanced Cluster Security Cloud Service is the pioneering
           Kubernetes-native security platform, equipping organizations to more
           securely build, deploy, and run cloud-native applications anywhere.
           The solution helps improve the security of the application build
           process, protect the application platform and configurations, and
           detect and respond to runtime issues. Red Hat Advanced Cluster
-          Security for Kubernetes lowers operational costs by reducing the
+          Security Cloud Service lowers operational costs by reducing the
           learning curve for implementing Kubernetes security, provides built-in
           controls for enforcement to reduce operational risk, and uses a
           Kubernetes-native approach that supports built-in security across the
