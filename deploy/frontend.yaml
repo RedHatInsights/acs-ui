@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: acs
+objects:
+  - apiVersion: cloud.redhat.com/v1alpha1
+    kind: Frontend
+    metadata:
+      name: acs
+    spec:
+      envName: ${ENV_NAME}
+      title: ACS UI
+      deploymentRepo: https://github.com/RedHatInsights/acs-ui
+      frontend:
+        paths:
+          - /apps/acs
+      API:
+        versions:
+          - v1
+      image: ${IMAGE}:${IMAGE_TAG}
+      navItems:
+        - appId: "acs"
+          title: "Overview"
+          href: "/application-services/acs/overview"
+          product: "Advanced Cluster Security"
+        - appId: "acs"
+          title: "Getting Started"
+          href: "/application-services/acs/getting-started"
+          product: "Advanced Cluster Security"
+        - appId: "acs"
+          title: "ACS Instances"
+          href: "/application-services/acs/instances"
+          product: "Advanced Cluster Security"
+      module:
+        manifestLocation: "/apps/acs/fed-mods.json"
+        modules:
+          - id: "acs"
+            module: "./RootApp"
+            routes:
+              - pathname: /application-services/acs
+parameters:
+  - name: ENV_NAME
+    required: true
+  - name: IMAGE_TAG
+    required: true
+  - name: IMAGE
+    value: quay.io/cloudservices/acs-ui
+
