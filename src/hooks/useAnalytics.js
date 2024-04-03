@@ -17,11 +17,18 @@ function useAnalytics() {
     const analyticsDevKeySet =
       localStorage.getItem('chrome:analytics:dev') === 'true';
 
-    console.log('DEBUG');
     console.log('process.env', process.env.NODE_ENV);
 
     if (process.env.NODE_ENV === 'production') {
       console.log('will get removed if not "production"');
+    }
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log('will get removed if not "development"');
+    }
+
+    if (process.env.NODE_ENV) {
+      console.log('will get removed if not set to any value');
     }
 
     if (isProdEnv || (isDevEnv && analyticsDevKeySet)) {
