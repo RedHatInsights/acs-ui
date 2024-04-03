@@ -1,4 +1,4 @@
-import useChrome from "@redhat-cloud-services/frontend-components/useChrome";
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 // the chrome hook assumes we're in a prod env because local development points
 // to prod.foo.redhat.com and uses the wrong write key when initializing segment.
@@ -12,13 +12,13 @@ function useAnalytics() {
   const { analytics } = useChrome();
 
   function analyticsTrack(event) {
-    const isProdEnv = process.env.NODE_ENV === "production";
-    const isDevEnv = process.env.NODE_ENV === "development";
+    const isProdEnv = process.env.NODE_ENV === 'production';
+    const isDevEnv = process.env.NODE_ENV === 'development';
     const analyticsDevKeySet =
-      localStorage.getItem("chrome:analytics:dev") === "true";
+      localStorage.getItem('chrome:analytics:dev') === 'true';
 
-    console.log("DEBUG");
-    console.log("process.env", process.env);
+    console.log('DEBUG');
+    console.log('process.env', process.env);
 
     if (isProdEnv || (isDevEnv && analyticsDevKeySet)) {
       analytics.track(event);
