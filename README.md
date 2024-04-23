@@ -60,12 +60,12 @@ These are the urls for each branch:
 
 ### Beta
 
-* main -> <https://console.stage.redhat.com/preview/application-services/acs>
-* qa-beta -> <https://qaprodauth.console.redhat.com/preview/application-services/acs>
-* prod-beta -> <https://console.redhat.com/preview/application-services/acs>
+* main -> <https://console.stage.redhat.com/preview/application-services/acs> or <https://console.stage.redhat.com/preview/openshift/acs>
+* qa-beta -> <https://qaprodauth.console.redhat.com/preview/application-services/acs> or <https://qaprodauth.console.redhat.com/preview/openshift/acs>
+* prod-beta -> <https://console.redhat.com/preview/application-services/acs> or <https://console.redhat.com/preview/openshift/acs>
 
 ### Stable
 
-* stage-stable -> <https://console.stage.redhat.com/application-services/acs>
-* qa-stable -> <https://qaprodauth.console.redhat.com/application-services/acs>
-* prod-stable -> <https://console.redhat.com/application-services/acs>
+* stage-stable -> <https://console.stage.redhat.com/application-services/acs> or <https://console.stage.redhat.com/openshift/acs>
+* qa-stable -> <https://qaprodauth.console.redhat.com/application-services/acs> or <https://qaprodauth.console.redhat.com/openshift/acs>
+* prod-stable -> <https://console.redhat.com/application-services/acs> or <https://console.redhat.com/openshift/acs>
