@@ -3,71 +3,142 @@ import {
   Button,
   Card,
   CardBody,
+  CardFooter,
+  CardTitle,
   Flex,
   FlexItem,
+  ProgressStep,
+  ProgressStepper,
   Text,
   TextContent,
   TextVariants,
 } from '@patternfly/react-core';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-alt-icon';
 
 import bannerImage from '../../assets/banner_image.png';
 import AppLink from '../../components/AppLink';
+import './GetStartedCard.css';
 
 function GetStartedCard() {
   return (
     <Card>
       <CardBody>
-        <Flex
-          alignContent={{ default: 'alignContentFlexEnd' }}
-          direction={{ default: 'row' }}
-        >
-          <Flex
-            direction={{ default: 'column' }}
-            flex={{ default: 'flex_1' }}
-            alignSelf={{ default: 'alignSelfCenter' }}
-          >
-            <FlexItem>
-              <TextContent>
-                <Text component={TextVariants.h2}>
-                  Get started with Red Hat Advanced Cluster Security Cloud
-                  Service
-                </Text>
-              </TextContent>
-            </FlexItem>
-            <FlexItem>
-              <Text component={TextVariants.p}>
-                Red Hat Advanced Cluster Security Cloud Service provides a
-                Kubernetes-native architecture for container security, enabling
-                DevOps and InfoSec teams to operationalize full life cycle
-                container and Kubernetes security.
-              </Text>
-            </FlexItem>
-            <Flex direction={{ default: 'row' }} className="pf-u-mt-md">
+        <Flex direction={{ default: 'column' }}>
+          <Flex className="pf-u-mb-xl">
+            <Flex
+              direction={{ default: 'column' }}
+              flex={{ default: 'flex_1' }}
+              alignSelf={{ default: 'alignSelfCenter' }}
+            >
               <FlexItem>
-                <Button
-                  component="a"
-                  href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes/cloud-service/trial"
-                  target="_blank"
-                  variant="primary"
-                >
-                  Start free trial
-                </Button>
+                <TextContent>
+                  <Text component={TextVariants.h2}>
+                    Get started with Red Hat Advanced Cluster Security Cloud
+                    Service
+                  </Text>
+                </TextContent>
               </FlexItem>
               <FlexItem>
-                <Button
-                  component={(props) => (
-                    <AppLink {...props} to={'getting-started'} />
-                  )}
-                  variant="link"
-                >
-                  Get started
-                </Button>
+                <Text component={TextVariants.p}>
+                  Red Hat Advanced Cluster Security Cloud Service provides a
+                  Kubernetes-native architecture for container security,
+                  enabling DevOps and InfoSec teams to operationalize full life
+                  cycle container and Kubernetes security.
+                </Text>
               </FlexItem>
             </Flex>
+            <Flex direction={{ default: 'row' }} className="pf-u-mt-md"></Flex>
+            <FlexItem alignSelf={{ default: 'alignSelfFlexEnd' }}>
+              <img src={bannerImage} style={{ width: '180px' }} />
+            </FlexItem>
           </Flex>
-          <FlexItem alignSelf={{ default: 'alignSelfFlexEnd' }}>
-            <img src={bannerImage} style={{ width: '180px' }} />
-          </FlexItem>
+          <ProgressStepper
+            isCenterAligned
+            aria-label="Red Hat Advanced Cluster Security Getting Started Stepper"
+            className="pf-u-mb-md"
+            id="ACS-progress-stepper"
+          >
+            <ProgressStep
+              variant="default"
+              id="ACS-getting-started-step1"
+              titleId="ACS-getting-started-step1-title"
+              aria-label="ACS getting started step 1"
+              icon={1}
+            >
+              <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
+                <CardTitle>Get an ACS subscription</CardTitle>
+                <CardBody className="pf-u-pb-0">
+                  Start with a free trial now with a 60-day, self-supported
+                  subscription to Red Hat® Advanced Cluster Security Cloud
+                  Service.
+                </CardBody>
+                <CardFooter>
+                  <Button
+                    component="a"
+                    href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes/cloud-service/trial"
+                    target="_blank"
+                    variant="link"
+                    icon={<ExternalLinkAltIcon className="pf-u-ml-xs" />}
+                    iconPosition="end"
+                  >
+                    Start with a free trial
+                  </Button>
+                </CardFooter>
+              </Card>
+            </ProgressStep>
+            <ProgressStep
+              variant="default"
+              id="ACS-getting-started-step2"
+              titleId="ACS-getting-started-step2-title"
+              aria-label="ACS getting started step 2"
+              icon={2}
+            >
+              <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
+                <CardTitle>Create an ACS instance</CardTitle>
+                <CardBody className="pf-u-pb-0">
+                  If you&apos;re already subscribed to ACS, continue the process
+                  by setting up an ACS instance to get started with securing
+                  your clusters.
+                </CardBody>
+                <CardFooter>
+                  <Button
+                    component={(props) => (
+                      <AppLink {...props} to={'instances'} />
+                    )}
+                    variant="link"
+                  >
+                    Create ACS instance
+                  </Button>
+                </CardFooter>
+              </Card>
+            </ProgressStep>
+            <ProgressStep
+              variant="default"
+              id="ACS-getting-started-step3"
+              titleId="ACS-getting-started-step3-title"
+              aria-label="ACS getting started step 3"
+              icon={3}
+            >
+              <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
+                <CardTitle>Secure a cluster</CardTitle>
+                <CardBody className="pf-u-pb-0">
+                  Once you&apos;ve got your ACS instance up and running, open
+                  the designated ACS console from your ACS instance and follow
+                  the instructions to secure a cluster.
+                </CardBody>
+                <CardFooter>
+                  <Button
+                    component={(props) => (
+                      <AppLink {...props} to={'getting-started'} />
+                    )}
+                    variant="link"
+                  >
+                    Secure a cluster
+                  </Button>
+                </CardFooter>
+              </Card>
+            </ProgressStep>
+          </ProgressStepper>
         </Flex>
       </CardBody>
     </Card>
