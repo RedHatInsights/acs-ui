@@ -373,7 +373,9 @@ function InstancesPage() {
       <Main>
         <Card>{content}</Card>
         <CreateInstanceModal
-          isOpen={!!creatingInstance}
+          isOpen={
+            !!creatingInstance || (instances.length === 0 && !isTableLoading)
+          }
           onClose={closeCreateInstanceModal}
           onRequestCreate={onRequestCreate}
           cloudAccountIds={cloudAccountIds}
