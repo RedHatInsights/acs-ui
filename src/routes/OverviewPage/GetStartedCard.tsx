@@ -77,6 +77,7 @@ function GetStartedCard() {
                     component="a"
                     href="https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes/cloud-service/trial"
                     target="_blank"
+                    rel="noopener noreferrer nofollow"
                     variant="link"
                     icon={<ExternalLinkAltIcon className="pf-u-ml-xs" />}
                     iconPosition="end"
