@@ -68,9 +68,8 @@ function GetStartedCard() {
               <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
                 <CardTitle>Get an ACS subscription</CardTitle>
                 <CardBody className="pf-u-pb-0">
-                  Start with a free trial now with a 60-day, self-supported
-                  subscription to Red Hat® Advanced Cluster Security Cloud
-                  Service.
+                  Start a 60-day free trial subscription to Red Hat® Advanced
+                  Cluster Security Cloud Service.
                 </CardBody>
                 <CardFooter>
                   <Button
@@ -82,7 +81,7 @@ function GetStartedCard() {
                     icon={<ExternalLinkAltIcon className="pf-u-ml-xs" />}
                     iconPosition="end"
                   >
-                    Start with a free trial
+                    Activate your 60-day trial now
                   </Button>
                 </CardFooter>
               </Card>
