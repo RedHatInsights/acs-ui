@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  appUrl: '/application-services/acs',
+  appUrl: ['/application-services/acs', '/openshift/acs'],
   debug: true,
   useProxy: true,
   proxyVerbose: true,
@@ -18,6 +18,16 @@ module.exports = {
       'process.env.PROD': process?.env?.NODE_ENV === 'production',
     }),
   ],
+  routes: {
+    ...(process.env.CONFIG_PORT && {
+      '/api/chrome-service/v1/static': {
+        host: `http://localhost:${process.env.CONFIG_PORT}`,
+      },
+      '/api/chrome-service/v1/dashboard-templates': {
+        host: `http://localhost:${process.env.CONFIG_PORT}`,
+      },
+    }),
+  },
   _unstableHotReload: process.env.HOT === 'true',
   moduleFederation: {
     exclude: ['react-router-dom'],
