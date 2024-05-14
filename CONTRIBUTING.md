@@ -10,50 +10,19 @@
 
 ## Deployment
 
-### Build repo
+Commits to `main` will automatically be built via Jenkins webhook and can be viewed [here](https://ci.ext.devshift.net/blue/organizations/jenkins/pipelines/?search=acs-ui).
 
-There is a [build repo](https://github.com/RedHatInsights/acs-ui-build) associated with this repo. Whenever there are updates to certain branches within this repo, github actions will trigger certain workflows that update branches in the build repo.
+Successful builds off of `main` will automatically be deployed to the **staging (preview)** environment. All other environments require manual intervention in order to deploy.
 
-### Github actions
-
-The workflow files will do the following based on which branch was updated:
-
-1. Run the build command to get the build files located in the build directory
-2. Clone the build repo and copy over the build directory
-3. Add some extra files necessary for RedHatInsights automation to work properly
-4. Commit the new files to the appropriate branch in the build repo
-
-### Branch updates
-
-Check the [deploying](https://github.com/RedHatInsights/acs-ui#deploying) section for information about how build files will be pushed to the [build repo](https://github.com/RedHatInsights/acs-ui-build)
-
-The main branches of interest in the **acs-ui** repo are the following:
-- main
-- stable
-- prod-beta
-- prod-stable
-
-Updates to these branches will update the following branches in the **acs-ui-build** repo:
-- main -> qa-beta
-- stable -> qa-stable
-- prod-beta -> prod-beta
-- prod-stable -> prod-stable
-
-### Build repo webhook
-
-There is a Jenkins webhook configured for the [build repo](https://github.com/RedHatInsights/acs-ui-build) that notifies RedHatInsights automation that changes occured for the branches in that repo. Once RedHatInsights automation is notified, the changes will propagate the appropriate environments
-
-To access the Jenkins dashboard go [here](https://insights-dev-jenkins.apps.crcd01ue1.zmsj.p1.openshiftapps.com/job/insights-frontend-deployer/)
-
-If you don't have access, please message @gburges or @Martin Maroši and they'll help you with getting access
+Deployment to other environments is done by changing the `ref` hash in the [deploy.yml in app-interface](https://gitlab.cee.redhat.com/service/app-interface/-/blob/master/data/services/insights/acs-ui/deploy.yml?ref_type=heads#L29) to match the full hash of a commit to this repository that has a successful build. This will deploy the image with a matching tag from [Quay](https://quay.io/repository/cloudservices/acs-ui?tab=info) to the selected environment.
 
 ### Environments
 
-The following are the URLs for the environments associated with the [build repo](https://github.com/RedHatInsights/acs-ui-build) branches:
-- qa-beta -> https://qaprodauth.console.redhat.com/beta/application-services/acs
-- qa-stable -> https://qaprodauth.console.redhat.com/application-services/acs
-- prod-beta -> https://console.redhat.com/beta/application-services/acs
-- prod-stable -> https://console.redhat.com/application-services/acs
+The following are the URLs for the environments associated with the ACS UI deployments:
+- staging (preview) -> https://console.dev.redhat.com/preview/openshift/acs
+- staging -> https://console.dev.redhat.com/openshift/acs
+- prod (preview) -> https://console.redhat.com/preview/openshift/acs
+- prod -> https://console.redhat.com/openshift/acs
 
 ## Release Cycle
 
