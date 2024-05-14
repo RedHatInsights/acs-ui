@@ -45,7 +45,7 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 
 ## Deploying
 
-> Note that the majority of the following information was dervied from the original frontend container migration document [here](https://consoledot.pages.redhat.com/docs/dev/containerized-frontends/overview/overview.html) (VPN)
+> Note that the majority of the following information was derived from the original frontend container migration document [here](https://consoledot.pages.redhat.com/docs/dev/containerized-frontends/overview/overview.html) (VPN)
 
 The following environments are available for deployment:
 
