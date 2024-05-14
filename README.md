@@ -23,15 +23,15 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 
 ## Getting started
 
-1. ```npm install```
+1. `npm install`
 
-2. ```npm run start```
+2. `npm run start`
 
 3. select `prod` -> `beta`
 
 4. Open browser to the URL listed in the terminal output
 
-**Note:**  You will need to register for a personal Red Hat Account if you haven't already. You'll need it in order to log into the UI
+**Note:** You will need to register for a personal Red Hat Account if you haven't already. You'll need it in order to log into the UI
 
 ### Testing
 
@@ -39,33 +39,74 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 
 ## Definitions
 
-* `prod` - Production
-* `beta` - Some UI features or even services are in a pre-release or preview state. Usually only in stage.
-* `stable` - Non-beta stable version
+- `prod` - Production
+- `preview` - Some UI features or even services are in a pre-release or preview state. Usually only in stage.
+- `stable` - Non-preview stable version
 
 ## Deploying
 
-* The starter repo uses Travis to deploy the webpack build to another Github repo defined in `.travis.yml`
-  * Pushing to the specified branches will update the following environments
-    * `main` -> `stage-beta`
-    * `qa-beta` -> `qa-beta`
-    * `prod-beta` -> `prod-beta`
-    * `stage-stable` -> `stage-stable`
-    * `qa-stable` -> `qa-stable`
-    * `prod-stable` -> `prod-stable`
+> Note that the majority of the following information was derived from the original frontend container migration document [here](https://consoledot.pages.redhat.com/docs/dev/containerized-frontends/overview/overview.html) (VPN)
 
-## Branch links and syncing
+The following environments are available for deployment:
 
-These are the urls for each branch:
+- Staging (Preview): https://console.dev.redhat.com/preview/application-services/acs/overview or https://console.dev.redhat.com/preview/openshift/acs/overview
+- Staging: https://console.dev.redhat.com/application-services/acs/overview or https://console.dev.redhat.com/openshift/acs/overview
+- Production (Preview): https://console.redhat.com/preview/application-services/acs/overview or https://console.redhat.com/preview/openshift/acs/overview
+- Production: https://console.redhat.com/application-services/acs/overview or https://console.redhat.com/openshift/acs/overview
 
-### Beta
+### Containerized builds
 
-* main -> <https://console.stage.redhat.com/preview/application-services/acs> or <https://console.stage.redhat.com/preview/openshift/acs>
-* qa-beta -> <https://qaprodauth.console.redhat.com/preview/application-services/acs> or <https://qaprodauth.console.redhat.com/preview/openshift/acs>
-* prod-beta -> <https://console.redhat.com/preview/application-services/acs> or <https://console.redhat.com/preview/openshift/acs>
+Upon a commit being merged to `main` the app will be automatically built twice via Jenkins: a stable build and a preview build. The
+latter build will have `process.env.BETA` set to `true` at build time if the app relies on any code paths that should
+differ at build time. Both of these builds will be included into a single image, with `/preview/` and `/stable/` subdirectories under the `/dist/`
+directory on the image's file system.
 
-### Stable
+A build will also be initialized when a PR is opened against the acs-ui repository, and pushed to Quay with a tag in the format of `pr-<PR#>-<sha>`. These images will only be available for testing for 3 days.
 
-* stage-stable -> <https://console.stage.redhat.com/application-services/acs> or <https://console.stage.redhat.com/openshift/acs>
-* qa-stable -> <https://qaprodauth.console.redhat.com/application-services/acs> or <https://qaprodauth.console.redhat.com/openshift/acs>
-* prod-stable -> <https://console.redhat.com/application-services/acs> or <https://console.redhat.com/openshift/acs>
+Note that no commits other than merges to `main` will be automatically deployed to any environment.
+
+> Until the Travis configuration is removed from this repository, commits to `main`, `qa-beta`, `prod-beta`, `stage-stable`, `qa-stable`, `prod-stable` will result in a build using the legacy build system and deployment of those build files to NetStorage. These deployed files will be used only as a backup if we need to revert Akamai routing rules and will not be accessible via console.redhat.com otherwise.
+
+You can troubleshoot image builds by visiting [Jenkins](https://ci.ext.devshift.net/blue/organizations/jenkins/pipelines/?search=acs-ui).
+
+Images will be pushed to the cloudservices organization on [Quay](https://quay.io/repository/cloudservices/acs-ui?tab=info).
+
+### Deploying to an environment
+
+New images built from the `main` branch will be automatically deployed to **staging preview**, as configured in the `resourceTemplates`
+section of our deploy configuration in [app-interface](https://gitlab.cee.redhat.com/service/app-interface/-/blob/master/data/services/insights/acs-ui/deploy.yml?ref_type=heads#L29).
+
+```mermaid
+---
+title: Workflow merging a PR to `main`
+---
+flowchart TD
+    A["main"] -- Merge PR with commit sha 222abc --> B("Jenkins started via webhook")
+    B -- Build stable UI --> D["process.env.BETA=false"]
+    B -- Build preview UI --> E["process.env.BETA=true"]
+    D -- Build output => dist/stable --> node_evlmrmo2a["Creates image: quay.io/cloudservices/acs-ui:222abc"]
+    E -- Build output => dist/preview --> node_evlmrmo2a
+    node_evlmrmo2a --> node_w61zluy7f["Push to Quay repo"]
+    node_w61zluy7f -- Detected change to `main` via app-interface config --> node_5d086iej9["Deploys to #staging-preview"]
+    node_5d086iej9 --> node_shzevizbp["Post to Slack #acs-consoledot-ui-notifications"]
+      node_04z47zuwh["--- app-interface deploy.yaml\n\n# staging-preview\nref: main\n# staging\nref: 123456\n# prod-preview\nref: 123456\n# prod\nref: 123456"]
+    style node_04z47zuwh text-align:left,stroke-width:2px,stroke-dasharray: 2,stroke:#FF6D00,fill:#FFE0B2,color:#000000
+```
+
+Images for **staging**, **production-preview**, and **production** will only be deployed when a MR is made to the above app-interface deploy.yaml that updates
+the image ref for a given environment. Note again that image refs must match a commit on the `main` branch and should have an image with a tag matching the commit sha in Quay.
+
+New deployments to any of the four environments will be announced on Slack channel [#acs-consoledot-ui-notifications](https://redhat.enterprise.slack.com/archives/C06T3LAN9KJ).
+
+```mermaid
+---
+title: Updating other environments via app interface
+config: {}
+---
+
+flowchart TD
+    node_w61zluy7f["Merge MR changing the staging ref hash (<b>222abc</b>) in app-interface"] -- Detected change to environment config in app-interface --> node_5d086iej9["Deploys to #staging"]
+    node_5d086iej9 --> node_shzevizbp["Post to Slack #acs-consoledot-ui-notifications"]
+      node_04z47zuwh["--- app-interface deploy.yaml\n\n# staging-preview\nref: main\n# staging\nref: <b>222abc</b>\n# prod-preview\nref: 123456\n# prod\nref: 123456"]
+    style node_04z47zuwh text-align:left,stroke-width:2px,stroke-dasharray: 2,stroke:#FF6D00,fill:#FFE0B2,color:#000000
+```
