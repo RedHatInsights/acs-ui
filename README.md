@@ -65,8 +65,6 @@ A build will also be initialized when a PR is opened against the acs-ui reposito
 
 Note that no commits other than merges to `main` will be automatically deployed to any environment.
 
-> Until the Travis configuration is removed from this repository, commits to `main`, `qa-beta`, `prod-beta`, `stage-stable`, `qa-stable`, `prod-stable` will result in a build using the legacy build system and deployment of those build files to NetStorage. These deployed files will be used only as a backup if we need to revert Akamai routing rules and will not be accessible via console.redhat.com otherwise.
-
 You can troubleshoot image builds by visiting [Jenkins](https://ci.ext.devshift.net/blue/organizations/jenkins/pipelines/?search=acs-ui).
 
 Images will be pushed to the cloudservices organization on [Quay](https://quay.io/repository/cloudservices/acs-ui?tab=info).
