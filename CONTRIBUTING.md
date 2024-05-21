@@ -26,4 +26,3 @@ The following are the URLs for the environments associated with the ACS UI deplo
 
 ## Release Cycle
 
-@TODO: Answer the following questions: When should they merge code into the main, stable, prod-beta, and prod-stable branches? Do all of those branches require PRs with approval to make changes?
