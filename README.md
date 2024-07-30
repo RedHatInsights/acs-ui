@@ -49,16 +49,14 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 
 The following environments are available for deployment:
 
-- Staging (Preview): https://console.dev.redhat.com/preview/application-services/acs/overview or https://console.dev.redhat.com/preview/openshift/acs/overview
 - Staging: https://console.dev.redhat.com/application-services/acs/overview or https://console.dev.redhat.com/openshift/acs/overview
-- Production (Preview): https://console.redhat.com/preview/application-services/acs/overview or https://console.redhat.com/preview/openshift/acs/overview
 - Production: https://console.redhat.com/application-services/acs/overview or https://console.redhat.com/openshift/acs/overview
+
+Note: The `Preview` environment can be turned on/off by the toggle in the UI, but the URL will remain the same.
 
 ### Containerized builds
 
-Upon a commit being merged to `main` the app will be automatically built twice via Jenkins: a stable build and a preview build. The
-latter build will have `process.env.BETA` set to `true` at build time if the app relies on any code paths that should
-differ at build time. Both of these builds will be included into a single image, with `/preview/` and `/stable/` subdirectories under the `/dist/`
+Upon a commit being merged to `main`, a stable build of the app will be automatically built via Jenkins. This build will be included into a single image in the `/stable/` subdirectory under the `/dist/`
 directory on the image's file system.
 
 A build will also be initialized when a PR is opened against the acs-ui repository, and pushed to Quay with a tag in the format of `pr-<PR#>-<sha>`. These images will only be available for testing for 3 days.
@@ -81,9 +79,7 @@ title: Workflow merging a PR to `main`
 flowchart TD
     A["main"] -- Merge PR with commit sha 222abc --> B("Jenkins started via webhook")
     B -- Build stable UI --> D["process.env.BETA=false"]
-    B -- Build preview UI --> E["process.env.BETA=true"]
     D -- Build output => dist/stable --> node_evlmrmo2a["Creates image: quay.io/cloudservices/acs-ui:222abc"]
-    E -- Build output => dist/preview --> node_evlmrmo2a
     node_evlmrmo2a --> node_w61zluy7f["Push to Quay repo"]
     node_w61zluy7f -- Detected change to `main` via app-interface config --> node_5d086iej9["Deploys to #staging-preview"]
     node_5d086iej9 --> node_shzevizbp["Post to Slack #acs-consoledot-ui-notifications"]
