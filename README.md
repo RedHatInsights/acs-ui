@@ -33,6 +33,8 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 
 **Note:** You will need to register for a personal Red Hat Account if you haven't already. You'll need it in order to log into the UI
 
+**Note:** The redhat-cloud-services packages used to integrate with the Console require either **Docker** or **Podman** to be installed
+
 ### Testing
 
 `npm run verify` will run `npm run lint` (eslint) and `npm test` (Jest)
