@@ -56,18 +56,30 @@ The following environments are available for deployment:
 
 Note: The `Preview` environment can be turned on/off by the toggle in the UI, but the URL will remain the same.
 
-### Containerized builds
+### Containerized builds on Konflux
 
-Upon a commit being merged to `main`, a stable build of the app will be automatically built via Jenkins. This build will be included into a single image in the `/stable/` subdirectory under the `/dist/`
-directory on the image's file system.
+There are Konflux Tekton pipelines configured for every pull request and for every push to the `main` branch. 
+These pipelines include a task to build a container using the generated Dockerfile from the [konflux-consoledot-frontend-build](https://github.com/RedHatInsights/konflux-consoledot-frontend-build) repository. 
+The pipelines also incorporate various default Konflux checks and verification tasks. For more details, see:
 
-A build will also be initialized when a PR is opened against the acs-ui repository, and pushed to Quay with a tag in the format of `pr-<PR#>-<sha>`. These images will only be available for testing for 3 days.
+- [Pull request Tekton pipeline](.tekton/acscs-ui-pull-request.yaml)
+- [Push to main branch Tekton pipeline](.tekton/acscs-ui-push.yaml)
 
-Note that no commits other than merges to `main` will be automatically deployed to any environment.
+Every commit in the `main` branch is built and pushed to the `quay.io/redhat-services-prod/acscs-rhacs-tenant/acscs-ui` Quay repository. Each pull request builds an image and sends it to the `quay.io/redhat-user-workloads/acscs-rhacs-tenant/acscs-ui` Quay repository. Note that tags are prefixed with `on-pr-`.
 
-You can troubleshoot image builds by visiting [Jenkins](https://ci.ext.devshift.net/blue/organizations/jenkins/pipelines/?search=acs-ui).
+Only commits merged into `main` will be automatically deployed to any environment.
 
-Images will be pushed to the cloudservices organization on [Quay](https://quay.io/repository/cloudservices/acs-ui?tab=info).
+#### Konflux Troubleshooting
+
+Konflux CI steps are visible in the GitHub checks UI. If the Konflux CI fails, you can open the failing step to identify which task is broken and view logs for further investigation.
+
+ACSCS UI Konflux integration is primarily configured in the following places:
+
+- Konflux Tekton pipeline (see links above), defining CI tasks.
+- [ACSCS UI Release Plan Admission](https://gitlab.cee.redhat.com/releng/konflux-release-data/-/blob/main/config/stone-prd-rh01.pg1f.p1/service/ReleasePlanAdmission/acscs-rhacs/acscs-ui.yaml), which configures successful image releases and specifies where to push them.
+- [ACSCS UI Konflux application configuration](https://gitlab.cee.redhat.com/releng/konflux-release-data/-/tree/main/tenants-config/cluster/stone-prd-rh01/tenants/acscs-rhacs-tenant/acscs-ui).
+
+You can ask for support in the `#konflux-users` Slack channel.
 
 ### Deploying to an environment
 
@@ -79,9 +91,9 @@ section of our deploy configuration in [app-interface](https://gitlab.cee.redhat
 title: Workflow merging a PR to `main`
 ---
 flowchart TD
-    A["main"] -- Merge PR with commit sha 222abc --> B("Jenkins started via webhook")
+    A["main"] -- Merge PR with commit sha 222abc --> B("Konflux build started")
     B -- Build stable UI --> D["process.env.BETA=false"]
-    D -- Build output => dist/stable --> node_evlmrmo2a["Creates image: quay.io/cloudservices/acs-ui:222abc"]
+    D -- Build output => dist/stable --> node_evlmrmo2a["Creates image: quay.io/redhat-services-prod/acscs-rhacs-tenant/acscs-ui"]
     node_evlmrmo2a --> node_w61zluy7f["Push to Quay repo"]
     node_w61zluy7f -- Detected change to `main` via app-interface config --> node_5d086iej9["Deploys to #staging-preview"]
     node_5d086iej9 --> node_shzevizbp["Post to Slack #acs-consoledot-ui-notifications"]
