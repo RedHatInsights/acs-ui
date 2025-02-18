@@ -1,10 +1,10 @@
 {
   "name": "acs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=7.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "scripts": {
     "build": "fec build",
