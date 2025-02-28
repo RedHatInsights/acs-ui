@@ -1,48 +1,57 @@
-import React from 'react';
-import { Button } from '@patternfly/react-core';
+import React from "react";
+import { Button } from "@patternfly/react-core";
 import {
   Wizard,
   WizardContextConsumer,
+  WizardContextType,
   WizardFooter,
-} from '@patternfly/react-core/deprecated';
+  WizardStep,
+} from "@patternfly/react-core/deprecated";
 
-import InitialSetup from './InitialSetup';
-import InstallOptions from './InstallOptions';
-import Finish from './Finish';
-import InstallWithHelm from './InstallWithHelm';
-import InstallWithOperator from './InstallWithOperator';
-import AppLink from '../../../components/AppLink';
+import InitialSetup from "./InitialSetup";
+import InstallOptions, {
+  Environment,
+  InstallationMethod,
+} from "./InstallOptions";
+import Finish from "./Finish";
+import InstallWithHelm from "./InstallWithHelm";
+import InstallWithOperator from "./InstallWithOperator";
+import AppLink from "../../../components/AppLink";
 
-const INITIAL_SETUP = 'Initial Setup';
-const OPTIONS = 'Options';
-const INSTALLATION = 'Installation';
-const FINISHING_UP = 'Finishing Up';
+const INITIAL_SETUP = "Initial Setup";
+const OPTIONS = "Options";
+const INSTALLATION = "Installation";
+const FINISHING_UP = "Finishing Up";
 
 // needed to append the select to on the InstallOptions page due to overlapping issues
-export const WIZARD_ID = 'getting-started-wizard';
+export const WIZARD_ID = "getting-started-wizard";
 
 const GettingStartedWizard = () => {
-  const [selectedInstallation, setSelectedInstallation] = React.useState(null);
-  const [selectedEnv, setSelectedEnv] = React.useState(null);
+  const [selectedInstallation, setSelectedInstallation] =
+    React.useState<InstallationMethod | null>(null);
+  const [selectedEnv, setSelectedEnv] = React.useState<Environment | null>(
+    null
+  );
   const [stepIdReached, setStepIdReached] = React.useState(1);
 
-  const handleInstallationChange = (method) => {
+  const handleInstallationChange = (method: InstallationMethod) => {
     setSelectedInstallation(method);
   };
 
-  const handleSelectedEnvChange = (environment) => {
+  const handleSelectedEnvChange = (environment: Environment) => {
     setSelectedEnv(environment);
   };
 
-  const onCurrentStepChanged = ({ id }) => {
-    const step = id.replace(/\D/g, '');
-    setStepIdReached(parseInt(step));
+  const onCurrentStepChanged = ({ id = "" }: WizardStep) => {
+    const step =
+      typeof id !== "number" ? parseInt(id.replace(/\D/g, ""), 10) : id;
+    setStepIdReached(step);
   };
 
-  const resetForm = (goToStep) => {
+  const resetForm = (goToStepByName: WizardContextType["goToStepByName"]) => {
     setSelectedEnv(null);
     setStepIdReached(1);
-    goToStep(INITIAL_SETUP);
+    goToStepByName(INITIAL_SETUP);
   };
 
   const CustomFooter = (
@@ -57,8 +66,8 @@ const GettingStartedWizard = () => {
                     activeStep.name === OPTIONS &&
                     !selectedEnv &&
                     !selectedInstallation
-                      ? 'pf-m-disabled'
-                      : ''
+                      ? "pf-m-disabled"
+                      : ""
                   }
                   variant="primary"
                   type="submit"
@@ -84,7 +93,7 @@ const GettingStartedWizard = () => {
           return (
             <>
               <Button
-                component={(props) => <AppLink {...props} to={'instances'} />}
+                component={(props) => <AppLink {...props} to={"instances"} />}
                 aria-label="Finish"
               >
                 Finish
@@ -108,7 +117,7 @@ const GettingStartedWizard = () => {
       name: INITIAL_SETUP,
       component: <InitialSetup />,
       canJumpTo: stepIdReached === 1,
-      id: 'wizard-step-1',
+      id: "wizard-step-1",
     },
     {
       name: OPTIONS,
@@ -121,28 +130,28 @@ const GettingStartedWizard = () => {
         />
       ),
       canJumpTo: stepIdReached === 2,
-      id: 'wizard-step-2',
+      id: "wizard-step-2",
     },
     {
       name: INSTALLATION,
       component:
-        selectedInstallation === 'operator' ? (
+        selectedInstallation === "operator" ? (
           <InstallWithOperator />
         ) : (
           <InstallWithHelm />
         ),
       canJumpTo: stepIdReached === 3,
-      id: 'wizard-step-3',
+      id: "wizard-step-3",
     },
     {
       name: FINISHING_UP,
       component: <Finish />,
       canJumpTo: stepIdReached === 4,
-      id: 'wizard-step-4',
+      id: "wizard-step-4",
     },
   ];
 
-  const title = 'getting started wizard';
+  const title = "getting started wizard";
 
   return (
     <Wizard

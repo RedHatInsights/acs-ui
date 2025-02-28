@@ -35,19 +35,19 @@ function isEnvironment(e: string): e is Environment {
   return environments.some((env) => e === env);
 }
 
-const installations = [OPERATOR, HELM] as const;
+const installationMethods = [OPERATOR, HELM] as const;
 
-export type Installation = (typeof installations)[number];
+export type InstallationMethod = (typeof installationMethods)[number];
 
-function isInstallation(i: string): i is Installation {
-  return installations.some((ins) => ins === i);
+function isInstallation(i: string): i is InstallationMethod {
+  return installationMethods.some((ins) => ins === i);
 }
 
 export type InstallOptionsProps = {
-  selectedEnv: Environment;
+  selectedEnv: Environment | null;
   handleSelectedEnvChange: (env: Environment) => void;
-  selectedInstallation: typeof OPERATOR | typeof HELM;
-  handleInstallationChange: (installation: Installation) => void;
+  selectedInstallation: InstallationMethod | null;
+  handleInstallationChange: (installation: InstallationMethod) => void;
 };
 
 function InstallOptions({
@@ -152,7 +152,7 @@ function InstallOptions({
         />
       </StackItem>
       <StackItem>
-        {selectedEnv && (
+        {selectedEnv && selectedInstallation && (
           <>
             <TextContent>
               <Text component={TextVariants.h3}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   ClipboardCopy,
@@ -14,13 +14,13 @@ import {
   Stack,
   StackItem,
   Title,
-} from '@patternfly/react-core';
+} from "@patternfly/react-core";
 
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { ExternalLinkAltIcon } from "@patternfly/react-icons";
 
-import centralEndpointImage from '../../../assets/central_api_endpoint.png';
-import clusterInitBundleImage from '../../../assets/cluster_init_bundle.png';
-import HeaderExternalLink from './HeaderExternalLink';
+import centralEndpointImage from "../../../assets/central_api_endpoint.png";
+import clusterInitBundleImage from "../../../assets/cluster_init_bundle.png";
+import HeaderExternalLink from "./HeaderExternalLink";
 
 const InstallWithHelm = () => {
   const [copied, setCopied] = React.useState(false);
@@ -65,7 +65,7 @@ const InstallWithHelm = () => {
           variant="plain"
           onTooltipHidden={() => setCopied(false)}
         >
-          {copied ? 'Copied' : 'Copy'}
+          {copied ? "Copied" : "Copy"}
         </ClipboardCopyButton>
       </CodeBlockAction>
     </React.Fragment>
@@ -74,9 +74,9 @@ const InstallWithHelm = () => {
   return (
     <Stack hasGutter>
       <StackItem>
-        <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
+        <Flex justifyContent={{ default: "justifyContentSpaceBetween" }}>
           <FlexItem>
-            <Title headingLevel="h1">Install with an Helm</Title>
+            <Title headingLevel="h1">Install with Helm</Title>
           </FlexItem>
           <FlexItem>
             <HeaderExternalLink />
@@ -89,7 +89,7 @@ const InstallWithHelm = () => {
         </div>
         <div>
           You must have access to the Red Hat Container Registry. For
-          information about downloading images from registry.redhat.io, see{' '}
+          information about downloading images from registry.redhat.io, see{" "}
           <Button
             variant="link"
             icon={<ExternalLinkAltIcon />}
@@ -122,13 +122,13 @@ const InstallWithHelm = () => {
         <List component="ol" type="1">
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
-            Configuration -{'>'} Integrations and scroll down to{' '}
+            Configuration -{">"} Integrations and scroll down to{" "}
             <span className="pf-v5-u-font-weight-bold">
               Cluster Init Bundle
             </span>
             .
             <ExpandableSection
-              toggleText={'Show me where'}
+              toggleText={"Show me where"}
               onToggle={(_event, isExpanded) =>
                 onToggleInitBundleImage(isExpanded)
               }
@@ -148,14 +148,14 @@ const InstallWithHelm = () => {
             Use the Helm installation method to create the Secured Cluster
             services. Supply the created cluster init bundle, a unique cluster
             name, and the centralEndpoint, which is the URI (including port) of
-            your ACS instance. This URI is listed as{' '}
+            your ACS instance. This URI is listed as{" "}
             <span className="pf-v5-u-font-weight-bold">
               Central API Endpoint
-            </span>{' '}
-            under{' '}
+            </span>{" "}
+            under{" "}
             <span className="pf-v5-u-font-weight-bold">Instance Details</span>.
             <ExpandableSection
-              toggleText={'Show me where'}
+              toggleText={"Show me where"}
               onToggle={(_event, isExpanded) =>
                 onToggleApiEndpointImage(isExpanded)
               }
@@ -200,7 +200,7 @@ const InstallWithHelm = () => {
             </div>
             <div>
               For image pull secretes, there are better options for credentials
-              for registry.redhat.io, like a{' '}
+              for registry.redhat.io, like a{" "}
               <Button
                 variant="link"
                 icon={<ExternalLinkAltIcon />}
