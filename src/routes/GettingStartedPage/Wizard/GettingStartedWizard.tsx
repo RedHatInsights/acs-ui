@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useWizardContext } from "@patternfly/react-core";
 import { Wizard, WizardFooter, WizardStep } from "@patternfly/react-core";
 
@@ -48,7 +48,7 @@ function CustomFooter({
   );
 }
 
-function LastStepFooter({ onResetForm }: { onResetForm: () => void }) {
+function FinalStepFooter({ onResetForm }: { onResetForm: () => void }) {
   const { activeStep, goToStepByName, close } = useWizardContext();
 
   return (
@@ -74,19 +74,8 @@ function LastStepFooter({ onResetForm }: { onResetForm: () => void }) {
 
 function GettingStartedWizard() {
   const [selectedInstallation, setSelectedInstallation] =
-    React.useState<InstallationMethod | null>(null);
-  const [selectedEnv, setSelectedEnv] = React.useState<Environment | null>(
-    null
-  );
-  const [stepIdReached, setStepIdReached] = React.useState(1);
-
-  const handleInstallationChange = (method: InstallationMethod) => {
-    setSelectedInstallation(method);
-  };
-
-  const handleSelectedEnvChange = (environment: Environment) => {
-    setSelectedEnv(environment);
-  };
+    useState<InstallationMethod | null>(null);
+  const [selectedEnv, setSelectedEnv] = useState<Environment | null>(null);
 
   return (
     <Wizard
@@ -106,9 +95,9 @@ function GettingStartedWizard() {
       <WizardStep name={OPTIONS} id={OPTIONS}>
         <InstallOptions
           selectedEnv={selectedEnv}
-          handleSelectedEnvChange={handleSelectedEnvChange}
+          handleSelectedEnvChange={setSelectedEnv}
           selectedInstallation={selectedInstallation}
-          handleInstallationChange={handleInstallationChange}
+          handleInstallationChange={setSelectedInstallation}
         />
       </WizardStep>
       <WizardStep name={INSTALLATION} id={INSTALLATION}>
@@ -121,7 +110,7 @@ function GettingStartedWizard() {
       <WizardStep
         name={FINISHING_UP}
         id={FINISHING_UP}
-        footer={<LastStepFooter onResetForm={() => setSelectedEnv(null)} />}
+        footer={<FinalStepFooter onResetForm={() => setSelectedEnv(null)} />}
       >
         <Finish />
       </WizardStep>
