@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Flex,
   FlexItem,
@@ -9,23 +9,23 @@ import {
   TextContent,
   TextVariants,
   Title,
-} from "@patternfly/react-core";
+} from '@patternfly/react-core';
 import {
   Select,
   SelectOption,
   SelectOptionObject,
-} from "@patternfly/react-core/deprecated";
+} from '@patternfly/react-core/deprecated';
 
-import HeaderExternalLink from "./HeaderExternalLink";
+import HeaderExternalLink from './HeaderExternalLink';
 
-import { WIZARD_ID } from "./GettingStartedWizard";
+import { WIZARD_ID } from './GettingStartedWizard';
 
-const OPENSHIFT = "openshift";
-const EKS = "eks";
-const AKS = "aks";
-const GKE = "gke";
-const OPERATOR = "operator";
-const HELM = "helm";
+const OPENSHIFT = 'openshift';
+const EKS = 'eks';
+const AKS = 'aks';
+const GKE = 'gke';
+const OPERATOR = 'operator';
+const HELM = 'helm';
 
 const environments = [OPENSHIFT, EKS, AKS, GKE, OPERATOR, HELM] as const;
 
@@ -89,7 +89,7 @@ function InstallOptions({
     selection: string | SelectOptionObject
   ) => {
     setIsSelectOpen(false);
-    if (typeof selection === "string" && isInstallation(selection)) {
+    if (typeof selection === 'string' && isInstallation(selection)) {
       handleInstallationChange(selection);
     }
   };
@@ -101,7 +101,7 @@ function InstallOptions({
   return (
     <Stack hasGutter>
       <StackItem>
-        <Flex justifyContent={{ default: "justifyContentSpaceBetween" }}>
+        <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
           <FlexItem>
             <Title headingLevel="h1">SecuredCluster Installation Options</Title>
           </FlexItem>
@@ -166,7 +166,7 @@ function InstallOptions({
               selections={selectedInstallation}
               onSelect={(_e, v) => onInstallationMethodSelect(v)}
               aria-label="Select your installation method"
-              menuAppendTo={document.getElementById(WIZARD_ID) ?? "inline"}
+              menuAppendTo={document.getElementById(WIZARD_ID) ?? 'inline'}
             >
               {options}
             </Select>

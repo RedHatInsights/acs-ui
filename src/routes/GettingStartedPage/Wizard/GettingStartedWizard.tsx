@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { useWizardContext } from "@patternfly/react-core";
-import { Wizard, WizardFooter, WizardStep } from "@patternfly/react-core";
+import React, { useState } from 'react';
+import { useWizardContext } from '@patternfly/react-core';
+import { Wizard, WizardFooter, WizardStep } from '@patternfly/react-core';
 
-import InitialSetup from "./InitialSetup";
+import InitialSetup from './InitialSetup';
 import InstallOptions, {
   Environment,
   InstallationMethod,
-} from "./InstallOptions";
-import Finish from "./Finish";
-import InstallWithHelm from "./InstallWithHelm";
-import InstallWithOperator from "./InstallWithOperator";
-import AppLink from "../../../components/AppLink";
+} from './InstallOptions';
+import Finish from './Finish';
+import InstallWithHelm from './InstallWithHelm';
+import InstallWithOperator from './InstallWithOperator';
+import AppLink from '../../../components/AppLink';
 
-const INITIAL_SETUP = "Initial Setup";
-const OPTIONS = "Options";
-const INSTALLATION = "Installation";
-const FINISHING_UP = "Finishing Up";
+const INITIAL_SETUP = 'Initial Setup';
+const OPTIONS = 'Options';
+const INSTALLATION = 'Installation';
+const FINISHING_UP = 'Finishing Up';
 
 // needed to append the select to on the InstallOptions page due to overlapping issues
-export const WIZARD_ID = "getting-started-wizard";
+export const WIZARD_ID = 'getting-started-wizard';
 
 type CustomerFooterProps = {
   selectedEnv: Environment | null;
@@ -54,10 +54,10 @@ function FinalStepFooter({ onResetForm }: { onResetForm: () => void }) {
   return (
     <WizardFooter
       activeStep={activeStep}
-      backButtonText={"Install Another"}
-      nextButtonText={"Finish"}
+      backButtonText={'Install Another'}
+      nextButtonText={'Finish'}
       nextButtonProps={{
-        component: (props) => <AppLink {...props} to={"instances"} />,
+        component: (props) => <AppLink {...props} to={'instances'} />,
       }}
       onNext={() => {
         /* Handled by Router Link */
@@ -101,7 +101,7 @@ function GettingStartedWizard() {
         />
       </WizardStep>
       <WizardStep name={INSTALLATION} id={INSTALLATION}>
-        {selectedInstallation === "operator" ? (
+        {selectedInstallation === 'operator' ? (
           <InstallWithOperator />
         ) : (
           <InstallWithHelm />
