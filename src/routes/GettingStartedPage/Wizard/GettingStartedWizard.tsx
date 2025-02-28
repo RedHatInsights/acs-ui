@@ -1,12 +1,6 @@
 import React from "react";
-import { Button } from "@patternfly/react-core";
-import {
-  Wizard,
-  WizardContextConsumer,
-  WizardContextType,
-  WizardFooter,
-  WizardStep,
-} from "@patternfly/react-core/deprecated";
+import { useWizardContext } from "@patternfly/react-core";
+import { Wizard, WizardFooter, WizardStep } from "@patternfly/react-core";
 
 import InitialSetup from "./InitialSetup";
 import InstallOptions, {
@@ -26,7 +20,59 @@ const FINISHING_UP = "Finishing Up";
 // needed to append the select to on the InstallOptions page due to overlapping issues
 export const WIZARD_ID = "getting-started-wizard";
 
-const GettingStartedWizard = () => {
+type CustomerFooterProps = {
+  selectedEnv: Environment | null;
+  selectedInstallation: InstallationMethod | null;
+};
+
+function CustomFooter({
+  selectedEnv,
+  selectedInstallation,
+}: CustomerFooterProps) {
+  const { activeStep, goToNextStep, goToPrevStep, close } = useWizardContext();
+
+  const isBackHidden = activeStep.name === INITIAL_SETUP;
+  const isNextDisabled =
+    activeStep.name === OPTIONS && (!selectedEnv || !selectedInstallation);
+
+  return (
+    <WizardFooter
+      activeStep={activeStep}
+      onNext={goToNextStep}
+      onBack={goToPrevStep}
+      onClose={close}
+      isNextDisabled={isNextDisabled}
+      isBackHidden={isBackHidden}
+      isCancelHidden
+    />
+  );
+}
+
+function LastStepFooter({ onResetForm }: { onResetForm: () => void }) {
+  const { activeStep, goToStepByName, close } = useWizardContext();
+
+  return (
+    <WizardFooter
+      activeStep={activeStep}
+      backButtonText={"Install Another"}
+      nextButtonText={"Finish"}
+      nextButtonProps={{
+        component: (props) => <AppLink {...props} to={"instances"} />,
+      }}
+      onNext={() => {
+        /* Handled by Router Link */
+      }}
+      onBack={() => {
+        onResetForm();
+        goToStepByName(INITIAL_SETUP);
+      }}
+      onClose={close}
+      isCancelHidden
+    />
+  );
+}
+
+function GettingStartedWizard() {
   const [selectedInstallation, setSelectedInstallation] =
     React.useState<InstallationMethod | null>(null);
   const [selectedEnv, setSelectedEnv] = React.useState<Environment | null>(
@@ -42,127 +88,45 @@ const GettingStartedWizard = () => {
     setSelectedEnv(environment);
   };
 
-  const onCurrentStepChanged = ({ id = "" }: WizardStep) => {
-    const step =
-      typeof id !== "number" ? parseInt(id.replace(/\D/g, ""), 10) : id;
-    setStepIdReached(step);
-  };
-
-  const resetForm = (goToStepByName: WizardContextType["goToStepByName"]) => {
-    setSelectedEnv(null);
-    setStepIdReached(1);
-    goToStepByName(INITIAL_SETUP);
-  };
-
-  const CustomFooter = (
-    <WizardFooter>
-      <WizardContextConsumer>
-        {({ activeStep, goToStepByName, onNext, onBack }) => {
-          if (activeStep.name !== FINISHING_UP) {
-            return (
-              <>
-                <Button
-                  className={
-                    activeStep.name === OPTIONS &&
-                    !selectedEnv &&
-                    !selectedInstallation
-                      ? "pf-m-disabled"
-                      : ""
-                  }
-                  variant="primary"
-                  type="submit"
-                  onClick={onNext}
-                  aria-label="Next step"
-                  id={`${activeStep.id}-next`}
-                >
-                  Next
-                </Button>
-                {activeStep.name !== INITIAL_SETUP && (
-                  <Button
-                    variant="secondary"
-                    onClick={onBack}
-                    aria-label="Previous step"
-                    id={`${activeStep.id}-back`}
-                  >
-                    Back
-                  </Button>
-                )}
-              </>
-            );
-          }
-          return (
-            <>
-              <Button
-                component={(props) => <AppLink {...props} to={"instances"} />}
-                aria-label="Finish"
-              >
-                Finish
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => resetForm(goToStepByName)}
-                aria-label="Install another"
-              >
-                Install Another
-              </Button>
-            </>
-          );
-        }}
-      </WizardContextConsumer>
-    </WizardFooter>
-  );
-
-  const steps = [
-    {
-      name: INITIAL_SETUP,
-      component: <InitialSetup />,
-      canJumpTo: stepIdReached === 1,
-      id: "wizard-step-1",
-    },
-    {
-      name: OPTIONS,
-      component: (
+  return (
+    <Wizard
+      id="getting-started-wizard"
+      title="Getting started with Advanced Cluster Security"
+      isVisitRequired
+      footer={
+        <CustomFooter
+          selectedEnv={selectedEnv}
+          selectedInstallation={selectedInstallation}
+        />
+      }
+    >
+      <WizardStep name={INITIAL_SETUP} id={INITIAL_SETUP}>
+        <InitialSetup />
+      </WizardStep>
+      <WizardStep name={OPTIONS} id={OPTIONS}>
         <InstallOptions
           selectedEnv={selectedEnv}
           handleSelectedEnvChange={handleSelectedEnvChange}
           selectedInstallation={selectedInstallation}
           handleInstallationChange={handleInstallationChange}
         />
-      ),
-      canJumpTo: stepIdReached === 2,
-      id: "wizard-step-2",
-    },
-    {
-      name: INSTALLATION,
-      component:
-        selectedInstallation === "operator" ? (
+      </WizardStep>
+      <WizardStep name={INSTALLATION} id={INSTALLATION}>
+        {selectedInstallation === "operator" ? (
           <InstallWithOperator />
         ) : (
           <InstallWithHelm />
-        ),
-      canJumpTo: stepIdReached === 3,
-      id: "wizard-step-3",
-    },
-    {
-      name: FINISHING_UP,
-      component: <Finish />,
-      canJumpTo: stepIdReached === 4,
-      id: "wizard-step-4",
-    },
-  ];
-
-  const title = "getting started wizard";
-
-  return (
-    <Wizard
-      navAriaLabel={`${title} steps`}
-      mainAriaLabel={`${title} content`}
-      steps={steps}
-      id="getting-started-wizard"
-      onCurrentStepChanged={onCurrentStepChanged}
-      footer={CustomFooter}
-    />
+        )}
+      </WizardStep>
+      <WizardStep
+        name={FINISHING_UP}
+        id={FINISHING_UP}
+        footer={<LastStepFooter onResetForm={() => setSelectedEnv(null)} />}
+      >
+        <Finish />
+      </WizardStep>
+    </Wizard>
   );
-};
+}
 
 export default GettingStartedWizard;
