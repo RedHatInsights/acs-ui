@@ -313,7 +313,7 @@ function InstancesPage() {
                     <Td dataLabel="Time created">
                       {getDateTimeDifference(instance.created_at)}
                     </Td>
-                    <Td isActionCell>
+                    <Td isActionCell className="pf-v5-u-pr-xl">
                       <ActionsColumn
                         items={[
                           {
@@ -344,6 +344,7 @@ function InstancesPage() {
               <ToolbarItem
                 variant="pagination"
                 align={{ default: 'alignRight' }}
+                className="pf-v5-u-mr-2xl"
               >
                 <Pagination
                   itemCount={totalInstances}
