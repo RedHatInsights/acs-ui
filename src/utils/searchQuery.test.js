@@ -13,7 +13,7 @@ describe('searchQuery', () => {
         name: ['sc-test-1'],
       };
       const searchQuery = filtersToSearchQuery(filters, []);
-      expect(searchQuery).toBe('(name = sc-test-1)');
+      expect(searchQuery).toBe('(name LIKE %25sc-test-1%25)');
     });
 
     it('should return the correct search query for the region category', () => {
@@ -38,7 +38,7 @@ describe('searchQuery', () => {
         owner: ['schaudhr'],
       };
       const searchQuery = filtersToSearchQuery(filters, []);
-      expect(searchQuery).toBe('(owner = schaudhr)');
+      expect(searchQuery).toBe('(owner LIKE %25schaudhr%25)');
     });
 
     it('should return the correct search query for the status category', () => {
@@ -72,7 +72,7 @@ describe('searchQuery', () => {
         },
       ]);
       expect(searchQuery).toBe(
-        '(name = sc-test-1) and (region = us-east-1) and (owner = schaudhr)'
+        '(name LIKE %25sc-test-1%25) and (region = us-east-1) and (owner LIKE %25schaudhr%25)'
       );
     });
 
@@ -82,7 +82,7 @@ describe('searchQuery', () => {
         owner: [],
       };
       const searchQuery = filtersToSearchQuery(filters, []);
-      expect(searchQuery).toBe('(name = sc-test-1)');
+      expect(searchQuery).toBe('(name LIKE %25sc-test-1%25)');
     });
   });
 });
