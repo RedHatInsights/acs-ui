@@ -72,8 +72,6 @@ function InstallOptions({
     }
   };
 
-  console.log(selectedInstallation);
-
   return (
     <Stack hasGutter>
       <StackItem>
