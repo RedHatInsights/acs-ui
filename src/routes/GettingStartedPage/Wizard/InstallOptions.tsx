@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Flex,
@@ -11,7 +10,11 @@ import {
   TextVariants,
   Title,
 } from '@patternfly/react-core';
-import { Select, SelectOption } from '@patternfly/react-core/deprecated';
+import {
+  Select,
+  SelectOption,
+  SelectOptionObject,
+} from '@patternfly/react-core/deprecated';
 
 import HeaderExternalLink from './HeaderExternalLink';
 
@@ -24,12 +27,35 @@ const GKE = 'gke';
 const OPERATOR = 'operator';
 const HELM = 'helm';
 
-const InstallOptions = ({
+const environments = [OPENSHIFT, EKS, AKS, GKE, OPERATOR, HELM] as const;
+
+export type Environment = (typeof environments)[number];
+
+function isEnvironment(e: string): e is Environment {
+  return environments.some((env) => e === env);
+}
+
+const installationMethods = [OPERATOR, HELM] as const;
+
+export type InstallationMethod = (typeof installationMethods)[number];
+
+function isInstallation(i: string): i is InstallationMethod {
+  return installationMethods.some((ins) => ins === i);
+}
+
+export type InstallOptionsProps = {
+  selectedEnv: Environment | null;
+  handleSelectedEnvChange: (env: Environment) => void;
+  selectedInstallation: InstallationMethod | null;
+  handleInstallationChange: (installation: InstallationMethod) => void;
+};
+
+function InstallOptions({
   selectedEnv,
   handleSelectedEnvChange,
   selectedInstallation,
   handleInstallationChange,
-}) => {
+}: InstallOptionsProps) {
   const [isSelectOpen, setIsSelectOpen] = React.useState(false);
 
   const options = [
@@ -45,18 +71,27 @@ const InstallOptions = ({
     </SelectOption>,
   ];
 
-  const handleChange = (_, e) => {
-    handleSelectedEnvChange(e.target.value);
-    if (e.target.value != OPENSHIFT) {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const newEnvironment = e.currentTarget.value;
+    if (!isEnvironment(newEnvironment)) {
+      return;
+    }
+
+    handleSelectedEnvChange(newEnvironment);
+    if (newEnvironment != OPENSHIFT) {
       handleInstallationChange(HELM);
     } else {
       handleInstallationChange(OPERATOR);
     }
   };
 
-  const onInstallationMethodSelect = (_, selection) => {
+  const onInstallationMethodSelect = (
+    selection: string | SelectOptionObject
+  ) => {
     setIsSelectOpen(false);
-    handleInstallationChange(selection);
+    if (typeof selection === 'string' && isInstallation(selection)) {
+      handleInstallationChange(selection);
+    }
   };
 
   const onToggleSelect = () => {
@@ -85,7 +120,7 @@ const InstallOptions = ({
           name={OPENSHIFT}
           value={OPENSHIFT}
           aria-label={OPENSHIFT}
-          onChange={(e, _) => handleChange(_, e)}
+          onChange={handleChange}
           isChecked={selectedEnv === OPENSHIFT}
         />
         <Radio
@@ -94,7 +129,7 @@ const InstallOptions = ({
           name={EKS}
           value={EKS}
           aria-label={EKS}
-          onChange={(e, _) => handleChange(_, e)}
+          onChange={handleChange}
           isChecked={selectedEnv === EKS}
         />
         <Radio
@@ -103,7 +138,7 @@ const InstallOptions = ({
           name={AKS}
           value={AKS}
           aria-label={AKS}
-          onChange={(e, _) => handleChange(_, e)}
+          onChange={handleChange}
           isChecked={selectedEnv === AKS}
         />
         <Radio
@@ -112,12 +147,12 @@ const InstallOptions = ({
           name={GKE}
           value={GKE}
           aria-label={GKE}
-          onChange={(e, _) => handleChange(_, e)}
+          onChange={handleChange}
           isChecked={selectedEnv === GKE}
         />
       </StackItem>
       <StackItem>
-        {selectedEnv && (
+        {selectedEnv && selectedInstallation && (
           <>
             <TextContent>
               <Text component={TextVariants.h3}>
@@ -129,9 +164,9 @@ const InstallOptions = ({
               isOpen={isSelectOpen}
               onToggle={onToggleSelect}
               selections={selectedInstallation}
-              onSelect={onInstallationMethodSelect}
+              onSelect={(_e, v) => onInstallationMethodSelect(v)}
               aria-label="Select your installation method"
-              menuAppendTo={document.getElementById(WIZARD_ID)}
+              menuAppendTo={document.getElementById(WIZARD_ID) ?? 'inline'}
             >
               {options}
             </Select>
@@ -140,6 +175,6 @@ const InstallOptions = ({
       </StackItem>
     </Stack>
   );
-};
+}
 
 export default InstallOptions;

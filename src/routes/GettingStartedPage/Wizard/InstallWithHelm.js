@@ -76,7 +76,7 @@ const InstallWithHelm = () => {
       <StackItem>
         <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
           <FlexItem>
-            <Title headingLevel="h1">Install with an Helm</Title>
+            <Title headingLevel="h1">Install with Helm</Title>
           </FlexItem>
           <FlexItem>
             <HeaderExternalLink />
