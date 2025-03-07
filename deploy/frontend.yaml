@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/RedHatInsights/frontend-components/refs/heads/master/packages/config-utils/src/feo/spec/frontend-crd.schema.json
+
 apiVersion: v1
 kind: Template
 metadata:
@@ -18,19 +20,6 @@ objects:
         versions:
           - v1
       image: ${IMAGE}:${IMAGE_TAG}
-      navItems:
-        - appId: "acs"
-          title: "Overview"
-          href: "/application-services/acs/overview"
-          product: "Advanced Cluster Security"
-        - appId: "acs"
-          title: "Getting Started"
-          href: "/application-services/acs/getting-started"
-          product: "Advanced Cluster Security"
-        - appId: "acs"
-          title: "ACS Instances"
-          href: "/application-services/acs/instances"
-          product: "Advanced Cluster Security"
       module:
         manifestLocation: "/apps/acs/fed-mods.json"
         modules:

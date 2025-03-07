@@ -28,7 +28,7 @@ module.exports = {
       },
     }),
   },
-  _unstableHotReload: process.env.HOT === 'true',
+  hotReload: process.env.HOT === 'true',
   moduleFederation: {
     exclude: ['react-router-dom'],
     shared: [
