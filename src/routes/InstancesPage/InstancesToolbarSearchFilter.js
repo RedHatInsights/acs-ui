@@ -16,12 +16,14 @@ import {
   SelectVariant,
 } from '@patternfly/react-core/deprecated';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
+import { SimpleSelect } from '@patternfly/react-templates';
 
 import { statusOptions } from '../../utils/status';
-import SelectSingle from '../../components/SelectSingle';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 import { AWS_PROVIDER } from '../../utils/cloudProvider';
 import { getRegionDisplayName } from '../../utils/region';
+
+const filterTypeOptions = ['Name', 'Region', 'Owner', 'Status'];
 
 function InstancesToolbarSearchFilter({ filters, setFilters }) {
   const [selectedFilter, setSelectedFilter] = useState('Name');
@@ -105,18 +107,15 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
     <ToolbarToggleGroup toggleIcon={<FilterIcon />} breakpoint="xl">
       <ToolbarGroup variant="filter-group">
         <ToolbarItem>
-          <SelectSingle
+          <SimpleSelect
             id="region"
-            value={selectedFilter}
-            handleSelect={(_, selection) => {
-              setSelectedFilter(selection);
-            }}
-          >
-            <SelectOption value="Name">Name</SelectOption>
-            <SelectOption value="Region">Region</SelectOption>
-            <SelectOption value="Owner">Owner</SelectOption>
-            <SelectOption value="Status">Status</SelectOption>
-          </SelectSingle>
+            initialOptions={filterTypeOptions.map((o) => ({
+              content: o,
+              value: o,
+              selected: selectedFilter === o,
+            }))}
+            onSelect={(_ev, selection) => setSelectedFilter(selection)}
+          />
         </ToolbarItem>
         <ToolbarFilter
           chips={filters.name}
