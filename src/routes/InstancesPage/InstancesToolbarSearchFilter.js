@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Badge,
   Button,
   InputGroup,
   InputGroupItem,
@@ -10,28 +11,22 @@ import {
   ToolbarItem,
   ToolbarToggleGroup,
 } from '@patternfly/react-core';
-import {
-  Select,
-  SelectOption,
-  SelectVariant,
-} from '@patternfly/react-core/deprecated';
 import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
+import { CheckboxSelect, SimpleSelect } from '@patternfly/react-templates';
 
 import { statusOptions } from '../../utils/status';
-import SelectSingle from '../../components/SelectSingle';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 import { AWS_PROVIDER } from '../../utils/cloudProvider';
 import { getRegionDisplayName } from '../../utils/region';
+
+const filterTypeOptions = ['Name', 'Region', 'Owner', 'Status'];
 
 function InstancesToolbarSearchFilter({ filters, setFilters }) {
   const [selectedFilter, setSelectedFilter] = useState('Name');
   // local state for input values
   const [inputName, setInputName] = useState('');
   const [inputOwner, setInputOwner] = useState('');
-  // local state for Select isExpanded values
-  // @TODO: We can refactor the SelectSingle component to be more reusable for the usecase in this component as well. Then we don't need to keep this state here.
-  const [isRegionExpanded, setIsRegionExpanded] = useState(false);
-  const [isStatusExpanded, setIsStatusExpanded] = useState(false);
+
   const { data: cloudRegionList } = useCloudRegions({ provider: AWS_PROVIDER });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
@@ -105,18 +100,15 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
     <ToolbarToggleGroup toggleIcon={<FilterIcon />} breakpoint="xl">
       <ToolbarGroup variant="filter-group">
         <ToolbarItem>
-          <SelectSingle
+          <SimpleSelect
             id="region"
-            value={selectedFilter}
-            handleSelect={(_, selection) => {
-              setSelectedFilter(selection);
-            }}
-          >
-            <SelectOption value="Name">Name</SelectOption>
-            <SelectOption value="Region">Region</SelectOption>
-            <SelectOption value="Owner">Owner</SelectOption>
-            <SelectOption value="Status">Status</SelectOption>
-          </SelectSingle>
+            initialOptions={filterTypeOptions.map((o) => ({
+              content: o,
+              value: o,
+              selected: selectedFilter === o,
+            }))}
+            onSelect={(_ev, selection) => setSelectedFilter(selection)}
+          />
         </ToolbarItem>
         <ToolbarFilter
           chips={filters.name}
@@ -164,23 +156,25 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           className={selectedFilter !== 'Region' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
-            <Select
-              variant={SelectVariant.checkbox}
-              aria-label="Region"
-              onToggle={(_event, val) => setIsRegionExpanded(val)}
+            <CheckboxSelect
+              toggleWidth="230px"
+              toggleContent={
+                <>
+                  Filter by region
+                  {filters?.region?.length > 0 && (
+                    <Badge isRead className="pf-v5-u-ml-sm">
+                      {filters.region.length}
+                    </Badge>
+                  )}
+                </>
+              }
+              initialOptions={cloudRegions.map((option) => ({
+                content: getRegionDisplayName(option),
+                value: option.id,
+                selected: filters?.region?.includes(option.id),
+              }))}
               onSelect={onRegionSelect}
-              selections={filters.region}
-              isOpen={isRegionExpanded}
-              placeholderText="Filter by region"
-            >
-              {cloudRegions.map((regionOption) => {
-                return (
-                  <SelectOption key={regionOption.id} value={regionOption.id}>
-                    {getRegionDisplayName(regionOption)}
-                  </SelectOption>
-                );
-              })}
-            </Select>
+            />
           </ToolbarItem>
         </ToolbarFilter>
         <ToolbarFilter
@@ -233,26 +227,25 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           className={selectedFilter !== 'Status' && 'pf-v5-u-hidden'}
         >
           <ToolbarItem>
-            <Select
-              variant={SelectVariant.checkbox}
-              aria-label="Status"
-              onToggle={(_event, val) => setIsStatusExpanded(val)}
+            <CheckboxSelect
+              toggleWidth="230px"
+              toggleContent={
+                <>
+                  Filter by status
+                  {filters?.status?.length > 0 && (
+                    <Badge isRead className="pf-v5-u-ml-sm">
+                      {filters.status.length}
+                    </Badge>
+                  )}
+                </>
+              }
+              initialOptions={statusOptions.map(({ label }) => ({
+                content: label,
+                value: label,
+                selected: filters?.status?.includes(label),
+              }))}
               onSelect={onStatusSelect}
-              selections={filters.status}
-              isOpen={isStatusExpanded}
-              placeholderText="Filter by status"
-            >
-              {statusOptions.map((statusOption) => {
-                return (
-                  <SelectOption
-                    key={statusOption.label}
-                    value={statusOption.label}
-                  >
-                    {statusOption.label}
-                  </SelectOption>
-                );
-              })}
-            </Select>
+            />
           </ToolbarItem>
         </ToolbarFilter>
       </ToolbarGroup>

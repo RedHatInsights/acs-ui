@@ -10,11 +10,7 @@ import {
   TextVariants,
   Title,
 } from '@patternfly/react-core';
-import {
-  Select,
-  SelectOption,
-  SelectOptionObject,
-} from '@patternfly/react-core/deprecated';
+import { SimpleSelect } from '@patternfly/react-templates';
 
 import HeaderExternalLink from './HeaderExternalLink';
 
@@ -56,21 +52,6 @@ function InstallOptions({
   selectedInstallation,
   handleInstallationChange,
 }: InstallOptionsProps) {
-  const [isSelectOpen, setIsSelectOpen] = React.useState(false);
-
-  const options = [
-    ...(selectedEnv === OPENSHIFT
-      ? [
-          <SelectOption key={0} value={OPERATOR}>
-            Operator (recommended)
-          </SelectOption>,
-        ]
-      : []),
-    <SelectOption key={1} value={HELM}>
-      Helm
-    </SelectOption>,
-  ];
-
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newEnvironment = e.currentTarget.value;
     if (!isEnvironment(newEnvironment)) {
@@ -85,17 +66,10 @@ function InstallOptions({
     }
   };
 
-  const onInstallationMethodSelect = (
-    selection: string | SelectOptionObject
-  ) => {
-    setIsSelectOpen(false);
+  const onInstallationMethodSelect = (selection: string | number) => {
     if (typeof selection === 'string' && isInstallation(selection)) {
       handleInstallationChange(selection);
     }
-  };
-
-  const onToggleSelect = () => {
-    setIsSelectOpen((prev) => !prev);
   };
 
   return (
@@ -159,17 +133,36 @@ function InstallOptions({
                 Select your supported installation method
               </Text>
             </TextContent>
-            <Select
-              variant="single"
-              isOpen={isSelectOpen}
-              onToggle={onToggleSelect}
-              selections={selectedInstallation}
+            <SimpleSelect
+              toggleWidth="100%"
+              initialOptions={
+                selectedEnv === OPENSHIFT
+                  ? [
+                      {
+                        content: 'Operator (recommended)',
+                        value: OPERATOR,
+                        selected: selectedInstallation === OPERATOR,
+                      },
+                      {
+                        content: 'Helm',
+                        value: HELM,
+                        selected: selectedInstallation === HELM,
+                      },
+                    ]
+                  : [
+                      {
+                        content: 'Helm',
+                        value: HELM,
+                        selected: selectedInstallation === HELM,
+                      },
+                    ]
+              }
               onSelect={(_e, v) => onInstallationMethodSelect(v)}
               aria-label="Select your installation method"
-              menuAppendTo={document.getElementById(WIZARD_ID) ?? 'inline'}
-            >
-              {options}
-            </Select>
+              popperProps={{
+                appendTo: document.getElementById(WIZARD_ID) ?? 'inline',
+              }}
+            />
           </>
         )}
       </StackItem>
