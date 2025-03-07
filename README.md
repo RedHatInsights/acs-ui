@@ -35,6 +35,8 @@ If you want to access stage.foo, even though staging is not utilized, you have t
 
 **Note:** The redhat-cloud-services packages used to integrate with the Console require either **Docker** or **Podman** to be installed
 
+**Note:** In order for requests to proxy correctly in a local dev environment, you must be connected to the VPN.
+
 ### Testing
 
 `npm run verify` will run `npm run lint` (eslint) and `npm test` (Jest)
