@@ -7,7 +7,6 @@ import { CardHeader } from '@patternfly/react-core/dist/dynamic/components/Card'
 import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
 import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
 import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { Icon } from '@patternfly/react-core/dist/dynamic/components/Icon';
 import { Label } from '@patternfly/react-core/dist/dynamic/components/Label';
 import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
 import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
