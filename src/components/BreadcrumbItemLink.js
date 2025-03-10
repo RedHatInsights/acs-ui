@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { BreadcrumbItem } from '@patternfly/react-core';
+import { BreadcrumbItem } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
 import AppLink from '../components/AppLink';
 
 function BreadcrumbItemLink({ children, to, ...rest }) {

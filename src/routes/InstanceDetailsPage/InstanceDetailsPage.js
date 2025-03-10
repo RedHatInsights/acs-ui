@@ -5,26 +5,24 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { useParams } from 'react-router-dom';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Bullseye,
-  Button,
-  ButtonVariant,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Flex,
-  FlexItem,
-  Grid,
-  GridItem,
-  List,
-  ListItem,
-  PageSection,
-  Spinner,
-  Title,
-} from '@patternfly/react-core';
+import { Breadcrumb } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
+import { BreadcrumbItem } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
+import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardBody } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardHeader } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Grid } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
+import { GridItem } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
+import { List } from '@patternfly/react-core/dist/dynamic/components/List';
+import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
+import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
+import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
+import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
 import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import useInstance from '../../hooks/apis/useInstance';
 import InstanceDetailsList from '../../components/InstanceDetailsList';
@@ -114,12 +112,7 @@ function InstanceDetailsPage() {
             </FlexItem>
           </Flex>
         </PageSection>
-        <PageSection hasBodyWrapper
-          
-          isFilled
-          hasOverflowScroll
-          isWidthLimited
-        >
+        <PageSection hasBodyWrapper isFilled hasOverflowScroll isWidthLimited>
           <Title headingLevel="h2">
             Use Red Hat ACS to secure your clusters
           </Title>

@@ -1,19 +1,17 @@
 import React from 'react';
-import {
-  Button,
-  ButtonVariant,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Flex,
-  FlexItem,
-  Icon,
-  Label,
-  Content,
-  ContentVariants,
-} from '@patternfly/react-core';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardBody } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardHeader } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Icon } from '@patternfly/react-core/dist/dynamic/components/Icon';
+import { Label } from '@patternfly/react-core/dist/dynamic/components/Label';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
 function ProductDocumentationCard() {
   return (
@@ -48,9 +46,12 @@ function ProductDocumentationCard() {
             </Content>
           </FlexItem>
           <FlexItem className="pf-v6-u-mt-md pf-v6-u-mb-md">
-            <Button icon={<Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
-                <ExternalLinkAltIcon />
-              </Icon>}
+            <Button
+              icon={
+                <Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
+                  <ExternalLinkAltIcon />
+                </Icon>
+              }
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
@@ -58,7 +59,6 @@ function ProductDocumentationCard() {
               isInline
             >
               View documentation
-              
             </Button>
           </FlexItem>
         </Flex>

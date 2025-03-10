@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  Flex,
-  FlexItem,
-  Radio,
-  Stack,
-  StackItem,
-  Content,
-  ContentVariants,
-  Title,
-} from '@patternfly/react-core';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Radio } from '@patternfly/react-core/dist/dynamic/components/Radio';
+import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
 import { SimpleSelect } from '@patternfly/react-templates';
 
 import HeaderExternalLink from './HeaderExternalLink';
@@ -85,7 +83,9 @@ function InstallOptions({
       </StackItem>
       <StackItem>
         <Content>
-          <Content component={ContentVariants.h3}>Select your environment</Content>
+          <Content component={ContentVariants.h3}>
+            Select your environment
+          </Content>
         </Content>
         <Radio
           label="OpenShift"

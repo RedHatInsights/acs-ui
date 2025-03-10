@@ -1,17 +1,16 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Badge,
-  Button,
-  InputGroup,
-  InputGroupItem,
-  TextInput,
-  ToolbarFilter,
-  ToolbarGroup,
-  ToolbarItem,
-  ToolbarToggleGroup,
-} from '@patternfly/react-core';
-import { FilterIcon, SearchIcon } from '@patternfly/react-icons';
+import { Badge } from '@patternfly/react-core/dist/dynamic/components/Badge';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { InputGroup } from '@patternfly/react-core/dist/dynamic/components/InputGroup';
+import { InputGroupItem } from '@patternfly/react-core/dist/dynamic/components/InputGroup';
+import { TextInput } from '@patternfly/react-core/dist/dynamic/components/TextInput';
+import { ToolbarFilter } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
+import { ToolbarGroup } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
+import { ToolbarItem } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
+import { ToolbarToggleGroup } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
+import FilterIcon from '@patternfly/react-icons/dist/dynamic/icons/filter-icon';
+import SearchIcon from '@patternfly/react-icons/dist/dynamic/icons/search-icon';
 import { CheckboxSelect, SimpleSelect } from '@patternfly/react-templates';
 
 import { statusOptions } from '../../utils/status';
@@ -135,15 +134,14 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 />
               </InputGroupItem>
               <InputGroupItem>
-                <Button icon={<SearchIcon />}
+                <Button
+                  icon={<SearchIcon />}
                   variant="control"
                   aria-label="Search Name"
                   onClick={() => {
                     applyCurrentSearchText('name', inputName, setInputName);
                   }}
-                >
-                  
-                </Button>
+                ></Button>
               </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
@@ -206,15 +204,14 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 />
               </InputGroupItem>
               <InputGroupItem>
-                <Button icon={<SearchIcon />}
+                <Button
+                  icon={<SearchIcon />}
                   variant="control"
                   aria-label="Search Owner"
                   onClick={() => {
                     applyCurrentSearchText('owner', inputOwner, setInputOwner);
                   }}
-                >
-                  
-                </Button>
+                ></Button>
               </InputGroupItem>
             </InputGroup>
           </ToolbarItem>

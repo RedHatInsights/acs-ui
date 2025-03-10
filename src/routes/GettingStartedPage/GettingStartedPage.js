@@ -3,17 +3,15 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Flex,
-  FlexItem,
-  PageSection,
-  Content,
-  ContentVariants,
-} from '@patternfly/react-core';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { Breadcrumb } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
+import { BreadcrumbItem } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
 import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import GettingStartedWizard from './Wizard/GettingStartedWizard';

@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Content,
-  } from '@patternfly/react-core';
+import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardBody } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
 
 function ProductDemoCard() {
   return (

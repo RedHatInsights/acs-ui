@@ -1,18 +1,16 @@
 import React from 'react';
-import {
-  Button,
-  ClipboardCopy,
-  ExpandableSection,
-  Flex,
-  FlexItem,
-  List,
-  ListItem,
-  Stack,
-  StackItem,
-  Title,
-} from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { ClipboardCopy } from '@patternfly/react-core/dist/dynamic/components/ClipboardCopy';
+import { ExpandableSection } from '@patternfly/react-core/dist/dynamic/components/ExpandableSection';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { List } from '@patternfly/react-core/dist/dynamic/components/List';
+import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
+import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
 
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
 import centralEndpointImage from '../../../assets/central_api_endpoint.png';
 import clusterInitBundleImage from '../../../assets/cluster_init_bundle.png';
