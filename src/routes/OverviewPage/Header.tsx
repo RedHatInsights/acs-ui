@@ -4,7 +4,6 @@ import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Bu
 import { Divider } from '@patternfly/react-core/dist/dynamic/components/Divider';
 import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
 import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { Icon } from '@patternfly/react-core/dist/dynamic/components/Icon';
 import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
 import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
 import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
@@ -30,11 +29,8 @@ function Header() {
               applications and Kubernetes.
             </Content>
             <Button
-              icon={
-                <Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
-                  <ExternalLinkAltIcon />
-                </Icon>
-              }
+              icon={<ExternalLinkAltIcon />}
+              iconPosition="right"
               variant={ButtonVariant.link}
               component="a"
               target="_blank"

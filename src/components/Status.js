@@ -24,11 +24,15 @@ const statusMessages = {
   },
   ready: {
     message: statuses.ready,
-    component: <CheckCircleIcon className="pf-v6-u-success-color-100" />,
+    component: (
+      <CheckCircleIcon className="pf-v6-u-icon-color-status-success" />
+    ),
   },
   failed: {
     message: statuses.failed,
-    component: <ExclamationCircleIcon className="pf-v6-u-danger-color-100" />,
+    component: (
+      <ExclamationCircleIcon className="pf-v6-u-icon-color-status-danger" />
+    ),
   },
   deprovision: {
     message: statuses.deprovision,
@@ -47,7 +51,7 @@ function Status({ status }) {
   };
 
   return (
-    <Flex>
+    <Flex spaceItems={{ default: 'spaceItemsXs' }}>
       <FlexItem>{component}</FlexItem>
       <FlexItem>{message}</FlexItem>
     </Flex>

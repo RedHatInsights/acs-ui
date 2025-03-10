@@ -3,8 +3,6 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { Breadcrumb } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
-import { BreadcrumbItem } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
 import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
 import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
 import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
@@ -13,7 +11,6 @@ import { Content } from '@patternfly/react-core/dist/dynamic/components/Content'
 import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
 import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
-import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import GettingStartedWizard from './Wizard/GettingStartedWizard';
 
 function GettingStartedPage() {
@@ -21,12 +18,6 @@ function GettingStartedPage() {
     <div>
       <PageHeader>
         <Flex direction={{ default: 'column' }}>
-          <FlexItem>
-            <Breadcrumb>
-              <BreadcrumbItemLink to="/overview">ACS</BreadcrumbItemLink>
-              <BreadcrumbItem isActive>Get started with ACS</BreadcrumbItem>
-            </Breadcrumb>
-          </FlexItem>
           <FlexItem>
             <PageHeaderTitle title="Get started with Red Hat Advanced Cluster Security" />
           </FlexItem>
