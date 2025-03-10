@@ -226,7 +226,9 @@ function InstancesPage() {
               <Th sort={getSortParams('cloud_provider')}>Cloud provider</Th>
               <Th sort={getSortParams('region')}>Region</Th>
               <Th sort={getSortParams('owner')}>Owner</Th>
-              <Th sort={getSortParams('status')}>Status</Th>
+              <Th sort={getSortParams('status')} modifier="nowrap">
+                Status
+              </Th>
               <Th sort={getSortParams('created_at')}>Time created</Th>
               <Th />
             </Tr>
@@ -305,6 +307,7 @@ function InstancesPage() {
                     </Td>
                     <Td dataLabel="Owner">{instance.owner}</Td>
                     <Td dataLabel="Status">
+                      {' '}
                       <Status status={instance.status} />
                     </Td>
                     <Td dataLabel="Time created">

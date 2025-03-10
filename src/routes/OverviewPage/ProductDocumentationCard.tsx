@@ -47,11 +47,8 @@ function ProductDocumentationCard() {
           </FlexItem>
           <FlexItem className="pf-v6-u-mt-md pf-v6-u-mb-md">
             <Button
-              icon={
-                <Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
-                  <ExternalLinkAltIcon />
-                </Icon>
-              }
+              icon={<ExternalLinkAltIcon />}
+              iconPosition="right"
               variant={ButtonVariant.link}
               component="a"
               target="_blank"

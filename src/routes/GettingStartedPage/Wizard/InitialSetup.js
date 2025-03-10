@@ -34,7 +34,12 @@ const InitialSetup = () => {
         <Grid hasGutter>
           <GridItem sm={2} xl2={1}>
             <Content>
-              <Content component={ContentVariants.h3}>Step 1:</Content>
+              <Content
+                className="pf-v6-u-text-nowrap"
+                component={ContentVariants.h3}
+              >
+                Step 1:
+              </Content>
             </Content>
           </GridItem>
           <GridItem sm={10} xl2={11}>
@@ -71,7 +76,12 @@ const InitialSetup = () => {
 
           <GridItem sm={2} xl2={1}>
             <Content>
-              <Content component={ContentVariants.h3}>Step 2:</Content>
+              <Content
+                className="pf-v6-u-text-nowrap"
+                component={ContentVariants.h3}
+              >
+                Step 2:
+              </Content>
             </Content>
           </GridItem>
           <GridItem sm={10} xl2={11}>

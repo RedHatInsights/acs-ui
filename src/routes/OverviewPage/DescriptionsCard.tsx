@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
+import {
+  Card,
+  CardBody,
+} from '@patternfly/react-core/dist/dynamic/components/Card';
 import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
 import { Divider } from '@patternfly/react-core/dist/dynamic/components/Divider';
 import { Drawer } from '@patternfly/react-core/dist/dynamic/components/Drawer';
@@ -30,7 +33,7 @@ function DescriptionsCard() {
   }
 
   const panelContent = (
-    <DrawerPanelContent widths={{ xl: 'width_50' }}>
+    <DrawerPanelContent widths={{ xl: 'width_50' }} className="pf-v6-u-m-xs">
       <DrawerHead>{featureDetailsMap[featureDetailsId].title}</DrawerHead>
       <DrawerPanelBody>
         {featureDetailsMap[featureDetailsId].content}
@@ -58,7 +61,7 @@ function DescriptionsCard() {
                         spaceItems={{ default: 'spaceItemsSm' }}
                         className="pf-u-my-sm"
                       >
-                        <Icon size="lg" color="blue">
+                        <Icon size="xl">
                           {featureDetailsMap[featureKey].icon}
                         </Icon>
                         <Divider orientation={{ default: 'vertical' }} />
