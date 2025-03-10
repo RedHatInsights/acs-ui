@@ -7,7 +7,6 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
 import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
-import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
 import { EmptyState } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
 import { EmptyStateActions } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
 import { EmptyStateBody } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
@@ -366,7 +365,7 @@ function InstancesPage() {
         <PageHeaderTitle title="ACS Instances" />
       </PageHeader>
       <Main>
-        <Card>{content}</Card>
+        {content}
         <CreateInstanceModal
           isOpen={!!creatingInstance || hasNoInstances}
           onClose={closeCreateInstanceModal}
