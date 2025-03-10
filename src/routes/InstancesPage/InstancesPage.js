@@ -13,8 +13,6 @@ import {
   EmptyStateActions,
   EmptyStateBody,
   EmptyStateFooter,
-  EmptyStateHeader,
-  EmptyStateIcon,
   EmptyStateVariant,
   Pagination,
   Spinner,
@@ -173,12 +171,11 @@ function InstancesPage() {
 
   if (hasNoInstances) {
     content = (
-      <EmptyState>
-        <EmptyStateHeader
-          titleText="No ACS instances."
-          icon={<EmptyStateIcon icon={CubesIcon} />}
-          headingLevel="h4"
-        />
+      <EmptyState
+        headingLevel="h4"
+        icon={CubesIcon}
+        titleText="No ACS instances."
+      >
         <EmptyStateBody>Create one to get started.</EmptyStateBody>
         <EmptyStateFooter>
           <EmptyStateActions>
@@ -210,10 +207,7 @@ function InstancesPage() {
               </Button>
             </ToolbarItem>
             {instances.length !== 0 && (
-              <ToolbarItem
-                variant="pagination"
-                align={{ default: 'alignRight' }}
-              >
+              <ToolbarItem variant="pagination" align={{ default: 'alignEnd' }}>
                 <Pagination
                   itemCount={totalInstances}
                   perPage={perPage}
@@ -253,12 +247,12 @@ function InstancesPage() {
               <Tr>
                 <Td colSpan={8}>
                   <Bullseye>
-                    <EmptyState variant={EmptyStateVariant.sm}>
-                      <EmptyStateHeader
-                        titleText="No results found"
-                        icon={<EmptyStateIcon icon={SearchIcon} />}
-                        headingLevel="h2"
-                      />
+                    <EmptyState
+                      headingLevel="h2"
+                      icon={SearchIcon}
+                      titleText="No results found"
+                      variant={EmptyStateVariant.sm}
+                    >
                       <EmptyStateBody>
                         Clear all filters and try again.
                       </EmptyStateBody>
@@ -346,11 +340,7 @@ function InstancesPage() {
         {instances.length !== 0 && (
           <Toolbar>
             <ToolbarContent>
-              <ToolbarItem
-                variant="pagination"
-                align={{ default: 'alignRight' }}
-                className="pf-v5-u-mr-2xl"
-              >
+              <ToolbarItem variant="pagination" align={{ default: 'alignEnd' }}>
                 <Pagination
                   itemCount={totalInstances}
                   perPage={perPage}

@@ -3,8 +3,7 @@ import {
   Grid,
   GridItem,
   PageSection,
-  PageSectionVariants,
-} from '@patternfly/react-core';
+  } from '@patternfly/react-core';
 import Header from './Header';
 import GetStartedCard from './GetStartedCard';
 import DescriptionsCard from './DescriptionsCard';
@@ -15,10 +14,10 @@ import ProductDemoCard from './ProductDemoCard';
 function OverviewPage() {
   return (
     <div>
-      <PageSection variant={PageSectionVariants.light}>
+      <PageSection hasBodyWrapper={false} >
         <Header />
       </PageSection>
-      <PageSection>
+      <PageSection hasBodyWrapper={false}>
         <Grid hasGutter>
           <GridItem>
             <GetStartedCard />

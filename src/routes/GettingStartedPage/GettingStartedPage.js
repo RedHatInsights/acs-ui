@@ -10,9 +10,8 @@ import {
   Flex,
   FlexItem,
   PageSection,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
@@ -34,8 +33,8 @@ function GettingStartedPage() {
             <PageHeaderTitle title="Get started with Red Hat Advanced Cluster Security" />
           </FlexItem>
           <FlexItem>
-            <TextContent>
-              <Text component={TextVariants.p}>
+            <Content>
+              <Content component={ContentVariants.p}>
                 The solution helps improve the security of the application build
                 process, protects the application platform and configurations,
                 detects runtime issues, and facilitates response.{' '}
@@ -64,12 +63,12 @@ function GettingStartedPage() {
                 >
                   Email us
                 </Button>
-              </Text>
-            </TextContent>
+              </Content>
+            </Content>
           </FlexItem>
         </Flex>
       </PageHeader>
-      <PageSection>
+      <PageSection hasBodyWrapper={false}>
         <GettingStartedWizard />
       </PageSection>
     </div>

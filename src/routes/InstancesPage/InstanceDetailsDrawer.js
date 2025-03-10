@@ -8,9 +8,8 @@ import {
   DrawerContentBody,
   DrawerHead,
   DrawerPanelContent,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import React from 'react';
 
@@ -24,12 +23,12 @@ function InstanceDetailsDrawer({ isExpanded, onClose, instance, children }) {
           <DrawerPanelContent>
             <DrawerHead>
               <div>
-                <TextContent>
-                  <Text component={TextVariants.small}>Name</Text>
-                </TextContent>
-                <TextContent>
-                  <Text component={TextVariants.h2}>{instance?.name}</Text>
-                </TextContent>
+                <Content>
+                  <Content component={ContentVariants.small}>Name</Content>
+                </Content>
+                <Content>
+                  <Content component={ContentVariants.h2}>{instance?.name}</Content>
+                </Content>
               </div>
               <DrawerActions>
                 <DrawerCloseButton onClick={onClose} />

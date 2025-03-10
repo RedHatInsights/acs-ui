@@ -24,11 +24,11 @@ const statusMessages = {
   },
   ready: {
     message: statuses.ready,
-    component: <CheckCircleIcon className="pf-v5-u-success-color-100" />,
+    component: <CheckCircleIcon className="pf-v6-u-success-color-100" />,
   },
   failed: {
     message: statuses.failed,
-    component: <ExclamationCircleIcon className="pf-v5-u-danger-color-100" />,
+    component: <ExclamationCircleIcon className="pf-v6-u-danger-color-100" />,
   },
   deprovision: {
     message: statuses.deprovision,

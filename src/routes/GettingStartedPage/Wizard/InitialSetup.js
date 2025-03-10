@@ -9,9 +9,8 @@ import {
   ListItem,
   Stack,
   StackItem,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
   Title,
 } from '@patternfly/react-core';
 
@@ -36,21 +35,21 @@ const InitialSetup = () => {
       <StackItem>
         <Grid hasGutter>
           <GridItem sm={2} xl2={1}>
-            <TextContent>
-              <Text component={TextVariants.h3}>Step 1:</Text>
-            </TextContent>
+            <Content>
+              <Content component={ContentVariants.h3}>Step 1:</Content>
+            </Content>
           </GridItem>
           <GridItem sm={10} xl2={11}>
-            <TextContent>
-              <Text component={TextVariants.h3}>
+            <Content>
+              <Content component={ContentVariants.h3}>
                 Create an ACS Central Instance
-              </Text>
-            </TextContent>
+              </Content>
+            </Content>
             <Button
               variant="secondary"
               icon={<ExternalLinkAltIcon />}
               iconPosition="right"
-              className="pf-v5-u-my-md"
+              className="pf-v6-u-my-md"
               component={(props) => <AppLink {...props} to={'instances'} />}
               aria-label="Create Instance"
               rel="noopener noreferrer nofollow"
@@ -62,7 +61,7 @@ const InitialSetup = () => {
               <ListItem>Choose a name for your instance.</ListItem>
               <ListItem>
                 Follow the rest of the guidelines and click{' '}
-                <span className="pf-v5-u-font-weight-bold">
+                <span className="pf-v6-u-font-weight-bold">
                   Create Instance
                 </span>
                 .
@@ -73,25 +72,25 @@ const InitialSetup = () => {
           </GridItem>
 
           <GridItem sm={2} xl2={1}>
-            <TextContent>
-              <Text component={TextVariants.h3}>Step 2:</Text>
-            </TextContent>
+            <Content>
+              <Content component={ContentVariants.h3}>Step 2:</Content>
+            </Content>
           </GridItem>
           <GridItem sm={10} xl2={11}>
-            <TextContent className="pf-v5-u-mb-sm">
-              <Text component={TextVariants.h3}>
+            <Content className="pf-v6-u-mb-sm">
+              <Content component={ContentVariants.h3}>
                 Access the ACS Central Interface
-              </Text>
-            </TextContent>
+              </Content>
+            </Content>
             <List component="ol" type="1">
               <ListItem>
                 When your instance is in the{' '}
-                <span className="pf-v5-u-font-weight-bold">ready</span> status,
+                <span className="pf-v6-u-font-weight-bold">ready</span> status,
                 click the name for details.
               </ListItem>
               <ListItem>
                 Click the{' '}
-                <span className="pf-v5-u-font-weight-bold">
+                <span className="pf-v6-u-font-weight-bold">
                   Open ACS Console
                 </span>{' '}
                 button.

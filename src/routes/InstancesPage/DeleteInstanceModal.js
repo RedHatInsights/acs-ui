@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
 import {
-  Alert,
-  AlertVariant,
-  Button,
-  Form,
-  FormGroup,
-  HelperText,
-  HelperTextItem,
-  Modal,
-  ModalVariant,
-  TextInput,
+	Alert,
+	AlertVariant,
+	Button,
+	Form,
+	FormGroup,
+	HelperText,
+	HelperTextItem,
+	TextInput
 } from '@patternfly/react-core';
+import {
+	Modal,
+	ModalVariant
+} from '@patternfly/react-core/deprecated';
 import React, { useState } from 'react';
 
 import useAnalytics from '../../hooks/useAnalytics';
@@ -77,10 +79,10 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         </Button>,
       ]}
     >
-      <div className="pf-v5-u-pb-md">
+      <div className="pf-v6-u-pb-md">
         <div>
           This will permanently delete{' '}
-          <span className="pf-v5-u-font-weight-bold">{instance.name}</span>.
+          <span className="pf-v6-u-font-weight-bold">{instance.name}</span>.
         </div>
         <div>This action cannot be undone.</div>
       </div>
@@ -102,7 +104,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         <HelperText>
           <HelperTextItem>
             Type{' '}
-            <span className="pf-v5-u-font-weight-bold">{instance.name}</span> to
+            <span className="pf-v6-u-font-weight-bold">{instance.name}</span> to
             confirm.
           </HelperTextItem>
         </HelperText>

@@ -7,16 +7,14 @@ import {
   FlexItem,
   Icon,
   PageSection,
-  PageSectionVariants,
-  Text,
-  TextContent,
-} from '@patternfly/react-core';
+  Content,
+  } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import service from '../../assets/ACS_service_icon.svg';
 
 function Header() {
   return (
-    <PageSection variant={PageSectionVariants.light}>
+    <PageSection hasBodyWrapper={false} >
       <Flex>
         <FlexItem alignSelf={{ default: 'alignSelfCenter' }}>
           <img src={service} alt="" />
@@ -27,13 +25,15 @@ function Header() {
           }}
         />
         <FlexItem>
-          <TextContent>
-            <Text component="h1">Advanced Cluster Security</Text>
-            <Text component="p">
+          <Content>
+            <Content component="h1">Advanced Cluster Security</Content>
+            <Content component="p">
               Fully hosted cloud service for protecting cloud native
               applications and Kubernetes.
-            </Text>
-            <Button
+            </Content>
+            <Button icon={<Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
+                <ExternalLinkAltIcon />
+              </Icon>}
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
@@ -41,11 +41,9 @@ function Header() {
               isInline
             >
               Learn more
-              <Icon size="md" className="pf-v5-u-ml-md" color="currentColor">
-                <ExternalLinkAltIcon />
-              </Icon>
+              
             </Button>
-          </TextContent>
+          </Content>
         </FlexItem>
       </Flex>
     </PageSection>

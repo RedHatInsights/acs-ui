@@ -111,11 +111,11 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           />
         </ToolbarItem>
         <ToolbarFilter
-          chips={filters.name}
-          deleteChip={onDeleteChip}
-          deleteChipGroup={onDeleteChipGroup}
+          labels={filters.name}
+          deleteLabel={onDeleteChip}
+          deleteLabelGroup={onDeleteChipGroup}
           categoryName="Name"
-          className={selectedFilter !== 'Name' && 'pf-v5-u-hidden'}
+          className={selectedFilter !== 'Name' && 'pf-v6-u-hidden'}
         >
           <ToolbarItem>
             <InputGroup>
@@ -135,25 +135,25 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 />
               </InputGroupItem>
               <InputGroupItem>
-                <Button
+                <Button icon={<SearchIcon />}
                   variant="control"
                   aria-label="Search Name"
                   onClick={() => {
                     applyCurrentSearchText('name', inputName, setInputName);
                   }}
                 >
-                  <SearchIcon />
+                  
                 </Button>
               </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
         <ToolbarFilter
-          chips={filters.region}
-          deleteChip={onDeleteChip}
-          deleteChipGroup={onDeleteChipGroup}
+          labels={filters.region}
+          deleteLabel={onDeleteChip}
+          deleteLabelGroup={onDeleteChipGroup}
           categoryName="Region"
-          className={selectedFilter !== 'Region' && 'pf-v5-u-hidden'}
+          className={selectedFilter !== 'Region' && 'pf-v6-u-hidden'}
         >
           <ToolbarItem>
             <CheckboxSelect
@@ -162,7 +162,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 <>
                   Filter by region
                   {filters?.region?.length > 0 && (
-                    <Badge isRead className="pf-v5-u-ml-sm">
+                    <Badge isRead className="pf-v6-u-ml-sm">
                       {filters.region.length}
                     </Badge>
                   )}
@@ -178,11 +178,11 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
           </ToolbarItem>
         </ToolbarFilter>
         <ToolbarFilter
-          chips={filters.owner}
-          deleteChip={onDeleteChip}
-          deleteChipGroup={onDeleteChipGroup}
+          labels={filters.owner}
+          deleteLabel={onDeleteChip}
+          deleteLabelGroup={onDeleteChipGroup}
           categoryName="Owner"
-          className={selectedFilter !== 'Owner' && 'pf-v5-u-hidden'}
+          className={selectedFilter !== 'Owner' && 'pf-v6-u-hidden'}
         >
           <ToolbarItem>
             <InputGroup>
@@ -206,25 +206,25 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 />
               </InputGroupItem>
               <InputGroupItem>
-                <Button
+                <Button icon={<SearchIcon />}
                   variant="control"
                   aria-label="Search Owner"
                   onClick={() => {
                     applyCurrentSearchText('owner', inputOwner, setInputOwner);
                   }}
                 >
-                  <SearchIcon />
+                  
                 </Button>
               </InputGroupItem>
             </InputGroup>
           </ToolbarItem>
         </ToolbarFilter>
         <ToolbarFilter
-          chips={filters.status}
-          deleteChip={onDeleteChip}
-          deleteChipGroup={onDeleteChipGroup}
+          labels={filters.status}
+          deleteLabel={onDeleteChip}
+          deleteLabelGroup={onDeleteChipGroup}
           categoryName="Status"
-          className={selectedFilter !== 'Status' && 'pf-v5-u-hidden'}
+          className={selectedFilter !== 'Status' && 'pf-v6-u-hidden'}
         >
           <ToolbarItem>
             <CheckboxSelect
@@ -233,7 +233,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                 <>
                   Filter by status
                   {filters?.status?.length > 0 && (
-                    <Badge isRead className="pf-v5-u-ml-sm">
+                    <Badge isRead className="pf-v6-u-ml-sm">
                       {filters.status.length}
                     </Badge>
                   )}
