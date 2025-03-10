@@ -5,8 +5,6 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { useParams } from 'react-router-dom';
-import { Breadcrumb } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
-import { BreadcrumbItem } from '@patternfly/react-core/dist/dynamic/components/Breadcrumb';
 import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
 import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
 import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Button';
@@ -23,7 +21,6 @@ import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
 import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
 import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
 import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
-import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import useInstance from '../../hooks/apis/useInstance';
 import InstanceDetailsList from '../../components/InstanceDetailsList';
 
@@ -56,14 +53,6 @@ function InstanceDetailsPage() {
     <div>
       <PageHeader>
         <Flex direction={{ default: 'column' }}>
-          <FlexItem>
-            <Breadcrumb>
-              <BreadcrumbItemLink to="/instances">
-                ACS instances
-              </BreadcrumbItemLink>
-              <BreadcrumbItem isActive>{instance.name}</BreadcrumbItem>
-            </Breadcrumb>
-          </FlexItem>
           <FlexItem>
             <PageHeaderTitle title={instance.name} />
           </FlexItem>

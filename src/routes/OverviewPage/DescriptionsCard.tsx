@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Card,
-  CardBody,
-} from '@patternfly/react-core/dist/dynamic/components/Card';
+import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
 import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
 import { Divider } from '@patternfly/react-core/dist/dynamic/components/Divider';
 import { Drawer } from '@patternfly/react-core/dist/dynamic/components/Drawer';
