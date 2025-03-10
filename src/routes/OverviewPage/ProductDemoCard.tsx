@@ -3,17 +3,16 @@ import {
   Card,
   CardBody,
   CardTitle,
-  Text,
-  TextContent,
-} from '@patternfly/react-core';
+  Content,
+  } from '@patternfly/react-core';
 
 function ProductDemoCard() {
   return (
     <Card>
       <CardTitle>
-        <TextContent>
-          <Text component="h2">Product demo</Text>
-        </TextContent>
+        <Content>
+          <Content component="h2">Product demo</Content>
+        </Content>
       </CardTitle>
       <CardBody>
         <div className="marketing-video">

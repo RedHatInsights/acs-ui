@@ -22,7 +22,6 @@ import {
   List,
   ListItem,
   PageSection,
-  PageSectionVariants,
   Spinner,
   Title,
 } from '@patternfly/react-core';
@@ -72,14 +71,14 @@ function InstanceDetailsPage() {
           </FlexItem>
         </Flex>
       </PageHeader>
-      <Main className="pf-v5-u-p-0 pf-m-fill pf-m-overflow-scroll">
-        <PageSection>
+      <Main className="pf-v6-u-p-0 pf-m-fill pf-m-overflow-scroll">
+        <PageSection hasBodyWrapper={false}>
           <Flex alignItems={{ default: 'alignItemsStretch' }}>
             <FlexItem
               flex={{ default: 'flex_1' }}
               alignSelf={{ default: 'alignSelfStretch' }}
             >
-              <Card className="pf-v5-u-h-100">
+              <Card className="pf-v6-u-h-100">
                 <CardHeader>
                   <CardTitle>ACS Instance Access</CardTitle>
                 </CardHeader>
@@ -115,8 +114,8 @@ function InstanceDetailsPage() {
             </FlexItem>
           </Flex>
         </PageSection>
-        <PageSection
-          variant={PageSectionVariants.light}
+        <PageSection hasBodyWrapper
+          
           isFilled
           hasOverflowScroll
           isWidthLimited

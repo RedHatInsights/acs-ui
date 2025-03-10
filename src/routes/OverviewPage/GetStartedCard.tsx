@@ -9,9 +9,8 @@ import {
   FlexItem,
   ProgressStep,
   ProgressStepper,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import ExternalLinkAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-alt-icon';
 
@@ -31,20 +30,20 @@ function GetStartedCard() {
               alignSelf={{ default: 'alignSelfCenter' }}
             >
               <FlexItem>
-                <TextContent>
-                  <Text component={TextVariants.h2}>
+                <Content>
+                  <Content component={ContentVariants.h2}>
                     Get started with Red Hat Advanced Cluster Security Cloud
                     Service
-                  </Text>
-                </TextContent>
+                  </Content>
+                </Content>
               </FlexItem>
               <FlexItem>
-                <Text component={TextVariants.p}>
+                <Content component={ContentVariants.p}>
                   Red Hat Advanced Cluster Security Cloud Service provides a
                   Kubernetes-native architecture for container security,
                   enabling DevOps and InfoSec teams to operationalize full life
                   cycle container and Kubernetes security.
-                </Text>
+                </Content>
               </FlexItem>
             </Flex>
             <Flex direction={{ default: 'row' }} className="pf-u-mt-md"></Flex>
@@ -65,7 +64,7 @@ function GetStartedCard() {
               aria-label="ACS getting started step 1"
               icon={1}
             >
-              <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
+              <Card  isCompact className="pf-u-h-100 pf-u-m-md">
                 <CardTitle>Get an ACS subscription</CardTitle>
                 <CardBody className="pf-u-pb-0">
                   Start a 60-day free trial subscription to Red Hat® Advanced
@@ -93,7 +92,7 @@ function GetStartedCard() {
               aria-label="ACS getting started step 2"
               icon={2}
             >
-              <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
+              <Card  isCompact className="pf-u-h-100 pf-u-m-md">
                 <CardTitle>Create an ACS instance</CardTitle>
                 <CardBody className="pf-u-pb-0">
                   If you&apos;re already subscribed to ACS, continue the process
@@ -119,7 +118,7 @@ function GetStartedCard() {
               aria-label="ACS getting started step 3"
               icon={3}
             >
-              <Card isFlat isCompact className="pf-u-h-100 pf-u-m-md">
+              <Card  isCompact className="pf-u-h-100 pf-u-m-md">
                 <CardTitle>Secure a cluster</CardTitle>
                 <CardBody className="pf-u-pb-0">
                   Once you&apos;ve got your ACS instance up and running, open

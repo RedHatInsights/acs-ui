@@ -1,13 +1,11 @@
 import React from 'react';
 import { ExclamationCircleIcon } from '@patternfly/react-icons/';
-import { global_danger_color_100 as dangerColor } from '@patternfly/react-tokens';
+
 import {
   Button,
   EmptyState,
   EmptyStateBody,
   EmptyStateFooter,
-  EmptyStateHeader,
-  EmptyStateIcon,
   EmptyStateProps,
   EmptyStateVariant,
   Stack,
@@ -32,17 +30,7 @@ const NotFoundMessage: React.FunctionComponent<NotFoundMessageProps> = ({
   ...props
 }) => {
   return (
-    <EmptyState variant={EmptyStateVariant.lg} {...props}>
-      <EmptyStateHeader
-        titleText={<>{errorTitle}</>}
-        icon={
-          <EmptyStateIcon
-            icon={ExclamationCircleIcon}
-            color={dangerColor.value}
-          />
-        }
-        headingLevel="h4"
-      />
+    <EmptyState  headingLevel="h4" icon={ExclamationCircleIcon}  titleText={<>{errorTitle}</>} variant={EmptyStateVariant.lg} {...props}>
       <EmptyStateBody>
         <Stack>
           <StackItem>{errorDescription}</StackItem>

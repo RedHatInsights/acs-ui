@@ -5,9 +5,8 @@ import {
   Radio,
   Stack,
   StackItem,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
   Title,
 } from '@patternfly/react-core';
 import { SimpleSelect } from '@patternfly/react-templates';
@@ -85,9 +84,9 @@ function InstallOptions({
         </Flex>
       </StackItem>
       <StackItem>
-        <TextContent>
-          <Text component={TextVariants.h3}>Select your environment</Text>
-        </TextContent>
+        <Content>
+          <Content component={ContentVariants.h3}>Select your environment</Content>
+        </Content>
         <Radio
           label="OpenShift"
           id={`radio-environment-${OPENSHIFT}`}
@@ -128,11 +127,11 @@ function InstallOptions({
       <StackItem>
         {selectedEnv && selectedInstallation && (
           <>
-            <TextContent>
-              <Text component={TextVariants.h3}>
+            <Content>
+              <Content component={ContentVariants.h3}>
                 Select your supported installation method
-              </Text>
-            </TextContent>
+              </Content>
+            </Content>
             <SimpleSelect
               toggleWidth="100%"
               initialOptions={

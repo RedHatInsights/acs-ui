@@ -61,12 +61,12 @@ const InstallWithOperator = () => {
               install the ACS Operator from Operator Hub
             </Button>
             . Create a new OCP project for ACS. A good name choice is{' '}
-            <span className="pf-v5-u-font-weight-bold">rhacs-operator</span>.
+            <span className="pf-v6-u-font-weight-bold">rhacs-operator</span>.
           </ListItem>
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
-            <span className="pf-v5-u-font-weight-bold">
+            <span className="pf-v6-u-font-weight-bold">
               Cluster Init Bundle
             </span>
             .
@@ -98,7 +98,7 @@ const InstallWithOperator = () => {
               clickTip="Copied"
               variant="inline-compact"
               isCode
-              className="pf-v5-u-my-sm"
+              className="pf-v6-u-my-sm"
             >
               {`oc -n rhacs-operator create -f bundlename-cluster-init-secrets.yaml`}
             </ClipboardCopy>

@@ -1,17 +1,19 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Alert,
-  Button,
-  Form,
-  FormGroup,
-  FormHelperText,
-  HelperText,
-  HelperTextItem,
-  Modal,
-  ModalVariant,
-  TextInput,
+	Alert,
+	Button,
+	Form,
+	FormGroup,
+	FormHelperText,
+	HelperText,
+	HelperTextItem,
+	TextInput
 } from '@patternfly/react-core';
+import {
+	Modal,
+	ModalVariant
+} from '@patternfly/react-core/deprecated';
 
 import useAnalytics from '../../hooks/useAnalytics';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
@@ -153,7 +155,7 @@ function CreateInstanceModal({
       ]}
     >
       {errorMessage && (
-        <div className="pf-v5-u-mb-md">
+        <div className="pf-v6-u-mb-md">
           <Alert variant="danger" title={errorMessage} />
         </div>
       )}
