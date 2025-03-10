@@ -193,7 +193,7 @@ function CreateInstanceModal({
             onSelect={(_ev, selection) => onChangeAWSAccountNumber(selection)}
             placeholder="Select an AWS Account"
             isDisabled={cloudAccountIds.length <= 1}
-            popperProps={{ appendTo: 'parent' }}
+            popperProps={{ appendTo: 'inline' }}
           />
           <FormHelperText>
             <HelperText>
