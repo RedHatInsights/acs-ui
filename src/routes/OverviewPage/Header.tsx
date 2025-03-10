@@ -1,20 +1,18 @@
 import React from 'react';
-import {
-  Button,
-  ButtonVariant,
-  Divider,
-  Flex,
-  FlexItem,
-  Icon,
-  PageSection,
-  Content,
-  } from '@patternfly/react-core';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Divider } from '@patternfly/react-core/dist/dynamic/components/Divider';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Icon } from '@patternfly/react-core/dist/dynamic/components/Icon';
+import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 import service from '../../assets/ACS_service_icon.svg';
 
 function Header() {
   return (
-    <PageSection hasBodyWrapper={false} >
+    <PageSection hasBodyWrapper={false}>
       <Flex>
         <FlexItem alignSelf={{ default: 'alignSelfCenter' }}>
           <img src={service} alt="" />
@@ -31,9 +29,12 @@ function Header() {
               Fully hosted cloud service for protecting cloud native
               applications and Kubernetes.
             </Content>
-            <Button icon={<Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
-                <ExternalLinkAltIcon />
-              </Icon>}
+            <Button
+              icon={
+                <Icon size="md" className="pf-v6-u-ml-md" color="currentColor">
+                  <ExternalLinkAltIcon />
+                </Icon>
+              }
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
@@ -41,7 +42,6 @@ function Header() {
               isInline
             >
               Learn more
-              
             </Button>
           </Content>
         </FlexItem>

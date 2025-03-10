@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-  PendingIcon,
-} from '@patternfly/react-icons';
-import { Flex, FlexItem, Spinner } from '@patternfly/react-core';
+import CheckCircleIcon from '@patternfly/react-icons/dist/dynamic/icons/check-circle-icon';
+import ExclamationCircleIcon from '@patternfly/react-icons/dist/dynamic/icons/exclamation-circle-icon';
+import PendingIcon from '@patternfly/react-icons/dist/dynamic/icons/pending-icon';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
 
 import { statuses } from '../utils/status';
 

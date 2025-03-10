@@ -5,31 +5,30 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import {
-  Bullseye,
-  Button,
-  Card,
-  EmptyState,
-  EmptyStateActions,
-  EmptyStateBody,
-  EmptyStateFooter,
-  EmptyStateVariant,
-  Pagination,
-  Spinner,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-} from '@patternfly/react-core';
+import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { EmptyState } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateActions } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateBody } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateFooter } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateVariant } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { Pagination } from '@patternfly/react-core/dist/dynamic/components/Pagination';
+import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
+import { Toolbar } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
+import { ToolbarContent } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
+import { ToolbarItem } from '@patternfly/react-core/dist/dynamic/components/Toolbar';
 import {
   ActionsColumn,
-  Table /* data-codemods */,
+  Table,
   Tbody,
   Td,
   Th,
   Thead,
   Tr,
 } from '@patternfly/react-table';
-import { CubesIcon, SearchIcon } from '@patternfly/react-icons';
+import CubesIcon from '@patternfly/react-icons/dist/dynamic/icons/cubes-icon';
+import SearchIcon from '@patternfly/react-icons/dist/dynamic/icons/search-icon';
 
 import usePagination from '../../hooks/usePagination';
 import useInstances from '../../hooks/apis/useInstances';

@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-  Grid,
-  GridItem,
-  PageSection,
-  } from '@patternfly/react-core';
+import { Grid } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
+import { GridItem } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
+import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
 import Header from './Header';
 import GetStartedCard from './GetStartedCard';
 import DescriptionsCard from './DescriptionsCard';
@@ -14,7 +12,7 @@ import ProductDemoCard from './ProductDemoCard';
 function OverviewPage() {
   return (
     <div>
-      <PageSection hasBodyWrapper={false} >
+      <PageSection hasBodyWrapper={false}>
         <Header />
       </PageSection>
       <PageSection hasBodyWrapper={false}>

@@ -1,23 +1,21 @@
 import React from 'react';
-import {
-  Button,
-  Flex,
-  FlexItem,
-  Grid,
-  GridItem,
-  List,
-  ListItem,
-  Stack,
-  StackItem,
-  Content,
-  ContentVariants,
-  Title,
-} from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Grid } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
+import { GridItem } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
+import { List } from '@patternfly/react-core/dist/dynamic/components/List';
+import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
+import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
 
 import AppLink from '../../../components/AppLink';
 import HeaderExternalLink from './HeaderExternalLink';
 
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
 const InitialSetup = () => {
   return (

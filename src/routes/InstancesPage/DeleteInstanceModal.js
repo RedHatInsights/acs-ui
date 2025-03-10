@@ -1,18 +1,13 @@
 /* eslint-disable react/prop-types */
-import {
-	Alert,
-	AlertVariant,
-	Button,
-	Form,
-	FormGroup,
-	HelperText,
-	HelperTextItem,
-	TextInput
-} from '@patternfly/react-core';
-import {
-	Modal,
-	ModalVariant
-} from '@patternfly/react-core/deprecated';
+import { Alert } from '@patternfly/react-core/dist/dynamic/components/Alert';
+import { AlertVariant } from '@patternfly/react-core/dist/dynamic/components/Alert';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Form } from '@patternfly/react-core/dist/dynamic/components/Form';
+import { FormGroup } from '@patternfly/react-core/dist/dynamic/components/Form';
+import { HelperText } from '@patternfly/react-core/dist/dynamic/components/HelperText';
+import { HelperTextItem } from '@patternfly/react-core/dist/dynamic/components/HelperText';
+import { TextInput } from '@patternfly/react-core/dist/dynamic/components/TextInput';
+import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
 import React, { useState } from 'react';
 
 import useAnalytics from '../../hooks/useAnalytics';
