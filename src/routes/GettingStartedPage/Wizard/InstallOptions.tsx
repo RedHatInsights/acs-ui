@@ -1,15 +1,12 @@
 import React from 'react';
-import {
-  Flex,
-  FlexItem,
-  Radio,
-  Stack,
-  StackItem,
-  Text,
-  TextContent,
-  TextVariants,
-  Title,
-} from '@patternfly/react-core';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Radio } from '@patternfly/react-core/dist/dynamic/components/Radio';
+import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
 import { SimpleSelect } from '@patternfly/react-templates';
 
 import HeaderExternalLink from './HeaderExternalLink';
@@ -85,9 +82,11 @@ function InstallOptions({
         </Flex>
       </StackItem>
       <StackItem>
-        <TextContent>
-          <Text component={TextVariants.h3}>Select your environment</Text>
-        </TextContent>
+        <Content>
+          <Content component={ContentVariants.h3}>
+            Select your environment
+          </Content>
+        </Content>
         <Radio
           label="OpenShift"
           id={`radio-environment-${OPENSHIFT}`}
@@ -128,11 +127,11 @@ function InstallOptions({
       <StackItem>
         {selectedEnv && selectedInstallation && (
           <>
-            <TextContent>
-              <Text component={TextVariants.h3}>
+            <Content>
+              <Content component={ContentVariants.h3}>
                 Select your supported installation method
-              </Text>
-            </TextContent>
+              </Content>
+            </Content>
             <SimpleSelect
               toggleWidth="100%"
               initialOptions={

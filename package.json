@@ -21,11 +21,11 @@
     "verify": "npm-run-all build lint test"
   },
   "dependencies": {
-    "@patternfly/react-core": "^5.4.2",
-    "@patternfly/react-table": "^5.4.8",
-    "@patternfly/react-templates": "^1.1.16",
-    "@redhat-cloud-services/frontend-components": "^5.2.8",
-    "@redhat-cloud-services/frontend-components-notifications": "^4.1.19",
+    "@patternfly/react-core": "^6.0.0",
+    "@patternfly/react-table": "^6.0.0",
+    "@patternfly/react-templates": "^6.0.0",
+    "@redhat-cloud-services/frontend-components": "^6.0.2",
+    "@redhat-cloud-services/frontend-components-notifications": "^5.0.2",
     "classnames": "^2.3.1",
     "json-server": "^0.17.0",
     "qs": "^6.11.1",

@@ -3,20 +3,14 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Flex,
-  FlexItem,
-  PageSection,
-  Text,
-  TextContent,
-  TextVariants,
-} from '@patternfly/react-core';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
-import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import GettingStartedWizard from './Wizard/GettingStartedWizard';
 
 function GettingStartedPage() {
@@ -25,17 +19,11 @@ function GettingStartedPage() {
       <PageHeader>
         <Flex direction={{ default: 'column' }}>
           <FlexItem>
-            <Breadcrumb>
-              <BreadcrumbItemLink to="/overview">ACS</BreadcrumbItemLink>
-              <BreadcrumbItem isActive>Get started with ACS</BreadcrumbItem>
-            </Breadcrumb>
-          </FlexItem>
-          <FlexItem>
             <PageHeaderTitle title="Get started with Red Hat Advanced Cluster Security" />
           </FlexItem>
           <FlexItem>
-            <TextContent>
-              <Text component={TextVariants.p}>
+            <Content>
+              <Content component={ContentVariants.p}>
                 The solution helps improve the security of the application build
                 process, protects the application platform and configurations,
                 detects runtime issues, and facilitates response.{' '}
@@ -64,12 +52,12 @@ function GettingStartedPage() {
                 >
                   Email us
                 </Button>
-              </Text>
-            </TextContent>
+              </Content>
+            </Content>
           </FlexItem>
         </Flex>
       </PageHeader>
-      <PageSection>
+      <PageSection hasBodyWrapper={false}>
         <GettingStartedWizard />
       </PageSection>
     </div>

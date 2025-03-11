@@ -1,34 +1,30 @@
 import React from 'react';
-import {
-  Button,
-  ButtonVariant,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Flex,
-  FlexItem,
-  Icon,
-  Label,
-  Text,
-  TextContent,
-  TextVariants,
-} from '@patternfly/react-core';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardBody } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardHeader } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Label } from '@patternfly/react-core/dist/dynamic/components/Label';
+import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import { ContentVariants } from '@patternfly/react-core/dist/dynamic/components/Content';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
 
 function ProductDocumentationCard() {
   return (
-    <Card className="pf-v5-u-h-100">
+    <Card className="pf-v6-u-h-100">
       <CardHeader>
         <CardTitle>
           <Flex direction={{ default: 'column' }}>
             <FlexItem spacer={{ default: 'spacerSm' }}>
-              <TextContent>
-                <Text component={TextVariants.h2}>
+              <Content>
+                <Content component={ContentVariants.h2}>
                   Red Hat Advanced Cluster Security Cloud Service product
                   documentation
-                </Text>
-              </TextContent>
+                </Content>
+              </Content>
             </FlexItem>
             <FlexItem>
               <Label isCompact color="green">
@@ -41,15 +37,17 @@ function ProductDocumentationCard() {
       <CardBody>
         <Flex>
           <FlexItem>
-            <Text component={TextVariants.p}>
+            <Content component={ContentVariants.p}>
               Learn about Red Hat Advanced Cluster Security Cloud Service and
               start exploring its features. This documentation will guide from
               installation to configuration, operation, and integrating with
               other products.
-            </Text>
+            </Content>
           </FlexItem>
-          <FlexItem className="pf-v5-u-mt-md pf-v5-u-mb-md">
+          <FlexItem className="pf-v6-u-mt-md pf-v6-u-mb-md">
             <Button
+              icon={<ExternalLinkAltIcon />}
+              iconPosition="right"
               variant={ButtonVariant.link}
               component="a"
               target="_blank"
@@ -57,9 +55,6 @@ function ProductDocumentationCard() {
               isInline
             >
               View documentation
-              <Icon size="md" className="pf-v5-u-ml-md" color="currentColor">
-                <ExternalLinkAltIcon />
-              </Icon>
             </Button>
           </FlexItem>
         </Flex>

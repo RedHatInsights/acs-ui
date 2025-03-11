@@ -1,18 +1,14 @@
 import React from 'react';
 import { ExclamationCircleIcon } from '@patternfly/react-icons/';
-import { global_danger_color_100 as dangerColor } from '@patternfly/react-tokens';
-import {
-  Button,
-  EmptyState,
-  EmptyStateBody,
-  EmptyStateFooter,
-  EmptyStateHeader,
-  EmptyStateIcon,
-  EmptyStateProps,
-  EmptyStateVariant,
-  Stack,
-  StackItem,
-} from '@patternfly/react-core';
+
+import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
+import { EmptyState } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateBody } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateFooter } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateProps } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { EmptyStateVariant } from '@patternfly/react-core/dist/dynamic/components/EmptyState';
+import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
+import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
 
 import AppLink from './AppLink';
 
@@ -32,17 +28,13 @@ const NotFoundMessage: React.FunctionComponent<NotFoundMessageProps> = ({
   ...props
 }) => {
   return (
-    <EmptyState variant={EmptyStateVariant.lg} {...props}>
-      <EmptyStateHeader
-        titleText={<>{errorTitle}</>}
-        icon={
-          <EmptyStateIcon
-            icon={ExclamationCircleIcon}
-            color={dangerColor.value}
-          />
-        }
-        headingLevel="h4"
-      />
+    <EmptyState
+      headingLevel="h4"
+      icon={ExclamationCircleIcon}
+      titleText={<>{errorTitle}</>}
+      variant={EmptyStateVariant.lg}
+      {...props}
+    >
       <EmptyStateBody>
         <Stack>
           <StackItem>{errorDescription}</StackItem>
