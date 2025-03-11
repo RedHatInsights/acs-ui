@@ -166,7 +166,12 @@ function InstancesPage() {
     setFilters({});
   }
 
-  if (instances.length === 0 && Object.keys(filters).length === 0) {
+  const hasNoInstances =
+    instances.length === 0 &&
+    Object.keys(filters).length === 0 &&
+    !isTableLoading;
+
+  if (hasNoInstances) {
     content = (
       <EmptyState>
         <EmptyStateHeader
@@ -374,9 +379,7 @@ function InstancesPage() {
       <Main>
         <Card>{content}</Card>
         <CreateInstanceModal
-          isOpen={
-            !!creatingInstance || (instances.length === 0 && !isTableLoading)
-          }
+          isOpen={!!creatingInstance || hasNoInstances}
           onClose={closeCreateInstanceModal}
           onRequestCreate={onRequestCreate}
           cloudAccountIds={cloudAccountIds}

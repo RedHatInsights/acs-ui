@@ -87,6 +87,20 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
     onSelect('status', event, selection);
   }
 
+  function applyCurrentSearchText(field, input, setInput) {
+    if (!input) return;
+
+    setFilters((prevFilters) => {
+      const newFilters = structuredClone(prevFilters);
+      const fieldFilters = newFilters[field] ?? [];
+      if (!fieldFilters.includes(input)) {
+        newFilters[field] = [...fieldFilters, input];
+      }
+      return newFilters;
+    });
+    setInput('');
+  }
+
   return (
     <ToolbarToggleGroup toggleIcon={<FilterIcon />} breakpoint="xl">
       <ToolbarGroup variant="filter-group">
@@ -121,6 +135,11 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                   placeholder="Filter by name"
                   value={inputName}
                   onChange={(_event, value) => setInputName(value)}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      applyCurrentSearchText('name', inputName, setInputName);
+                    }
+                  }}
                 />
               </InputGroupItem>
               <InputGroupItem>
@@ -128,12 +147,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                   variant="control"
                   aria-label="Search Name"
                   onClick={() => {
-                    if (!inputName) return;
-                    setFilters((prevFilters) => {
-                      const newFilters = { ...prevFilters };
-                      newFilters.name = [inputName];
-                      return newFilters;
-                    });
+                    applyCurrentSearchText('name', inputName, setInputName);
                   }}
                 >
                   <SearchIcon />
@@ -186,6 +200,15 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                   placeholder="Filter by owner"
                   value={inputOwner}
                   onChange={(_event, value) => setInputOwner(value)}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      applyCurrentSearchText(
+                        'owner',
+                        inputOwner,
+                        setInputOwner
+                      );
+                    }
+                  }}
                 />
               </InputGroupItem>
               <InputGroupItem>
@@ -193,12 +216,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                   variant="control"
                   aria-label="Search Owner"
                   onClick={() => {
-                    if (!inputOwner) return;
-                    setFilters((prevFilters) => {
-                      const newFilters = { ...prevFilters };
-                      newFilters.owner = [inputOwner];
-                      return newFilters;
-                    });
+                    applyCurrentSearchText('owner', inputOwner, setInputOwner);
                   }}
                 >
                   <SearchIcon />
