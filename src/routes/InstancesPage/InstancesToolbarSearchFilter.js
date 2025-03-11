@@ -91,7 +91,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
     if (!input) return;
 
     setFilters((prevFilters) => {
-      const newFilters = { ...prevFilters };
+      const newFilters = structuredClone(prevFilters);
       const fieldFilters = newFilters[field] ?? [];
       if (!fieldFilters.includes(input)) {
         newFilters[field] = [...fieldFilters, input];
