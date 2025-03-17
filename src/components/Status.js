@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-  PendingIcon,
-} from '@patternfly/react-icons';
-import { Flex, FlexItem, Spinner } from '@patternfly/react-core';
+import CheckCircleIcon from '@patternfly/react-icons/dist/dynamic/icons/check-circle-icon';
+import ExclamationCircleIcon from '@patternfly/react-icons/dist/dynamic/icons/exclamation-circle-icon';
+import PendingIcon from '@patternfly/react-icons/dist/dynamic/icons/pending-icon';
+import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
+import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
 
 import { statuses } from '../utils/status';
 
@@ -24,11 +24,15 @@ const statusMessages = {
   },
   ready: {
     message: statuses.ready,
-    component: <CheckCircleIcon className="pf-v5-u-success-color-100" />,
+    component: (
+      <CheckCircleIcon className="pf-v6-u-icon-color-status-success" />
+    ),
   },
   failed: {
     message: statuses.failed,
-    component: <ExclamationCircleIcon className="pf-v5-u-danger-color-100" />,
+    component: (
+      <ExclamationCircleIcon className="pf-v6-u-icon-color-status-danger" />
+    ),
   },
   deprovision: {
     message: statuses.deprovision,
@@ -47,7 +51,7 @@ function Status({ status }) {
   };
 
   return (
-    <Flex>
+    <Flex spaceItems={{ default: 'spaceItemsXs' }}>
       <FlexItem>{component}</FlexItem>
       <FlexItem>{message}</FlexItem>
     </Flex>
