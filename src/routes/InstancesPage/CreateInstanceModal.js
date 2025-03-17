@@ -12,13 +12,12 @@ import {
   ModalVariant,
   TextInput,
 } from '@patternfly/react-core';
-import { SelectOption } from '@patternfly/react-core/deprecated';
 
-import SelectSingle from '../../components/SelectSingle';
 import useAnalytics from '../../hooks/useAnalytics';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
 import { AWS_DEFAULT_REGION, AWS_PROVIDER } from '../../utils/cloudProvider';
 import { getRegionDisplayName } from '../../utils/region';
+import { SimpleSelect } from '@patternfly/react-templates';
 
 const defaultFormValues = {
   name: '',
@@ -86,14 +85,14 @@ function CreateInstanceModal({
     }
   }
 
-  function onCloudRegionSelect(id, selection) {
+  function onCloudRegionSelect(selection) {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       region: selection,
     }));
   }
 
-  function onChangeAWSAccountNumber(id, selection) {
+  function onChangeAWSAccountNumber(selection) {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       cloud_account_id: selection,
@@ -183,22 +182,19 @@ function CreateInstanceModal({
           isRequired={cloudAccountIds.length > 1}
           fieldId="cloud_account_id"
         >
-          <SelectSingle
+          <SimpleSelect
             id="cloud_account_id"
-            value={formValues.cloud_account_id}
-            handleSelect={onChangeAWSAccountNumber}
-            placeholderText="Select an AWS Account"
-            menuAppendTo="parent"
+            toggleWidth="100%"
+            initialOptions={cloudAccountIds.map((id) => ({
+              content: id,
+              value: id,
+              selected: formValues.cloud_account_id === id,
+            }))}
+            onSelect={(_ev, selection) => onChangeAWSAccountNumber(selection)}
+            placeholder="Select an AWS Account"
             isDisabled={cloudAccountIds.length <= 1}
-          >
-            {cloudAccountIds.map((cloudAccountId) => {
-              return (
-                <SelectOption key={cloudAccountId} value={cloudAccountId}>
-                  {cloudAccountId}
-                </SelectOption>
-              );
-            })}
-          </SelectSingle>
+            popperProps={{ appendTo: 'inline' }}
+          />
           <FormHelperText>
             <HelperText>
               <HelperTextItem>{getAWSHelperText()}</HelperTextItem>
@@ -206,24 +202,27 @@ function CreateInstanceModal({
           </FormHelperText>
         </FormGroup>
         <FormGroup label="Cloud region" isRequired fieldId="region">
-          <SelectSingle
+          <SimpleSelect
             id="region"
+            toggleWidth="100%"
+            selected={formValues.region}
+            initialOptions={[
+              {
+                content: 'Choose a region',
+                value: '',
+                selected: false,
+                isDisabled: true,
+              },
+              ...enabledCloudRegions.map((region) => ({
+                content: getRegionDisplayName(region),
+                value: region.id,
+                selected: formValues.region === region.id,
+              })),
+            ]}
+            onSelect={(_ev, selection) => onCloudRegionSelect(selection)}
             isDisabled={isFetchingRegions}
-            value={formValues.region}
-            handleSelect={onCloudRegionSelect}
-            menuAppendTo={() => document.body}
-          >
-            <SelectOption value="" isPlaceholder isDisabled={true}>
-              Choose a region
-            </SelectOption>
-            {enabledCloudRegions.map((region) => {
-              return (
-                <SelectOption key={region.id} value={region.id}>
-                  {getRegionDisplayName(region)}
-                </SelectOption>
-              );
-            })}
-          </SelectSingle>
+            popperProps={{ appendTo: () => document.body }}
+          />
         </FormGroup>
       </Form>
     </Modal>
