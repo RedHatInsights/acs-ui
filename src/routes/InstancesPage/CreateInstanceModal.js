@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert } from '@patternfly/react-core/dist/dynamic/components/Alert';
-import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
-import { Form } from '@patternfly/react-core/dist/dynamic/components/Form';
-import { FormGroup } from '@patternfly/react-core/dist/dynamic/components/Form';
-import { FormHelperText } from '@patternfly/react-core/dist/dynamic/components/Form';
-import { HelperText } from '@patternfly/react-core/dist/dynamic/components/HelperText';
-import { HelperTextItem } from '@patternfly/react-core/dist/dynamic/components/HelperText';
-import { TextInput } from '@patternfly/react-core/dist/dynamic/components/TextInput';
-import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
+import {
+  Alert,
+  Button,
+  Form,
+  FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
+  Modal,
+  ModalVariant,
+  TextInput,
+} from '@patternfly/react-core';
 
 import useAnalytics from '../../hooks/useAnalytics';
 import { useCloudRegions } from '../../hooks/apis/useCloudRegions';
@@ -150,7 +153,7 @@ function CreateInstanceModal({
       ]}
     >
       {errorMessage && (
-        <div className="pf-v6-u-mb-md">
+        <div className="pf-v5-u-mb-md">
           <Alert variant="danger" title={errorMessage} />
         </div>
       )}
@@ -190,7 +193,7 @@ function CreateInstanceModal({
             onSelect={(_ev, selection) => onChangeAWSAccountNumber(selection)}
             placeholder="Select an AWS Account"
             isDisabled={cloudAccountIds.length <= 1}
-            popperProps={{ appendTo: () => document.body }}
+            popperProps={{ appendTo: 'inline' }}
           />
           <FormHelperText>
             <HelperText>

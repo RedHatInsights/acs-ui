@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { Divider } from '@patternfly/react-core/dist/dynamic/components/Divider';
-import { Drawer } from '@patternfly/react-core/dist/dynamic/components/Drawer';
-import { DrawerContent } from '@patternfly/react-core/dist/dynamic/components/Drawer';
-import { DrawerContentBody } from '@patternfly/react-core/dist/dynamic/components/Drawer';
-import { DrawerHead } from '@patternfly/react-core/dist/dynamic/components/Drawer';
-import { DrawerPanelBody } from '@patternfly/react-core/dist/dynamic/components/Drawer';
-import { DrawerPanelContent } from '@patternfly/react-core/dist/dynamic/components/Drawer';
-import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { Icon } from '@patternfly/react-core/dist/dynamic/components/Icon';
-import { SimpleList } from '@patternfly/react-core/dist/dynamic/components/SimpleList';
-import { SimpleListItem } from '@patternfly/react-core/dist/dynamic/components/SimpleList';
-import { SimpleListItemProps } from '@patternfly/react-core/dist/dynamic/components/SimpleList';
-import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
+import {
+  Card,
+  CardTitle,
+  Divider,
+  Drawer,
+  DrawerContent,
+  DrawerContentBody,
+  DrawerHead,
+  DrawerPanelBody,
+  DrawerPanelContent,
+  Flex,
+  Icon,
+  SimpleList,
+  SimpleListItem,
+  SimpleListItemProps,
+  Title,
+} from '@patternfly/react-core';
 
 import { featureDetailsMap } from './DescriptionsCardContent';
 
@@ -30,7 +32,7 @@ function DescriptionsCard() {
   }
 
   const panelContent = (
-    <DrawerPanelContent widths={{ xl: 'width_50' }} className="pf-v6-u-m-xs">
+    <DrawerPanelContent widths={{ xl: 'width_50' }}>
       <DrawerHead>{featureDetailsMap[featureDetailsId].title}</DrawerHead>
       <DrawerPanelBody>
         {featureDetailsMap[featureDetailsId].content}
@@ -58,7 +60,7 @@ function DescriptionsCard() {
                         spaceItems={{ default: 'spaceItemsSm' }}
                         className="pf-u-my-sm"
                       >
-                        <Icon size="xl">
+                        <Icon size="lg" color="blue">
                           {featureDetailsMap[featureKey].icon}
                         </Icon>
                         <Divider orientation={{ default: 'vertical' }} />

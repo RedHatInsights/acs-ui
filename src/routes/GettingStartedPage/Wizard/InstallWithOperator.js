@@ -1,16 +1,18 @@
 import React from 'react';
-import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
-import { ClipboardCopy } from '@patternfly/react-core/dist/dynamic/components/ClipboardCopy';
-import { ExpandableSection } from '@patternfly/react-core/dist/dynamic/components/ExpandableSection';
-import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { List } from '@patternfly/react-core/dist/dynamic/components/List';
-import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
-import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
-import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
-import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
+import {
+  Button,
+  ClipboardCopy,
+  ExpandableSection,
+  Flex,
+  FlexItem,
+  List,
+  ListItem,
+  Stack,
+  StackItem,
+  Title,
+} from '@patternfly/react-core';
 
-import ExternalLinkAltIcon from '@patternfly/react-icons/dist/dynamic/icons/external-link-alt-icon';
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
 import centralEndpointImage from '../../../assets/central_api_endpoint.png';
 import clusterInitBundleImage from '../../../assets/cluster_init_bundle.png';
@@ -59,12 +61,12 @@ const InstallWithOperator = () => {
               install the ACS Operator from Operator Hub
             </Button>
             . Create a new OCP project for ACS. A good name choice is{' '}
-            <span className="pf-v6-u-font-weight-bold">rhacs-operator</span>.
+            <span className="pf-v5-u-font-weight-bold">rhacs-operator</span>.
           </ListItem>
           <ListItem>
             In the ACS UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
-            <span className="pf-v6-u-font-weight-bold">
+            <span className="pf-v5-u-font-weight-bold">
               Cluster Init Bundle
             </span>
             .
@@ -96,7 +98,7 @@ const InstallWithOperator = () => {
               clickTip="Copied"
               variant="inline-compact"
               isCode
-              className="pf-v6-u-my-sm"
+              className="pf-v5-u-my-sm"
             >
               {`oc -n rhacs-operator create -f bundlename-cluster-init-secrets.yaml`}
             </ClipboardCopy>

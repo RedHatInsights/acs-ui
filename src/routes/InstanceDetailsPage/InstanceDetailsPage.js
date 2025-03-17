@@ -5,22 +5,28 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { useParams } from 'react-router-dom';
-import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
-import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
-import { ButtonVariant } from '@patternfly/react-core/dist/dynamic/components/Button';
-import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { CardBody } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { CardHeader } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { Grid } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
-import { GridItem } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
-import { List } from '@patternfly/react-core/dist/dynamic/components/List';
-import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
-import { PageSection } from '@patternfly/react-core/dist/dynamic/components/Page';
-import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
-import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Bullseye,
+  Button,
+  ButtonVariant,
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  Flex,
+  FlexItem,
+  Grid,
+  GridItem,
+  List,
+  ListItem,
+  PageSection,
+  PageSectionVariants,
+  Spinner,
+  Title,
+} from '@patternfly/react-core';
+import BreadcrumbItemLink from '../../components/BreadcrumbItemLink';
 import useInstance from '../../hooks/apis/useInstance';
 import InstanceDetailsList from '../../components/InstanceDetailsList';
 
@@ -54,18 +60,26 @@ function InstanceDetailsPage() {
       <PageHeader>
         <Flex direction={{ default: 'column' }}>
           <FlexItem>
+            <Breadcrumb>
+              <BreadcrumbItemLink to="/instances">
+                ACS instances
+              </BreadcrumbItemLink>
+              <BreadcrumbItem isActive>{instance.name}</BreadcrumbItem>
+            </Breadcrumb>
+          </FlexItem>
+          <FlexItem>
             <PageHeaderTitle title={instance.name} />
           </FlexItem>
         </Flex>
       </PageHeader>
-      <Main className="pf-v6-u-p-0 pf-m-fill pf-m-overflow-scroll">
-        <PageSection hasBodyWrapper={false}>
+      <Main className="pf-v5-u-p-0 pf-m-fill pf-m-overflow-scroll">
+        <PageSection>
           <Flex alignItems={{ default: 'alignItemsStretch' }}>
             <FlexItem
               flex={{ default: 'flex_1' }}
               alignSelf={{ default: 'alignSelfStretch' }}
             >
-              <Card className="pf-v6-u-h-100">
+              <Card className="pf-v5-u-h-100">
                 <CardHeader>
                   <CardTitle>ACS Instance Access</CardTitle>
                 </CardHeader>
@@ -101,7 +115,12 @@ function InstanceDetailsPage() {
             </FlexItem>
           </Flex>
         </PageSection>
-        <PageSection hasBodyWrapper isFilled hasOverflowScroll isWidthLimited>
+        <PageSection
+          variant={PageSectionVariants.light}
+          isFilled
+          hasOverflowScroll
+          isWidthLimited
+        >
           <Title headingLevel="h2">
             Use Red Hat ACS to secure your clusters
           </Title>

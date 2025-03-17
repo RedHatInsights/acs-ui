@@ -1,6 +1,5 @@
 import React from 'react';
-import { Hint } from '@patternfly/react-core/dist/dynamic/components/Hint';
-import { HintBody } from '@patternfly/react-core/dist/dynamic/components/Hint';
+import { Hint, HintBody } from '@patternfly/react-core';
 
 function PricingSection() {
   return (

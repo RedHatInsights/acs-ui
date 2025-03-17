@@ -3,8 +3,7 @@ import { Navigate, Route, Routes as RouterRoutes } from 'react-router-dom';
 import { linkBasename, mergeToBasename } from './utils/paths';
 import ProtectedRoute from './ProtectedRoute';
 
-import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
-import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
+import { Bullseye, Spinner } from '@patternfly/react-core';
 
 const OopsPage = lazy(
   () => import(/* webpackChunkName: "OopsPage" */ './routes/OopsPage/OopsPage')

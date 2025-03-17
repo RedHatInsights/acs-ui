@@ -1,13 +1,14 @@
 import React, { ReactElement } from 'react';
-import { List } from '@patternfly/react-core/dist/dynamic/components/List';
-import { ListItem } from '@patternfly/react-core/dist/dynamic/components/List';
-import BugIcon from '@patternfly/react-icons/dist/dynamic/icons/bug-icon';
-import ClipboardCheckIcon from '@patternfly/react-icons/dist/dynamic/icons/clipboard-check-icon';
-import CloudSecurityIcon from '@patternfly/react-icons/dist/dynamic/icons/cloud-security-icon';
-import NetworkIcon from '@patternfly/react-icons/dist/dynamic/icons/network-icon';
-import ProcessAutomationIcon from '@patternfly/react-icons/dist/dynamic/icons/process-automation-icon';
-import SecurityIcon from '@patternfly/react-icons/dist/dynamic/icons/security-icon';
-import ServicesIcon from '@patternfly/react-icons/dist/dynamic/icons/services-icon';
+import { List, ListItem } from '@patternfly/react-core';
+import {
+  BugIcon,
+  ClipboardCheckIcon,
+  CloudSecurityIcon,
+  NetworkIcon,
+  ProcessAutomationIcon,
+  SecurityIcon,
+  ServicesIcon,
+} from '@patternfly/react-icons';
 
 type FeatureDetail = {
   title: string;

@@ -1,16 +1,19 @@
 import React from 'react';
-import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { CardBody } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { CardTitle } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { Content } from '@patternfly/react-core/dist/dynamic/components/Content';
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Text,
+  TextContent,
+} from '@patternfly/react-core';
 
 function ProductDemoCard() {
   return (
     <Card>
       <CardTitle>
-        <Content>
-          <Content component="h2">Product demo</Content>
-        </Content>
+        <TextContent>
+          <Text component="h2">Product demo</Text>
+        </TextContent>
       </CardTitle>
       <CardBody>
         <div className="marketing-video">

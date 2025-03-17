@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Wizard,
-  useWizardContext,
-} from '@patternfly/react-core/dist/dynamic/components/Wizard';
-import { WizardFooter } from '@patternfly/react-core/dist/dynamic/components/Wizard';
-import { WizardStep } from '@patternfly/react-core/dist/dynamic/components/Wizard';
+import { useWizardContext } from '@patternfly/react-core';
+import { Wizard, WizardFooter, WizardStep } from '@patternfly/react-core';
 
 import InitialSetup from './InitialSetup';
 import InstallOptions, {

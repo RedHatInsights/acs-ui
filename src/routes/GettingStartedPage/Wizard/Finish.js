@@ -1,12 +1,14 @@
 import React from 'react';
-import { Card } from '@patternfly/react-core/dist/dynamic/components/Card';
-import { Flex } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { FlexItem } from '@patternfly/react-core/dist/dynamic/layouts/Flex';
-import { Grid } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
-import { GridItem } from '@patternfly/react-core/dist/dynamic/layouts/Grid';
-import { Stack } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
-import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
-import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
+import {
+  Card,
+  Flex,
+  FlexItem,
+  Grid,
+  GridItem,
+  Stack,
+  StackItem,
+  Title,
+} from '@patternfly/react-core';
 
 import HeaderExternalLink from './HeaderExternalLink';
 

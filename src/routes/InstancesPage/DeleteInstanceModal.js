@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Alert } from '@patternfly/react-core/dist/dynamic/components/Alert';
-import { AlertVariant } from '@patternfly/react-core/dist/dynamic/components/Alert';
-import { Button } from '@patternfly/react-core/dist/dynamic/components/Button';
-import { Form } from '@patternfly/react-core/dist/dynamic/components/Form';
-import { FormGroup } from '@patternfly/react-core/dist/dynamic/components/Form';
-import { HelperText } from '@patternfly/react-core/dist/dynamic/components/HelperText';
-import { HelperTextItem } from '@patternfly/react-core/dist/dynamic/components/HelperText';
-import { TextInput } from '@patternfly/react-core/dist/dynamic/components/TextInput';
-import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
+import {
+  Alert,
+  AlertVariant,
+  Button,
+  Form,
+  FormGroup,
+  HelperText,
+  HelperTextItem,
+  Modal,
+  ModalVariant,
+  TextInput,
+} from '@patternfly/react-core';
 import React, { useState } from 'react';
 
 import useAnalytics from '../../hooks/useAnalytics';
@@ -74,10 +77,10 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         </Button>,
       ]}
     >
-      <div className="pf-v6-u-pb-md">
+      <div className="pf-v5-u-pb-md">
         <div>
           This will permanently delete{' '}
-          <span className="pf-v6-u-font-weight-bold">{instance.name}</span>.
+          <span className="pf-v5-u-font-weight-bold">{instance.name}</span>.
         </div>
         <div>This action cannot be undone.</div>
       </div>
@@ -99,7 +102,7 @@ function DeleteInstanceModal({ isOpen, instance, onRequestDelete, onClose }) {
         <HelperText>
           <HelperTextItem>
             Type{' '}
-            <span className="pf-v6-u-font-weight-bold">{instance.name}</span> to
+            <span className="pf-v5-u-font-weight-bold">{instance.name}</span> to
             confirm.
           </HelperTextItem>
         </HelperText>
