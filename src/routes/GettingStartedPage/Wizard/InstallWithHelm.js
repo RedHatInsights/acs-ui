@@ -45,11 +45,12 @@ const InstallWithHelm = () => {
   };
 
   const codeBlock =
-    `helm install rhacs-secured-cluster-services rhacs/secured-cluster-services -n stackrox \\ \n` +
-    `-f <path_to_cluster_init_bundle.yaml> \\ \n` +
-    `--set clusterName=<name_of_the_secured_cluster> \\ \n` +
-    `--set centralEndpoint=<endpoint_of_central_service> \\ \n` +
-    `--set imagePullSecrets.username=<your redhat.com username> \\ \n` +
+    `helm install -n stackrox --create-namespace \\\n` +
+    `stackrox-secured-cluster-services rhacs/secured-cluster-services \\\n` +
+    `-f <path_to_cluster_init_bundle.yaml> \\\n` +
+    `--set clusterName=<name_of_the_secured_cluster> \\\n` +
+    `--set centralEndpoint=<endpoint_of_central_service> \\\n` +
+    `--set imagePullSecrets.username=<your redhat.com username> \\\n` +
     `--set imagePullSecrets.password=<your redhat.com password>`;
 
   const actions = (
@@ -166,13 +167,10 @@ const InstallWithHelm = () => {
             </ExpandableSection>
           </ListItem>
           <ListItem>
-            Run the following Helm install command:
-            <CodeBlock actions={actions} className="pf-v6-u-mt-sm">
-              <CodeBlockCode id="code-content">{codeBlock}</CodeBlockCode>
-            </CodeBlock>
             <div className="pf-v6-u-mt-sm">
               If this is the first time you’re using helm, you will need to add
-              the stackrox repo using the following commands:
+              the <span className="pf-v6-u-font-weight-bold">rhacs</span> repo
+              using the following commands:
             </div>
             <div className="pf-v6-u-mt-sm">
               <ClipboardCopy
@@ -182,7 +180,7 @@ const InstallWithHelm = () => {
                 isCode
                 className="pf-v6-u-my-sm"
               >
-                {`helm repo add stackrox https://mirror.openshift.com/pub/rhacs/charts`}
+                {`helm repo add rhacs https://mirror.openshift.com/pub/rhacs/charts`}
               </ClipboardCopy>
             </div>
             <div className="pf-v6-u-my-sm">
@@ -196,8 +194,12 @@ const InstallWithHelm = () => {
                 {`helm repo update`}
               </ClipboardCopy>
             </div>
+            Run the following Helm install command:
+            <CodeBlock actions={actions} className="pf-v6-u-mt-sm">
+              <CodeBlockCode id="code-content">{codeBlock}</CodeBlockCode>
+            </CodeBlock>
             <div>
-              For image pull secretes, there are better options for credentials
+              For image pull secrets, there are better options for credentials
               for registry.redhat.io, like a{' '}
               <Button
                 variant="link"
