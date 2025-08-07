@@ -1,13 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Reducer } from 'redux';
 
 import { Routes } from './Routes';
 import './App.scss';
 import AppContext, { defaultState } from './context/AppContext';
 
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
-import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
-import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import NotificationsProvider from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 import { Unavailable } from '@redhat-cloud-services/frontend-components/Unavailable';
 
@@ -48,9 +45,6 @@ const App = () => {
       setIsEntitlementLoaded(true);
     }
 
-    const registry = getRegistry();
-    registry.register({ notifications: notificationsReducer as Reducer });
-
     updateDocumentTitle('acs');
   }, []);
 
@@ -60,7 +54,7 @@ const App = () => {
     return (
       <Fragment>
         <AppContext.Provider value={{ isEntitled, isEntitlementLoaded }}>
-          <NotificationsPortal />
+          <NotificationsProvider />
           <Routes />
         </AppContext.Provider>
       </Fragment>
