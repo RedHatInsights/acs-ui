@@ -23,12 +23,14 @@ import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner'
 import { Title } from '@patternfly/react-core/dist/dynamic/components/Title';
 import useInstance from '../../hooks/apis/useInstance';
 import InstanceDetailsList from '../../components/InstanceDetailsList';
-
+import { statuses } from '../../utils/status';
 import NotFoundMessage from '../../components/NotFoundMessage';
 
 function InstanceDetailsPage() {
   const { instanceId } = useParams();
   const { data: instance, isFetching, isError } = useInstance(instanceId);
+  const isCentralReady = instance?.status === statuses.ready;
+  const shownCentralUIURL = isCentralReady ? instance.centralUIURL : null;
 
   if (isFetching) {
     return (
@@ -78,8 +80,8 @@ function InstanceDetailsPage() {
                       <Button
                         variant={ButtonVariant.primary}
                         component="a"
-                        href={instance.centralUIURL}
-                        isDisabled={!instance.centralUIURL}
+                        href={shownCentralUIURL}
+                        isDisabled={!shownCentralUIURL}
                         target="_blank"
                       >
                         Open ACS Console
