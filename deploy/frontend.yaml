@@ -10,6 +10,53 @@ objects:
     metadata:
       name: acs
     spec:
+      feoConfigEnabled: true
+      navigationSegments:
+        # ACS Navigation is referenced as a foreign module with configuration similar to below
+        # TODO: Update this with a link comment to the parent navigation module's repo
+        # - segmentref:
+        #   frontendname: acs
+        #   segmentId: acs
+        - segmentId: acs
+          navItems:
+            - id: acs.nav
+              title: Advanced Cluster Security
+              expandable: true
+              routes:
+              - id: clusterOverview
+                product: acs
+                title: Overview
+                href: "/openshift/acs/overview"
+                icon: ACSIcon
+              - id: acsGettingStarted
+                product: acs
+                title: Getting Started
+                href: "/openshift/acs/getting-started"
+              - id: acsInstances
+                product: acs
+                title: ACS Instances
+                href: "/openshift/acs/instances"
+              - id: clustersDocumentation
+                title: Documentation
+                isExternal: true
+                href: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes
+      serviceTiles:
+        - section: security
+          group: openshift
+          id: acs
+          href: /openshift/acs/overview
+          title: Advanced Cluster Security
+          description: Securely build, deploy, and run your cloud applications using Kubernetes-native architecture.
+          icon: ACSIcon
+      searchEntries:
+        - id: acs
+          title: Advanced Cluster Security
+          description: Securely build, deploy, and run your cloud applications using Kubernetes-native architecture.
+          href: /openshift/acs/overview
+          alt_title:
+            - acs
+            - ACS
+            - operators
       envName: ${ENV_NAME}
       title: ACS UI
       deploymentRepo: https://github.com/RedHatInsights/acs-ui
@@ -23,10 +70,10 @@ objects:
       module:
         manifestLocation: "/apps/acs/fed-mods.json"
         modules:
-          - id: "acs"
-            module: "./RootApp"
-            routes:
-              - pathname: /application-services/acs
+        - id: "acs"
+          module: "./RootApp"
+          routes:
+            - pathname: /openshift/acs
 parameters:
   - name: ENV_NAME
     required: true
