@@ -34,7 +34,7 @@ objects:
                 href: "/openshift/acs/getting-started"
               - id: acsInstances
                 product: acs
-                title: ACS instances
+                title: ACS Instances
                 href: "/openshift/acs/instances"
               - id: clustersDocumentation
                 title: Documentation
