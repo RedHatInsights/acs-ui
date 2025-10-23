@@ -24,7 +24,7 @@
     "@patternfly/react-core": "^6.0.0",
     "@patternfly/react-table": "^6.0.0",
     "@patternfly/react-templates": "^6.0.0",
-    "@redhat-cloud-services/frontend-components": "^6.0.2",
+    "@redhat-cloud-services/frontend-components": "^7.0.0",
     "@redhat-cloud-services/frontend-components-notifications": "^5.0.2",
     "classnames": "^2.3.1",
     "json-server": "^0.17.0",
