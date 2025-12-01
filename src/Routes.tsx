@@ -7,38 +7,38 @@ import { Bullseye } from '@patternfly/react-core/dist/dynamic/layouts/Bullseye';
 import { Spinner } from '@patternfly/react-core/dist/dynamic/components/Spinner';
 
 const OopsPage = lazy(
-  () => import(/* webpackChunkName: "OopsPage" */ './routes/OopsPage/OopsPage')
+  () => import(/* webpackChunkName: "OopsPage" */ './routes/OopsPage/OopsPage'),
 );
 const NoPermissionsPage = lazy(
   () =>
     import(
       /* webpackChunkName: "NoPermissionsPage" */ './routes/NoPermissionsPage/NoPermissionsPage'
-    )
+    ),
 );
 const InstancesPage = lazy(
   () =>
     import(
       /* webpackChunkName: "InstancesPage" */ './routes/InstancesPage/InstancesPage'
-    )
+    ),
 );
 const InstanceDetailsPage = lazy(
   () =>
     import(
       /* webpackChunkName: "InstanceDetailsPage" */ './routes/InstanceDetailsPage/InstanceDetailsPage'
-    )
+    ),
 );
 const OverviewPage = lazy(
   () =>
     import(
       /* webpackChunkName: "OverviewPage" */ './routes/OverviewPage/OverviewPage'
-    )
+    ),
 );
 
 const GettingStartedPage = lazy(
   () =>
     import(
       /* webpackChunkName: "GettingStartedPage" */ './routes/GettingStartedPage/GettingStartedPage'
-    )
+    ),
 );
 
 export const Routes = () => {

@@ -15,7 +15,7 @@ export const cloudProviderOptions = Object.keys(cloudProviders).map(
       value: cloudProviderValue,
       label: cloudProviders[cloudProviderValue],
     };
-  }
+  },
 );
 
 export function cloudProviderValueToLabel(cloudProviderValue) {
@@ -26,7 +26,7 @@ export function cloudProviderValueToLabel(cloudProviderValue) {
 
 export function cloudProviderLabelToValue(cloudProviderLabel) {
   const cloudProviderOption = cloudProviderOptions.find(
-    (cloudProviderOption) => cloudProviderOption.label === cloudProviderLabel
+    (cloudProviderOption) => cloudProviderOption.label === cloudProviderLabel,
   );
   return cloudProviderOption?.value;
 }

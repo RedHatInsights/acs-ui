@@ -8,7 +8,7 @@ export const queryKey = (query) => ['cloud_regions', query];
 const getCloudRegions = async (apiRequest, { provider, instanceType }) => {
   const queryString = getQueryString({ instance_type: instanceType });
   const { data } = await apiRequest.get(
-    `/api/rhacs/v1/cloud_providers/${provider}/regions?${queryString}`
+    `/api/rhacs/v1/cloud_providers/${provider}/regions?${queryString}`,
   );
   return data;
 };

@@ -55,7 +55,7 @@ describe('searchQuery', () => {
       };
       const searchQuery = filtersToSearchQuery(filters, []);
       expect(searchQuery).toBe(
-        '(status = accepted or status = preparing or status = provisioning or status = ready or status = failed or status = deprovision or status = deleting)'
+        '(status = accepted or status = preparing or status = provisioning or status = ready or status = failed or status = deprovision or status = deleting)',
       );
     });
 
@@ -72,7 +72,7 @@ describe('searchQuery', () => {
         },
       ]);
       expect(searchQuery).toBe(
-        '(name LIKE %25sc-test-1%25) and (region = us-east-1) and (owner LIKE %25schaudhr%25)'
+        '(name LIKE %25sc-test-1%25) and (region = us-east-1) and (owner LIKE %25schaudhr%25)',
       );
     });
 
