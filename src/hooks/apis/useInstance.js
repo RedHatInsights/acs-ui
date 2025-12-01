@@ -10,6 +10,6 @@ const getInstanceById = async (apiRequest, instanceId) => {
 export default function useInstance(instanceId) {
   const apiRequest = useApi();
   return useQuery(['instance', instanceId], () =>
-    getInstanceById(apiRequest, instanceId)
+    getInstanceById(apiRequest, instanceId),
   );
 }

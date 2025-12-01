@@ -29,7 +29,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
   const { data: cloudRegionList } = useCloudRegions({ provider: AWS_PROVIDER });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
-    [cloudRegionList]
+    [cloudRegionList],
   );
 
   // TODO: Extract into separate utils file to be reused in other cases
@@ -197,7 +197,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
                       applyCurrentSearchText(
                         'owner',
                         inputOwner,
-                        setInputOwner
+                        setInputOwner,
                       );
                     }
                   }}
