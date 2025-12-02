@@ -20,7 +20,7 @@
     "test:cypress:open": "cypress open --component",
     "test:cypress:component": "cypress run --component",
     "postinstall": "ts-patch install && rimraf .cache",
-    "verify": "npm-run-all2 build lint test"
+    "verify": "npm-run-all build lint test"
   },
   "dependencies": {
     "@patternfly/react-core": "^6.4.0",
@@ -28,6 +28,7 @@
     "@patternfly/react-templates": "^6.4.0",
     "@redhat-cloud-services/frontend-components": "^7.0.13",
     "@redhat-cloud-services/frontend-components-notifications": "^6.1.14",
+    "@redhat-cloud-services/frontend-components-utilities": "^7.0.9",
     "json-server": "^0.17.0",
     "qs": "^6.11.1",
     "react": "^18.3.1",
@@ -46,19 +47,19 @@
     "@testing-library/react": "^14.3.1",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.27",
-    "@types/react-dom": "^18.2.7",
+    "@types/react-dom": "^18.3.7",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/parser": "^8.47.0",
     "cypress": "^15.7.0",
-    "identity-obj-proxy": "3.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest-environment-jsdom": "^29.7.0",
-    "npm-run-all2": "5.0.2",
+    "npm-run-all2": "^5.0.2",
     "rimraf": "^5.0.10",
     "ts-jest": "^29.4.5",
-    "ts-patch": "^3.0.2",
+    "ts-patch": "^3.3.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0",
-    "webpack-bundle-analyzer": "4.4.2"
+    "webpack-bundle-analyzer": "4.10.2"
   },
   "insights": {
     "appname": "acs"
