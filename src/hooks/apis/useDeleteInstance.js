@@ -6,7 +6,7 @@ export default function useDeleteInstance() {
   const apiRequest = useApi();
   const deleteInstance = async (instanceID) => {
     const { data } = await apiRequest.delete(
-      `/api/rhacs/v1/centrals/${instanceID}?async=true`
+      `/api/rhacs/v1/centrals/${instanceID}?async=true`,
     );
     return data;
   };

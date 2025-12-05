@@ -12,8 +12,10 @@ import { StackItem } from '@patternfly/react-core/dist/dynamic/layouts/Stack';
 
 import AppLink from './AppLink';
 
-export interface NotFoundMessageProps
-  extends Omit<EmptyStateProps, 'children'> {
+export interface NotFoundMessageProps extends Omit<
+  EmptyStateProps,
+  'children'
+> {
   errorTitle?: string;
   errorDescription?: React.ReactNode;
   url: string;

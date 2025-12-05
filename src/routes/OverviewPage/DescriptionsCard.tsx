@@ -22,9 +22,9 @@ function DescriptionsCard() {
 
   function onSelectListItem(
     _selectedItem:
-      | React.RefObject<HTMLAnchorElement>
-      | React.RefObject<HTMLButtonElement>,
-    selectedItemProps: SimpleListItemProps
+      | React.RefObject<HTMLAnchorElement | null>
+      | React.RefObject<HTMLButtonElement | null>,
+    selectedItemProps: SimpleListItemProps,
   ): void {
     setFeatureDetailsId(selectedItemProps.itemId as string);
   }
