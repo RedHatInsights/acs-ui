@@ -6,7 +6,7 @@ import useApi from './useApi';
 const getInstances = async (apiRequest, { query }) => {
   const queryString = getQueryString(query);
   const { data } = await apiRequest.get(
-    `/api/rhacs/v1/centrals?${queryString}`
+    `/api/rhacs/v1/centrals?${queryString}`,
   );
   return data;
 };
@@ -19,6 +19,6 @@ export default function useInstances(options) {
     () => getInstances(apiRequest, options),
     {
       refetchInterval,
-    }
+    },
   );
 }

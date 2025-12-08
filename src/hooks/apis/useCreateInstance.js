@@ -8,7 +8,7 @@ export default function useCreateInstance() {
   const postInstance = async (postData) => {
     const { data } = await apiRequest.post(
       '/api/rhacs/v1/centrals?async=true',
-      postData
+      postData,
     );
     return data;
   };
