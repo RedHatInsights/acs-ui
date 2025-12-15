@@ -86,7 +86,7 @@ function InstancesPage() {
   const { data: cloudAccountsData } = useCloudAccounts();
   const cloudAccountIds =
     cloudAccountsData?.cloudAccounts?.map(
-      (cloudAccount) => cloudAccount.cloudAccountId
+      (cloudAccount) => cloudAccount.cloudAccountId,
     ) || [];
 
   const { data: regionList, isFetching: isFetchingRegions } = useCloudRegions({
@@ -271,7 +271,7 @@ function InstancesPage() {
               instances.map((instance) => {
                 const instanceDetailsURL = mergeToBasename(
                   `instances/instance/${instance.id}`,
-                  linkBasename
+                  linkBasename,
                 );
                 return (
                   <Tr

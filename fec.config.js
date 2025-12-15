@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const webpack = require('webpack');
 
 module.exports = {
@@ -30,6 +31,9 @@ module.exports = {
   },
   hotReload: process.env.HOT === 'true',
   moduleFederation: {
+    exposes: {
+      './RootApp': './src/AppEntry',
+    },
     exclude: ['react-router-dom'],
     shared: [
       {

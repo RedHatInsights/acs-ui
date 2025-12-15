@@ -53,11 +53,11 @@ function CreateInstanceModal({
     });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
-    [cloudRegionList]
+    [cloudRegionList],
   );
   const enabledCloudRegions = useMemo(
     () => cloudRegions.filter((r) => r.enabled),
-    [cloudRegions]
+    [cloudRegions],
   );
 
   function onCloseHandler() {

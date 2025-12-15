@@ -21,7 +21,7 @@ export function statusValueToLabel(statusValue) {
 
 export function statusLabelToValue(statusLabel) {
   const statusOption = statusOptions.find(
-    (statusOption) => statusOption.label === statusLabel
+    (statusOption) => statusOption.label === statusLabel,
   );
   return statusOption?.value;
 }

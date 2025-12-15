@@ -1,19 +1,16 @@
+const transformIgnorePatterns = ['node_modules/(?!(uuid)/)'];
+
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
+  preset: 'ts-jest/presets/js-with-babel-esm',
+  testEnvironment: 'jsdom',
+  coverageDirectory: './coverage/',
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.js', '!src/**/stories/*'],
-  coverageDirectory: './coverage/',
+  roots: ['<rootDir>/src/'],
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
   },
-  roots: ['<rootDir>/src/'],
-  transformIgnorePatterns: [
-    '/node_modules/(?!@redhat-cloud-services)',
-    '/node_modules/(?!@patternfly)',
-  ],
-  testEnvironment: 'jest-environment-jsdom',
-  moduleDirectories: [
-    'node_modules',
-    './src', //the root directory
-  ],
-  setupFilesAfterEnv: ['<rootDir>/config/jest.setup.js'],
+  transformIgnorePatterns,
+  setupFilesAfterEnv: ['<rootDir>/config/jest.setup.ts'],
 };
