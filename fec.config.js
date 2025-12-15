@@ -31,6 +31,9 @@ module.exports = {
   },
   hotReload: process.env.HOT === 'true',
   moduleFederation: {
+    exposes: {
+      './RootApp': './src/AppEntry',
+    },
     exclude: ['react-router-dom'],
     shared: [
       {

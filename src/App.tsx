@@ -54,8 +54,9 @@ const App = () => {
     return (
       <Fragment>
         <AppContext.Provider value={{ isEntitled, isEntitlementLoaded }}>
-          <NotificationsProvider />
-          <Routes />
+          <NotificationsProvider>
+            <Routes />
+          </NotificationsProvider>
         </AppContext.Provider>
       </Fragment>
     );
