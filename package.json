@@ -53,7 +53,7 @@
     "cypress": "^15.7.0",
     "identity-obj-proxy": "^3.0.0",
     "jest-environment-jsdom": "^29.7.0",
-    "npm-run-all2": "^5.0.2",
+    "npm-run-all2": "^8.0.0",
     "rimraf": "^5.0.10",
     "ts-jest": "^29.4.5",
     "ts-patch": "^3.3.0",
