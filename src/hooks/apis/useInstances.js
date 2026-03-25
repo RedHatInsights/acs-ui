@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getQueryString } from '../../utils/queryString';
 import useApi from './useApi';
@@ -14,11 +14,9 @@ const getInstances = async (apiRequest, { query }) => {
 export default function useInstances(options) {
   const { refetchInterval } = options;
   const apiRequest = useApi();
-  return useQuery(
-    ['instances', options],
-    () => getInstances(apiRequest, options),
-    {
-      refetchInterval,
-    },
-  );
+  return useQuery({
+    queryKey: ['instances', options],
+    queryFn: () => getInstances(apiRequest, options),
+    refetchInterval,
+  });
 }

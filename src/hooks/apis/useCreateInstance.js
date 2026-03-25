@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useApi from './useApi';
 
 export default function useCreateInstance() {
@@ -13,7 +13,8 @@ export default function useCreateInstance() {
     return data;
   };
 
-  return useMutation(postInstance, {
+  return useMutation({
+    mutationFn: postInstance,
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries('instances');
