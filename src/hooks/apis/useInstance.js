@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import useApi from './useApi';
 
@@ -9,7 +9,8 @@ const getInstanceById = async (apiRequest, instanceId) => {
 
 export default function useInstance(instanceId) {
   const apiRequest = useApi();
-  return useQuery(['instance', instanceId], () =>
-    getInstanceById(apiRequest, instanceId),
-  );
+  return useQuery({
+    queryKey: ['instance', instanceId],
+    queryFn: () => getInstanceById(apiRequest, instanceId),
+  });
 }

@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useApi from './useApi';
 
 export default function useDeleteInstance() {
@@ -10,7 +10,8 @@ export default function useDeleteInstance() {
     );
     return data;
   };
-  return useMutation(deleteInstance, {
+  return useMutation({
+    mutationFn: deleteInstance,
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries('instances');
