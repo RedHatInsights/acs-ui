@@ -54,15 +54,15 @@ const InstallWithOperator = () => {
               href="https://docs.openshift.com/acs/3.72/installing/install-ocp-operator.html" // TODO: get updated documentation
               target="_blank"
               component="a"
-              aria-label="install the ACS Operator from Operator Hub"
+              aria-label="install the Red Hat Advanced Cluster Security Operator from Operator Hub"
             >
-              install the ACS Operator from Operator Hub
+              install the Red Hat Advanced Cluster Security Operator from Operator Hub
             </Button>
-            . Create a new OCP project for ACS. A good name choice is{' '}
+            . Create a new OCP project for the operator. A good name choice is{' '}
             <span className="pf-v6-u-font-weight-bold">rhacs-operator</span>.
           </ListItem>
           <ListItem>
-            In the ACS UI, from the menu on the left, go to Platform
+            In the Central UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
             <span className="pf-v6-u-font-weight-bold">
               Cluster Init Bundle
@@ -87,7 +87,7 @@ const InstallWithOperator = () => {
           </ListItem>
           <ListItem>
             <div>
-              With the ACS project selected, create the init bundle secrets in
+              With the project selected, create the init bundle secrets in
               OCP by pasting the contents into the OCP console or by using the
               command:
             </div>
@@ -102,9 +102,9 @@ const InstallWithOperator = () => {
             </ClipboardCopy>
           </ListItem>
           <ListItem>
-            In the ACS Operator, install the Secured Cluster API into the ACS
+            In the Red Hat Advanced Cluster Security Operator, install the Secured Cluster API into the
             project. Give your cluster a name and specify the Central Endpoint
-            with the Central API Endpoint (including port) from the ACS instance
+            with the Central API Endpoint (including port) from the instance
             details.
             <ExpandableSection
               toggleText={'Show me where'}

@@ -35,9 +35,9 @@ function GettingStartedPage() {
                   href="https://docs.openshift.com/acs/3.74/welcome/index.html"
                   target="_blank"
                   component="a"
-                  aria-label="Learn more about ACS"
+                  aria-label="Learn more"
                 >
-                  Learn more about ACS
+                  Learn more
                 </Button>{' '}
                 or{' '}
                 <Button

@@ -45,7 +45,7 @@ const InitialSetup = () => {
           <GridItem sm={10} xl2={11}>
             <Content>
               <Content component={ContentVariants.h3}>
-                Create an ACS Central Instance
+                Create a Central Instance
               </Content>
             </Content>
             <Button
@@ -87,7 +87,7 @@ const InitialSetup = () => {
           <GridItem sm={10} xl2={11}>
             <Content className="pf-v6-u-mb-sm">
               <Content component={ContentVariants.h3}>
-                Access the ACS Central Interface
+                Access the Central Interface
               </Content>
             </Content>
             <List component="ol" type="1">
@@ -99,7 +99,7 @@ const InitialSetup = () => {
               <ListItem>
                 Click the{' '}
                 <span className="pf-v6-u-font-weight-bold">
-                  Open ACS Console
+                  Open console
                 </span>{' '}
                 button.
               </ListItem>

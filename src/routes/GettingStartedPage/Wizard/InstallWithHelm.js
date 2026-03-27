@@ -120,7 +120,7 @@ const InstallWithHelm = () => {
       <StackItem>
         <List component="ol" type="1">
           <ListItem>
-            In the ACS UI, from the menu on the left, go to Platform
+            In the Central UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
             <span className="pf-v6-u-font-weight-bold">
               Cluster Init Bundle
@@ -147,7 +147,7 @@ const InstallWithHelm = () => {
             Use the Helm installation method to create the Secured Cluster
             services. Supply the created cluster init bundle, a unique cluster
             name, and the centralEndpoint, which is the URI (including port) of
-            your ACS instance. This URI is listed as{' '}
+            your instance. This URI is listed as{' '}
             <span className="pf-v6-u-font-weight-bold">
               Central API Endpoint
             </span>{' '}

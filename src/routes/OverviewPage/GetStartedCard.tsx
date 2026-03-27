@@ -59,11 +59,11 @@ function GetStartedCard() {
               variant="default"
               id="ACS-getting-started-step1"
               titleId="ACS-getting-started-step1-title"
-              aria-label="ACS getting started step 1"
+              aria-label="Getting started step 1"
               icon={1}
             >
               <Card isCompact className="pf-u-h-100 pf-u-m-md">
-                <CardTitle>Get an ACS subscription</CardTitle>
+                <CardTitle>Get a subscription</CardTitle>
                 <CardBody className="pf-u-pb-0">
                   Start a 60-day free trial subscription to Red Hat® Advanced
                   Cluster Security Cloud Service.
@@ -87,14 +87,14 @@ function GetStartedCard() {
               variant="default"
               id="ACS-getting-started-step2"
               titleId="ACS-getting-started-step2-title"
-              aria-label="ACS getting started step 2"
+              aria-label="Getting started step 2"
               icon={2}
             >
               <Card isCompact className="pf-u-h-100 pf-u-m-md">
-                <CardTitle>Create an ACS instance</CardTitle>
+                <CardTitle>Create an instance</CardTitle>
                 <CardBody className="pf-u-pb-0">
-                  If you&apos;re already subscribed to ACS, continue the process
-                  by setting up an ACS instance to get started with securing
+                  If you&apos;re already subscribed, continue the process
+                  by setting up an instance to get started with securing
                   your clusters.
                 </CardBody>
                 <CardFooter>
@@ -104,7 +104,7 @@ function GetStartedCard() {
                     )}
                     variant="link"
                   >
-                    Create ACS instance
+                    Create instance
                   </Button>
                 </CardFooter>
               </Card>
@@ -113,14 +113,14 @@ function GetStartedCard() {
               variant="default"
               id="ACS-getting-started-step3"
               titleId="ACS-getting-started-step3-title"
-              aria-label="ACS getting started step 3"
+              aria-label="Getting started step 3"
               icon={3}
             >
               <Card isCompact className="pf-u-h-100 pf-u-m-md">
                 <CardTitle>Secure a cluster</CardTitle>
                 <CardBody className="pf-u-pb-0">
-                  Once you&apos;ve got your ACS instance up and running, open
-                  the designated ACS console from your ACS instance and follow
+                  Once you&apos;ve got your instance up and running, open
+                  the console from your instance and follow
                   the instructions to secure a cluster.
                 </CardBody>
                 <CardFooter>

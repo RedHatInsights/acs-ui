@@ -172,7 +172,7 @@ function InstancesPage() {
       <EmptyState
         headingLevel="h4"
         icon={CubesIcon}
-        titleText="No ACS instances."
+        titleText="No instances."
       >
         <EmptyStateBody>Create one to get started.</EmptyStateBody>
         <EmptyStateFooter>
@@ -181,7 +181,7 @@ function InstancesPage() {
               variant="primary"
               onClick={() => onCreateInstanceHandler({})}
             >
-              Create ACS instance
+              Create instance
             </Button>
           </EmptyStateActions>
         </EmptyStateFooter>
@@ -201,7 +201,7 @@ function InstancesPage() {
                 variant="primary"
                 onClick={() => onCreateInstanceHandler({})}
               >
-                Create ACS instance
+                Create instance
               </Button>
             </ToolbarItem>
             {instances.length !== 0 && (
@@ -219,7 +219,7 @@ function InstancesPage() {
             )}
           </ToolbarContent>
         </Toolbar>
-        <Table aria-label="ACS instances table">
+        <Table aria-label="Instances table">
           <Thead>
             <Tr>
               <Th sort={getSortParams('name')}>Name</Th>
@@ -365,7 +365,7 @@ function InstancesPage() {
       onClose={closeInstanceDetailsDrawer}
     >
       <PageHeader>
-        <PageHeaderTitle title="ACS Instances" />
+        <PageHeaderTitle title="Instances" />
       </PageHeader>
       <Main>
         {content}

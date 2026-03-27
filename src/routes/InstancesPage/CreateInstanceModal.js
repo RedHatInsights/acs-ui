@@ -126,7 +126,7 @@ function CreateInstanceModal({
   return (
     <Modal
       variant={ModalVariant.small}
-      title="Create ACS instance"
+      title="Create instance"
       isOpen={isOpen}
       onClose={onCloseHandler}
       actions={[
