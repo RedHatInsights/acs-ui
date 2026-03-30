@@ -67,7 +67,7 @@ function InstanceDetailsPage() {
             >
               <Card className="pf-v6-u-h-100">
                 <CardHeader>
-                  <CardTitle>Instance Access</CardTitle>
+                  <CardTitle>Instance access</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Flex direction={{ default: 'column' }}>

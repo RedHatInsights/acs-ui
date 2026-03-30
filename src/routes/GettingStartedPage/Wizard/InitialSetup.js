@@ -45,7 +45,7 @@ const InitialSetup = () => {
           <GridItem sm={10} xl2={11}>
             <Content>
               <Content component={ContentVariants.h3}>
-                Create a Central Instance
+                Create an instance
               </Content>
             </Content>
             <Button
@@ -87,7 +87,7 @@ const InitialSetup = () => {
           <GridItem sm={10} xl2={11}>
             <Content className="pf-v6-u-mb-sm">
               <Content component={ContentVariants.h3}>
-                Access the Central Interface
+                Access the interface
               </Content>
             </Content>
             <List component="ol" type="1">

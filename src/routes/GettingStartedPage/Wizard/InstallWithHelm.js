@@ -112,7 +112,7 @@ const InstallWithHelm = () => {
             previously
           </div>
           <div>
-            Admin access to K8s Cluster you with to install (kubeconfig)
+            Admin access to Kubernetes Cluster you wish to install (kubeconfig)
           </div>
           <div>Helm CLI installed in the same environment</div>
         </div>
@@ -120,7 +120,7 @@ const InstallWithHelm = () => {
       <StackItem>
         <List component="ol" type="1">
           <ListItem>
-            In the Central UI, from the menu on the left, go to Platform
+            In the UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
             <span className="pf-v6-u-font-weight-bold">
               Cluster Init Bundle
@@ -168,7 +168,7 @@ const InstallWithHelm = () => {
           </ListItem>
           <ListItem>
             <div className="pf-v6-u-mt-sm">
-              If this is the first time you’re using helm, you will need to add
+              If this is the first time you’re using Helm, you will need to add
               the <span className="pf-v6-u-font-weight-bold">rhacs</span> repo
               using the following commands:
             </div>

@@ -58,11 +58,11 @@ const InstallWithOperator = () => {
             >
               install the Red Hat Advanced Cluster Security Operator from Operator Hub
             </Button>
-            . Create a new OCP project for the operator. A good name choice is{' '}
+            . Create a new OCP project for the Operator. A good name choice is{' '}
             <span className="pf-v6-u-font-weight-bold">rhacs-operator</span>.
           </ListItem>
           <ListItem>
-            In the Central UI, from the menu on the left, go to Platform
+            In the UI, from the menu on the left, go to Platform
             Configuration -{'>'} Integrations and scroll down to{' '}
             <span className="pf-v6-u-font-weight-bold">
               Cluster Init Bundle
