@@ -74,6 +74,17 @@ objects:
           module: "./RootApp"
           routes:
             - pathname: /openshift/acs
+      widgetRegistry:
+        - scope: "landing"
+          module: "./AcsWidget"
+          config:
+            title: "Advanced Cluster Security"
+            icon: "ACSIcon"
+          defaults:
+            w: 1
+            h: 4
+            maxH: 10
+            minH: 1
 parameters:
   - name: ENV_NAME
     required: true
