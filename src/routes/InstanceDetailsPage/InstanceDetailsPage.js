@@ -42,8 +42,8 @@ function InstanceDetailsPage() {
     return (
       <NotFoundMessage
         errorTitle="Instance Not Found"
-        actionText="Go to ACS Instances page"
-        errorDescription="The URL may be incorrect, you may not have permission to view that instance, or that instance no longer exists. Try using the ACS Instances page to find what you are looking for."
+        actionText="Go to Instances page"
+        errorDescription="The URL may be incorrect, you may not have permission to view that instance, or that instance no longer exists. Try using the Instances page to find what you are looking for."
         url="instances"
       />
     );
@@ -67,12 +67,12 @@ function InstanceDetailsPage() {
             >
               <Card className="pf-v6-u-h-100">
                 <CardHeader>
-                  <CardTitle>ACS Instance Access</CardTitle>
+                  <CardTitle>Instance access</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Flex direction={{ default: 'column' }}>
                     <FlexItem>
-                      Get started by signing in to your ACS instance.
+                      Get started by signing in to your instance.
                     </FlexItem>
                     <FlexItem>
                       <Button
@@ -82,7 +82,7 @@ function InstanceDetailsPage() {
                         isDisabled={!instance.centralUIURL}
                         target="_blank"
                       >
-                        Open ACS Console
+                        Open console
                       </Button>
                     </FlexItem>
                   </Flex>
@@ -103,7 +103,7 @@ function InstanceDetailsPage() {
         </PageSection>
         <PageSection hasBodyWrapper isFilled hasOverflowScroll isWidthLimited>
           <Title headingLevel="h2">
-            Use Red Hat ACS to secure your clusters
+            Use Red Hat Advanced Cluster Security Cloud Service to secure your clusters
           </Title>
           <Grid hasGutter>
             <GridItem md={7}>

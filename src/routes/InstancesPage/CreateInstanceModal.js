@@ -53,11 +53,11 @@ function CreateInstanceModal({
     });
   const cloudRegions = useMemo(
     () => cloudRegionList?.items || [],
-    [cloudRegionList]
+    [cloudRegionList],
   );
   const enabledCloudRegions = useMemo(
     () => cloudRegions.filter((r) => r.enabled),
-    [cloudRegions]
+    [cloudRegions],
   );
 
   function onCloseHandler() {
@@ -126,7 +126,7 @@ function CreateInstanceModal({
   return (
     <Modal
       variant={ModalVariant.small}
-      title="Create ACS instance"
+      title="Create instance"
       isOpen={isOpen}
       onClose={onCloseHandler}
       actions={[

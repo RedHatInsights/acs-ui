@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
 
 export const queryKey = 'cloud_accounts';
@@ -10,5 +10,8 @@ const getCloudAccounts = async (apiRequest) => {
 
 export default function useCloudAccounts() {
   const apiRequest = useApi();
-  return useQuery([queryKey], () => getCloudAccounts(apiRequest));
+  return useQuery({
+    queryKey: [queryKey],
+    queryFn: () => getCloudAccounts(apiRequest),
+  });
 }
