@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@patternfly/react-core": "^6.0.0",
+    "@patternfly/react-icons": "^6.4.0",
     "@patternfly/react-table": "^6.0.0",
     "@patternfly/react-templates": "^6.0.0",
     "@redhat-cloud-services/frontend-components": "^6.0.2",
