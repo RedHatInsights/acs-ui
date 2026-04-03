@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   appUrl: ['/application-services/acs', '/openshift/acs'],
@@ -45,5 +46,11 @@ module.exports = {
         },
       },
     ],
+    exposes: {
+      './AcsWidget': path.resolve(
+        __dirname,
+        './src/components/Widgets/acs-widget.tsx'
+      ),
+    },
   },
 };
