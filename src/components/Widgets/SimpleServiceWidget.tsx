@@ -7,10 +7,8 @@ import { Content } from '@patternfly/react-core/dist/dynamic/components/Content'
 import ArrowRightIcon from '@patternfly/react-icons/dist/js/icons/arrow-right-icon';
 import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon';
 import { Link } from 'react-router-dom';
-import './simple-service-widget.scss';
 
 interface SimpleServiceWidgetProps {
-  id: number;
   body: string;
   linkTitle: string;
   url: string;
@@ -25,7 +23,6 @@ export const SimpleServiceWidget: React.FunctionComponent<
       <>
         <CardBody className="pf-v6-u-p-md pf-v6-u-pb-0">
           <Content
-            key={props.id}
             className="pf-v6-u-display-flex pf-v6-u-flex-direction-column"
           >
             <Content component="p" className="pf-v6-u-flex-grow-1">

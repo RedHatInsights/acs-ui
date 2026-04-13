@@ -34,6 +34,10 @@ module.exports = {
   moduleFederation: {
     exposes: {
       './RootApp': './src/AppEntry',
+      './AcsWidget': path.resolve(
+        __dirname,
+        './src/components/Widgets/AcsWidget.tsx'
+      ),
     },
     exclude: ['react-router-dom'],
     shared: [
@@ -46,11 +50,5 @@ module.exports = {
         },
       },
     ],
-    exposes: {
-      './AcsWidget': path.resolve(
-        __dirname,
-        './src/components/Widgets/acs-widget.tsx'
-      ),
-    },
   },
 };

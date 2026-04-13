@@ -31,7 +31,6 @@
     "@redhat-cloud-services/frontend-components-notifications": "^6.1.14",
     "@redhat-cloud-services/frontend-components-utilities": "^7.0.9",
     "@tanstack/react-query": "^4.0.5",
-    "classnames": "^2.3.1",
     "json-server": "^0.17.0",
     "qs": "^6.11.1",
     "react": "^18.3.1",
