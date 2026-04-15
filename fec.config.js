@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   appUrl: ['/application-services/acs', '/openshift/acs'],
@@ -33,6 +34,10 @@ module.exports = {
   moduleFederation: {
     exposes: {
       './RootApp': './src/AppEntry',
+      './AcsWidget': path.resolve(
+        __dirname,
+        './src/components/Widgets/AcsWidget.tsx'
+      ),
     },
     exclude: ['react-router-dom'],
     shared: [
