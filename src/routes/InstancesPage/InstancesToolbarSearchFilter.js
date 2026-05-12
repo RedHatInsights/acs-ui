@@ -100,7 +100,7 @@ function InstancesToolbarSearchFilter({ filters, setFilters }) {
       <ToolbarGroup variant="filter-group">
         <ToolbarItem>
           <SimpleSelect
-            id="region"
+            id="filterType"
             initialOptions={filterTypeOptions.map((o) => ({
               content: o,
               value: o,
