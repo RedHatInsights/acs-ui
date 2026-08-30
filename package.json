@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@cypress/code-coverage": "^4.0.0",
-    "@cypress/react": "^9.0.1",
+    "@cypress/react": "^10.0.0",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^3.0.1",
     "@redhat-cloud-services/frontend-components-config": "^6.8.3",
     "@redhat-cloud-services/tsc-transform-imports": "^1.0.57",
